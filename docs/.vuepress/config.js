@@ -63,6 +63,9 @@ module.exports = {
             dateOptions:{
                 hour12: false
             }
+        },
+        "sitemap": {
+            hostname: "https://docmoa.github.io/"
         }
     },
     extend: '@vuepress/theme-default'
