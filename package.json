@@ -1,0 +1,38 @@
+{
+  "name": "qnote",
+  "version": "0.0.1",
+  "description": "qnote on github page",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vuepress dev docs --port 8000",
+    "build": "vuepress build docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qnote/page.git"
+  },
+  "keywords": [
+    "tech",
+    "qnote",
+    "share"
+  ],
+  "author": "",
+  "license": "CC-BY-SA 4.0",
+  "bugs": {
+    "url": "https://github.com/qnote/page/issues"
+  },
+  "homepage": "https://github.com/qnote/page#readme",
+  "devDependencies": {
+    "@vuepress/plugin-back-to-top": "^1.8.2",
+    "@vuepress/plugin-last-updated": "^1.8.2",
+    "vuepress": "^1.8.2",
+    "vuepress-plugin-demo-block": "^0.7.2",
+    "vuepress-plugin-sitemap": "^2.3.1"
+  },
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "markdown-it-plantuml": "^1.4.1",
+    "markdown-it-task-lists": "^2.1.1",
+    "markdown-it-underline": "^1.0.1"
+  }
+}
