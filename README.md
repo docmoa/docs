@@ -2,5 +2,5 @@
 
 
 
-QNote (https://qnote.github.io) 페이지 입니다.
+docmoa (https://docmoa.github.io) 페이지 입니다.
 

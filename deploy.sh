@@ -10,10 +10,10 @@ npm run build
 cd docs/.vuepress/dist
 
 # init + add + commit을 해준 다음
-git init
+# git init
 git add -A
 git commit -m 'deploy'
 
-git push -f https://github.com/qnote/qnote.git main
+git push -f https://github.com/docmoa/docmoa.github.io.git main
 
 cd -

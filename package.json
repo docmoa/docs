@@ -1,7 +1,7 @@
 {
-  "name": "qnote",
+  "name": "docmoa",
   "version": "0.0.1",
-  "description": "qnote on github page",
+  "description": "docmoa on github page",
   "main": "index.js",
   "scripts": {
     "dev": "vuepress dev docs --port 8000",
@@ -9,22 +9,24 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/qnote/page.git"
+    "url": "git+https://github.com/docmoa/page.git"
   },
   "keywords": [
     "tech",
-    "qnote",
+    "docmoa",
     "share"
   ],
   "author": "",
   "license": "CC-BY-SA 4.0",
   "bugs": {
-    "url": "https://github.com/qnote/page/issues"
+    "url": "https://github.com/docmoa/page/issues"
   },
-  "homepage": "https://github.com/qnote/page#readme",
+  "homepage": "https://github.com/docmoa/page#readme",
   "devDependencies": {
     "@vuepress/plugin-back-to-top": "^1.8.2",
     "@vuepress/plugin-last-updated": "^1.8.2",
+    "@vuepress/plugin-nprogress": "^1.8.2",
+    "@vuepress/theme-default": "^1.8.2",
     "vuepress": "^1.8.2",
     "vuepress-plugin-demo-block": "^0.7.2",
     "vuepress-plugin-sitemap": "^2.3.1"
