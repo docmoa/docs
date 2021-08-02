@@ -1,21 +1,26 @@
 // config.js
-const routes = [
-    "Tag",
-    "Infra",
-    "PrivatePlatform",
-    "PublicCloud",
-    "HashiCorp",
-    "etc",
-    "Howto"
-];
+// const routes = [
+//     "Tag",
+//     "Infra",
+//     "PrivatePlatform",
+//     "PublicCloud",
+//     "HashiCorp",
+//     "etc",
+//     "Howto"
+// ];
 
-const createSidebar = () => {
-    const sidebar = {};
-    for (const route of routes) {
-        Object.assign(sidebar, require("../" + route));
-    }
-    return sidebar;
-};
+// const createSidebar = () => {
+//     const sidebar = {};
+//     for (const route of routes) {
+//         Object.assign(sidebar, require("../" + route));
+//     }
+//     return sidebar;
+// };
+const getConfig = require("vuepress-bar");
+const { nav, sidebar } = getConfig({maxLevel: 4});
+sidebar.find((item) => item.text = String(item.text).replace(/(\d+)\./, ''))
+
+console.log(sidebar)
 
 module.exports = {
     base: "/",
@@ -25,25 +30,24 @@ module.exports = {
     themeConfig: {
         logo: "/image/shortcuts-quick-open.png", // 로고 이미지
         nav: [
-            { text: "Infrastructure", link: "/Infra/" },
-            { text: "Private-Platform", link: "/PrivatePlatform/" },
-            { text: "Public-Cloud", link: "/PublicCloud/" },
-            { text: "HashiCorp", link: "/HashiCorp/" },
-            { text: "Etc.", link: "/etc/" },
-            { text: "How To", link: "/Howto/" },
-            {
-                text: "Info",
-                items: [
-                    { text: "About", link: "/about/" },
-                    { text: "Repository", link: "https://github.com/docmoa/page" },
-                ]
-            },
-            { text: "#Tags", link: "/tag/" }
+            { text: "Infrastructure", link: "/01.Infra/" },
+            { text: "Private-Platform", link: "/02.PrivatePlatform/" },
+            { text: "Public-Cloud", link: "/03.PublicCloud/" },
+            { text: "HashiCorp", link: "/04.HashiCorp/" },
+            { text: "Etc.", link: "/05.etc/" },
+            { text: "How To", link: "/00.Howto/" },
+            { text: "About", link: "/99.about/" },
+            { text: "#Tags", link: "/98.tag/" }
         ],
-        sidebar: createSidebar(),
+        sidebar,
         lastUpdated: "Last Updated",
         smoothScroll: true,
         nextLinks: true,
+        repo: 'docmoa/page',
+        repoLabel: 'Go Contribute',
+        docsRepo: 'docmoa/page',
+        docsDir: 'docs',
+        docsBranch: 'main',
     },
     // head: [
     //   ['meta', {name: "google-site-verification", content: "sHfBWIoCUOYFXJ3b0ulN8jp9jpD8SEW5Wpxvlk-UABA"}],
@@ -59,13 +63,13 @@ module.exports = {
     plugins: {
         "@vuepress/back-to-top": {},
         "@vuepress/nprogress": {},
-        "@vuepress/last-updated": {
-            dateOptions:{
-                hour12: false
-            }
-        },
         "sitemap": {
             hostname: "https://docmoa.github.io/"
+        },
+        "@vuepress/last-updated": {},
+        "vuepress-plugin-code-copy": {
+            align: "bottom",
+            color: "#ffffff"
         }
     },
     extend: '@vuepress/theme-default'

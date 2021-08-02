@@ -1,4 +1,0 @@
-# Tag
-
-<TagList />
-<TagLinks />

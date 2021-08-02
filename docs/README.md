@@ -1,21 +1,21 @@
 ---
 home: true
 actionText: Get started →
-actionLink: /Howto/
+actionLink: /00.Howto/
 features:
-  - title: Infra
-    details: (준비중)
+  - title: Infrastructure
+    details: Linux / (대기중)
   - title: Private Platform
-    details: (준비중)
+    details: (대기중)
   - title: Public Cloud
-    details: Azure / (준비중)
+    details: Azure / (대기중)
   - title: HashiCorp
-    details: (준비중)
+    details: (대기중)
   - title: 기타
-    details: (준비중)
+    details: (대기중)
   - title: How to
     details: 활용 방법 안내
-footer: CC-BY-SA-4.0 Licensed | ⓒ 2021-present docmoa™ contributers all rights reserved.
+footer: CC BY-NC-ND 4.0 Licensed | ⓒ 2021-present docmoa™ contributers all rights reserved.
 ---
 ---
 ### Start contributing to `docmoa`

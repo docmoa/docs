@@ -35,6 +35,8 @@
     "fs": "0.0.1-security",
     "markdown-it-plantuml": "^1.4.1",
     "markdown-it-task-lists": "^2.1.1",
-    "markdown-it-underline": "^1.0.1"
+    "markdown-it-underline": "^1.0.1",
+    "vuepress-bar": "^0.4.2",
+    "vuepress-plugin-code-copy": "^1.0.6"
   }
 }
