@@ -97,5 +97,3 @@ chmod +x ./file.txt
 ```
 </code-block>
 </code-group>
-
-<TagLinks />

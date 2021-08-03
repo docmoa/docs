@@ -70,5 +70,3 @@ Go to [here](https://vuepress.vuejs.org/guide/markdown.html#:~:text=markdown.toc
 console.log('Hello, VuePress!')
 ```
 :::
-
-<TagLinks />

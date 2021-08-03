@@ -61,5 +61,3 @@ tags: ["how"]
 다음과 같이 표기됩니다.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/StTqXEQ2l-Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-<TagLinks />

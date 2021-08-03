@@ -30,24 +30,31 @@ module.exports = {
     themeConfig: {
         logo: "/image/shortcuts-quick-open.png", // 로고 이미지
         nav: [
-            { text: "Infrastructure", link: "/01.Infra/" },
+            { text: "Infrastructure", link: "/01.Infrastructure/" },
             { text: "Private-Platform", link: "/02.PrivatePlatform/" },
             { text: "Public-Cloud", link: "/03.PublicCloud/" },
             { text: "HashiCorp", link: "/04.HashiCorp/" },
             { text: "Etc.", link: "/05.etc/" },
             { text: "How To", link: "/00.Howto/" },
-            { text: "About", link: "/99.about/" },
-            { text: "#Tags", link: "/98.tag/" }
+            {
+                text: "MORE",
+                items: [
+                    { text: "About", link: "/99.about/01.About.html" },
+                    { text: "Thank you", link: "/99.about/02.Thanks.html" },
+                    { text: "Go Contribute", link: "http://github.com/docmoa/page" },
+                ]
+            },
+            { text: "#Tags", link: "/98.Tags.html" }
         ],
         sidebar,
         lastUpdated: "Last Updated",
         smoothScroll: true,
         nextLinks: true,
-        repo: 'docmoa/page',
-        repoLabel: 'Go Contribute',
-        docsRepo: 'docmoa/page',
-        docsDir: 'docs',
-        docsBranch: 'main',
+        // repo: 'docmoa/page',
+        // repoLabel: 'Go Contribute',
+        // docsRepo: 'docmoa/page',
+        // docsDir: 'docs',
+        // docsBranch: 'main',
     },
     // head: [
     //   ['meta', {name: "google-site-verification", content: "sHfBWIoCUOYFXJ3b0ulN8jp9jpD8SEW5Wpxvlk-UABA"}],
@@ -70,7 +77,10 @@ module.exports = {
         "vuepress-plugin-code-copy": {
             align: "bottom",
             color: "#ffffff"
-        }
+        },
+        "vuepress-plugin-contributors": {
+            defaultAvatar: "/image/not-found.png"
+        },
     },
     extend: '@vuepress/theme-default'
 };
