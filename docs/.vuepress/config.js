@@ -63,6 +63,7 @@ module.exports = {
     ],
     markdown: {
         lineNumbers: true,
+        extractHeaders: [],
         extendMarkdown: (md) => {
             md.use(require("markdown-it-plantuml"));
             md.use(require("markdown-it-underline"));
@@ -99,7 +100,7 @@ module.exports = {
             type: "rainbow",
             selector: ".page .content__default h1"
         },
-        "vuepress-plugin-right-anchor": {},
+        // "vuepress-plugin-right-anchor": {},
         "autometa_options": {
             enable : true, // enables/disables everything - control per page using frontmatter
             image  : true, // regular meta image used by search engines

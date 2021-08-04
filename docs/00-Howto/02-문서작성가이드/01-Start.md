@@ -16,7 +16,7 @@ docmoa에 문서 기여하기위한 가이드를 설명합니다.
 얽매이지 마세요.
 :::
 
-문서는 모두 git으로 관리되며 공개되어있습니다. [문서 기여를 위한 방식](/00.Howto/02.문서작성가이드/02.Contribute.html)은 별도 안내로 구분하여 설명합니다.
+문서는 모두 git으로 관리되며 공개되어있습니다. [문서 기여를 위한 방식](/00-Howto/02-문서작성가이드/02-Contribute.html)은 별도 안내로 구분하여 설명합니다.
 ```bash
 git clone https://github.com/docmoa/page.git
 ```
@@ -33,14 +33,14 @@ clone 받은 구조는 VuePress의 구조를 갖고 있습니다. 문서의 기�
 ├── README.md
 ├── `docs`
 │   ├── .vuepress
-│   ├── 00.Howto
-│   ├── 01.Infra
-│   ├── 02.Private\ Platform
-│   ├── 03.Public\ Cloud
-│   ├── 04.HashiCorp
-│   ├── 05.etc
-│   ├── 98.tag
-│   ├── 99.about
+│   ├── 00-Howto
+│   ├── 01-Infra
+│   ├── 02-Private\ Platform
+│   ├── 03-Public\ Cloud
+│   ├── 04-HashiCorp
+│   ├── 05-etc
+│   ├── 98-tag
+│   ├── 99-about
 │   └── README.md
 └── package.json
 :::
@@ -83,45 +83,40 @@ success [10:48:28] Build 6f9dd7 finished in 1179 ms! ( http://localhost:8000/ )
 ![](../image/vuepress.png)
 
 ### 문서 트리
-`docs` 디렉토리 내에 기존에 구성된 항목 내에 작성도 가능하고 새로운 카테고리를 생성할 수도 있습니다. 디렉토리와 파일은 생성된 순서와 관계없이 정렬되기 때문에 좌측 `Sidebar` 표기시 원하는 순서대로 표기되기를 원하는 경우 `{숫자}.` 을 파일명 앞에 붙여 의도한대로 표시되도록 구성가능합니다.
+`docs` 디렉토리 내에 기존에 구성된 항목 내에 작성도 가능하고 새로운 카테고리를 생성할 수도 있습니다. 디렉토리와 파일은 생성된 순서와 관계없이 정렬되기 때문에 좌측 `Sidebar` 표기시 원하는 순서대로 표기되기를 원하는 경우 `{숫자}-` 을 파일명 앞에 붙여 의도한대로 표시되도록 구성가능합니다.
 
 예를 들어 `Howto`에 작성된 내용을 바탕으로 설명합니다.
 ::: vue
-00.Howto
-├── `01.docmoa활용가이드.md`
-├── `02.문서작성가이드`
-│   ├── 01.Start.md
-│   ├── 02.PullRequest.md
-│   └── 03.Fork.md
-├── `03.문서작성팁`
+00-Howto
+├── `01-docmoa활용가이드.md`
+├── `02-문서작성가이드`
+│   ├── 01-Start.md
+│   ├── 02-PullRequest.md
+│   └── 03-Fork.md
+├── `03-문서작성팁`
 │   ├── CodeBlock.md
 │   ├── Link.md
 │   └── TipBox.md
-├── `README.md`
-└── image
-    ├── typora.png
-    ├── vscode.png
-    ├── vuepress.png
-    └── youtube_share.gif
+└── `README.md`
 :::
 - 파일과 디렉토리 구분없이 같은 Depth에 위치하는 경우 함께 표기 됩니다.
   - 01.docmoa활용가이드.md (파일)
   - 02.문서작성가이드 (디렉토리)
   - 03.문서작성팁 (디렉토리)
 - README.md는 `index.html`과 같이 해당 디렉토리의 기본 페이지로 등록됩니다. 디렉토리 경로만 입력하는 경우 해당 페이지가 나타납니다. 
-  - 요청하는 페이지 경로 : `https://docmoa.github.io/00.Howto/`
-  - 실제하는 페이지 경로 : `https://docmoa.github.io/00.Howto/README.md`
+  - 요청하는 페이지 경로 : `https://docmoa.github.io/00-Howto/`
+  - 실제하는 페이지 경로 : `https://docmoa.github.io/00-Howto/README.md`
 
 :::warning 디렉토리 이름
 디렉토리 이름에 공백이 있는 경우 다른 문서에서 참조 시 공백 문자인 `%20` 를 표기해야 하는 이슈가 발생할 수 있습니다.  
 ```md
-[](https://docmoa.github.io/00.Howto/공백이%20있는%20디렉토리)
+[](https://docmoa.github.io/00-Howto/공백이%20있는%20디렉토리)
 ```
 :::
 
 ## 첫번째 글 쓰기
 여기서는 `SSH Too many authentication failures` 와 관련한 간단한 글을 개시하는 것을 예로 설명하겠습니다.
-실제 VuePress 환경으로 어떤 내용이 표기되는지 동적인 확인을 위해 앞서 [기존 환경을 로컬에서 실행하고 확인하기](/00.Howto/02.문서작성가이드/01.Start.html#기존-환경을-로컬에서-실행하고-확인하기)에서 처럼 화면을 띄우고 작업하면 실제 작성하는 글들이 어떻게 보여지는지도 함께 확인할 수 있습니다.
+실제 VuePress 환경으로 어떤 내용이 표기되는지 동적인 확인을 위해 앞서 [기존 환경을 로컬에서 실행하고 확인하기](/00-Howto/02-문서작성가이드/01-Start.html#기존-환경을-로컬에서-실행하고-확인하기)에서 처럼 화면을 띄우고 작업하면 실제 작성하는 글들이 어떻게 보여지는지도 함께 확인할 수 있습니다.
 
 1. `Linux` 카테고리로 가정하고 `01.Infra > Linux > TroubleShooting` 이라는 디렉토리를 생성합니다.
 2. 문서 작성을 위한 `SSH Too many authentication failures.md` 파일을 생성합니다.
@@ -148,6 +143,4 @@ success [10:48:28] Build 6f9dd7 finished in 1179 ms! ( http://localhost:8000/ )
 
 
 ## 내가 쓴 문서를 docmoa에 개시 요청하기
-아래 두가지 방법을 설명합니다.
-- [Pull Request](/00.Howto/02.문서작성가이드/02.PullRequest.html) : 동일한 git repo에서 작업후 docmoa에 기여
-- [Fork & Rull Request](/00.Howto/02.문서작성가이드/03.Fork.html) : `Fork`한 별도 git repo에서 수정한 내용을 docmoa에 기여
+작성한 문서를 docmoa에 기여하는 방법은 다음 [Contribute]((/00-Howto/02-문서작성가이드/02-contribute.html) 항목에서 설명합니다.

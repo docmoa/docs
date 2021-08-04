@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/docmoa/page#readme",
   "devDependencies": {
+    "@mr-hope/vuepress-plugin-reading-time": "^1.18.2",
     "@vuepress/plugin-back-to-top": "^1.8.2",
     "@vuepress/plugin-last-updated": "^1.8.2",
     "@vuepress/plugin-nprogress": "^1.8.2",
