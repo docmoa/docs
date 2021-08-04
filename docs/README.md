@@ -1,7 +1,7 @@
 ---
 home: true
 actionText: Get started →
-actionLink: /00.Howto/
+actionLink: /00-Howto/
 features:
   - title: Infrastructure
     details: Linux / (대기중)
@@ -16,6 +16,8 @@ features:
   - title: How to
     details: 활용 방법 안내
 footer: CC BY-NC-ND 4.0 Licensed | ⓒ 2021-present docmoa™ contributers all rights reserved.
+rightAnchor:
+  disableGlobalUI: true
 ---
 ---
 ### Start contributing to `docmoa`
