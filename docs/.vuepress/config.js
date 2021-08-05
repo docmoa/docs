@@ -39,8 +39,8 @@ module.exports = {
             {
                 text: "MORE",
                 items: [
-                    { text: "About", link: "/99.about/01-About.html" },
-                    { text: "Thank you", link: "/99.about/02-Thanks.html" },
+                    { text: "About", link: "/99-about/01-About.html" },
+                    { text: "Thank you", link: "/99-about/02-Thanks.html" },
                     { text: "Go Contribute", link: "http://github.com/docmoa/page" },
                 ]
             },

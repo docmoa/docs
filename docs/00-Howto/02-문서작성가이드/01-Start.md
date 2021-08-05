@@ -74,9 +74,9 @@ yarn vuepress dev
 </code-group>
 
 실행이 완료되면 로그에 다음과 같은 메시지와 접속할 수 있는 링크가 나타납니다.
-```text
-success [10:48:28] Build 6f9dd7 finished in 1179 ms! ( http://localhost:8000/ )
-```
+::: vue
+success [10:48:28] Build 6f9dd7 finished in 1179 ms! ( `http://localhost:8000/` )
+:::
 
 웹브라우저에서 실행시 표기되는 로그의 링크를 입력하면 공개된 웹화면과 동일한 환경을 확인할 수 있습니다.
 
@@ -128,6 +128,7 @@ success [10:48:28] Build 6f9dd7 finished in 1179 ms! ( http://localhost:8000/ )
     meta:
       - name: description
         content: SSH Too many authentication failures
+    author : "내이름"
     tags: ["linux", "ssh"]
 
     ---
