@@ -46,5 +46,76 @@ sudo apt install git-all
 ![Fork-Target](../image/github-fork-target.png "Fork 대상 Org 선택")
 
 ## git `Fetch` or `Pull`
+Fork의 원본 Repo에 변경에 대해 작업중인 Repo에 변경사항을 적용해야 하는 필요성이 있습니다. 여러 편집자가 동일한 시점에 동일 문서를 편집하게 되면 편집에 충돌이 발생할 수 있습니다.
+
+![Conflict](https://upload.wikimedia.org/wikipedia/commons/9/97/Paragraph-based_prototype_%E2%80%93_rough_visualization_of_the_functionality.png)
+참고 : <https://en.wikipedia.org/wiki/Edit_conflict>
+
+충돌을 사전에 최대한 방지하기 위해서 편집 전에 원본의 문서를 가져오고 병합하는 과정이 필요합니다.
+
+:::: tabs
+::: tab CLI base
+CLI 컨트롤을 위해서는 앞서 git 유틸 설치가 필요합니다.
+```bash
+# 1. Fork 받은 본인 소유의 Repo를 Clone 받습니다.
+git clone https://github.com/docmoa/docs
+
+# 2. 해당 소스 디렉토리로 이동하여 remote 를 확인합니다.
+cd docs
+git remote -v
+origin	https://github.com/myorg/docs.git (fetch)
+origin	https://github.com/myorg/docs.git (push)
+
+# 3. 문서 원본 Repo와의 병합을 위해 `upstream` repo remote를 추가합니다.
+git remote add upstream https://github.com/docmoa/docs
+
+# 4-1. pull 을 수행하거나
+git pull upstream main
+
+# 4-2. fetch & merge 를 수행합니다.
+git fetch upstream
+git merge upstream/main
+```
+:::
+::: tab UI base
+원본 Repo에 변화가 있으면 UI상에서 상태가 알려집니다. 이 경우 우측의 `Fetch upstream` 을 통해 `Compare`로 변경사항을 확인하거나 `Fetch and merge`로 현재의 Repo에 병합할 수 있습니다.
+![Fetch and merge UI](../image/github-ui-fetch.png)
+:::
+::::
+
+## git `add` and `commit`
+문서 작성은 앞서 [문서작성 '시작'](/00-Howto/02-문서작성가이드/01-Start.html)을 참고하세요. 문서 또는 문서 작성에 필요했던 이미지 등 준비가 끝나면 해당 파일을 본인 소유의 Repo에 추가합니다. 이 때 사용하는 것은 CLI도 가능하고, UI 기반에서 작성한 경우에는 저장 즉시 해당 Repo에 저장됩니다.
+
+:::: tabs
+::: tab CLI base
+CLI 컨트롤을 위해서는 앞서 git 유틸 설치가 필요합니다.
+```bash
+# 1. 작성한 파일을 git의 관리 대상으로 add 합니다.
+git add path/문서.md
+
+# 2. 해당 소스 디렉토리로 이동하여 remote 를 확인합니다.
+cd docs
+git remote -v
+origin	https://github.com/myorg/docs.git (fetch)
+origin	https://github.com/myorg/docs.git (push)
+
+# 3. 문서 원본 Repo와의 병합을 위해 `upstream` repo remote를 추가합니다.
+git remote add upstream https://github.com/docmoa/docs
+
+# 4-1. pull 을 수행하거나
+git pull upstream main
+
+# 4-2. fetch & merge 를 수행합니다.
+git fetch upstream
+git merge upstream/main
+```
+:::
+::: tab UI base
+원본 Repo에 변화가 있으면 UI상에서 상태가 알려집니다. 이 경우 우측의 `Fetch upstream` 을 통해 `Compare`로 변경사항을 확인하거나 `Fetch and merge`로 현재의 Repo에 병합할 수 있습니다.
+![Fetch and merge UI](../image/github-ui-fetch.png)
+:::
+::::
+
+## Contribute
 
 
