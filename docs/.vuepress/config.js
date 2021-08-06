@@ -17,7 +17,7 @@
 //     return sidebar;
 // };
 const getConfig = require("vuepress-bar");
-const { nav, sidebar } = getConfig({maxLevel: 4});
+const { nav, sidebar } = getConfig({maxLevel: 5});
 // sidebar.find((item) => item.text = String(item.text).replace(/(\d+)\./, ''))
 
 console.log(sidebar)
