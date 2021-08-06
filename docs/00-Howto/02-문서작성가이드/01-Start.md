@@ -144,4 +144,4 @@ success [10:48:28] Build 6f9dd7 finished in 1179 ms! ( `http://localhost:8000/` 
 
 
 ## 내가 쓴 문서를 docmoa에 개시 요청하기
-작성한 문서를 docmoa에 기여하는 방법은 다음 [Contribute]((/00-Howto/02-문서작성가이드/02-contribute.html) 항목에서 설명합니다.
+작성한 문서를 docmoa에 기여하는 방법은 다음 [Contribute](/00-Howto/02-문서작성가이드/02-contribute.html) 항목에서 설명합니다.
