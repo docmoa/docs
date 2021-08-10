@@ -57,7 +57,8 @@ module.exports = {
         // docsBranch: 'main',
     },
     head: [
-        ['link', { rel: 'icon', href: '/image/docmoa-144.png'}],
+        // ['link', { rel: 'icon', href: '/image/docmoa-144.png'}],
+        ['link', { rel: "icon", href: "/favicon.ico"}],
         ['link', { rel: 'manifest', href: '/manifest.json'}],
     //   ['meta', {name: "google-site-verification", content: "sHfBWIoCUOYFXJ3b0ulN8jp9jpD8SEW5Wpxvlk-UABA"}],
     ],
