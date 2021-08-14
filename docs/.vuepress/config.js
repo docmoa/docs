@@ -102,7 +102,7 @@ module.exports = {
         },
         "vuepress-plugin-element-tabs": {},
         "vuepress-plugin-tags": {
-            type: "rainbow",
+            type: "default",
             selector: ".page .content__default h1"
         },
         // "vuepress-plugin-right-anchor": {},
