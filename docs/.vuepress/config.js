@@ -86,7 +86,8 @@ module.exports = {
             after: '</code></pre>'
         },
         "sitemap": {
-            hostname: "https://docmoa.github.io/"
+            hostname: "https://docmoa.github.io/",
+            outFile: "sitemap.xml"
         },
         "@vuepress/last-updated": {},
         "vuepress-plugin-code-copy": {
