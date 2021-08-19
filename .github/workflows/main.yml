@@ -29,4 +29,4 @@ jobs:
           git add -A
           git commit -m 'deploy from github action'
           git branch -M main
-          git push -f https://${ACCESS_TOKEN}@github.com/docmoa/docmoa.github.io.git main
+          git push -f https://docmoa:${ACCESS_TOKEN}@github.com/docmoa/docmoa.github.io.git main
