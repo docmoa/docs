@@ -1,0 +1,31 @@
+# This is a basic workflow to help you get started with Actions
+
+name: build & deploy
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install & Build
+        run: |
+          npm install
+          npm run build
+
+      - name: Deploy Build
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        run: |
+          cd .vuepress/dist
+          git config --global user.email "hahohh@gmail.com"
+          git config --global user.name "great-stone"
+          git init
+          git add -A
+          git commit -m 'deploy from github action'
+          git push -f https://${ACCESS_TOKEN}@github.com/docmoa/docmoa.github.io.git main
