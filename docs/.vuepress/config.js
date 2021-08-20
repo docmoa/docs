@@ -98,7 +98,10 @@ module.exports = {
             color: "#ffffff"
         },
         "vuepress-plugin-contributors": {
-            defaultAvatar: "/image/not-found.png"
+            defaultAvatar: "/image/not-found.png",
+            avatarProvider: 'github',
+            showAvatar: true,
+            userProfileUrlProvider: 'github'
         },
         "vuepress-plugin-element-tabs": {},
         "vuepress-plugin-tags": {
