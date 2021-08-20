@@ -8,9 +8,9 @@ features:
   - title: Private Platform
     details: (대기중)
   - title: Public Cloud
-    details: Azure / (대기중)
+    details: Alibaba / (대기중)
   - title: HashiCorp
-    details: (대기중)
+    details: Packer / Vagrant / Terraform / Consul / Boundary / Vault / Nomad / Waypoint
   - title: 기타
     details: (대기중)
   - title: How to

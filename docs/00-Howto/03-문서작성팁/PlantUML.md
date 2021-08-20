@@ -29,7 +29,7 @@ Bob -> Alice : hello
 
 ### Sample Terraform Action
 
-```uml
+```ini
 @startuml
 actor User
 interface Terraform
@@ -57,7 +57,7 @@ CLOUD ->> Terraform : Response
 
 http://plantuml.com/sequence-diagram
 
-```uml
+```ini
 @startuml
 Alice -> Bob: Authentication Request
 Bob --> Alice: Authentication Response
@@ -79,7 +79,7 @@ Alice <-- Bob: another authentication Response
 
 http://plantuml.com/use-case-diagram
 
-```uml
+```ini
 @startuml
 :Main Admin: as Admin
 (Use the application) as (Use)
@@ -127,7 +127,7 @@ N2 .. (Use)
 
 http://plantuml.com/class-diagram
 
-```uml
+```ini
 @startuml
 Object <|-- Dummy
 
@@ -181,7 +181,7 @@ Car -- Person : < owns
 
 http://plantuml.com/activity-diagram-beta
 
-```uml
+```ini
 @startuml
 start
 partition Initialization {
@@ -233,7 +233,7 @@ stop
 
 http://plantuml.com/component-diagram
 
-```uml
+```ini
 @startuml
 package "Some Group" {
   HTTP - [First Component]
@@ -301,7 +301,7 @@ database "MySql" {
 
 http://plantuml.com/state-diagram
 
-```uml
+```ini
 @startuml
 [*] --> State1
 State1 --> [*]
@@ -367,7 +367,7 @@ state Configuring {
 
 https://plantuml.com/nwdiag
 
-```uml
+```ini
 @startuml
 nwdiag {
   network dmz {
@@ -413,7 +413,7 @@ nwdiag {
 
 https://plantuml.com/gantt-diagram
 
-```uml
+```ini
 @startuml
 @startgantt
 [Prototype design] lasts 15 days
@@ -445,7 +445,7 @@ https://plantuml.com/gantt-diagram
 
 https://plantuml.com/mindmap-diagram
 
-```uml
+```ini
 @startuml
 @startmindmap
 * Debian
