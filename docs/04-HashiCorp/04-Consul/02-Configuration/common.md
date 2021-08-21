@@ -82,13 +82,13 @@ ports {
  
 #enable syslog = true
 log_level = "DEBUG"
-data_dir = "/Mnsapp/consul/consul"
-log_file = "/Mnsapp/log/consul/consul.log"
+data_dir = "/var/log/consul/consul"
+log_file = "/var/log/consul/consul.log"
 log_rotate_duration = "24h"
 log_rotate_bytes = 104857600
 log_rotate_max_files = 100
  
-license_path = "/Mnsapp/consul/license/consul.license"
+license_path = "/opt/license/consul.license"
  
 acl {
   enabled = true
