@@ -18,9 +18,7 @@ ui_config {
   enabled = true
 }
 bootstrap_expect = 3
- 
-client_addr = "0.0.0.0"
- 
+  
 license_path = "/opt/license/consul.license"
  
 retry_join = ["172.30.1.17","172.30.1.18","172.30.1.19"]
