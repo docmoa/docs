@@ -36,7 +36,6 @@
     "vuepress-bar": "^0.4.2",
     "vuepress-plugin-autometa": "^0.1.13",
     "vuepress-plugin-code-copy": "^1.0.6",
-    "vuepress-plugin-contributors": "^1.4.0",
     "vuepress-plugin-demo-block": "^0.7.2",
     "vuepress-plugin-element-tabs": "^0.2.8",
     "vuepress-plugin-mermaidjs": "^1.8.1",
@@ -46,6 +45,7 @@
   },
   "dependencies": {
     "fs": "0.0.1-security",
+    "vuepress-plugin-contributors": "^1.4.0",
     "markdown-it-plantuml": "^1.4.1",
     "markdown-it-task-lists": "^2.1.1",
     "markdown-it-underline": "^1.0.1"
