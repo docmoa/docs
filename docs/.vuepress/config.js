@@ -79,7 +79,7 @@ module.exports = {
             serviceWorker: true,
             updatePopup: true,
         },
-        "mermaidjs": {},
+        "vuepress-plugin-mermaidjs": {},
         "container": {
             type: 'vue',
             before: '<pre class="vue-container"><code>',
