@@ -127,5 +127,3 @@ $ aliyun -p myprofile ecs DescribeRegions
         "RequestId": "2304DF19-CABF-54DF-BDC6-F889C3A73E4F"
 }
 ```
-
-<contributors />
