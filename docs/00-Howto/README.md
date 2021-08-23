@@ -10,11 +10,11 @@ tags: ["how", "docmoa"]
 문서를 올바르게 작성하고 공유하기 위한 몇가지 사항을 안내합니다.
 
 ::: tip 안내
-문서 기여 시 **문서 작성 가이드**를 꼭 한번 확인해주세요.
+문서 기여 시 [**문서 작성 가이드**](/00-Howto/02-%EB%AC%B8%EC%84%9C%EC%9E%91%EC%84%B1%EA%B0%80%EC%9D%B4%EB%93%9C/01-Start.html)를 꼭 한번 확인해주세요.
 :::
 
 ## 활용 가이드
-docmoa를 활용할 수 있는 몇가지 가이드를 [docmoa 활용 가이드](http://localhost:8000/00-Howto/01-docmoa%ED%99%9C%EC%9A%A9%EA%B0%80%EC%9D%B4%EB%93%9C.html) 에서 설명합니다.
+docmoa를 활용할 수 있는 몇가지 가이드를 [docmoa 활용 가이드](/00-Howto/01-docmoa%ED%99%9C%EC%9A%A9%EA%B0%80%EC%9D%B4%EB%93%9C.html) 에서 설명합니다.
 - 로컬 환경에서 문서를 받아 자유롭게 사용 가능합니다.
 - 기여자 분들이 업데이트 하는 내용에 대해서는 내용 검토 후 [git page](https://docmoa.github.io)에 반영 됩니다.
 

@@ -79,7 +79,7 @@ module.exports = {
             serviceWorker: true,
             updatePopup: true,
         },
-        "mermaidjs": {},
+        "vuepress-plugin-mermaidjs": {},
         "container": {
             type: 'vue',
             before: '<pre class="vue-container"><code>',
@@ -98,10 +98,13 @@ module.exports = {
             color: "#ffffff"
         },
         "vuepress-plugin-contributors": {
-            defaultAvatar: "/image/not-found.png",
-            avatarProvider: 'github',
             showAvatar: true,
-            userProfileUrlProvider: 'github'
+            showCount: false,
+            avatarSize: 32,
+            defaultAvatar: '/image/not-found.png', 
+            avatarProvider: 'github',
+            userProfileUrlProvider: 'github',
+            baseDir: 'docs'
         },
         "vuepress-plugin-element-tabs": {},
         "vuepress-plugin-tags": {
