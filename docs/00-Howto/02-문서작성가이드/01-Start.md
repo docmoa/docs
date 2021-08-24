@@ -18,7 +18,7 @@ docmoa에 문서 기여하기위한 가이드를 설명합니다.
 
 문서는 모두 git으로 관리되며 공개되어있습니다. [문서 기여를 위한 방식](/00-Howto/02-문서작성가이드/02-Contribute.html)은 별도 안내로 구분하여 설명합니다.
 ```bash
-git clone https://github.com/docmoa/page.git
+git clone https://github.com/docmoa/docs.git
 ```
 
 또는 github에서 fork하여 별도 관리 후 pull request 하여도 좋습니다. 
@@ -53,7 +53,7 @@ clone 받은 구조는 VuePress의 구조를 갖고 있습니다. 문서의 기�
 <code-block title="NPM">
 ```bash {2,5-6,9}
 # 클론 받은 디렉토리 이동 후 npm install
-cd page
+cd docs
 npm install
 
 # start VuePress writing
@@ -64,7 +64,7 @@ npm run dev
 <code-block title="YARN">
 ```bash {2,5-6,9}
 # 클론 받은 디렉토리 이동 후 npm install
-cd page
+cd docs
 yarn install
 
 # start VuePress writing
