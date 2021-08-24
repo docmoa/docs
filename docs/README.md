@@ -26,10 +26,10 @@ rightAnchor:
 <code-block title="NPM">
 ```bash {2,5-6,9}
 # git clone
-git clone https://github.com/docmoa/page.git
+git clone https://github.com/docmoa/docs.git
 
 # npm install
-cd page
+cd docs
 npm install
 
 # start VuePress writing
