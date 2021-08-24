@@ -63,7 +63,7 @@ success [10:48:28] Build 6f9dd7 finished in 1179 ms! ( http://localhost:8000/ )
 1. [typora.io](https://typora.io/) 를 통해 에디터를 다운로드 받고 설치합니다.
 2. docmoa의 소스를 clone/download 합니다.
     ```bash
-    git clone https://github.com/docmoa/page.git
+    git clone https://github.com/docmoa/docs.git
     ```
 3.`typora`를 실행하고 옵션에서 [파일] > [열기] 를 클릭하여 앞서 받은 소스 디렉토리의 `docs` 디렉토리를 열어줍니다.
 ![](./image/typora.png)
@@ -78,7 +78,7 @@ success [10:48:28] Build 6f9dd7 finished in 1179 ms! ( http://localhost:8000/ )
 1. VS Code [Download](https://code.visualstudio.com/Download) 사이트에서 환경에 맞는 설치 파일을 다운로드 받고 설치합니다.
 2. docmoa의 소스를 clone/download 합니다.
     ```bash
-    git clone https://github.com/docmoa/page.git
+    git clone https://github.com/docmoa/docs.git
     ```
 3. `VS Code`를 실행하고 [파일] > [열기] 를 클릭하여 앞서 받은 소스 디렉토리의 `docs` 디렉토리를 열어줍니다.
 4. `Preview` 버튼을 클릭하면 양쪽으로 비교하면서 글을 확인/편집 할 수 있습니다.
