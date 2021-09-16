@@ -120,7 +120,7 @@ PasswordAuthentication no
 ssh 서비스 재시작
 
 ```bash
-$ systemctl restart ssh
+$ systemctl restart sshd
 ```
 
 
