@@ -11,7 +11,7 @@ tags: ["Nomad", "Enterprise", "Configuration", "Client"]
 네트워크는 프라이빗(온프레이머스) 환경입니다.
 :::
 
-```
+```hcl
 #nomad client 설정
  
 client {
