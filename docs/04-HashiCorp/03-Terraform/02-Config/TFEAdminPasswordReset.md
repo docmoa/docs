@@ -13,6 +13,7 @@ Terraform Enterprise를 사용할 때, UI(https://TFE_SERVER) 상으로 접속�
 다음과 같이 수정 가능.
 
 
+
 ```bash
 sudo docker exec -it ptfe_atlas /usr/bin/init.sh /app/scripts/wait-for-token -- bash -i -c 'cd /app && ./bin/rails c'
 ```
@@ -28,6 +29,7 @@ irb(main):053:0> admin_user.save
 2020-07-01 10:03:32 [DEBUG] {:msg=>"SettingStorage::Postgres failed to look up setting 'basic.base_domain'"}
 => true
 ```
+
 
 ## 일반 사용자의 경우 
 
