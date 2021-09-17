@@ -52,7 +52,7 @@ nomad job status
 ```
 
 ## ACL 구성시의 예
-```ruby
+```hcl
 # Allow read only access to the production namespace
 namespace "web-prod" {
     policy = "read"

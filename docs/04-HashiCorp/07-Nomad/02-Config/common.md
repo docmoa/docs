@@ -11,7 +11,7 @@ tags: ["Nomad", "Enterprise", "Configuration", "Common"]
 저는 agent.hcl파일안에 다 넣고 실행하지만 나눠서 추후에는 기능별로 나눠서 사용할 예정입니다.
 :::
 
-```
+```hcl
 #nomad 공통 설정
 datacenter = "dc1"
 region = "global"
