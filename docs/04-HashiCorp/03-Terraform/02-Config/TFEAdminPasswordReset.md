@@ -12,8 +12,6 @@ Terraform Enterprise를 사용할 때, UI(https://TFE_SERVER) 상으로 접속�
 ## Admin 계정의 경우
 다음과 같이 수정 가능.
 
-
-
 ```bash
 sudo docker exec -it ptfe_atlas /usr/bin/init.sh /app/scripts/wait-for-token -- bash -i -c 'cd /app && ./bin/rails c'
 ```
