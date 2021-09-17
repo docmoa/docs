@@ -5,7 +5,7 @@ meta:
 tags: ["terraform", "admin", "password", "SSL"]
 ---
 
-# Terrraform Enterprise 사용자 비밀번 변경
+# Terrraform Enterprise 사용자 비밀번호 변경
 
 Terraform Enterprise를 사용할 때, UI(https://TFE_SERVER) 상으로 접속할 수 없는 상황에서 비밀번호 변경이 필요한 경우, 아래와 같이 작업할 수 있다.
 
