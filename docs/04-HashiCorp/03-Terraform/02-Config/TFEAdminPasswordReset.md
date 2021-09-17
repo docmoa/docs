@@ -2,6 +2,7 @@
 meta:
   - name: description
     content: TFE Admin 사용자 비밀 번호 변경이 필요할 경우
+author : "jsp"
 tags: ["terraform", "admin", "password"]
 ---
 
