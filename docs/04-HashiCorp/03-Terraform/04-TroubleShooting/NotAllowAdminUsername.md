@@ -18,7 +18,11 @@ Azure(azurerm) 프로바이더를 사용하여 Virtual Machine을 프로비저�
 
 Azure의 API에서 정의하는 `OSProfile` 내의 `AdminUsername`은 온라인 문서에서처럼 몇가지 룰이 있다.
 
-- Windows의 경우 "."로 끝날 수 없음
+- Windows VM 제약
+  - `.` 으로 끝날 수 없음
+  - 20자 제한
+- Linux VM 제약
+  - 1~64자
 - 다음의 이름은 AdminUser로 허용되지 않음
   - administrator
   - adm
