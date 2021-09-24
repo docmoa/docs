@@ -5,7 +5,7 @@ meta:
 tags: ["Nomad", "Sample", "Job"]
 ---
 
-# MongoDB
+# Oracle XE
 
 ```hcl
 job "oracle" {
