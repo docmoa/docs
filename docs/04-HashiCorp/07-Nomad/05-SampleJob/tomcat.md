@@ -15,6 +15,8 @@ tags: ["Nomad", "Consul", "Sample", "Job"]
   - Template 구성도 가능하고 미리 구성한 xml을 다운로드 받게 하는것도 괜찮아 보임
 - Consul과 함께 구성된 경우 Nginx같은 LB 구성 Job 에서 backend를 동적으로 구성 가능
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/UvB_Zi6Plbc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ```hcl
 variables {
   tomcat_download_url = "https://archive.apache.org/dist/tomcat/tomcat-10/v10.0.10/bin/apache-tomcat-10.0.10.tar.gz"
