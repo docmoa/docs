@@ -74,7 +74,8 @@ module.exports = {
     plugins: {
         "@vuepress/back-to-top": {},
         "@vuepress/nprogress": {},
-        "@vuepress/search": {},
+        // "@vuepress/search": {},
+        "flexsearch": {},
         "@vuepress/pwa": {
             serviceWorker: true,
             updatePopup: true,

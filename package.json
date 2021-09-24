@@ -38,6 +38,7 @@
     "vuepress-plugin-code-copy": "^1.0.6",
     "vuepress-plugin-demo-block": "^0.7.2",
     "vuepress-plugin-element-tabs": "^0.2.8",
+    "vuepress-plugin-flexsearch": "^0.2.0",
     "vuepress-plugin-mermaidjs": "^1.8.1",
     "vuepress-plugin-right-anchor": "^0.5.2",
     "vuepress-plugin-sitemap": "^2.3.1",
