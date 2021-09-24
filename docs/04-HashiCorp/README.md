@@ -1,6 +1,6 @@
 ---
 
-title: HashiCorp
+title: Overview
 sidebar: true
 next: false
 tags: ["HashiCorp"]
