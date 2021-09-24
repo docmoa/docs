@@ -20,7 +20,7 @@ This is my code
 
 
 다음과 같이 표기됩니다.
-```vs
+```
 # Code block e.g.
 This is my code
 ```

@@ -160,7 +160,7 @@ Password:
 
 > Vault로 해당 ssh otp에 권한이 있는 사용자인 경우 `sshpass` 가 설치되어있으면 자동 입력
 
-```ssh
+```bash
 $ vault ssh -role otp_key_role -mode otp test@172.28.128.31
 or
 $ vault ssh -role otp_key_role -mode otp -strict-host-key-checking=no test@172.28.128.31

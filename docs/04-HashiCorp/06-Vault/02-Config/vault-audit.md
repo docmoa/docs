@@ -28,7 +28,7 @@ $ vault audit enable socket address=127.0.0.1:9090 socket_type=tcp
 ```
 
 - Socket TEST - TCP listener sample - netcat
-    ```bashe
+    ```bash
     sudo apt install -y netcat
     nc -l 9090
     ```
