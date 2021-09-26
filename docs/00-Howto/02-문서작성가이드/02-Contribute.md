@@ -123,3 +123,7 @@ Pull request를 생성하면 본인 소유의 Repo(Branch)로 부터 docmoa에 �
 ![create pr detail](../image/github-ui-create-pr-detail.png)
 
 이제 Pull request가 받아들여지고나면 docmoa에 기여해주신 내용이 반영됩니다.
+
+::: warning Build 주기
+2021년 9월 26일 기준 매 20분마다 docmoa의 빌드가 수행됩니다.
+:::
