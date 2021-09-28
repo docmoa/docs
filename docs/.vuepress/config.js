@@ -98,6 +98,8 @@ module.exports = {
     ["link", { rel: "icon", href: "/favicon.ico" }],
     ["link", { rel: "manifest", href: "/manifest.json" }],
     //   ['meta', {name: "google-site-verification", content: "sHfBWIoCUOYFXJ3b0ulN8jp9jpD8SEW5Wpxvlk-UABA"}],
+    ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
+    ['meta', { name: 'msapplication-TileImage', content: '/image/docmoa-144.png' }],
   ],
   markdown: {
     lineNumbers: true,
