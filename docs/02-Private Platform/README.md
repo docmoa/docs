@@ -6,6 +6,6 @@ next: false
 
 ---
 
-# Private Platform
+# Overview
 
 (준비중)
