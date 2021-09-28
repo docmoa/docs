@@ -24,7 +24,7 @@ locals {
   virtual_network_name = "kbid-d-krc-vnet-002"
   virtual_network_subnet_name  = "d-mgmt-snet-001"
   virtual_network_resource_group_name  = "kbid-d-krc-mgmt-rg"
-  timestamp = formatdate("YYYYMMDD_hhmmss", timeadd(timestamp(), "9h"))
+  timestamp = formatdate("YYYYMMDD_hhmmss", timeadd(timestamp(), "9h")) #생성되는 이미지 이름을 time 기반으로 생성
 }
 
 variable "placeholder" {
@@ -64,9 +64,14 @@ source "azure-arm" "basic-example" {
   
   # az vm list-skus --location koreacentral --all --output table
   build_resource_group_name = local.resource_group_name
+
+  #########################################
+  # 기존 생성되어있는 network 를 사용하기 위한 항목 #
+  #########################################
   virtual_network_name = local.virtual_network_name
   virtual_network_subnet_name = local.virtual_network_subnet_name
   virtual_network_resource_group_name = local.virtual_network_resource_group_name
+  
   # location = "koreacentral"
   vm_size = "Standard_A2_v2"
 }
