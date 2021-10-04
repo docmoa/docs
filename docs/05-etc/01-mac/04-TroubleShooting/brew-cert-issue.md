@@ -8,6 +8,7 @@ tags: ["mac", "homebrew", "brew"]
 # homebrew install - certificate has expired
 
 - 현상 : brew 설치시 인증서 에러 발생
+> <https://apple.stackexchange.com/questions/393481/homebrew-cask-download-failure-ssl-certificate-problem-certificate-has-expired>
 
 - 오류 내용 : 
 ```
