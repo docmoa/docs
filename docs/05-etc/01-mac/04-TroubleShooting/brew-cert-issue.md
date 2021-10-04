@@ -11,7 +11,7 @@ tags: ["mac", "homebrew", "brew"]
 > <https://apple.stackexchange.com/questions/393481/homebrew-cask-download-failure-ssl-certificate-problem-certificate-has-expired>
 
 - 오류 내용 : 
-```
+``` {4}
 Already downloaded: /Users/gslee/Library/Caches/Homebrew/downloads/b6ccc5a2a602c2af3480bbcf1656bd9844595974ba60501871ac12504508e818--openssl-1.1.1l.tar.gz
 ==> Downloading https://ftp.gnu.org/gnu/wget/wget-1.21.2.tar.gz
 
