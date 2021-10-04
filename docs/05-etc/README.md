@@ -6,7 +6,9 @@ next: false
 
 ---
 
-# Etc.
+# Etc Overview
+
+## 1. Mac
 
 (준비중)
 

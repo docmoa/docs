@@ -125,5 +125,5 @@ Pull request를 생성하면 본인 소유의 Repo(Branch)로 부터 docmoa에 �
 이제 Pull request가 받아들여지고나면 docmoa에 기여해주신 내용이 반영됩니다.
 
 ::: warning Build 주기
-2021년 9월 26일 기준 매 20분마다 docmoa의 빌드가 수행됩니다.
+2021년 10월 4일 기준 매 5분마다 변경사항이 있으면 docmoa의 빌드가 수행됩니다.
 :::
