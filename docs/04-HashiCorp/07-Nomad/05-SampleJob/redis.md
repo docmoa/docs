@@ -23,11 +23,9 @@ job "redis-cluster" {
     network {
       
       port "master" {
-        static = 6379
         to     = 6379
       }
       port "slave" {
-        static = 6380
         to     = 6380
       }
     }
@@ -74,7 +72,7 @@ job "redis-cluster" {
       }
       template {
         data = <<EOF
-port 6379
+port {{ env "NOMAD_PORT_master" }} 
 bind {{ env "NOMAD_IP_master" }} 
 #bind 127.0.0.1 ::1
 cluster-enabled yes
@@ -115,7 +113,7 @@ EOF
       }
       template {
         data = <<EOF
-port 6380
+port {{ env "NOMAD_PORT_slave" }} 
 bind  {{ env "NOMAD_IP_slave" }} 
 #bind  127.0.0.1 ::1
 cluster-enabled yes
