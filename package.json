@@ -1,6 +1,6 @@
 {
   "name": "docmoa",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "docmoa on github page",
   "main": "index.js",
   "scripts": {
@@ -32,14 +32,16 @@
     "@vuepress/plugin-search": "^1.8.2",
     "@vuepress/theme-default": "^1.8.2",
     "vuepress": "^1.8.2",
-    "vuepress-bar": "^0.4.2",
+    "vuepress-bar": "^0.4.4",
     "vuepress-plugin-autometa": "^0.1.13",
     "vuepress-plugin-code-copy": "^1.0.6",
     "vuepress-plugin-contributors": "^1.4.0",
     "vuepress-plugin-demo-block": "^0.7.2",
     "vuepress-plugin-element-tabs": "^0.2.8",
     "vuepress-plugin-flexsearch": "^0.2.0",
+    "vuepress-plugin-live": "^1.6.2",
     "vuepress-plugin-mermaidjs": "^1.8.1",
+    "vuepress-plugin-one-click-copy": "^1.0.6",
     "vuepress-plugin-right-anchor": "^0.5.2",
     "vuepress-plugin-sitemap": "^2.3.1",
     "vuepress-plugin-tags": "^1.0.2"

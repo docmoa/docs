@@ -53,10 +53,9 @@ const spaceToURI = function(sidebarObj) {
   return sidebarObj;
 };
 
-console.log(sidebar);
 for (let i = 0; i < sidebar.length; i++) {
   sidebar[i] = spaceToURI(sidebar[i]);
-  console.log(sidebar[i]);
+  console.log(JSON.stringify(sidebar[i]));
 }
 
 module.exports = {
@@ -83,7 +82,7 @@ module.exports = {
       },
       { text: "#Tags", link: "/98-Tags.html" },
     ],
-    sidebar,
+    sidebar: sidebar,
     lastUpdated: "Last Updated",
     smoothScroll: true,
     nextLinks: true,
@@ -133,9 +132,15 @@ module.exports = {
       gs: "UA-204926029-1",
     },
     "@vuepress/last-updated": {},
-    "vuepress-plugin-code-copy": {
-      align: "bottom",
-      color: "#ffffff",
+    // "vuepress-plugin-code-copy": {
+    //   align: "bottom",
+    //   color: "#ffffff",
+    // },
+    "one-click-copy": {
+      copySelector: ['div[class*="language-"] pre', 'div[class*="aside-code"] aside'], // String or Array
+      copyMessage: 'Copied successfully!', // default is 'Copied successfully!'
+      toolTipMessage: 'Copy to clipboard', // default is ''Copy to clipboard'
+      duration: 3000, // prompt message display time
     },
     "vuepress-plugin-contributors": {
       showAvatar: true,
@@ -151,6 +156,7 @@ module.exports = {
       type: "default",
       selector: ".page .content__default h1",
     },
+    "live": {},
     // "vuepress-plugin-right-anchor": {},
     autometa_options: {
       enable: true, // enables/disables everything - control per page using frontmatter
