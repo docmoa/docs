@@ -97,3 +97,16 @@ chmod +x ./file.txt
 ```
 </code-block>
 </code-group>
+
+## Live Code
+<https://github.com/vue-styleguidist/vuepress-plugin-live>
+
+~~~md
+```vue live
+<button>example</button>
+```
+~~~
+
+```vue live
+<button>example</button>
+```

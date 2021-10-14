@@ -12,13 +12,13 @@ tags: ["how", "docmoa"]
 ## 텍스트에 링크 달기 
 설명하던 글의 특정 단어에 대해 외부 링크를 추가하고자 하는 경우 브라킷`[ ]`과 괄호를 사용합니다. domain을 같이 기입하는 경우 새창에서 열기로 표기됩니다.
 ```md
-새창으로 이동하는 [링크 달기](http://docmoa.github.io/00-Howto/03-문서작성팁/Link.html)
-현재 창에서 이동하는 [링크 달기](/00-Howto/03-문서작성팁/Link.html)
+새창으로 이동하는 [링크 달기](http://docmoa.github.io/00-Howto/03-Tips/Link.html)
+현재 창에서 이동하는 [링크 달기](/00-Howto/03-Tips/Link.html)
 ```
 다음과 같이 표기됩니다.
 
-- 새창으로 이동하는 [링크 달기](http://docmoa.github.io/00-Howto/03-문서작성팁/Link.html)  
-- 현재 창에서 이동하는 [링크 달기](/00-Howto/03-문서작성팁/Link.html)
+- 새창으로 이동하는 [링크 달기](http://docmoa.github.io/00-Howto/03-Tips/Link.html)  
+- 현재 창에서 이동하는 [링크 달기](/00-Howto/03-Tips/Link.html)
 
 
 ## 링크 자체를 표기
