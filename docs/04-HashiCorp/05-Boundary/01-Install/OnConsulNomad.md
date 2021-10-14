@@ -9,7 +9,7 @@ tags: ["Boundary", "Install"]
 
 ## 1. Nomad namespace create
 
-```sh
+```bash
 nomad namespace apply -description "Boundary" boundary
 ```
 
