@@ -1,6 +1,5 @@
 ---
 
-title: Private Platform
 sidebar: true
 next: false
 

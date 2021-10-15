@@ -132,15 +132,9 @@ module.exports = {
       gs: "UA-204926029-1",
     },
     "@vuepress/last-updated": {},
-    // "vuepress-plugin-code-copy": {
-    //   align: "bottom",
-    //   color: "#ffffff",
-    // },
-    "one-click-copy": {
-      copySelector: ['div[class*="language-"] pre', 'div[class*="aside-code"] aside'], // String or Array
-      copyMessage: 'Copied successfully!', // default is 'Copied successfully!'
-      toolTipMessage: 'Copy to clipboard', // default is ''Copy to clipboard'
-      duration: 3000, // prompt message display time
+    "vuepress-plugin-code-copy": {
+      align: "bottom",
+      color: "#ffffff",
     },
     "vuepress-plugin-contributors": {
       showAvatar: true,

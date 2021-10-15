@@ -2,24 +2,28 @@
 home: true
 actionText: Get started →
 actionLink: /00-Howto/
-features:
-  - title: Infrastructure
-    details: Linux / (대기중)
-  - title: Private Platform
-    details: (대기중)
-  - title: Public Cloud
-    details: Alibaba / (대기중)
-  - title: HashiCorp
-    details: Packer / Vagrant / Terraform / Consul / Boundary / Vault / Nomad / Waypoint
-  - title: 기타
-    details: (대기중)
-  - title: How to
-    details: 활용 방법 안내
+# features:
+#   - title: Infrastructure
+#     details: Linux / (대기중)
+#   - title: Private Platform
+#     details: (대기중)
+#   - title: Public Cloud
+#     details: Alibaba / (대기중)
+#   - title: HashiCorp
+#     details: Packer / Vagrant / Terraform / Consul / Boundary / Vault / Nomad / Waypoint
+#   - title: 기타
+#     details: (대기중)
+#   - title: How to
+#     details: 활용 방법 안내
 footer: CC BY-NC-ND 4.0 Licensed | ⓒ 2021-present docmoa™ contributers all rights reserved.
 rightAnchor:
   disableGlobalUI: true
 ---
+
+<RecentArticles/>
+
 ---
+
 ### Start contributing to `docmoa`
 
 <code-group>
