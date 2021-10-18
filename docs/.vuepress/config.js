@@ -151,6 +151,7 @@ module.exports = {
       selector: ".page .content__default h1",
     },
     "live": {},
+    "@talltotal/vuepress-plugin-ppt": {},
     // "vuepress-plugin-right-anchor": {},
     autometa_options: {
       enable: true, // enables/disables everything - control per page using frontmatter
