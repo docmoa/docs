@@ -101,7 +101,7 @@ module.exports = {
     ['meta', { name: 'msapplication-TileImage', content: '/image/docmoa-144.png' }],
   ],
   markdown: {
-    lineNumbers: true,
+    // lineNumbers: true,
     extractHeaders: [],
     extendMarkdown: (md) => {
       md.use(require("markdown-it-plantuml"));
@@ -150,8 +150,14 @@ module.exports = {
       type: "default",
       selector: ".page .content__default h1",
     },
-    "live": {},
-    "@talltotal/vuepress-plugin-ppt": {},
+    // "live": {}, // https://github.com/vue-styleguidist/vuepress-plugin-live
+    "md-enhance": { // https://vuepress-theme-hope.github.io/md-enhance/guide/presentation/
+      presentation: true,
+      mark: true,
+      tasklist: true,
+      demo: true,
+      ineNumbers: true,
+    },
     // "vuepress-plugin-right-anchor": {},
     autometa_options: {
       enable: true, // enables/disables everything - control per page using frontmatter

@@ -98,15 +98,50 @@ chmod +x ./file.txt
 </code-block>
 </code-group>
 
-## Live Code
-<https://github.com/vue-styleguidist/vuepress-plugin-live>
+## Code Demo
 
+<https://vuepress-theme-hope.github.io/md-enhance/guide/demo/#>
 ~~~md
-```vue live
-<button>example</button>
+::: demo Demo
+
+```html
+<h1>Mr.Hope</h1>
+<p>is <span id="very">very</span> handsome</p>
 ```
+
+```js
+document.querySelector("#very").addEventListener("click", () => {
+  alert("Very handsome");
+});
+```
+
+```css
+span {
+  color: red;
+}
+```
+
+:::
 ~~~
 
-```vue live
-<button>example</button>
+::: demo Demo
+
+```html
+<h1>Mr.Hope</h1>
+<p>is <span id="very">very</span> handsome</p>
+<button>hello</button>
 ```
+
+```js
+document.querySelector("#very").addEventListener("click", () => {
+  alert("Very handsome");
+});
+```
+
+```css
+span {
+  color: red;
+}
+```
+
+:::
