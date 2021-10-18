@@ -120,7 +120,7 @@ resource "ncloud_server" "server" {
 - 테스트, 공유, 재사용, 자동화
 - 모든 주요 클라우드 제공 업체에서 작동 가능
 
-## Infrastructure as Code
+## Infrastructure as Code (IaC)
 
 IaC (Infrastructure as Code)는 컴퓨터에서 읽을 수있는 정의 파일을 사용하여 클라우드 인프라를 관리하고 프로비저닝하는 프로세스입니다.
 
