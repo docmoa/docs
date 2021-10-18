@@ -5,7 +5,7 @@ next: false
 
 ---
 
-# Azure
+# NCP(Naver Cloud Platform) Overview
 
 
 
