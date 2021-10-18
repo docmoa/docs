@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/docmoa/page#readme",
   "devDependencies": {
+    "@mr-hope/vuepress-plugin-copy-code": "^1.20.3",
     "@mr-hope/vuepress-plugin-reading-time": "^1.18.2",
     "@vuepress/plugin-back-to-top": "^1.8.2",
     "@vuepress/plugin-google-analytics": "^1.8.2",
@@ -34,7 +35,6 @@
     "vuepress": "^1.8.2",
     "vuepress-bar": "^0.4.4",
     "vuepress-plugin-autometa": "^0.1.13",
-    "vuepress-plugin-code-copy": "^1.0.6",
     "vuepress-plugin-contributors": "^1.4.0",
     "vuepress-plugin-demo-block": "^0.7.2",
     "vuepress-plugin-element-tabs": "^0.2.8",

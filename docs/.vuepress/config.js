@@ -132,10 +132,13 @@ module.exports = {
       gs: "UA-204926029-1",
     },
     "@vuepress/last-updated": {},
-    "vuepress-plugin-code-copy": {
-      align: "bottom",
-      color: "#ffffff",
-    },
+    // "vuepress-plugin-code-copy": {
+    //   align: "bottom",
+    //   color: "#ffffff",
+    // },
+    "@mr-hope/copy-code": {
+      showInMobile: true,
+    }, // https://vuepress-theme-hope.github.io/copy-code/config/
     "vuepress-plugin-contributors": {
       showAvatar: true,
       showCount: false,
