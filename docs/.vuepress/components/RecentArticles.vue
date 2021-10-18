@@ -1,12 +1,12 @@
 <template>
 <div class="features">
   <div class="feature" v-for="content in contents" v-bind:key="content.id">
-  <h3><code><a :href="`/${content}/`" class="nav-link action-button">{{ content.split('-')[1] }}</a></code></h3>
+  <h3><code><a :href="`/${content}/`" class="nav-link action-button">{{ content.split('-')[1].replace("%20"," ") }}</a></code></h3>
   <div v-if="recentFilesDic[content].length > 0">
 	<ul>
 		<li v-for="post in recentFilesDic[content]" v-bind:key="post.id">
       <a :href="post.path">{{post.title}}</a>
-			<!-- <p v-if="post.frontmatter.meta">: {{post.frontmatter.meta[0].content}}</p> -->
+			<p v-if="post.frontmatter.meta" style="font-size:0.8em; margin-top:0.1em; margin-bottom:0.3em;">: {{post.frontmatter.meta[0].content}}</p>
 		</li>
 	</ul>
   </div>
@@ -22,7 +22,7 @@
 export default {
 	data() {
 		return {
-      contents: ['00-Howto', '01-Infrastructure', '02-Private Platform', '03-Public Cloud', '04-HashiCorp', '05-etc'],
+      contents: ['00-Howto', '01-Infrastructure', '02-Private%20Platform', '03-Public%20Cloud', '04-HashiCorp', '05-etc'],
       recentFilesDic: {}
     };
 	}, 
