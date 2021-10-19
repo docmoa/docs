@@ -3,7 +3,6 @@ meta:
   - name: description
     content: Naver Cloud Platform에서의 Terraform 실습
 tags: ["ncloud", "ncp", "terraform", "workshop"]
-title : 01. 테라폼 소개
 
 ---
 
