@@ -10,7 +10,7 @@ tags: ["ncloud", "ncp", "terraform", "workshop"]
 
 ## 🏡 Moving in - Explore Your Workspace
 
-@slidestart sky
+@slidestart blood
 
 ### Terraform 명령줄 도구는 MacOS, FreeBSD, OpenBSD, Windows, Solaris 및 Linux에서 사용할 수 있습니다.
 
@@ -110,7 +110,7 @@ VSCode 편집기를 사용할 준비가 되었다면, 코드의 시인성을 위
 
 ## 👋 Getting to Know Terraform
 
-@slidestart sky
+@slidestart blood
 
 ### Terraform 오픈 소스는 랩톱 또는 가상 워크스테이션에서 다운로드하여 실행할 수 있는 명령줄 응용 프로그램입니다.
 
@@ -151,7 +151,7 @@ terraform help
 
 ## 🔐 Terraform을 NCP에 연결하기
 
-@slidestart sky
+@slidestart blood
 
 ### HCL이
 ### "HashiCorp Configuration Language"
@@ -220,7 +220,7 @@ API 자격증명정보는 실수로 공개된 저장소에 노출되거나 복�
 
 ## 👨‍💻 Terraform 코드는 어떻게 생겼나요?
 
-@slidestart sky
+@slidestart blood
 
 ### Terraform은 현재 디렉토리에서 `*.tf` 또는 `*.tfvars` 로 끝나는 모든 것을 읽습니다.
 
@@ -248,7 +248,7 @@ Terraform에서 `*.tf`와 `*.tfvars`로 끝나지 않는 파일은 무시됩니�
 
 ## 🏡 Terraform Init - Provider 설치
 
-@slidestart sky
+@slidestart blood
 
 ### Terraform Core 프로그램은 그 자체로는 그다지 유용하지 않습니다.
 
@@ -322,7 +322,7 @@ Q. Terraform은 모듈과 공급자를 어디에 저장합니까?
 
 ## 👩‍⚖️ Terraform Validate - 코드 테스트
 
-@slidestart sky
+@slidestart blood
 
 ### Terraform에는 구문 검사기가 내장되어 있습니다.
 
@@ -373,7 +373,7 @@ terraform validate
 
 ## 🤔 Terraform Plan - Dry run mode
 
-@slidestart sky
+@slidestart blood
 
 ### `terraform plan`을 통해 환경에 대한 변경 사항을 안전한 방법으로 미리 볼 수 있습니다.
 
@@ -402,7 +402,7 @@ var.prefix
 
 ## 🎛️ Terraform 변수로 작업하기
 
-@slidestart sky
+@slidestart blood
 
 ### `terraform.tfvars` 파일은 사용자가 변수를 구성할 수 있는 편리한 위치입니다.
 
@@ -433,7 +433,7 @@ prefix = "yourname"
 
 ## 🗼 cidr_block 변경
 
-@slidestart sky
+@slidestart blood
 
 ### 개개인은 `terraform.tfvars` 파일에 설정하여 `variables.tf` 파일에 정의된 모든 변수를 재정의할 수 있습니다.
 

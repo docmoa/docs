@@ -17,7 +17,7 @@ tags: ["ncloud", "ncp", "terraform", "workshop"]
 
 ## 📈 Terraform Graph
 
-@slidestart sky
+@slidestart blood
 
 ### Terraform Graph는 모든 인프라에 대한 시각적 표현을 제공할 수 있습니다.
 
@@ -59,7 +59,7 @@ plan 정보에는 인증키, 패스워드같은 노출하고 싶지 않은 정�
 
 ## 👨‍💻 Terraform Plan & Terraform Apply
 
-@slidestart sky
+@slidestart blood
 
 ### 기본적으로 `terraform apply` 명령은 `Terraform Plan`을 실행하여 원하는 변경 사항을 보여줍니다.
 
@@ -105,7 +105,7 @@ Terraform에서 "Do you want to perform these actions?"라는 메시지가 표�
 
 ## 👩‍💻 Test and Repair
 
-@slidestart sky
+@slidestart blood
 
 ### Terraform은 멱등성(idempotent)을 갖습니다.
 
@@ -139,7 +139,7 @@ terraform apply
 
 ## 🛫 Change Your Prefix
 
-@slidestart sky
+@slidestart blood
 
 ### Terraform은 인프라를 Create, Destroy, Update, re-Create 합니다.
 
@@ -224,7 +224,7 @@ Apply complete! Resources: 1 added, 0 changed, 1 destroyed.
 
 ## 🛫 Create and Change ACL
 
-@slidestart sky
+@slidestart blood
 
 ### Terraform은 인프라를 Create, Destroy, Update, re-Create 합니다.
 
@@ -289,7 +289,7 @@ resource "ncloud_network_acl" "public" {
 
 ## 🏗️ Complete the Build
 
-@slidestart sky
+@slidestart blood
 
 ### `-auto-approve` 플래그
 해당 플래그를 사용하여 "Do you want to perform these actions?" 에 한 질문을 오버라이드(Override) 할 수 있습니다.
