@@ -175,6 +175,8 @@ variable "vpc_cidr" {
 - 변수에 대해 배웠습니다.
 - prefix(접두사) 설정
 
+---
+
 실습을 위해 다음장으로 이동하세요.
 
 [:computer: Lab - Setup and Basic Usage](./02-z-lab_terraform_basic.html)
