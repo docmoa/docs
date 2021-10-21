@@ -27,16 +27,17 @@ tags: ["ncloud", "ncp", "terraform", "workshop"]
   1. [Terraform 소개](./01-terraform-intro)
   2. [Terraform 기본](./02-terraform-basic)
       - :computer: Lab - Setup and Basic Usage
-  3. Terraform In Action : `plan` `apply` `destroy`
-  4. Terraform 코드 구성
+  3. [Terraform 실행](./03-terraform-in-Action.html) : `plan` `apply` `destroy`
       - :computer: Lab - Terraform in Action
-  5. NCP 인스턴스 프로비저닝과 설정
+  4. [테라폼 프로비저닝 도구 사용 및 구성](./04-ncp-provisioning-and-configuration.html)
       - :computer: Lab - Terraform으로 프로비저닝 하기
-  6. 인프라 상태를 변경하고 관리하기
-  7. Terraform Cloud (Option)
+  5. [테라폼 상태파일(State)](05-terraform-state.html)
+  6. [Terraform Cloud](06-terraform-cloud.html)
       - :computer: Lab - Terraform Remote State
 
-## 참여자 소개
+## 워크샵을 진행시 참여자 소개 (옵션)
+
+서로의 기술적 백그라운드를 이해하고 기술배경에 맞춰 워크샵이 진행됩니다.
 
 - 이름
 - 담당 업무와 기술적 백그라운드
