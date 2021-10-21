@@ -42,7 +42,7 @@ Terraform Cloud는 다른 SaaS 서비스와 같이 개인을 위한 무료 플�
 2. 다음으로 Workspace를 생성하라는 메시지가 표시됩니다. `CLI 기반 워크플로` 패널을 클릭하여 VCS 통합 단계를 건너뛸 수 있습니다.
 ![](./image/lab6-01.png)
 
-3. 작업 공간의 이름을 `hashcat-ncp` 로 지정 하고 `Create workspace`를 클릭하여 새로운 Workspace를 생성합니다.
+3. 작업 공간의 이름을 `hashicat-ncp` 로 지정 하고 `Create workspace`를 클릭하여 새로운 Workspace를 생성합니다.
 
 4. 터미널에서 `terraform version` 을 실행하여 버전을 확인합니다.
 
@@ -89,7 +89,7 @@ terraform {
     hostname = "app.terraform.io"
     organization = "YOURORGANIZATION"
     workspaces {
-      name = "hashicat-aws"
+      name = "hashicat-ncp"
     }
   }
 }
