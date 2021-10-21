@@ -5,7 +5,7 @@ meta:
 tags: ["Nomad", "Enterprise", "Configuration", "Common"]
 ---
 
-# Consul 공통 설정
+# Nomad 공통 설정
 ::: tip
 최대한 설정값을 넣어보고, 번역기도 돌려보고 물어도 보고 넣은 server, client의 공통설정 파일입니다.
 저는 agent.hcl파일안에 다 넣고 실행하지만 나눠서 추후에는 기능별로 나눠서 사용할 예정입니다.
@@ -35,6 +35,7 @@ consul {
   auto_advertise  = true
   server_auto_join  = true
   client_auto_join  = true
+  #consul join용 token
   token = "33ee4276-e1ef-8e5b-d212-1f94ca8cf81e"
 }
 enable_syslog = false
@@ -53,6 +54,7 @@ ports {
   serf = 4648
 }
  
+#prometheus에서 nomad의 metrics값을 수집 해 갈 수 있게 해주는 설정
 telemetry {
   collection_interval = "1s"
   disable_hostname = true
@@ -67,6 +69,7 @@ plugin "docker" {
     auth {
       config = "/root/.docker/config.json"
     }
+    #온프레이머스환경에서는 해당 이미지를 private repository에 ㅓㄶ고 변경
     infra_image = "google-containers/pause-amd64:3.1"
   }
 }

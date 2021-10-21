@@ -8,7 +8,7 @@ tags: ["Nomad", "Sample", "Job","sidecar","tomcat"]
 # tomcat-sidecar
 
 - 참고 링크
-  - https://discuss.hashicorp.com/t/nomad-error-creating-an-ingress-gateway-with-sidecar-service/24731
+  - <https://discuss.hashicorp.com/t/nomad-error-creating-an-ingress-gateway-with-sidecar-service/24731>
 
 ```hcl
 job "01_tomcat-sidecar" {

@@ -16,11 +16,11 @@ Show Terminal을 들어가야 볼 수 있기때문에 귀찮음을 해결하기 
 ```
 consul tls ca create -domain=nomad -days 3650
 
-consul tls cert create -domain=nomad -dc=global  -server
+consul tls cert create -domain=nomad -dc=global  -server -days 3650
 
-consul tls cert create -domain=nomad -dc=global  -client
+consul tls cert create -domain=nomad -dc=global  -client -days 3650
 
-consul tls cert create -domain=nomad -dc=global  -cli
+consul tls cert create -domain=nomad -dc=global  -cli -days 3650
 ```
 
 ## Nomad env 설정
