@@ -166,15 +166,6 @@ variable "vpc_cidr" {
 4. Default Config - variables.tf의 기본값
 5. User manual entry - 지정되지 않은 경우 사용자에게 입력을 요청합니다.
 
-## Terraform Basic 리뷰
-
-이 장에서 우리는 다음을 학습하였습니다.
-
-- terraform init 명령
-- terraform plan 명령
-- 변수에 대해 배웠습니다.
-- prefix(접두사) 설정
-
 ---
 
 실습을 위해 다음장으로 이동하세요.

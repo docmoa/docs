@@ -15,6 +15,8 @@ tags: ["ncloud", "ncp", "terraform", "workshop"]
 - VSCode를 실행하고 File(파일) 메뉴에서 `Open Folder...` 를 클릭합니다.
 - 앞서 실습을 진행한 `lab02`을 열어줍니다.
 
+---
+
 ## 🛠️ Use a Provisioner
 
 @slidestart blood
@@ -79,6 +81,8 @@ terraform apply -auto-approve
 ![](./image/lab4-01.png)
 :::
 
+---
+
 ## 🖨️ Add an Output
 
 @slidestart blood
@@ -125,6 +129,8 @@ terraform refresh
 ```bash
 terraform output
 ```
+
+---
 
 ## 🐶 Fun With Variables
 
@@ -184,6 +190,8 @@ terraform apply -auto-approve -var placeholder=placebear.com
 어떤 변수가 우선시 되었습니까? 잘 이해 되셨나요?
 
 다음 [공식문서](https://www.terraform.io/docs/language/values/variables.html#variable-definition-precedence)를 참고할 수 있습니다.
+
+---
 
 ## :scream: Quiz Time 4. Terraform Variables
 

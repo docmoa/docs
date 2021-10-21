@@ -15,6 +15,8 @@ tags: ["ncloud", "ncp", "terraform", "workshop"]
 - VSCode를 실행하고 File(파일) 메뉴에서 `Open Folder...` 를 클릭합니다.
 - 앞서 받은 디렉토리내의 `lab02`을 열어줍니다.
 
+---
+
 ## 📈 Terraform Graph
 
 @slidestart blood
@@ -56,6 +58,8 @@ terraform graph
 ::: warning
 plan 정보에는 인증키, 패스워드같은 노출하고 싶지 않은 정보가 포함될 수 있습니다.
 :::
+
+---
 
 ## 👨‍💻 Terraform Plan & Terraform Apply
 
@@ -102,6 +106,7 @@ Terraform에서 "Do you want to perform these actions?"라는 메시지가 표�
 :::
 ::::
 
+---
 
 ## 👩‍💻 Test and Repair
 
@@ -222,6 +227,8 @@ Apply complete! Resources: 1 added, 0 changed, 1 destroyed.
 ```
 :::
 
+---
+
 ## 🛫 Create and Change ACL
 
 @slidestart blood
@@ -287,6 +294,8 @@ resource "ncloud_network_acl" "public" {
 
 `Apply complete! Resources: 0 added, 1 changed, 0 destroyed.`
 
+---
+
 ## 🏗️ Complete the Build
 
 @slidestart blood
@@ -341,6 +350,8 @@ terraform graph
 인프라에 대한 Terraform 그래프를 살펴보십시오. 종속성이 자동으로 매핑됩니다. 
 
 Terraform은 이 그래프를 사용하여 최대 효율성을 위해 병렬로 구축할 수 있는 리소스를 결정합니다.
+
+---
 
 ## :scream: Quiz Time 3. Terraform Apply
 
