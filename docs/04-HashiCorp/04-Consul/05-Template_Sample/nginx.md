@@ -2,14 +2,18 @@
 meta:
   - name: description
     content: Consul Template
-tags: ["Consul", "Consul Template"]
+tags: ["Consul", "Consul Template", "NGINX"]
 ---
 
-# Consul Template Sample - NGINX
+# NGINX Sample
+
+참고 : <https://learn.hashicorp.com/tutorials/consul/load-balancing-nginx>
 
 ## 템플릿 파일 변환 하기
 
 ### 템플릿 파일 작성
+
+- 대상 서비스 : nginx-backend
 
 ```hcl
 # nginx.conf.ctmpl

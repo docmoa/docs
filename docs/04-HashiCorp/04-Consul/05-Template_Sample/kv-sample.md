@@ -5,11 +5,15 @@ meta:
 tags: ["Consul", "Consul Template"]
 ---
 
-# Consul Template Sample - KV
+# KV Sample
+
+참고 : <https://learn.hashicorp.com/tutorials/consul/consul-template>
 
 ## 템플릿 파일 변환 하기
 
 ### 템플릿 파일 작성
+
+- 대상 kv : apache/version
 
 ```hcl
 # apache_install.sh.ctmpl
