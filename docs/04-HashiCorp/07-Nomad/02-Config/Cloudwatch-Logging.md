@@ -20,7 +20,7 @@ AWS 환경이 아닌 외부 구성 시, 해당 노드에 Cloudwath 기록을 위
 
 ## EC2 Instance Role 구성
 
-Nomad 구성 시 Cloudwatch에 대한 EC2 Instance의 IAM 구성이 필요합니다. 아래 구성의 예를 참고하세요.
+Nomad 구성 시 Cloudwatch에 대한 EC2 Instance의 IAM 구성이 필요합니다. 아래 Terraform 구성의 예를 참고하세요.
 - loging driver의 구성에 따라 `aws_iam_role_policy`에 설정하는 필요한 권한에 차이가 있을 수 있습니다.
 - 예를 들어 docker loging 구성에서 `awslogs-create-group = true` 옵션을 추가하려는 경우 `logs:CreateLogGroup` 정책이 필요합니다.
 - 권한에 대한 상세 설명은 다음 링크를 참고합니다. <https://docs.aws.amazon.com/ko_kr/AmazonCloudWatch/latest/logs/permissions-reference-cwl.html>
