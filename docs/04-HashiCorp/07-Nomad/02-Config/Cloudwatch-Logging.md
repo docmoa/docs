@@ -14,6 +14,10 @@ docker 런타임에는 log driver로 "awslogs"를 지원합니다.
 Nomad에서 docker 자체의 로깅을 사용하므로서, Nomad에서 실행되는 docker 기반 컨테이너의 로깅이 특정 환경에 락인되는것을 방지합니다.
 :::
 
+::: warning
+AWS 환경이 아닌 외부 구성 시, 해당 노드에 Cloudwath 기록을 위한 Policy를 갖는 IAM의 credential 정보가 환경변수 또는 `~/.aws/credential` 구성이 필요합니다.
+:::
+
 ## EC2 Instance Role 구성
 
 Nomad 구성 시 Cloudwatch에 대한 EC2 Instance의 IAM 구성이 필요합니다. 아래 구성의 예를 참고하세요.
