@@ -61,7 +61,7 @@ npm run dev
 ```
 </code-block>
 
-hi<code-block title="YARN">
+<code-block title="YARN">
 ```bash {2,5-6,9}
 # 클론 받은 디렉토리 이동 후 npm install
 cd docs
