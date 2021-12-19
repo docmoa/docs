@@ -31,8 +31,8 @@ export default {
       let files = this.$site.pages.filter(p => {
 				return p.path.indexOf(`/${content}`) >= 0;
 			}).sort((a,b) => {
-				let aDate = new Date(a.frontmatter.published).getTime();
-				let bDate = new Date(b.frontmatter.published).getTime();
+				let aDate = new Date(a.lastUpdated).getTime();
+				let bDate = new Date(b.lastUpdated).getTime();
 				let diff = aDate - bDate;
 				if(diff < 0) return -1;
 				if(diff > 0) return 1;
@@ -42,7 +42,7 @@ export default {
       this.recentFilesDic[content] = files
 			// return [files.slice(0,7), files.slice(7,14)];
     })
-    console.log(this.recentFilesDic)
+    // console.log(this.recentFilesDic)
   }
 }
 
