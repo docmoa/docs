@@ -2,7 +2,7 @@
 meta:
   - name: description
     content: Nomad Sample
-tags: ["Nomad", "Sample", "Job","csi","nfs"]
+tags: ["Nomad", "config","csi","nfs"]
 ---
 
 # nomad csi (nfs)
@@ -122,6 +122,7 @@ context {
 ```
 
 ## job에는 아래와 같이 추가하여 사용했다.
+- 원본 job: <http://docmoa.github.io/04-HashiCorp/07-Nomad/05-SampleJob/jboss.md>
 ```hcl
     volume "nfs-vol" {
       type            = "csi"
@@ -133,4 +134,4 @@ context {
 ```
 ## nomad volume페이지에서 확인
 - nomad ui에서 volume 페이지에서 alloc에서 사용 중인 volume을 볼 수 있다
-![](./image/nfs-csi.png)
+![](../05-SampleJob/image/nfs-csi.png)
