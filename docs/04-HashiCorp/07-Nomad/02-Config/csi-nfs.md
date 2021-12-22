@@ -122,7 +122,7 @@ context {
 ```
 
 ## job에는 아래와 같이 추가하여 사용했다.
-- 원본 job: <http://docmoa.github.io/04-HashiCorp/07-Nomad/05-SampleJob/jboss.md>
+- [원본 job](/04-HashiCorp/07-Nomad/05-SampleJob/jboss.html)
 ```hcl
     volume "nfs-vol" {
       type            = "csi"
