@@ -59,13 +59,15 @@ ENTRYPOINT ["/usr/local/bin/npm", "run", "dev"]
   - 다른 옵션은 괜찮으나, metadata.hcl의 pack -> url은 public github로 하지않으면 에러발생
     - gitlab으로 설정 시 출력되는 error log가 명확하지 않아, github로 넣어둠
   - 참고: https://gitlab.com/swbs9000/vuepress
+### 디렉토리 구조
+```bash
 pack/vuepres
 ├── metadata.hcl 
 ├── outputs.tpl
 ├── templates
 │   └── vuepress.nomad.tpl
 └── variables.hcl
-
+```
 ```hcl
 #metadata.hcl
 app {
