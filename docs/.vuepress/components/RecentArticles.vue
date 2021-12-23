@@ -22,7 +22,7 @@
 export default {
 	data() {
 		return {
-      contents: ['00-Howto', '01-Infrastructure', '02-Private%20Platform', '03-Public%20Cloud', '04-HashiCorp', '05-etc'],
+      contents: ['00-Howto', '01-Infrastructure', '02-Private%20Platform', '03-Public%20Cloud', '04-HashiCorp', '06-etc'],
       recentFilesDic: {}
     };
 	}, 
@@ -34,8 +34,8 @@ export default {
 				let aDate = new Date(a.lastUpdated).getTime();
 				let bDate = new Date(b.lastUpdated).getTime();
 				let diff = aDate - bDate;
-				if(diff < 0) return -1;
-				if(diff > 0) return 1;
+				if(diff > 0) return -1;
+				if(diff < 0) return 1;
 				return 0;
 			}).slice(0,4);
 
