@@ -79,17 +79,15 @@ jkstatus는 `mod_jk`를 사용하여 연동한 경우 아파치에서 확인할 
 
 사용을 위해서 `worker.properties`에 `status` 워커를 추가합니다.
 
-```apache
+```ini
 worker.list=tomcat1,tomcat2,loadbalancer,status
-
 ...
-
 worker.status.type=status
 ```
 
 그리고 `uri.properties`에 요청을 수행할 경로를 워커에 맵핑합니다.
 
-```apache
+```ini
 ...
 /jkstatus=status
 ```
