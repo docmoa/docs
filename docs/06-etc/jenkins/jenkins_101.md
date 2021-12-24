@@ -929,7 +929,7 @@ Docker 실행을 위한 Item을 생성합니다. (e.g. 04-02.UsingDockerImagesFo
 
 
 
-## 5. Agents and Distributing Builds
+## 5. Plugins
 
 Jenkins가 유용한 툴인 이유중 하나는 방대한 양의 플러그인 입니다. Jenkins의 기능을 확장시키고, 관리, 빌드 정책 등을 확장 시켜주고, 타 서비스와의 연계를 쉽게 가능하도록 합니다.
 
