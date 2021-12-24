@@ -6,6 +6,10 @@ docmoa (https://docmoa.github.io) 소스페이지 입니다.
 
 ## Change Log
 
+### 2021-12-24
+- Main page 최신 등록 글에서 How to 제외
+- Main page 최신 등록 글에서 Software 추가
+
 ### 2021-12-23
 - Bug fix
   - 첫 페이지의 최신 글 보기 정렬 내림차순으로 변경

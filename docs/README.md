@@ -1,6 +1,6 @@
 ---
 home: true
-actionText: Get started →
+actionText: Getting Start →
 actionLink: /00-Howto/
 # features:
 #   - title: Infrastructure

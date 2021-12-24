@@ -22,7 +22,7 @@
 export default {
 	data() {
 		return {
-      contents: ['00-Howto', '01-Infrastructure', '02-Private%20Platform', '03-Public%20Cloud', '04-HashiCorp', '06-etc'],
+      contents: ['01-Infrastructure', '02-Private%20Platform', '03-Public%20Cloud', '04-HashiCorp', '05-Software', '06-etc'],
       recentFilesDic: {}
     };
 	}, 
