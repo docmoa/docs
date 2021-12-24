@@ -5,7 +5,7 @@ meta:
 tags: ["cicd", "jenkins"]
 ---
 
-# Pipeline on Jenkins 101
+# Pipeline on Jenkins 101 (Single Page)
 
 > Update at 31 Jul, 2019
 
