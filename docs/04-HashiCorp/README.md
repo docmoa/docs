@@ -79,7 +79,7 @@ tags: ["HashiCorp"]
 
 ## Etc.
 
-### Mac에서 한번에 업데이트 받기 예제
+::: details Mac에서 한번에 업데이트 받기 예제
 
 - `BIN_DIR`로 지정된 `/Users/my/Tools/bins/`는 PATH에 적용된 위치
 
@@ -146,3 +146,8 @@ do
 done
 
 ```
+:::
+
+## Recent Articles 10
+
+<RecentArticlesContents/>

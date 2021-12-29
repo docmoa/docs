@@ -20,7 +20,7 @@ rightAnchor:
   disableGlobalUI: true
 ---
 
-<RecentArticles/>
+<RecentArticlesHome/>
 
 ---
 

@@ -66,12 +66,18 @@ module.exports = {
   themeConfig: {
     logo: "/image/docmoa-144.png", // 로고 이미지
     nav: [
-      { text: "Infrastructure", link: "/01-Infrastructure/" },
-      { text: "Private-Platform", link: "/02-Private Platform/" },
-      { text: "Public-Cloud", link: "/03-Public Cloud/" },
+      { text: "How To", link: "/00-Howto/" },
+      {
+        text: "Infra",
+        items: [
+          { text: "Infrastructure", link: "/01-Infrastructure/" },
+          { text: "Private-Platform", link: "/02-Private Platform/" },
+          { text: "Public-Cloud", link: "/03-Public Cloud/" },
+        ],
+      },
+      { text: "Software", link: "/05-Software/" },
       { text: "HashiCorp", link: "/04-HashiCorp/" },
       { text: "Etc.", link: "/06-etc/" },
-      { text: "How To", link: "/00-Howto/" },
       {
         text: "MORE",
         items: [

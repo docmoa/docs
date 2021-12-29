@@ -5,6 +5,8 @@ next: false
 
 ---
 
-# Overview
+# Private Platform
 
-(준비중)
+## Recent Articles 10
+
+<RecentArticlesContents/>

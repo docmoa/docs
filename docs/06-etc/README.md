@@ -5,10 +5,10 @@ next: false
 
 ---
 
-# Etc Overview
+# Etc.
 
-## 1. Mac
+## Recent Articles 10
 
-(준비중)
+<RecentArticlesContents/>
 
 
