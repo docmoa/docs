@@ -25,8 +25,8 @@ export default {
       recentFilesDic: {}
     };
 	}, 
-	created() {
-		const loc = window.location.pathname;
+	mounted() {
+		const loc = document.location.pathname;
 		// const dir = loc.substring(0, loc.lastIndexOf('/'));
 		const dir = loc.split('/')[1];
 		this.contents = [dir];
