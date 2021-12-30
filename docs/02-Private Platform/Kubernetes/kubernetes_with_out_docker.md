@@ -6,7 +6,7 @@ tags: ["kubernetes", "docker아님","containerd"]
 ---
 
 
-# kubernetes 설치할때 docker 설치 안하고 올리기
+# containerd를 런타임으로 사용한 Kubernetes 설치
 - docker가 없어도 k8s를 올릴 수 있다!
 
 ```bash
