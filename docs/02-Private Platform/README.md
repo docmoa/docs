@@ -5,7 +5,7 @@ next: false
 
 ---
 
-# Private Platform
+# Private Platform Overview
 
 ## Recent Articles 10
 
