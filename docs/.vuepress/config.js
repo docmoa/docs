@@ -135,7 +135,7 @@ module.exports = {
       outFile: "sitemap.xml",
     },
     "@vuepress/google-analytics": {
-      gs: "UA-204926029-1",
+      ga: "UA-204926029-1",
     },
     "@vuepress/last-updated": {},
     // "vuepress-plugin-code-copy": {
