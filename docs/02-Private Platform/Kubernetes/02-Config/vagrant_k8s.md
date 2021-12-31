@@ -7,10 +7,12 @@ tags: ["kubernetes", "vagrant","docker", "install"]
 
 # Kubernetes, Vagrant로 로컬 환경 구성
 
+![](https://raw.githubusercontent.com/Great-Stone/images/master/uPic/그림판%20-%20Google%20Slides%202022-01-01%2000-47-10.png)
+
 > github : <https://github.com/Great-Stone/vagrant-k8s>
 
 - Virtualbox를 활용하여 로컬 환경에서 Kubernetes(K8s) 환경을 쉽게 만들고 부실수(?) 있는 환경을 구성하기위해 Vagrant를 활용
-- Intel Mac (Catalina / Big Sur)에서는 테스트
+- Intel Mac (Catalina / Big Sur)에서 테스트
 - Windows는 테스트 필요
 
 ## 실행 전 필요 소프트웨어
