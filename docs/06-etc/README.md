@@ -2,10 +2,11 @@
 
 sidebar: true
 next: false
+tags: ["Etc"]
 
 ---
 
-# Etc. Overview
+# Overview
 
 ## Recent Articles 10
 

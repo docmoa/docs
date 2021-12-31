@@ -2,10 +2,11 @@
 
 sidebar: true
 next: false
+tags: ["Platform"]
 
 ---
 
-# Private Platform Overview
+# Overview
 
 ## Recent Articles 10
 

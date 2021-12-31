@@ -2,10 +2,11 @@
 
 sidebar: true
 next: false
+tags: ["Infrastructure"]
 
 ---
 
-# Infrastructure Overview
+# Overview
 
 ## Recent Articles 10
 
