@@ -131,8 +131,8 @@ module.exports = {
       after: "</code></pre>",
     },
     sitemap: {
-      hostname: "https://docmoa.github.io/",
-      outFile: "sitemap.xml",
+      hostname: "https://docmoa.github.io",
+      // outFile: "sitemap.xml",
     },
     "@vuepress/google-analytics": {
       ga: "UA-204926029-1",
