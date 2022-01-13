@@ -45,6 +45,10 @@ $ terraform-bundle --version
 
 bundle 구성할 명세를 hcl로 작성합니다. (e.g. tf-bundle.hcl)
 
+::: tip
+공식(Official) 프로바이더의 경우 `source` 정의를 생략할 수 있습니다. 그렇지 않는 경우에는 반드시 `source`에 대한 정의가 필요합니다.
+:::
+
 ```hcl
 terraform {
   # Version of Terraform to include in the bundle. An exact version number is required.
