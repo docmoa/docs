@@ -11,6 +11,10 @@ tags: ["terraform", "provider"]
 
 Airgap 환경에서 사용할 특정 버전의 Terraform과 여러 제공자 플러그인을 모두 포함하는 zip 파일 인 "번들 아카이브"를 생성하는 툴을 사용합니다. 일반적으로 Terraform init을 통해 특정 구성 작업에 필요한 플러그인을 다운로드하고 설치하지만 Airgap 환경에서는 공식 플러그인 저장소에 액세스 할 수 없는 경우가 발생합니다. Bundle 툴을 사용하여 Terraform 버전과 선택한 공급자를 모두 설치하기 위해 대상 시스템에 압축을 풀 수있는 zip 파일이 생성되므로 즉석 플러그인 설치가 필요하지 않습니다.
 
+::: warning 주의
+번들로 작성된 zip파일을 url로 등록하기 때문에 번들을 다운받을 수 있는 웹서버나 넥서스 같은 원격 저장소가 필요합니다.
+:::
+
 ## build 툴 준비
 
 - [번들 구성 및 빌드 안내](https://github.com/hashicorp/terraform/tree/main/tools/terraform-bundle)에 따라 `terraform-bundle`을 빌드합니다.
