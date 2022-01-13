@@ -1,11 +1,11 @@
 ---
 meta:
   - name: description
-    content: 인터넷 사용 불가 시 프로바이더 구성
+    content: 인터넷 사용 불가 시 로컬환경에서의 프로바이더 구성
 tags: ["terraform", "provider"]
 ---
 
-# Air-gapped Terraform Provider 구성
+# Terraform Provider - 로컬 디렉토리
 > <https://www.terraform.io/docs/cli/config/config-file.html#implied-local-mirror-directories>  
 > <https://learn.hashicorp.com/tutorials/terraform/provider-use?in=terraform/providers>
 
