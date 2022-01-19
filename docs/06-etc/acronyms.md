@@ -17,6 +17,7 @@ tags: ["acronyms", "tip"]
 - API : Application Programming Interface
 - ARP : Address Resolution Protocol
 - AWS : Amazon Web Service
+- APM : Application Performance Monitoring(Management)
 
 ## B
 
@@ -49,6 +50,8 @@ tags: ["acronyms", "tip"]
 - DOM : Document Object Model
 - DSU(DU) : Data Service Unit
 - DRAM : Dynamic random-access memory
+- DW : Data Warehouse
+- DL : Data Lake
 
 ## E
 
@@ -97,6 +100,7 @@ tags: ["acronyms", "tip"]
 
 - kbps : Kilobit per second
 - KPI : Key Performance Indicator
+- K8S : Kubernetes
 
 ## L
 
@@ -125,6 +129,7 @@ tags: ["acronyms", "tip"]
 - O2O : Online to Offline / Offline to Online
 - OCP : OpenShift Container Platform
 - OSI : Open System Interconnect
+- OOM : Out Of Memory
 
 ## P
 
