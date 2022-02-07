@@ -13,15 +13,25 @@ tags: ["Nomad", "Sample", "Job", "wildfly", "JBoss"]
 
 Wildfly 이미지를 베이스로 기존 Dockerfile을 작성하여 빌드 후 컨테이너를 기준으로 배포하는 것도 가능하지만, 베이스 이미지를 유지한 채로 애플리케이션(war)을 바인드하여 실행하는 것도 가능하다.
 
-## 주요 내용
-- job > groups > task(docker) > config > args : 
-  management가 기본 `127.0.0.1`이므로 포트포워딩으로 접속이 불가하므로 `0.0.0.0`으로 변경
-  ```hcl
-  args = ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]
+## Dockerfile과 비교
+
+- dockerfile 의 예
+  ```docker
+  FROM jboss/wildfly
+  RUN /opt/jboss/wildfly/bin/add-user.sh admin admin --silent
+  ADD jboss-as-helloworld.war /opt/jboss/wildfly/standalone/deployments/
+  CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]
   ```
+  - `FROM`은 Nomad가 실행시킬 이미지로 지정
+  - `RUN` 절의 `add-user.sh`는 `mgmt-users.properties`를 생성하고자 하는 목적이므로 Nomad의 `artifact`로 중앙레포에서 받거나 `template`으로 작성하여 바인딩 가능
+  - `ADD` 절은 WAR파일을 추가하는 것으로 호스트의 파일 또는 `artifact`로 중앙레포에서 받아 바인딩
+  - `CMD` 절은 기본 실행명령을 대체하는 것으로 Nomad에서 `command`와 `args`로 대체 가능
 
 - job > groups > task(docker) > artifact :
   WAR 파일을 다운로드 받아 준비
+  ::: warning 참고
+  Nomad 클라이언트 호스트에 미리 파일을 두는것도 가능하나 오케스트레이션 특성상 중랑 레포기능을 하는곳에서 배포시 다운받는 방식이 확장성 측면에서 고려되어야 함
+  :::
 
 - job > groups > task(docker) > template :
   - `add-user.sh`를 통해 management 콘솔의 사용자를 생성해야 하지만 미리 생성된 내용(admin/admin)을 넣어 처리
@@ -34,6 +44,27 @@ Wildfly 이미지를 베이스로 기존 Dockerfile을 작성하여 빌드 후 �
     ```bash
     admin=c22052286cd5d72239a90fe193737253
     ```
+
+- job > groups > task(docker) > config > mount : 
+  - 다운받은 WAR 파일과 `mgmt-users.properties`를 컨테이너에 바인딩
+  - Nomad가 Host 내부적으로 별도 루트경로를 할당받으므로, 각 파일과 구성파일은 독립적으로 위치함
+  ::: tip
+  `volumes`로 처리하는것도 가능 <https://www.nomadproject.io/docs/drivers/docker#volumes>
+  :::
+
+- job > groups > task(docker) > config > args : 
+  management가 기본 `127.0.0.1`이므로 포트포워딩으로 접속이 불가하므로 `0.0.0.0`으로 변경
+  ```hcl
+  args = ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]
+  ```
+  ::: tip
+  조금더 명확하게는 `command` 에 `"/opt/jboss/wildfly/bin/standalone.sh"`를 구성하고 args를 분리하는 것도 가능
+  :::
+
+
+
+
+
 
 ## Sample Job
 
