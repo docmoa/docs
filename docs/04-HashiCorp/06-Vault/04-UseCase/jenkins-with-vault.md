@@ -64,6 +64,7 @@ pipeline {
           withVault([configuration: configuration, vaultSecrets: secrets]) {
             sh "echo $gitlabIP"
             sh "echo ${env.API_KEY}"
+            sh "curl -v $gitlabIP"
           }
         }  
       }
