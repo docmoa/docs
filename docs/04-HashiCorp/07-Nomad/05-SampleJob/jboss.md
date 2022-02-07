@@ -5,7 +5,7 @@ meta:
 tags: ["Nomad", "Sample", "Job", "wildfly", "JBoss"]
 ---
 
-# Jboss wit csi (nfs) + memory autoscale
+# Wildfly(Jboss)
 
 > image info : <https://quay.io/repository/wildfly/wildfly?tab=info>  
 > github : <https://github.com/jboss-dockerfiles/wildfly>  
