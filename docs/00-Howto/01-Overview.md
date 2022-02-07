@@ -60,7 +60,10 @@ success [10:48:28] Build 6f9dd7 finished in 1179 ms! ( http://localhost:8000/ )
 ## typora
 `typora`는 멀티 OS를 지원하는 마크다운 에디터/뷰어 입니다. VuePress의 플러그인과 일부 호환되지 않는 표기들이 있으나, 전역 검색이 가능하고 개인 노트를 활용하듯 관리할 수 있습니다.
 
-1. [typora.io](https://typora.io/) 를 통해 에디터를 다운로드 받고 설치합니다.
+1. typora.io를 통해 에디터를 다운로드 받고 설치합니다.
+    - Release 페이지 : <https://typora.io/releases/all>
+    - 1.0.0 이 릴리즈되면서 유료 모델로 전환되었습니다.
+    - 기존 beta 버전의 경우 무료 사용 가능합니다.
 2. docmoa의 소스를 clone/download 합니다.
     ```bash
     git clone https://github.com/docmoa/docs.git
