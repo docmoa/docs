@@ -5,7 +5,7 @@ meta:
 tags: ["Nomad", "Sample", "Job"]
 ---
 
-# Jboss wit csi (nfs) + memory autoscale
+# Jboss with csi (nfs) + memory autoscale
 
 ```hcl
 job "03-jboss" {
