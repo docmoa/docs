@@ -50,7 +50,9 @@ def secrets = [
     [envVar: 'gitlabIP', vaultKey: 'gitlabIP'],
     [envVar: 'API_KEY', vaultKey: 'api-key']]],
 ]
-def configuration = [vaultUrl: 'http://172.21.2.50:8200',  vaultCredentialId: 'vault-approle', engineVersion: 1]
+def configuration = [vaultUrl: 'http://172.21.2.50:8200',  vaultCredentialId: 'vault-approle', engineVersion: 2]
+#version 상관없이 됨
+#def configuration = [vaultUrl: 'http://172.21.2.50:8200',  vaultCredentialId: 'vault-approle', engineVersion: 1]
                       
 pipeline {
     agent any
