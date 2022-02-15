@@ -13,10 +13,15 @@ jenkins와 vault를 연동하여 pipe line에서 kv 사용하기
 $ vault auth enable approle
 # kv2 enable
 $ vault secrets enable kv-v2
+# kv enable
+$ vault secrets enable -path=kv kv
 
-# jenkins 정책으로 될 파일 생성
+# jenkins 정책으로 될 파일 생성 v1, v2
 $ tee jenkins-policy.hcl <<EOF
 path "kv/secret/data/jenkins/*" {
+  capabilities = [ "read" ]
+}
+path "kv-v2/data/jenkins/*" {
   capabilities = [ "read" ]
 }
 EOF
@@ -42,16 +47,28 @@ $ tee gitlab.json <<EOF
 }
 EOF
 
-vault kv put kv/secret/data/jenkins/gitlab @gitlab.json
+tee gitlab-v2.json <<EOF
+{
+  "gitlabIP": "172.21.2.52",
+  "api-key": "RjLAbbWsSAzXoyBvo2qL",
+  "version": "v2"
+}
+EOF
 
-# jenkins pipe line
+vault kv put kv/secret/data/jenkins/gitlab @gitlab.json
+vault kv put kv-v2/jenkins/gitlab @gitlab-v2.json
+```
+
+## v1 pipe line
+``` bash
+# jenkins pipe line v1
 def secrets = [
   [path: 'kv%2Fsecret/data/jenkins/gitlab', engineVersion:1, secretValues: [
     [envVar: 'gitlabIP', vaultKey: 'gitlabIP'],
     [envVar: 'API_KEY', vaultKey: 'api-key']]],
 ]
 def configuration = [vaultUrl: 'http://172.21.2.50:8200',  vaultCredentialId: 'vault-approle', engineVersion: 1]
-                      
+
 pipeline {
     agent any
     options {
@@ -65,6 +82,39 @@ pipeline {
             sh "echo $gitlabIP"
             sh "echo ${env.API_KEY}"
             sh "curl -v $gitlabIP"
+          }
+        }  
+      }
+    }
+}
+```
+
+
+## v2 pipe line
+``` bash
+# jenkins pipe line v2
+def secrets = [
+  [path: 'kv-v2/jenkins/gitlab', engineVersion:2, secretValues: [
+    [envVar: 'gitlabIP', vaultKey: 'gitlabIP'],
+    [envVar: 'API_KEY', vaultKey: 'api-key'],
+    [envVar: 'version2', vaultKey: 'version']]]
+]
+
+def configuration = [vaultUrl: 'http://172.21.2.50:8200',  vaultCredentialId: 'vault-approle', engineVersion: 2]
+                      
+pipeline {
+    agent any
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '20'))
+        disableConcurrentBuilds()
+    }
+    stages{   
+      stage('Vault') {
+        steps {
+          withVault([configuration: configuration, vaultSecrets: secrets]) {
+            sh "echo ${env.API_KEY}"
+            sh "echo ${env.version2}"
+            sh "curl -v ${env.gitlabIP}"
           }
         }  
       }
