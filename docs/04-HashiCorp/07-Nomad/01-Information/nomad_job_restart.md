@@ -6,7 +6,7 @@ tags: ["nomad", "sizing"]
 ---
 
 # task 복구 방식
-> 원문 : <https://www.hashicorp.com/blog/resilient-infrastructure-with-nomad-restarting-tasks>
+> 원문 : <https://www.hashicorp.com/blog/resilient-infrastructure-with-nomad-restarting-tasks>  
 > Nomad가 종종 운영자 개입 없이 장애, 중단 상황, Nomad 클러스터 인프라의 유지 관리를 처리하는 방법 확인
 
 ## 1. Job과 task의 선언
