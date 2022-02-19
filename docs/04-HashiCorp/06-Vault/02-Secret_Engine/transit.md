@@ -7,6 +7,8 @@ tags: ["vault", "transit"]
 
 # Transit
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/LkyperCGEDE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Vault구성 (Option)
 
 시크릿 엔진 활성화
