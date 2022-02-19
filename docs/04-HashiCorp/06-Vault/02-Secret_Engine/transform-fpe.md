@@ -11,6 +11,10 @@ Transform secrets 엔진은 제공된 입력 값에 대해 안전한 데이터 �
 - Doc : https://www.vaultproject.io/docs/secrets/transform
 - Learn : https://learn.hashicorp.com/tutorials/vault/transform
 
+아래 영상에서는 UI로 진행하는 방식을 설명합니다.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/yjPcEtO4zHs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 :::tip
 Enterprise 라이선스가 필요하기 때문에 라이선스가 필요한 경우 Trial 을 발급 받을 수 있습니다.
 : <https://www.hashicorp.com/products/vault/trial>
