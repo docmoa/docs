@@ -36,11 +36,11 @@ $ vault token create -policy=ssh
 
 ## otp를 사용한 ssh, scp pipe line
 ``` bash
-# jenkins pipe line v1
+// jenkins pipe line v1
 pipeline {
     agent any
     environment {
-      # 위에서 생성한 credential id
+      // 위에서 생성한 credential id
       ssh_token = credentials('vault_ssh_token')
     }
     options {
@@ -55,14 +55,14 @@ pipeline {
             // -o StrictHostKeyChecking=no는 최초 로그인에 known_hosts에 등록하는 문구 무시
             // scp도 동일하게 사용 가능
             // 주의할점은 다음라인은 jenkins 서버로 돌아온다.
-            '''sh
+            sh '''
             ssh_passwd=$(curl --header "X-Vault-Token: $ssh_token" --request POST --data '{"ip": "172.21.2.56"}' http://172.21.2.50:8200/v1/ssh/creds/otp_key_role  | jq ".data.key" | tr -d '""')
             sshpass -p $ssh_passwd ssh ubuntu@172.21.2.56 -o StrictHostKeyChecking=no "cd /usr/local \
             && ls -la \
             && pwd"
 
             ssh_passwd=$(curl --header "X-Vault-Token: $ssh_token" --request POST --data '{"ip": "172.21.2.56"}' http://172.21.2.50:8200/v1/ssh/creds/otp_key_role  | jq ".data.key" | tr -d '""')
-            sshpass -p $ssh_passwd scp ~/test ubuntu@172.21.2.56:~/test -o StrictHostKeyChecking=no
+            sshpass -p $ssh_passwd scp -o StrictHostKeyChecking=no ~/a ubuntu@172.21.2.56:~/test 
             '''
           }
       }
