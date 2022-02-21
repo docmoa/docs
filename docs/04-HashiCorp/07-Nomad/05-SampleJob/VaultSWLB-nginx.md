@@ -9,6 +9,7 @@ tags: ["Nomad", "Sample", "Job","Vault","SWLB"]
 - Vault의 HA구성 시에는 LB가 필요한데, LB대용으로 SWLB를 이용하여 Vault를 사용할 수 있다.
   - 해당 페이지에서는 nginx를 사용하였지만, HAproxy도 비슷하게 사용이 가능하다.
 
+# nginx job 파일 
 ```hcl
 job "nginx" {
   datacenters = ["dc1"]
