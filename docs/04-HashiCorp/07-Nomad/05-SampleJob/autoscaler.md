@@ -5,6 +5,7 @@ meta:
 tags: ["Nomad", "sample", "job", "autoscaler", "aws"]
 ---
 
+<<<<<<< HEAD
 # Autoscaler 
 - aws cloud 환경에서 별도의 모니터링 툴을 사용하지 않고 nomad-apm 기능을 이용한 auscaler 구성
 - Nomad Autoscaler 다운로드 : 
@@ -14,6 +15,19 @@ tags: ["Nomad", "sample", "job", "autoscaler", "aws"]
   - Nomad Autoscaler aws IAM policy 관련 : <https://www.nomadproject.io/tools/autoscaling/plugins/target/aws-asg>
   - Nomad Autoscaler policy 관련 : <https://www.nomadproject.io/tools/autoscaling/policy>
   - Nomad Autoscaler의 nomad-apm 을 사용하는 경우 : <https://www.nomadproject.io/tools/autoscaling/plugins/apm/nomad>
+=======
+# Nomad Autoscaler 
+- aws cloud 환경에서 별도의 모니터링 툴을 사용하지 않고 nomad-apm 기능을 이용한 auscaler 구성
+- Nomad Autoscaler 다운로드 : 
+  - https://releases.hashicorp.com/nomad-autoscaler/ 
+  - https://hub.docker.com/r/hashicorp/nomad-autoscaler
+  - https://hub.docker.com/r/hashicorp/nomad-autoscaler-enterprise  
+- 주요링크   
+  - Nomad Autoscaler aws IAM policy 관련 : https://www.nomadproject.io/tools/autoscaling/plugins/target/aws-asg
+  - Nomad Autoscaler policy 관련 : https://www.nomadproject.io/tools/autoscaling/policy
+  - Nomad Autoscaler의 nomad-apm 을 사용하는 경우 : https://www.nomadproject.io/tools/autoscaling/plugins/apm/nomad
+
+>>>>>>> 91cc1914eb479977ed6d1480aa8f122cccb0d77c
 
 
 ## Nomad Autoscaler - sample job
@@ -25,9 +39,12 @@ tags: ["Nomad", "sample", "job", "autoscaler", "aws"]
   - node_class는 nomad client에 동일하게 설정해야 함.
 - 주요 튜닝 포인트
   - `policy`의   cooldown,  evaluation_interval 값을 워크로드 특성에 맞게 적절하게 설정
+<<<<<<< HEAD
 - 오토스케일링 기준 
   - 메모리 :   `check "mem_allocated_percentage"`  
   - cpu :  `check "cpu_allocated_percentage"` 
+=======
+>>>>>>> 91cc1914eb479977ed6d1480aa8f122cccb0d77c
 
 ```hcl
 locals {
