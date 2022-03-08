@@ -125,6 +125,7 @@ module.exports = {
       updatePopup: true,
     },
     "vuepress-plugin-mermaidjs": {},
+    "vuepress-plugin-smooth-scroll": {},
     container: {
       type: "vue",
       before: '<pre class="vue-container"><code>',
