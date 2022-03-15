@@ -7,7 +7,7 @@ tags: ["vault", "error", "400"]
 
 # Vault 400 Error
 
-> Vault HTTP Status Codes : https://www.vaultproject.io/api#http-status-codes
+> Vault HTTP Status Codes : <https://www.vaultproject.io/api#http-status-codes>
 
 Vault에 API 요청시 400에러가 발생하는 경우 Vault로 전달된 데이터 형태가 올바른지 확인이 필요하다.
 
