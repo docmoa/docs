@@ -79,7 +79,7 @@ Packer의 빌드마다 `Iterations`에 작성된 이미지의 정보가 추가�
 
 HCP Packer에 이미지 Metadata를 등록하는 방법은 기존 Packer로 작성된 선언의 `build` 블록에 `hip_packer_registry` 속성을 정의하는 것입니다. 관련 수행을 위한 안내는 learn.hashicorp.com의 내용을 확인할 수 있습니다.
 
-- Packer Get Started : https://learn.hashicorp.com/collections/packer/hcp-get-started
+- Packer Get Started : <https://learn.hashicorp.com/collections/packer/hcp-get-started>
 
 ```hcl
 build {
@@ -112,7 +112,7 @@ Some nice description about the image being published to HCP Packer Registry.
 
 ![](https://storage.googleapis.com/zenn-user-upload/ef7706869a8f-20220319.png)
 
-- Packer - Docker Plugin : https://www.packer.io/plugins/builders/docker
+- Packer - Docker Plugin : <https://www.packer.io/plugins/builders/docker>
 
 
 
@@ -128,8 +128,8 @@ Some nice description about the image being published to HCP Packer Registry.
 
 HCP Packer의 정보는 외부 솔루션에서도 활용 가능합니다. Terraform과의 워크플로우에서 사용시에도 `hcp` 프로바이더가 추가되어 저장된 정보를 데이터 소스로 활용 가능합니다.
 
-- HCP Packer image data source : https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/data-sources/packer_image
-- HCP Packer iteration data source : https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/data-sources/packer_iteration
+- HCP Packer image data source : <https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/data-sources/packer_image>
+- HCP Packer iteration data source : <https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/data-sources/packer_iteration>
 
 ```hcl
 # This assumes HCP_CLIENT_ID and HCP_CLIENT_SECRET env variables are set
@@ -162,11 +162,11 @@ output "ubuntu_us_west_1" {
 
 Terraform Cloud Business를 사용하는 경우 HCP Packer에서 제공하는 `Terraform Cloud Run Tasks`기능과 통합시킬 수 있습니다. Terraform Apply시 HCP Packer에서 제공하는 Run Tasks 정책이 적용되면 Plan과 Apply 단계 중간에 명확한 이미지에 대한 확인 및 오류 메시지를 발견할 수 있습니다.
 
-- Terraform Cloud Run Tasks : https://cloud.hashicorp.com/docs/packer/manage-image-use/terraform-cloud-run-tasks
+- Terraform Cloud Run Tasks : <https://cloud.hashicorp.com/docs/packer/manage-image-use/terraform-cloud-run-tasks>
 
 또한 이미지사 사용되는 AWS, Azure, GCP의 리소스에서 하드코딩되는 이미지 ID를 검색하거나 사용하지 못하게 경고 또는 실패하는 동작을 수행 할 수 있습니다.
 
-- 지원되는 리소스 목록 : https://cloud.hashicorp.com/docs/packer/manage-image-use/terraform-cloud-run-tasks#supported-resources
+- 지원되는 리소스 목록 : <https://cloud.hashicorp.com/docs/packer/manage-image-use/terraform-cloud-run-tasks#supported-resources>
 
 
 
@@ -174,4 +174,4 @@ Terraform Cloud Business를 사용하는 경우 HCP Packer에서 제공하는 `T
 
 무료 플랜이 제공되며 최대 10개의 이미지와 월 250건의 API 요청을 지원합니다. Standard 플랜 부터는 이미지 제한은 없고 시간 당 추적되는 이미지 총 개수와 요청 건에 대해 부과 되며 기술지원이 포함됩니다.
 
-- Pricing : https://cloud.hashicorp.com/products/packer/pricing
+- Pricing : <https://cloud.hashicorp.com/products/packer/pricing>
