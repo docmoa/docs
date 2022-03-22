@@ -7,7 +7,7 @@ tags: ["vault auth"]
 ---
 
 # Vault SuperUser 생성
-::: Danger 주의
+::: danger 주의
 해당 방법은 username/password 방식의 Admin권한의 사용자를 생성하나,  
 보안상 실 구성에는 권장하지 않습니다.
 :::
