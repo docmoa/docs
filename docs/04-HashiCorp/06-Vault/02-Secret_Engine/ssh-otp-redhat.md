@@ -45,6 +45,7 @@ $ sudo adduser test
 
 
 vault-ssh-helper 구성 <config.hcl>
+> <https://github.com/hashicorp/vault-ssh-helper>  
 
 ```ruby
 vault_addr = "http://172.28.128.21:8200"
@@ -52,6 +53,7 @@ ssh_mount_point = "ssh"
 namespace = ""
 tls_skip_verify = true
 allowed_roles = "*"
+allowed_cidr_list = "0.0.0.0/0"
 ```
 
 
