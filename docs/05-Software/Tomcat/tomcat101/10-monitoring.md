@@ -140,7 +140,7 @@ visualVM의 장점중 하나는 플러그인 입니다. 현재까지도 상당�
 
  Java에서는 옵션을 통해 JMX를 활성화하고 설정 할 수 있습니다. 스크립트에 다음의 JMX의 옵션을 설정합니다.
 
-```sh
+```bash
 #setenv.sh
 CATALINA_OPTS="-Dcom.sun.management.jmxremote.ssl=false
 -Dcom.sun.management.jmxremote.authenticate=false"
