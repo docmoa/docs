@@ -48,7 +48,6 @@ echo $(pwd) >> ~/.bash_profile
 source ~/.bash_profile
 ```
 </code-block>
-
 <code-block title="zsh">
 ```bash
 mkdir ~/hashicorp/bin
@@ -203,14 +202,12 @@ export NCLOUD_ACCESS_KEY="XXXXXXXXXXXXX"
 export NCLOUD_SECRET_KEY="79DXXXXXXXXXXXXXXXXXqp"
 ```
 </code-block>
-
 <code-block title="CMD(Win)">
 ```shell
 set NCLOUD_ACCESS_KEY=XXXXXXXXXXXXX
 set NCLOUD_SECRET_KEY=79DXXXXXXXXXXXXXXXXXqp
 ```
 </code-block>
-
 <code-block title="Powershell(Win)">
 ```powershell
 $env:NCLOUD_ACCESS_KEY=XXXXXXXXXXXXX
@@ -301,7 +298,6 @@ Terraform has been successfully initialized!
 ls .terraform/providers/registry.terraform.io/navercloudplatform
 ```
 </code-block>
-
 <code-block title="Windows">
 ```powershell
 dir .terraform/providers/registry.terraform.io/navercloudplatform
