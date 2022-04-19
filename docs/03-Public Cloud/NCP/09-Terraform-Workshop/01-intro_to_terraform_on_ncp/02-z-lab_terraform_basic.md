@@ -38,6 +38,7 @@ tags: ["ncloud", "ncp", "terraform", "workshop"]
 
 :::: tabs
 ::: tab Linux/Mac
+
 <code-group>
   <code-block title="bash">
   ```bash
@@ -58,6 +59,7 @@ tags: ["ncloud", "ncp", "terraform", "workshop"]
   ```
   </code-block>
 </code-group>
+
 :::
 ::: tab Windows
 - `C:\app\terraform` 디렉토리를 생성하고 `terraform.exe`를 해당 디렉토리에 옮깁니다.
@@ -291,6 +293,7 @@ Terraform has been successfully initialized!
 
 :::: tabs
 ::: tab 터미널
+
 <code-group>
   <code-block title="Linux/Mac">
 ```bash
@@ -303,6 +306,7 @@ dir .terraform/providers/registry.terraform.io/navercloudplatform
 ```
   </code-block>
 </code-group>
+
 :::
 ::: tab 코드 편집기
 ![](./image/lab1-11.png)
