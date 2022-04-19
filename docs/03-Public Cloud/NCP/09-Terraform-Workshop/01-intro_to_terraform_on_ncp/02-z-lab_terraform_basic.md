@@ -58,7 +58,6 @@ source ~/.zshrc
 ```
 </code-block>
 </code-group>
-
 :::
 ::: tab Windows
 - `C:\app\terraform` 디렉토리를 생성하고 `terraform.exe`를 해당 디렉토리에 옮깁니다.
