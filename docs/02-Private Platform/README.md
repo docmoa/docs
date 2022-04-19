@@ -1,11 +1,13 @@
 ---
 
-title: Private Platform
 sidebar: true
 next: false
+tags: ["Platform"]
 
 ---
 
-# Private Platform
+# Overview
 
-(준비중)
+## Recent Articles 10
+
+<RecentArticlesContents/>

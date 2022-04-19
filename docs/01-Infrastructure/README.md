@@ -2,12 +2,14 @@
 
 sidebar: true
 next: false
+tags: ["Infrastructure"]
 
 ---
 
-# Basic Info : Infrastructure
+# Overview
 
+## Recent Articles 10
 
-## Linux
+<RecentArticlesContents/>
 
 
