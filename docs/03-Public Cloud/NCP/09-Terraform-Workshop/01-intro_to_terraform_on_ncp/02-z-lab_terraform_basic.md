@@ -196,22 +196,22 @@ NCP에 인증하고 리소스를 빌드하기 위해 Terraform은 적절한 자�
 
 <code-group>
   <code-block title="Linux/Mac">
-  ```bash
-  export NCLOUD_ACCESS_KEY="XXXXXXXXXXXXX"
-  export NCLOUD_SECRET_KEY="79DXXXXXXXXXXXXXXXXXqp"
-  ```
+```bash
+export NCLOUD_ACCESS_KEY="XXXXXXXXXXXXX"
+export NCLOUD_SECRET_KEY="79DXXXXXXXXXXXXXXXXXqp"
+```
   </code-block>
   <code-block title="CMD(Win)">
-  ```shell
-  set NCLOUD_ACCESS_KEY=XXXXXXXXXXXXX
-  set NCLOUD_SECRET_KEY=79DXXXXXXXXXXXXXXXXXqp
-  ```
+```shell
+set NCLOUD_ACCESS_KEY=XXXXXXXXXXXXX
+set NCLOUD_SECRET_KEY=79DXXXXXXXXXXXXXXXXXqp
+```
   </code-block>
   <code-block title="Powershell(Win)">
-  ```powershell
-  $env:NCLOUD_ACCESS_KEY=XXXXXXXXXXXXX
-  $env:NCLOUD_SECRET_KEY=79DXXXXXXXXXXXXXXXXXqp
-  ```
+```powershell
+$env:NCLOUD_ACCESS_KEY=XXXXXXXXXXXXX
+$env:NCLOUD_SECRET_KEY=79DXXXXXXXXXXXXXXXXXqp
+```
   </code-block>
 </code-group>
 
@@ -293,14 +293,14 @@ Terraform has been successfully initialized!
 ::: tab 터미널
 <code-group>
   <code-block title="Linux/Mac">
-  ```bash
-  ls .terraform/providers/registry.terraform.io/navercloudplatform
-  ```
+```bash
+ls .terraform/providers/registry.terraform.io/navercloudplatform
+```
   </code-block>
   <code-block title="Windows">
-  ```powershell
-  dir .terraform/providers/registry.terraform.io/navercloudplatform
-  ```
+```powershell
+dir .terraform/providers/registry.terraform.io/navercloudplatform
+```
   </code-block>
 </code-group>
 :::
