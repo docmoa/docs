@@ -9,6 +9,7 @@ tags: ["terraform", "vault", "aws"]
 
 # Terraform 코드 상에서 Vault 연동하기
 
+
 :::tip
 [Inject Secrets into Terraform Using the Vault Provider](https://learn.hashicorp.com/tutorials/terraform/secrets-vault?in=vault/secrets-management)
 
@@ -16,6 +17,7 @@ tags: ["terraform", "vault", "aws"]
 
 [Best Practices for using Terraform with Vault](https://www.youtube.com/watch?v=fOybhcbuxJ0) 
 :::
+
 
 Terraform Enterprise/Terraform Cloud를 사용할 때 Workspace의 변수(Variable)를 Vault를 사용하여 설정하는 것은 Terraform의 TFE 프로바이더와 Vault Provider를 사용하여 가능하다.
 

@@ -38,26 +38,26 @@ tags: ["ncloud", "ncp", "terraform", "workshop"]
 
 :::: tabs
 ::: tab Linux/Mac
-<code-group>
-<code-block title="bash">
-```bash
-mkdir ~/hashicorp/bin
-mv terraform ~/hashicorp/bin
-cd ~/hashicorp/bin
-echo $(pwd) >> ~/.bash_profile
-source ~/.bash_profile
-```
-</code-block>
 
-<code-block title="zsh">
-```bash
-mkdir ~/hashicorp/bin
-mv terraform ~/hashicorp/bin
-cd ~/hashicorp/bin
-echo $(pwd) >> ~/.zshrc
-source ~/.zshrc
-```
-</code-block>
+<code-group>
+  <code-block title="bash">
+  ```bash
+  mkdir ~/hashicorp/bin
+  mv terraform ~/hashicorp/bin
+  cd ~/hashicorp/bin
+  echo $(pwd) >> ~/.bash_profile
+  source ~/.bash_profile
+  ```
+  </code-block>
+  <code-block title="zsh">
+  ```bash
+  mkdir ~/hashicorp/bin
+  mv terraform ~/hashicorp/bin
+  cd ~/hashicorp/bin
+  echo $(pwd) >> ~/.zshrc
+  source ~/.zshrc
+  ```
+  </code-block>
 </code-group>
 
 :::
@@ -197,26 +197,24 @@ NCP에 인증하고 리소스를 빌드하기 위해 Terraform은 적절한 자�
 - `NCLOUD_ACCESS_KEY` `NCLOUD_SECRET_KEY` `NCLOUD_REGION` 를 환경변수로 등록합니다.
 
 <code-group>
-<code-block title="Linux/Mac">
+  <code-block title="Linux/Mac">
 ```bash
 export NCLOUD_ACCESS_KEY="XXXXXXXXXXXXX"
 export NCLOUD_SECRET_KEY="79DXXXXXXXXXXXXXXXXXqp"
 ```
-</code-block>
-
-<code-block title="CMD(Win)">
+  </code-block>
+  <code-block title="CMD(Win)">
 ```shell
 set NCLOUD_ACCESS_KEY=XXXXXXXXXXXXX
 set NCLOUD_SECRET_KEY=79DXXXXXXXXXXXXXXXXXqp
 ```
-</code-block>
-
-<code-block title="Powershell(Win)">
+  </code-block>
+  <code-block title="Powershell(Win)">
 ```powershell
 $env:NCLOUD_ACCESS_KEY=XXXXXXXXXXXXX
 $env:NCLOUD_SECRET_KEY=79DXXXXXXXXXXXXXXXXXqp
 ```
-</code-block>
+  </code-block>
 </code-group>
 
 ::: danger
@@ -295,19 +293,20 @@ Terraform has been successfully initialized!
 
 :::: tabs
 ::: tab 터미널
+
 <code-group>
-<code-block title="Linux/Mac">
+  <code-block title="Linux/Mac">
 ```bash
 ls .terraform/providers/registry.terraform.io/navercloudplatform
 ```
-</code-block>
-
-<code-block title="Windows">
+  </code-block>
+  <code-block title="Windows">
 ```powershell
 dir .terraform/providers/registry.terraform.io/navercloudplatform
 ```
-</code-block>
+  </code-block>
 </code-group>
+
 :::
 ::: tab 코드 편집기
 ![](./image/lab1-11.png)

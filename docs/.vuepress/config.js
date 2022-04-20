@@ -169,7 +169,7 @@ module.exports = {
       ineNumbers: true,
     },
     // "vuepress-plugin-right-anchor": {},
-    autometa_options: {
+    autometa: {
       enable: true, // enables/disables everything - control per page using frontmatter
       image: true, // regular meta image used by search engines
       twitter: true, // twitter card
@@ -178,6 +178,7 @@ module.exports = {
       site: {
         name: "docmoa",
       },
+      canonical_base: 'https://docmoa.github.io',
       description_sources: [
         "frontmatter",
         "excerpt",
