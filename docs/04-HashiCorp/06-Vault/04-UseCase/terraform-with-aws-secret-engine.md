@@ -9,9 +9,15 @@ tags: ["terraform", "vault", "aws"]
 
 # Terraform 코드 상에서 Vault 연동하기
 
-> [Inject Secrets into Terraform Using the Vault Provider] <https://learn.hashicorp.com/tutorials/terraform/secrets-vault?in=vault/secrets-management> 
-> Using Vault credentials in Terraform configuration <https://registry.terraform.io/providers/hashicorp/vault/latest/docs#using-vault-credentials-in-terraform-configuration>
-> Best Practices for using Terraform with Vault <https://www.youtube.com/watch?v=fOybhcbuxJ0> 
+
+:::tip
+[Inject Secrets into Terraform Using the Vault Provider](https://learn.hashicorp.com/tutorials/terraform/secrets-vault?in=vault/secrets-management)
+
+[Using Vault credentials in Terraform configuration](https://registry.terraform.io/providers/hashicorp/vault/latest/docs#using-vault-credentials-in-terraform-configuration)
+
+[Best Practices for using Terraform with Vault](https://www.youtube.com/watch?v=fOybhcbuxJ0) 
+:::
+
 
 Terraform Enterprise/Terraform Cloud를 사용할 때 Workspace의 변수(Variable)를 Vault를 사용하여 설정하는 것은 Terraform의 TFE 프로바이더와 Vault Provider를 사용하여 가능하다.
 
@@ -30,7 +36,9 @@ AWS Provider 설정 시 필요한 access_key와 secret_key를 환경 변수 설�
 0 directories, 4 files
 ```
 
-> 위 예제를 사용하기 위해서는 Vault 상의 AWS 시크릿 엔진이 구성되어 있어야 하고, 인증을 위한 AppRole 구성 그리고 정책이 사전에 설정되어 있어야 한다.
+:::warning
+위 예제를 사용하기 위해서는 Vault 상의 AWS 시크릿 엔진이 구성되어 있어야 하고, 인증을 위한 AppRole 구성 그리고 정책이 사전에 설정되어 있어야 한다.
+:::
 
 ## 1. Provider 설정 (provider.tf)
 사용할 프로바이더로 aws(자원 배포 대상)와 vault를 지정.
