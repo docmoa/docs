@@ -14,31 +14,32 @@ tags: ["vault auth", "MFA"]
 ## ENV Setup
 
 ```bash
-ROOT_TOKEN=hvs...
-VAULT_ADDR=https://<your-vault-addr>:8200
-MY_PASSWORD=password
+$ ROOT_TOKEN=hvs...
+$ VAULT_ADDR=https://<your-vault-addr>:8200
+$ MY_PASSWORD=password
 
 # If you have NAMESPACE with Enterprise
-export VAULT_NAMESPACE=admin
+$ export VAULT_NAMESPACE=admin
 ```
 
 ## Enable username and password auth method
 
 ```bash
-VAULT_TOKEN=$ROOT_TOKEN vault auth enable userpass
-USERPASS_ACCESSOR=$(VAULT_TOKEN=$ROOT_TOKEN vault auth list | grep userpass | awk '{print $3}')
+$ VAULT_TOKEN=$ROOT_TOKEN vault auth enable userpass
 
-VAULT_TOKEN=$ROOT_TOKEN vault write auth/userpass/users/admin password=$MY_PASSWORD
+$ USERPASS_ACCESSOR=$(VAULT_TOKEN=$ROOT_TOKEN vault auth list | grep userpass | awk '{print $3}')
+
+$ VAULT_TOKEN=$ROOT_TOKEN vault write auth/userpass/users/admin password=$MY_PASSWORD
 ```
 
 ## Create an entity and alias
 
 ```bash
-ENTITY_ID=$(VAULT_TOKEN=$ROOT_TOKEN vault write -field=id identity/entity name="admin")
+$ ENTITY_ID=$(VAULT_TOKEN=$ROOT_TOKEN vault write -field=id identity/entity name="admin")
 
 echo $ENTITY_ID
 
-VAULT_TOKEN=$ROOT_TOKEN vault write identity/entity-alias \
+$ VAULT_TOKEN=$ROOT_TOKEN vault write identity/entity-alias \
     name="admin" \
     canonical_id="$ENTITY_ID" \
     mount_accessor="$USERPASS_ACCESSOR"
@@ -49,20 +50,20 @@ VAULT_TOKEN=$ROOT_TOKEN vault write identity/entity-alias \
 > https://www.vaultproject.io/api-docs/secret/identity/mfa/totp#parameters
 
 ``` bash
-METHOD_ID=$(vault write -field=method_id identity/mfa/method/totp issuer=HCP-Vault period=30 key_size=30 qr_size=200 algorithm=SHA256 digits=6 name=admin)
+$ METHOD_ID=$(vault write -field=method_id identity/mfa/method/totp issuer=HCP-Vault period=30 key_size=30 qr_size=200 algorithm=SHA256 digits=6 name=admin)
 
-echo $METHOD_ID
+$ echo $METHOD_ID
 
-vault read identity/mfa/method/totp/$METHOD_ID
+$ vault read identity/mfa/method/totp/$METHOD_ID
 
 # vault write identity/mfa/method/totp/generate method_id=$METHOD_ID
-vault write identity/mfa/method/totp/admin-generate method_id=$METHOD_ID entity_id=$ENTITY_ID
+$ vault write identity/mfa/method/totp/admin-generate method_id=$METHOD_ID entity_id=$ENTITY_ID
 ```
 
 ## Create login enforcement
 
 ```bash
-VAULT_TOKEN=$ROOT_TOKEN vault write identity/mfa/login-enforcement/mylogin \
+$ VAULT_TOKEN=$ROOT_TOKEN vault write identity/mfa/login-enforcement/mylogin \
    mfa_method_ids="$METHOD_ID" \
    auth_method_accessors="$USERPASS_ACCESSOR"
 
@@ -77,9 +78,11 @@ url        otpauth://totp/Vault:307d6c16-6f5c...
 > That's able to use online QR generator
 
 ```bash
-vault write totp/keys/hcp-vault url="otpauth://totp/HCP-Vault:0d0cf6f5-62e6-6914-5070-47e997e2aa..."
+$ vault secrets enable totp
 
-vault read totp/code/hcp-vault
+$ vault write totp/keys/hcp-vault url="otpauth://totp/HCP-Vault:0d0cf6f5-62e6-6914-5070-47e997e2aa..."
+
+$ vault read totp/code/hcp-vault
 Key     Value
 ---     -----
 code    714908
