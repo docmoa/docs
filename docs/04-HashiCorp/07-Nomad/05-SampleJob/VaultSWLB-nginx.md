@@ -76,7 +76,7 @@ server {
    ssl on;
    ssl_certificate /usr/local/cert/vault/global-client-vault-0.pem;
    ssl_certificate_key /usr/local/cert/vault/global-client-vault-0-key.pem;
-
+   #vault ui 접근 시 / -> /ui redirect되기 때문에 location이 /외에는 되지 않는다.
    location / {
       proxy_pass https://backend;
    }
