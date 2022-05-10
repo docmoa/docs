@@ -7,9 +7,9 @@ tags: ["rancher", "docker", "mac"]
 
 # Rancher Desktop Insecure Setup on MAC
 
-> Private docker registry
-> Rancher Desktop
-> MacOS
+> Private docker registry  
+> Rancher Desktop  
+> MacOS  
 > Setup `insecure-registries`
 
 ## issue
@@ -20,7 +20,8 @@ Error response from daemon: Get https://192.168.60.11:5000/v1/example-python: ht
 
 ## Edit docker.json within Rancher desktop
 ```bash
-MAC $ LIMA_HOME="$HOME/Library/Application Support/rancher-desktop/lima" "/Applications/Rancher Desktop.app/Contents/Resources/resources/darwin/lima/bin/limactl" shell 0
+MAC-user-terminal $ LIMA_HOME="$HOME/Library/Application Support/rancher-desktop/lima" "/Applications/Rancher Desktop.app/Contents/Resources/resources/darwin/lima/bin/limactl" shell 0
+
 lima-rancher-desktop $ sudo vi /etc/conf.d/docker
 ```
 ```ini
