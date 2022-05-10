@@ -53,7 +53,7 @@ LB 기능을 수행하는 대표적인 두가지는 네트워크 장비(스위�
 ### 8.2.2 모듈 컴파일
 유닉스/리눅스/맥의 경우 컴파일을 수행하기위해 아파치의 'apxs'가 필요합니다. 다운받은 소스 압축파일을 풀고 다음과 같이 컴파일 합니다.
 
-```sh
+```bash
 $ tar xvfz tomcat-connectors-1.2.40-src.tar.gz
 $ cd ~/Downloads/tomcat-connectors-1.2.40-src/native
 $ ./configure —with-apxs=$APACHE_HOME_DIR/bin/apxs
