@@ -14,7 +14,7 @@ tags: ["rancher", "docker", "mac"]
 
 ## issue
 ```bash
-$ docker push 192.168.0.3:5000/example-python:1.0
+$ docker push 192.168.60.11:5000/example-python:1.0
 Error response from daemon: Get https://192.168.60.11:5000/v1/example-python: http: server gave HTTP response to HTTPS client
 ```
 
@@ -41,7 +41,7 @@ lima-rancher-desktop $ exit
 ```
 
 ## Try Push/Pull
-```
+```bash
 $ docker push 192.168.60.11:5000/example-python:1.0
 The push refers to repository [192.168.60.11:5000/example-python]
 259faf3d45f5: Pushed
