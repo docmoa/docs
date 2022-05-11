@@ -58,6 +58,11 @@ $ vault read identity/mfa/method/totp/$METHOD_ID
 
 # vault write identity/mfa/method/totp/generate method_id=$METHOD_ID
 $ vault write identity/mfa/method/totp/admin-generate method_id=$METHOD_ID entity_id=$ENTITY_ID
+
+Key        Value
+---        -----
+barcode    iVBORw0KGgoAAAANSUhEUgAAAM...
+url        otpauth://totp/Vault:307d6c16-6f5c...
 ```
 
 ## Create login enforcement
@@ -66,11 +71,6 @@ $ vault write identity/mfa/method/totp/admin-generate method_id=$METHOD_ID entit
 $ VAULT_TOKEN=$ROOT_TOKEN vault write identity/mfa/login-enforcement/mylogin \
    mfa_method_ids="$METHOD_ID" \
    auth_method_accessors="$USERPASS_ACCESSOR"
-
-Key        Value
----        -----
-barcode    iVBORw0KGgoAAAANSUhEUgAAAM...
-url        otpauth://totp/Vault:307d6c16-6f5c...
 ```
 
 ## Vault OTP Test (Option)
