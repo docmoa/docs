@@ -49,6 +49,9 @@ $ VAULT_TOKEN=$ROOT_TOKEN vault write identity/entity-alias \
 
 > https://www.vaultproject.io/api-docs/secret/identity/mfa/totp#parameters
 
+- identity/mfa/method/totp/generate : for current entity
+- identity/mfa/method/totp/admin-generate : manage to other entity
+
 ``` bash
 $ METHOD_ID=$(vault write -field=method_id identity/mfa/method/totp issuer=HCP-Vault period=30 key_size=30 qr_size=200 algorithm=SHA256 digits=6 name=admin)
 
