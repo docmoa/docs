@@ -9,7 +9,8 @@ tags: ["vault auth", "MFA"]
 
 > HashiCorp Learn - Login MFA : <https://learn.hashicorp.com/tutorials/vault/multi-factor-authentication>  
 > Configure TOTP MFA Method : <https://www.vaultproject.io/api-docs/secret/identity/mfa/totp>
-> Vault Login MFA Overview : <https://www.vaultproject.io/docs/auth/login-mfa>
+> Vault Login MFA Overview : <https://www.vaultproject.io/docs/auth/login-mfa>  
+> 1.10.3+ recommend : <https://discuss.hashicorp.com/t/vault-1-10-3-released/39394>
 
 ## ENV Setup
 
