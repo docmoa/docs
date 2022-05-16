@@ -58,6 +58,9 @@ server {
 }
 ```
 
+- advertise 에 지정된 http, rpc, serf 의 IP는 직접 IP를 입력하는 것도 가능  
+- go-discover 형태인 구문을 활용하면 인터페이스 이름을 넣어서 자동 IP 입력 가능  
+  - eth1 네트워크 인터페이스의 IP를 사용한다면 `{{ GetInterfaceIP \"eth1\" }}` 형태로 지정
 
 
 ### Client Config
