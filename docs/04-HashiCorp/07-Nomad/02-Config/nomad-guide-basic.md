@@ -9,7 +9,7 @@ tags: ["Nomad", "Sample"]
 
 ## Download
 
-- Release link : https://releases.hashicorp.com/nomad
+- Release link : <https://releases.hashicorp.com/nomad>
 - Version : 1.3.x
 - Platform 선택
 	- darwin(= MAC)
@@ -25,15 +25,13 @@ tags: ["Nomad", "Sample"]
 ```bash
 └── hashicorp
     └── nomad
-        ├── config
-        └── data
+         ├── config
+         └── data
 ```
 
 - Donwload 받은 압축을 해제하고 기존 `$PATH` 위치에 복사 하거나 등록
 	- e.g. utuntu : /usr/local/bin
 	- e.g. centos : /usr/bin
-
-
 
 
 ### Server Config
@@ -58,9 +56,11 @@ server {
 }
 ```
 
-- advertise 에 지정된 http, rpc, serf 의 IP는 직접 IP를 입력하는 것도 가능  
-- go-discover 형태인 구문을 활용하면 인터페이스 이름을 넣어서 자동 IP 입력 가능  
-  - eth1 네트워크 인터페이스의 IP를 사용한다면 `{{ GetInterfaceIP \"eth1\" }}` 형태로 지정
+- advertise 에 지정된 http, rpc, serf 의 IP는 직접 IP를 입력하는 것도 가능
+- go-discover 형태인 구문을 활용하면 인터페이스 이름을 넣어서 자동 IP 입력 가능
+  ```
+  {{ GetInterfaceIP \"eth1\" }}
+  ```
 
 
 ### Client Config
@@ -95,8 +95,6 @@ client {
   }
 }
 ```
-
-
 
 ### Systemctl 서비스 등록
 
@@ -156,8 +154,6 @@ OOMScoreAdjust=-1000
 WantedBy=multi-user.target
 ```
 
-
-
 ## 실행 및 UI 확인
 
 ```bash
@@ -168,13 +164,9 @@ $ systemctl enable nomad
 - UI 기본 포트 : 4646
 - http://<server_ip>:4646
 
-
-
 ## Job 실행
 
 Job 실행은 CLI, API, UI 실행 가능
-
-
 
 ### CLI
 
@@ -183,8 +175,6 @@ $ NOMAD_ADDR=http://<server_ip>:4646
 $ nomad job run <job_file_path>
 ```
 
-
-
 ### UI
 
 - `http://<server_ip>:4646` 에 접속
@@ -192,11 +182,7 @@ $ nomad job run <job_file_path>
 - 우측의 `Run Job` 버튼 클릭
 - Job 내용 입력 후 `Plan`, `Apply`
 
-
-
 ## Job Sample
-
-
 
 ### batch - basic
 
