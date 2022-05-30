@@ -23,7 +23,7 @@ tags: ["nomad", "vault", "aws", "db"]
 >
 > - Kubernetes 환경인 경우 Vault CSI Provider를 통해 비슷한 구성 가능 : <https://www.vaultproject.io/docs/platform/k8s/csi>
 
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/OwUuPw2dcQQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## 1. Vault
 
