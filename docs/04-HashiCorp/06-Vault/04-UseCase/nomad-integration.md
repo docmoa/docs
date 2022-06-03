@@ -305,8 +305,16 @@ username           v-token-mysql-Cy7p0vP6uOYnW7csKz
 ![Spring Initializr 2022-05-27 22-22-15](https://raw.githubusercontent.com/Great-Stone/images/master/uPic/Spring%20Initializr%202022-05-27%2022-22-15.png)
 
 - Spring Web
-- Cloud Bootstrap
-- Spring Boot Actuator
+
+::: details CLI
+```bash
+curl -G https://start.spring.io/starter.zip \
+    -d type=maven-build
+    -d dependencies=web \
+    -d javaVersion=11 \
+    -o demo.zip
+```
+:::
 
 
 
@@ -331,7 +339,6 @@ package com.example.demo;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -343,7 +350,6 @@ import java.nio.file.Paths;
 import java.util.List;
 
 @RestController
-@RefreshScope
 @SpringBootApplication
 @EnableScheduling
 public class DemoApplication {
