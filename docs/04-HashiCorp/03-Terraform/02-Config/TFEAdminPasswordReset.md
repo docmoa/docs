@@ -14,8 +14,9 @@ Terraform Enterprise를 사용할 때, UI(https://TFE_SERVER) 상으로 접속�
 다음과 같이 수정 가능.
 
 ```bash
+# 이전 버전의 TFE
 sudo docker exec -it ptfe_atlas /usr/bin/init.sh /app/scripts/wait-for-token -- bash -i -c 'cd /app && ./bin/rails c'
-## 수정 최신 버전의 TFE에서는 Container 이름이 변경됨
+## 수정 최신 버전의 TFE에서는 Container 이름이 변경됨 (2022.6.21)
 sudo docker exec -it tfe-atlas /usr/bin/init.sh /app/scripts/wait-for-token -- bash -i -c 'cd /app && ./bin/rails c'
 ```
 
