@@ -98,7 +98,7 @@ export JENKINS_POLICY=jenkins-policy      #테스트용 Jenkins Policy 이름
 ::: info
 테스트를 위한 Secret Engine으로 AWS를 활성화 합니다.  
 AWS Secret Engine을 사용하기 위해서는 AWS Credential 정보가 필요합니다.  
-발급 안내 : <https://docs.aws.amazon.com/ko_kr/powershell/latest/userguide/pstools-appendix-sign-up.html>
+발급 안내 : <https://docs.aws.amazon.com/ko_kr/powershell/latest/userguide/pstools-appendix-sign-up.html>  
 :::
 
 #### Setup AWS Env
@@ -114,6 +114,7 @@ export AWS_REGION=ap-northeast-2
 ```bash
 vault secrets enable -path=aws aws
 ```
+- `-path` 인수로 `aws` Secret Engine이 마운트되는 경로를 설정할 수 있고, 기본 endpoint는 `aws`
 
 #### AWS Secret Engine Configuration
 
@@ -123,16 +124,17 @@ vault write aws/config/root \
   secret_key=$AWS_SECRET_KEY \
   region=$AWS_REGION
 ```
+- 마운트 된 `aws` Secret Engine의 기본 설정
 
 
-
-#### AWS Secret Engine Lease change
+#### AWS Secret Engine Lease change (option)
 
 ```bash
 vault write /aws/config/lease lease=1m lease_max=1m
 ```
-
-
+- `aws` Secret Engine에서 `iam_user` 형태의 role을 생성하는 경우의 ttl
+- `lease`는 해당 `aws` Secret Engine에서 생성되는 계정의 기본 유지 기간을 설정
+- 기본 값은 `768h` (32일)
 
 #### Role setup (e.g. s3)
 
@@ -155,8 +157,7 @@ vault write aws/roles/sts-s3 \
 }
 EOF
 ```
-
-
+- aws로 생성할 `federation_token`(STS) 타입의 role 정의
 
 #### Test AWS Secret
 
@@ -171,11 +172,13 @@ access_key         ASIAU3NXDWRUE3FCRWBM
 secret_key         TX76EXmadilWw3TySTscB1XGAPI4kNyhdQIdKKtS
 security_token     IQoJb3JpZ2luX2VjENb//////////wEaDmFwLW5vcnRoZWFzdC0yIkcwRQIhAM
 ```
-
+- `iam_user` 형태인 경와 다르게 중간에 `sts` 경로를 넣음
+- `ttl`은 `federation_token`인 role에서는 15분(900초)가 최소 값
 
 
 ### 1.3 Approle Setup
 
+앞서 생성한 `aws` Secret Engine의 `federation_token` 을 획득하기 위한 Vault 인증을 추가합니다. AppRole은 기계친화적인 인증방식으로 Username/Password 방식과 빗대어 Username역할을 하는 `role_id`와 Password 역할을 하는 `secret_id` 페어로 인증하게 됩니다. `secret_id`는 영구적이지 않으므로 필요할 때 발급받아 사용합니다. ==필요할 때== 발급받게 되는 것으로 보안성은 높으나 발급받기위한 자동화 구성이 요구됩니다.
 
 
 ####  Vault Policy for AWS
@@ -187,10 +190,13 @@ path "aws/sts/sts-s3" {
 }
 EOF
 ```
-
+- 생성할 AppRole 계정에서 사용할 정책을 추가
+- `aws/sts/sts-s3` 에 대한 읽기(발급)와 갱신 권한
 
 
 #### Approle Create
+
+`aws_policy` 정책을 갖는 AppRole 생성
 
 ```bash
 $ vault auth enable approle
@@ -198,7 +204,7 @@ $ vault auth enable approle
 Success! Enabled approle auth method at: approle/
 
 $ vault write auth/approle/role/aws-cred \
-    secret_id_ttl=120m \
+    secret_id_ttl=1m \
     token_ttl=60m \
     token_max_ttl=120m \
     policies="aws_policy"
@@ -217,8 +223,10 @@ Key                   Value
 ---                   -----
 secret_id             7f86b671-2f47-f841-18a4-c36ca34ab8d8
 secret_id_accessor    9ad4256a-acc6-e8c0-f7fe-7633e66b1318
-secret_id_ttl         2h
+secret_id_ttl         1m
 ```
+
+생성한 `role_id`와 `secret_id`로 Vault에 인증을 수행합니다. `secret_id`의 경우 ttl 지정이 가능 합니다.
 
 ```bash
 # Test
@@ -256,7 +264,7 @@ security_token     <nil>
 
 ### 1.4 Jenkins Token
 
-
+Jenkins에서는 생성된 AppRole의 `role_id`에 대한 `secret_id`를 발급받을 권한이 있어야 합니다.
 
 ####  Vault Policy for AppRole Secret
 
@@ -270,10 +278,14 @@ path "auth/approle/role/aws-cred/secret-id" {
 }
 EOF
 ```
-
+- `role-id`를 읽기 가능
+- `secret-id`를 생성 가능
 
 
 #### Create Token Role for Jenkins
+
+Jenkins는 Token을 넣어줄 것이므로 Token Role을 생성하여 Entity를 하나로 지정합니다.
+Role을 생성하지 않는 경우 일반적인 `vault token create -policy=<policy_name> -orphan=true -period=700h` 같은 명령어로도 생성할 수 있습니다.
 
 ```bash
 # Get token accessor id
@@ -320,6 +332,7 @@ aae55515-f9ed-a171-dd56-53710ab29018
 
 ### 1.2 Nomad Setup
 
+Nomad는 CI/CD 파이프라인 구조 상 배포를 위한 대상을 생성하기위해 구성되었습니다.
 
 
 #### Nomad Start Dev mode
@@ -341,6 +354,8 @@ export NOMAD_ADDR=http://127.0.0.1:4646
 
 
 #### Jar file Up/Download Nexus Job
+
+java 드라이버를 사용한 배포에서 빌드된 jar파일을 원격에서 불러와야 하므로 임시 파일 서버를 구성합니다.
 
 ```ruby
 cat <<EOF | nomad job run -
