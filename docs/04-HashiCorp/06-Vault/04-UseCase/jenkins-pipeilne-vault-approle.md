@@ -6,10 +6,28 @@ tags: ["vault", "jenkins", "approle"]
 ---
 # Jenkins Pipeline Vault Approle (with Nomad)
 
+Vault의 AppRole 인증 방식은 Vault Token을 얻기위한 단기 자격증명을 사용하는 장점이 있지만 자동화된 환경에 어울리는(반대로 사람에게 불편한)방식으로 Vault를 이용하는 애플리케이션/스크립트의 배포 파이프라인을 구성하는 방식을 추천합니다.
 
+```mermaid
+%% Example of Vault AppRole sequence
+  sequenceDiagram
+    Admin->>Vault: AppRole Role, App Policy 생성
+    Admin->>Vault: AppRole 획득 Policy 생성
+    Admin->>Vault: AppRole 획득 Token(Role) 생성
+    Vault->>Admin: AppRole 획득 Token 발급
+    Admin->>CICD: Token 전달
+    opt PIPELINE
+    CICD->>PIPELINE: Token
+    PIPELINE->>Vault: AppRole SecretID 요청
+    Vault->>PIPELINE: SecretID 발급
+    PIPELINE->>APP: 배포에 RoleID, SecretID 주입
+    APP->>Vault: AppRole 방식으로 App Policy사용 가능 Token 요청
+    Vault->>APP: Token 발급
+    APP->>Vault: Secret 획득
+  end
+```
 
-### Test ENV
-
+::: details TEST ENV
 ```bash
 $ sw_vers
 ProductName:	macOS
@@ -43,44 +61,45 @@ Nomad v1.3.1
 
 $ curl --version
 curl 7.79.1 (x86_64-apple-darwin21.0)
-
-$ aws --version
-aws-cli/2.7.11 Python/3.10.5 Darwin/21.5.0 source/x86_64 prompt/off
 ```
-
+:::
 
 
 ## 1. Vault & Nomad Integration (dev mode)
 
-
+- 테스트를 위한 Vault를 실행합니다. 개인을 위한 개발모드로 실행하기 때문에 실환경 적용을 위해서는 별도 구성이 필요합니다.
+- Nomad는 배포/실행을 위한 용도로 사용되었습니다. 별도 VM, K8S 환경이 있다면 PIPELINE 구성 마지막의 배포 구성에 변경이 필요합니다.
 
 ### 1.1 Vault Setup
 
-
+::: warning
+개발모드로 실행하면 데이터가 메모리에만 저장되어 종료시 삭제 됩니다.
+:::
 
 #### Vault Start Dev mode
 
 ```bash
 vault server -dev -dev-root-token-id=root
 ```
-
-
+- `-dev-root-token-id` : 개발모드에서는 root 토큰을 지정가능
 
 #### Vault Env
 
 > Another terminal
 
 ```bash
-export VAULT_ADDR=http://127.0.0.1:8200
-export VAULT_TOKEN=root
-export JENKINS_POLICY=jenkins-policy
+export VAULT_ADDR=http://127.0.0.1:8200   #Vault 주소
+export VAULT_TOKEN=root                   #Vault Root Token
+export JENKINS_POLICY=jenkins-policy      #테스트용 Jenkins Policy 이름
 ```
 
+### 1.2 Dynamic Secret Sample (AWS)
 
-
-### 1.2 Dynamic Sectet Sample (AWS)
-
-
+::: info
+테스트를 위한 Secret Engine으로 AWS를 활성화 합니다.  
+AWS Secret Engine을 사용하기 위해서는 AWS Credential 정보가 필요합니다.  
+발급 안내 : <https://docs.aws.amazon.com/ko_kr/powershell/latest/userguide/pstools-appendix-sign-up.html>
+:::
 
 #### Setup AWS Env
 
@@ -90,15 +109,11 @@ export AWS_SECRET_KEY=Rex3GPUKO3++123
 export AWS_REGION=ap-northeast-2
 ```
 
-
-
 #### Enable AWS Secret Engine
 
 ```bash
-vault secrets enable aws
+vault secrets enable -path=aws aws
 ```
-
-
 
 #### AWS Secret Engine Configuration
 
@@ -233,7 +248,7 @@ lease_renewable    true
 access_key         AKIAU3NXDWRUEXSGRTNL
 secret_key         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
 security_token     <nil>
-````
+```
 
 - `role_id`는 Pipeline 작성에 사용
 
@@ -365,7 +380,8 @@ $ curl -F file=@/tmp/dynamic.properties http://localhost:3000
 
 
 ## 2. Jenkins Setup
-
+> Download Guide : <https://www.jenkins.io/download/>  
+> macOS Install Guide : <https://www.jenkins.io/download/lts/macos/>
 
 
 ### 2.1 Jenkins Install (macOS)
