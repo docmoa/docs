@@ -90,7 +90,6 @@ PS C:₩hashicorp₩nomad₩bin> ./nomad agent -dev
                Version: 1.0.4
 
 ==> Nomad agent started! Log data will stream in below:
-
 ...생략...
 ```
 
@@ -149,7 +148,9 @@ server_join {
   - Windows 환경에서 디렉토리 구분자는 `\\` 를 사용합니다.
 - bind_addr : nomad의 http, rpc, serf가 사용할 기본 ip 주소를 지정합니다. 실행 환경의 모든 IP와 매핑하기 위해 `0.0.0.0` 으로 설정하였습니다.
 - advertise : 생략하는 경우  `bind_addr` 값을 상속 받지만, 사용자가 지정한 네트워크 주소를 지정하기 위해 사용됩니다. ip 형식을 사용할 수도 있고 go-sockaddr 템플릿 구성을 사용 가능하기 때문에 템플릿 형태로 지정도 가능합니다. 예제에서는 네트워크 인터페이스에 할당된 IP를 가져오는 방식 입니다. 한글도 지원합니다.
-  -  `{{ GetInterfaceIP \"이더넷 1\" }}`
+  ```hcl
+    {{ GetInterfaceIP \"이더넷 1\" }}
+  ```
 - server : 서버인 경우에 설정을 구성하는 항목 입니다.
   - enabled : `true`인 경우 서버 모드로 실행됩니다.
   - bootstrap_expect : 서버의 HA를 위해 3중화 또는 5중화 하는 경우 서버의 기대 개수 값을 넣습니다. 여기서는 하나의 Nomad 프로세스가 서버와 클라이언트 역할을 모두 수행합니다.
