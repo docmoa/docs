@@ -20,10 +20,6 @@ rightAnchor:
   disableGlobalUI: true
 ---
 
-> 그림같이 써라. 그러면 기억 속에 머물 것이다. - 조지프 퓰리처
-
----
-
 <RecentArticlesHome/>
 
 ---
