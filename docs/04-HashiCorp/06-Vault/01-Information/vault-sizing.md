@@ -26,7 +26,7 @@ tags: ["vault", "sizing"]
 
 ## Vault - Consul(Backend Storage)
 
-![Vault High Availability with Consul | Vault - HashiCorp Learn](https://learn.hashicorp.com/img/vault-ha-consul.png)
+![Vault High Availability with Consul | Vault - HashiCorp Learn](https://mktg-content-api-hashicorp.vercel.app/api/assets?product=tutorials&version=main&asset=public%2Fimg%2Fvault%2Fvault-consul-storage-oss-reference-architecture.svg)
 
 ### Vault
 
