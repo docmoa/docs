@@ -26,6 +26,8 @@ rightAnchor:
 
 ### Start contributing to `docmoa`
 
+> Tested NodeJS : v12, v14
+
 <code-group>
 <code-block title="NPM">
 ```bash {2,5-6,9}

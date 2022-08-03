@@ -61,7 +61,7 @@ for (let i = 0; i < sidebar.length; i++) {
 module.exports = {
   base: "/",
   title: "docmoa", // 사이트 타이틀
-  description: "혼자서는 불가능",
+  description: "그림같이 써라. 그러면 기억 속에 머물 것이다.",
   dest: "docs/.vuepress/dist",
   themeConfig: {
     logo: "/image/docmoa-144.png", // 로고 이미지
