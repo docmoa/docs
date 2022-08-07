@@ -42,3 +42,44 @@ verify_incoming = false
 verify_outgoing = true
 verify_server_hostname = true
 ```
+
+# Consul 클라이언트 최소 설정
+```
+data_dir = "/opt/consul"
+
+client_addr = "0.0.0.0"
+
+datacenter = "my-dc"
+
+# client
+server = false
+
+# Bind addr
+bind_addr = "0.0.0.0" # Listen on all IPv4
+# Advertise addr - if you want to point clients to a different address than bind or LB.
+advertise_addr = "node ip"
+
+# Enterprise License
+license_path = "/opt/consul/consul.lic"
+
+# encrypt
+encrypt = "7w+zkhqa+YD4GSKXjRWETBIT8hs53Sr/w95oiVxq5Qc="
+
+# retry_join
+retry_join = ["server ip"]
+
+ca_file = "/opt/consul/consul-agent-ca.pem"
+cert_file = "/opt/consul/ebay-client-consul-0.pem"
+key_file = "/opt/consul/ebay-client-consul-0-key.pem"
+
+verify_incoming = false
+verify_incoming_rpc = false
+verify_outgoing = false
+verify_server_hostname = false
+
+ports {
+  http = 8500
+  dns = 8600
+  server = 8300
+}
+```
