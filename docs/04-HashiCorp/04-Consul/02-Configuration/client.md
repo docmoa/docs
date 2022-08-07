@@ -43,7 +43,7 @@ verify_outgoing = true
 verify_server_hostname = true
 ```
 
-# Consul 클라이언트 최소 설정
+# Consul 클라이언트 최소 설정 (20220807기준)
 ```
 data_dir = "/opt/consul"
 
@@ -69,8 +69,8 @@ encrypt = "7w+zkhqa+YD4GSKXjRWETBIT8hs53Sr/w95oiVxq5Qc="
 retry_join = ["server ip"]
 
 ca_file = "/opt/consul/consul-agent-ca.pem"
-cert_file = "/opt/consul/ebay-client-consul-0.pem"
-key_file = "/opt/consul/ebay-client-consul-0-key.pem"
+cert_file = "/opt/consul/my-dc-client-consul-0.pem"
+key_file = "/opt/consul/my-dc-client-consul-0-key.pem"
 
 verify_incoming = false
 verify_incoming_rpc = false

@@ -60,3 +60,43 @@ tls {
   verify_server_hostname = true
   verify_https_client    = true
 }
+```
+
+# Nomad 클라이언트 최소 설정 (20220807기준)
+```bash
+data_dir  = "/opt/nomad/data"
+bind_addr = "0.0.0.0"
+
+client {
+  enabled = true
+  servers = ["server ip"]
+  # sidecar image 고정
+  meta {
+   connect.sidecar_image = "envoyproxy/envoy:v1.21.3"
+  }
+}
+
+#consul 정보 입력
+consul {
+  address  = "127.0.0.1:8501"
+  grpc_address="127.0.0.1:8502"
+  server_service_name = "nomad"
+  client_service_name = "nomad-client"
+  auto_advertise  = true
+  server_auto_join  = true
+  client_auto_join  = true
+  ssl       = true
+  verify_ssl = false
+  ca_file   = "/opt/consul/consul-agent-ca.pem"
+  cert_file = "/opt/consul/my-dc-client-consul-0.pem"
+  key_file  = "/opt/consul/my-dc-client-consul-0-key.pem"
+}
+
+plugin "docker" {
+  config {
+    auth {
+    }
+  }
+}
+
+```

@@ -56,7 +56,7 @@ verify_outgoing = true
 verify_server_hostname = false
 ```
 
-# Consul 서버 최소한 설정
+# Consul 서버 최소 설정 (20220807기준)
 ::: tip
 최소한의 설정만 있는 consul 설정입니다.
 :::
@@ -93,8 +93,8 @@ encrypt = "7w+zkhqa+YD4GSKXjRWETBIT8hs53Sr/w95oiVxq5Qc="
 # retry_join
 retry_join = ["Server ip"]
 
-key_file = "/opt/consul/ebay-server-consul-0-key.pem"
-cert_file = "/opt/consul/ebay-server-consul-0.pem"
+key_file = "/opt/consul/my-dc-server-consul-0-key.pem"
+cert_file = "/opt/consul/my-dc-server-consul-0.pem"
 ca_file = "/opt/consul/consul-agent-ca.pem"
 auto_encrypt {
   allow_tls = true
