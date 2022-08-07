@@ -73,6 +73,14 @@ job "22-fastapi" {
 
 ```
 
+## 만약 service가 http로 떠야한다면 아래와 같이 service등록도 진행해야한다.
+
+```hcl
+Kind      = "service-defaults"
+Name      = "fastapi"
+Namespace = "default"
+Protocol  = "http"
+```
 
 ## ingress job
 - 사실 하나의 job으로 만들어도 되는데 테스트 시 계속 두개의 job이 재기동되어서 둘로 나눔
