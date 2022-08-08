@@ -67,7 +67,7 @@ bind_addr = "0.0.0.0" # Listen on all IPv4
 advertise_addr = "node ip"
 
 # Enterprise License
-license_path = "/opt/consul/consul.lic"
+license_path = "/opt/nomad/nomad.lic"
 
 # bootstrap_expect
 bootstrap_expect=1
