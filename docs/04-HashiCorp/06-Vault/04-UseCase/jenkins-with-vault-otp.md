@@ -8,7 +8,7 @@ tags: ["vault", "jenkins", "otp", "token"]
 jenkins와 vault otp를 연동하여 pipe line에서 ssh/scp test
 
 ## otp 설정은 docmoa의 ssh-otp 참고
-- [OTP] 설정 링크](/04-HashiCorp/06-Vault/02-Secret_Engine/ssh-otp-redhat.html)
+- [OTP 설정 링크](/04-HashiCorp/06-Vault/02-Secret_Engine/ssh-otp-redhat.html)
 
 ## vault token 설정
 ```bash
