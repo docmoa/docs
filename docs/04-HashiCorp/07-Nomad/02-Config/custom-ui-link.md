@@ -5,9 +5,9 @@ meta:
 tags: ["Nomad", "UI"]
 ---
 
-# Consul과 Vault 링크 UI에 추가
+# Nomad UI에 Consul과 Vault 링크 추가
 
-> https://www.nomadproject.io/docs/configuration/ui
+> <https://www.nomadproject.io/docs/configuration/ui>
 
 Nomad ui 설정에 다음과 같이 Consul과 Vault의 링크를 추가할 수 있습니다.
 
