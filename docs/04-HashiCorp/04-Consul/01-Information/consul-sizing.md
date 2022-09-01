@@ -42,10 +42,10 @@ tags: ["consul", "sizing"]
 
 ## 기본 아키텍처
 
-![Recommended architecture diagram](https://learn.hashicorp.com/img/consul/reference-architecture/consul-singleDC-5node-reference-architecture.png)
+![Recommended architecture diagram](./image/consul-reference-architecture.png)
 
 
 
-## Raft 홀수 구성 장애 극복을 위한 Non-Voting 서버 구성
+## Raft 구성 장애 극복을 위한 Non-Voting 서버 구성
 
-![Redundancy Zones diagram](https://learn.hashicorp.com/img/consul/reference-architecture/consul-singleDC-redundancyzones.png)
+![Redundancy Zones diagram](./image/consul-non-voting.png)
