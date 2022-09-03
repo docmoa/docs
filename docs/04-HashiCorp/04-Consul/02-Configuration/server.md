@@ -55,3 +55,61 @@ verify_incoming_rpc = true
 verify_outgoing = true
 verify_server_hostname = false
 ```
+
+# Consul 서버 최소 설정 (20220807기준)
+::: tip
+최소한의 설정만 있는 consul 설정입니다.
+:::
+
+```bash
+data_dir = "/opt/consul"
+
+client_addr = "0.0.0.0"
+
+datacenter = "my-dc"
+
+#ui
+ui_config {
+  enabled = true
+}
+
+# server
+server = true
+
+# Bind addr
+bind_addr = "0.0.0.0" # Listen on all IPv4
+# Advertise addr - if you want to point clients to a different address than bind or LB.
+advertise_addr = "node ip"
+
+# Enterprise License
+license_path = "/opt/consul/consul.lic"
+
+# bootstrap_expect
+bootstrap_expect=1
+
+# encrypt
+encrypt = "7w+zkhqa+YD4GSKXjRWETBIT8hs53Sr/w95oiVxq5Qc="
+
+# retry_join
+retry_join = ["Server ip"]
+
+key_file = "/opt/consul/my-dc-server-consul-0-key.pem"
+cert_file = "/opt/consul/my-dc-server-consul-0.pem"
+ca_file = "/opt/consul/consul-agent-ca.pem"
+auto_encrypt {
+  allow_tls = true
+}
+
+verify_incoming = false
+verify_incoming_rpc = false
+verify_outgoing = false
+verify_server_hostname = false
+
+ports {
+  http = 8500
+  dns = 8600
+  server = 8300
+}
+
+
+```
