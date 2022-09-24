@@ -6,6 +6,10 @@ docmoa (https://docmoa.github.io) 소스페이지 입니다.
 
 ## Change Log
 
+### 2022-09-24
+- `vuepress-plugin-chart` 추가
+- Chart 가이드 추가
+
 ### 2021-12-30
 - Overview page(README) 항목에 각 카테고리별 최신글 표기
 - RecentArticlesContents.vue 에서 vue created에서 `window` 참조를 빌드시 가져오지 못하는 현상
