@@ -14,10 +14,58 @@ tags: ["Consul", "Istio", "Kubetenetes", "k8s", "Performance"]
 
 ## 1. 성능 테스트 수행 결과 요약
 
-* Consul Ingress Gateway의 resources.limits 와 resources.requests 의 cpu, memory 를 각각 250m / 500Mi 로 수정 했을 때,
-  **Istio Default 1527 Requests/sec 대비 1860 Requests/sec 로 약 22% 빠름 (Case 2-1)**
+### Case 2-1
+* Consul Ingress Gateway의 resources.limits 와 resources.requests 의 cpu, memory 를 각각 250m / 500Mi 로 수정
+* Istio Default 1527 Requests/sec 대비 1860 Requests/sec 로 약 22% 빠름 (Case 2-1)
+
+### Case 2-2
 * Consul Ingress Gateway resource allocation을 Istio와 동률 구성 시, 
-  **Istio Default 1527 Requests/sec 대비 3002 Requests/sec로 약 2배 빠름 (Case 2-2)**
+* Istio Default 1527 Requests/sec 대비 3002 Requests/sec로 약 196% 빠름 (Case 2-2)
+
+### Response Time Chart
+
+- concurrent user: 100
+- total request: 15000
+
+```chart
+{
+  "type": "line",
+  "label" : "Latency distribution (Sec)",
+  "data": {
+    "labels": ["Fastest", "Average", "Slowest"],
+    "datasets": [{
+      "label": "Consul default",
+      "data": [0.0060, 0.1092, 0.2477],
+      "fill": false,
+      "borderColor": "rgb(216, 42, 105)",
+      "tension": 0.1
+    },
+    {
+      "label": "Istio default",
+      "data": [0.0055, 0.0639, 0.2723],
+      "fill": false,
+      "borderColor": "rgb(75, 192, 192)",
+      "tension": 0.1
+    },
+    {
+      "label": "Case 2-1 Consul",
+      "data": [0.0049, 0.0525, 0.2963],
+      "fill": false,
+      "borderColor": "rgb(253, 206, 62)",
+      "tension": 0.1
+    },
+    {
+      "label": "Case 2-2 Consul",
+      "data": [0.0059, 0.0322, 0.2424],
+      "fill": false,
+      "borderColor": "rgb(253, 136, 209)",
+      "tension": 0.1
+    }]
+  }
+}
+```
+
+
 * 상세 내용 확인 - "4.성능 테스트 수행"
 
 | Case                 | Resources: CPU | Resources: Memory | Limits: CPU | Limits: Memory | Performance     |
@@ -25,7 +73,7 @@ tags: ["Consul", "Istio", "Kubetenetes", "k8s", "Performance"]
 | 1-1. Consul Default  | 100 m          | 100 Mi            | 100 m       | 100 Mi         | 896 reqs / sec  |
 | 1-2. Istio Default   | 10 m           | 40 Mi             | 2 C         | 1 Gi           | 1527 reqs / sec |
 | 2-1. Consul w/ alloc | 250 m          | 500 Mi            | 250 m       | 500 Mi         | 1860 reqs / sec |
-| 2-2. same resources  | 10 m           | 40 Mi             | 2 C         | 1 Gi           | 3002 reqs / sec |
+| 2-2. Consul resources like Istio  | 10 m           | 40 Mi             | 2 C         | 1 Gi           | 3002 reqs / sec |
 
 
 
