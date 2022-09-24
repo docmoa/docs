@@ -168,6 +168,7 @@ module.exports = {
       demo: true,
       ineNumbers: true,
     },
+    "vuepress-plugin-chart": {},
     // "vuepress-plugin-right-anchor": {},
     autometa: {
       enable: true, // enables/disables everything - control per page using frontmatter
