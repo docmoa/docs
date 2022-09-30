@@ -17,7 +17,7 @@ tags: ["Nomad", "config","csi","nfs"]
 - 어느 node(client)에 띄어져도 상관없다.
 ```hcl
 job "plugin-nfs-controller" {
-  datacenters = [dc1]
+  datacenters = ["dc1"]
 
   group "controller" {
     task "plugin" {
@@ -54,7 +54,7 @@ job "plugin-nfs-controller" {
 
 ```hcl
 job "plugin-nfs-nodes" {
-  datacenters = [dc1]
+  datacenters = ["dc1"]
 
   type = "system"
 
