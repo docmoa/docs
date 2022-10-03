@@ -240,3 +240,50 @@ resource "nomad_volume" "efs_csi_volume" {
 </div>
 </details>
 
+## efs test job 배포
+
+```ruby
+job "efs_csi_job" {
+  datacenters = ["dc1"]
+
+  type        = "system"
+
+  group "cache" {
+    count = 1
+
+    network {
+      port "db" {
+        to = 6379
+      }
+    }
+    # 생성한 volume id 값을 명시한 volume을 선언
+    volume "cache" {
+      type            = "csi"
+      source          = "efs_csi_volume"
+      attachment_mode = "file-system"
+      access_mode     = "single-node-writer"
+      read_only    = false
+    }
+
+    task "redis" {
+      driver = "docker"
+
+      config {
+        image = "redis:6.2.6-alpine3.15"
+        ports = ["db"]
+      }
+
+      resources {
+        cpu    = 500
+        memory = 511
+      }
+      #선언한 volume을 사용할 위치에 mount
+      volume_mount {
+        volume      = "cache"
+        destination = "/data"
+        read_only    = false
+      }
+    }
+  }
+}
+```
