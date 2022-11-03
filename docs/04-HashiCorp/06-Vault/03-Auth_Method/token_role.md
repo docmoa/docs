@@ -133,4 +133,21 @@ vault write identity/entity-alias name="100y-alias" \
      canonical_id=$(cat entity_id.txt) \
      mount_accessor=$(cat accessor_token.txt) \
      custom_metadata=account="QA Account"
+     
+vault write auth/token/roles/100y allowed_policies="super-user" orphan=false bound_cidrs="127.0.0.1/32,128.252.0.0/16" renewable=true allowed_entity_aliases="100y-alias" token_period="876000h"
+
+vault auth tune -max-lease-ttl=876000h token/role/100y
+
+vault auth tune -default-lease-ttl=876000h token/role/100y
+
+vault token create -entity-alias=100y-alias -role=100y
+Key                  Value
+---                  -----
+token                hvs.CAESIDv-SKwwf3MS-CAutW7aQgAZRBjh01lYLeriuSYzYIwfGiEKHGh2cy50cXFIYVhneDBVYU1OT1hXbWc3WHdtbzUQsgU
+token_accessor       TAAPfxaUX1nx64ZqrLPa1VHx
+token_duration       876000h
+token_renewable      true
+token_policies       ["default" "super-user"]
+identity_policies    ["default"]
+policies             ["default" "super-user"]
 ```
