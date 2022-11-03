@@ -1,6 +1,6 @@
 {
   "name": "docmoa",
-  "version": "v2022-11-03",
+  "version": "0.0.4",
   "description": "docmoa on github page",
   "main": "index.js",
   "scripts": {
