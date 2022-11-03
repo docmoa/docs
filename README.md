@@ -6,6 +6,12 @@ docmoa (https://docmoa.github.io) 소스페이지 입니다.
 
 ## Change Log
 
+### 2022-11-03
+- `package.json` package update
+  - "vue": "^2.7.13"
+  - "vue-server-renderer": "^2.7.13
+  - "vuepress": "^1.9.7"
+
 ### 2022-09-24
 - `vuepress-plugin-chart` 추가
 - Chart 가이드 추가
