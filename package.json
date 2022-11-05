@@ -45,6 +45,7 @@
     "vuepress-plugin-contributors": "^1.4.0",
     "vuepress-plugin-demo-block": "^0.7.2",
     "@bidoubiwa/vuepress-plugin-element-tabs": "^0.2.9",
+    "node-sass": "npm:sass@^1.55.0",
     "vuepress-plugin-flexsearch": "^0.2.0",
     "vuepress-plugin-md-enhance": "^1.14.5",
     "vuepress-plugin-mermaidjs": "^1.8.1",
@@ -58,7 +59,6 @@
     "markdown-it-plantuml": "^1.4.1",
     "markdown-it-task-lists": "^2.1.1",
     "markdown-it-underline": "^1.0.1",
-    "node-sass": "npm:sass@^1.55.0",
     "vue": "^2.7.13",
     "vue-server-renderer": "^2.7.13"
   }
