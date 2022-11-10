@@ -25,9 +25,10 @@ __markdown content__
 ::::
 ~~~
 다음과 같이 표기됩니다.
+
 :::: tabs
 ::: tab title
-__markdown content__
+**markdown content**
 :::
 ::: tab javascript
 ``` javascript
