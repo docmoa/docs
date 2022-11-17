@@ -72,8 +72,9 @@ precond = rule {
 }
 
 cidrcheck = rule {
-    # request.connection.remote_addr is "127.0.0.1" or
-    sockaddr.is_contained(request.connection.remote_addr, "22.32.4.0/24")
+    ## Loopback
+    # sockaddr.is_contained("127.0.0.0/8", request.connection.remote_addr) or 
+    sockaddr.is_contained("22.32.4.0/24", request.connection.remote_addr)
 }
 
 main = rule when precond {
@@ -173,8 +174,9 @@ precond = rule {
 ...생략...
 
 cidrcheck = rule {
-    request.connection.remote_addr is "127.0.0.1" or
-    sockaddr.is_contained(request.connection.remote_addr, "22.32.4.0/24")
+    ## Loopback
+    sockaddr.is_contained("127.0.0.0/8", request.connection.remote_addr) or 
+    sockaddr.is_contained("22.32.4.0/24", request.connection.remote_addr)
 }
 
 ...생략...
