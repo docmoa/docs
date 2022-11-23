@@ -124,6 +124,7 @@ module.exports = {
       serviceWorker: true,
       updatePopup: true,
     },
+    "vuepress-plugin-element-tabs": {},
     "vuepress-plugin-mermaidjs": {},
     "vuepress-plugin-smooth-scroll": {},
     container: {
@@ -155,7 +156,6 @@ module.exports = {
       userProfileUrlProvider: "github",
       baseDir: "docs",
     },
-    "vuepress-plugin-element-tabs": {},
     "vuepress-plugin-tags": {
       type: "default",
       selector: ".page .content__default h1",

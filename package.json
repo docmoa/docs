@@ -1,6 +1,6 @@
 {
   "name": "docmoa",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "docmoa on github page",
   "main": "index.js",
   "scripts": {
@@ -21,19 +21,28 @@
   "bugs": {
     "url": "https://github.com/docmoa/page/issues"
   },
+  "engines": {
+    "node": ">=12.0.0 <15.0.0"
+  },
   "homepage": "https://github.com/docmoa/page#readme",
   "devDependencies": {
+    "@braintree/sanitize-url": "^6.0.1",
     "@mr-hope/vuepress-plugin-copy-code": "^1.20.1",
     "@mr-hope/vuepress-plugin-reading-time": "^1.18.2",
-    "@vuepress/plugin-back-to-top": "1.8.2",
-    "@vuepress/plugin-google-analytics": "1.8.2",
-    "@vuepress/plugin-last-updated": "1.8.2",
-    "@vuepress/plugin-nprogress": "1.8.2",
-    "@vuepress/plugin-pwa": "1.8.2",
-    "@vuepress/plugin-search": "1.8.2",
-    "@vuepress/theme-default": "1.8.2",
+    "@vuepress/core": "^1.9.7",
+    "@vuepress/plugin-back-to-top": "^1.9.7",
+    "@vuepress/plugin-google-analytics": "^1.9.7",
+    "@vuepress/plugin-last-updated": "^1.9.7",
+    "@vuepress/plugin-nprogress": "^1.9.7",
+    "@vuepress/plugin-pwa": "^1.9.7",
+    "@vuepress/plugin-search": "^1.9.7",
+    "@vuepress/theme-default": "^1.9.7",
     "json-fn": "^1.1.1",
-    "vuepress": "1.8.2",
+    "node-sass": "npm:sass@^1.55.0",
+    "uuid": "^9.0.0",
+    "vue": "^2.7.13",
+    "vue-server-renderer": "^2.7.13",
+    "vuepress": "^1.9.7",
     "vuepress-bar": "^0.4.4",
     "vuepress-plugin-autometa": "^0.1.13",
     "vuepress-plugin-chart": "^0.3.0",
