@@ -49,7 +49,10 @@ Nomoad 에서는 Jenkins 실행을 위해 다음 조건이 필요하다.
 - Linux/macOS의 경우 Java Driver 실행시 계정을 `nobody`로 부여하므로 `nobody`계정에 권한으로 실행 필요
   ```bash
   # 예시
+  # macOS인 경우
   chown -R nobody:nobody /opt/nomad/volume/jenkins
+  # ubuntu인 경우
+  chown -R nobody:nogroup /opt/nomad/volume/jenkins
   ```
 - Client 구성 피알의 `client` 블록에 Host Volume을 지정
   ```hcl
