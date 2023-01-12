@@ -5,9 +5,9 @@ meta:
 tags: ["Nomad", "SpringBoot", "Java"]
 ---
 
-# Graceful Shutdown 적용
+# Graceful Shutdown 적용 (kill_signal)
 
-> GitHub 리소스 : https://github.com/Great-Stone/nomad-springboot-graceful-shutdown
+> GitHub 리소스 : <https://github.com/Great-Stone/nomad-springboot-graceful-shutdown>
 
 ## 테스트 환경
 
