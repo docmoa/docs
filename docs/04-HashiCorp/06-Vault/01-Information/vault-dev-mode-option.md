@@ -84,7 +84,7 @@ Dev Options:
 다음과 같이 옵션을 적용한 개발 모드 볼트를 실행하면, `Api Address`가 지정된 주소로 설정되고, `.vault-token`은 생성되지 않고, `Root Token`이 `root`로 설정되고, 생성된 인증서 위치와 커맨드 실행에 필요한  `VAULT_CACERT`가 출력되는 것을 확인할 수 있다.
 
 ```bash
-$ vault server -dev -dev-listen-address=0.0.0.0:8200 -dev-no-store-token=true -dev-root-token-id=root -dev-tls\
+$ vault server -dev -dev-listen-address=0.0.0.0:8200 -dev-no-store-token=true -dev-root-token-id=root -dev-tls
 
 ==> Vault server configuration:
 
