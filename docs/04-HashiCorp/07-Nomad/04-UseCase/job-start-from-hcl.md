@@ -119,24 +119,28 @@ sequenceDiagram
     Local->>Nomad API: Execute Job with Json file
 ```
 
-1. Json으로 생성할 HCL을 `hcl.json`으로 생성
-  ```bash
-  jq -Rsc '{ JobHCL: ., Canonicalize: true }' 2048.hcl > hcl.json
-  ```
+### 1. Json으로 생성할 HCL을 `hcl.json`으로 생성
+```bash
+jq -Rsc '{ JobHCL: ., Canonicalize: true }' 2048.hcl > hcl.json
+```
 
-2. `/v1/jobs/parse` 엔드포인트로 요청하여 Json형태로 파싱
-  ```bash
-  curl --request POST --data @hcl.json http://127.0.0.1:4646/v1/jobs/parse
-  ```
-  한가지 문제는, Job의 Json 정의에는 `Job` 이라는 키값이 최상위에 존재해야하는데, 반환되는 결과에는 `Job` 하위부터 출력된다. 따라서 `jq`를 사용하여 다음과 같이 출력을 수정하여 저장한다.
-  ```bash
-  curl --request POST --data @hcl.json http://127.0.0.1:4646/v1/jobs/parse | jq -s '{ Job: .[] }' > 2048.json
-  ```
+### 2. `/v1/jobs/parse` 엔드포인트로 요청하여 Json형태로 파싱
+```bash
+curl --request POST --data @hcl.json http://127.0.0.1:4646/v1/jobs/parse
+```
 
-3. 생성된 json으로 Job 실행
-  ```bash
-  curl --request POST --data @2048.json http://127.0.0.1:4646/v1/jobs
-  ```
+한가지 문제는, Job의 Json 정의에는 `Job` 이라는 키값이 최상위에 존재해야하는데, 반환되는 결과에는 `Job` 하위부터 출력된다. 따라서 `jq`를 사용하여 다음과 같이 출력을 수정하여 저장한다.
+
+```bash
+curl --request POST --data @hcl.json http://127.0.0.1:4646/v1/jobs/parse | jq -s '{ Job: .[] }' > 2048.json
+```
+
+### 3. 생성된 json으로 Job 실행
+```bash
+curl --request POST --data @2048.json http://127.0.0.1:4646/v1/jobs
+```
+
+---
 
 위 과정을 다음과 같이 한줄로 정의할 수 있다.
 
