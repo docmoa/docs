@@ -10,6 +10,7 @@ tags: ["Nomad", "API", "HCL"]
 HCL로 작성된 Job의 경우 Nomad CLI 또는 UI 접속이 가능하다면 바로 적용 가능하다.
 
 ::: details HCL Job Sample (2048.hcl)
+```hcl
 job "2048-game" {
   datacenters = ["dc1"]
   type        = "service"
@@ -41,10 +42,11 @@ job "2048-game" {
     }
   }
 }
+```
 :::
 
 ```bash
-nomad job run <path.hcl>
+nomad job run 2048.hcl
 ```
 
 ![](./image/run-job-ui.png)
