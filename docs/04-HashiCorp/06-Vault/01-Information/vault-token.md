@@ -1,7 +1,7 @@
 ---
 meta:
   - name: description
-    content: Vault Token의 이해
+    content: Vault Token의 구성과 종류 설명
 tags: ["vault", "token"]
 ---
 
@@ -13,7 +13,7 @@ tags: ["vault", "token"]
 
 
 
-## 1 Token의 구성과 내용
+## 1. Token의 구성과 내용
 
 다음은 수동으로 Token을 생성하는 방법으로 Token을 생성할 수 있는 권한의 사용자가 CLI를 사용하여 `default` Policy를 갖는 Token을 생성하는 경우의 예이다.
 
@@ -130,7 +130,7 @@ Token이 생성되면 종류에 따라 붙는 Prefix를 보고 유형을 유추�
 
 
 
-## 2 Token 계층(종속성)
+## 2. Token 계층(종속성)
 
 Token의 여러 속성 중 종속성의 이해가 필요하다. 종속성으로 인해 상위 Token이 취소되거나 만료되면 하위 Token도 함께 취소된다. 동작을 확인하기 위해 독립된 Orphan Token을 생성하고 하위 Token을 생성 한 뒤 상위 Token을 취소했을 때 현상을 확인하여 종속성의 결과를 확인 가능하다.
 
@@ -172,7 +172,7 @@ Code: 403. Errors:
 
 
 
-## 3 Orphan Token
+## 3. Orphan Token
 
 Token 종속성으로인한 하위 Token의 의도하지 않은 취소를 피하려면 Orphan(고아) Token으로의 지정이 필요하다. Token을 생성한 Parent(부모/상위) Token과 생성된 Child(자식/하위) Token의 관계가 형성되며, Orphan Token의 경우 Parent에서 독립되어 Token Tree의 루트가 된다. Orphan Token을 생성하는 방안은 다음과 같다.
 
@@ -258,7 +258,7 @@ type                service
 
 
 
-## 4 Token 유형
+## 4. Token 유형
 
 Token의 유형은 `Service` 타입과 `Batch` 타입으로 나뉘며, 각각은 Orphan 여부에 따라 Token을 생성한 Parent Token과의 종속성을 정의할 수 있다. 
 
@@ -284,11 +284,10 @@ Token의 유형은 `Service` 타입과 `Batch` 타입으로 나뉘며, 각각은
 | Performance Replication Cluster 전체에서 사용         | ⛔️                                    | ✅                                      |
 | Cost                                                  | 무거움 : 백엔드 스토리지에 건당 저장 | 가벼움 : 백엔드 스토리지 저장되지 않음 |
 
-볼트를 처음 Init 하면 Root Token이 발급된다. Root Token은 Service Token의 일종이나 몇가지 특징이 있다.
 
 
 
-## 5 Token Accessor
+## 5. Token Accessor
 
 Token이 생성되면 Accessor도 함께 생성되는데, 이 Accessor는 Token을 참조하는 값임과 동시에 Token을 직접 알지 못하더라도 Token에 대한 기본 속성이나 Renew(갱신),  Revoke(취소) 작업을 수행할 수 있다. Accessor에 대한 작업은 일반적인 `read`, `write` 작업과 더불어 `vault token` CLI로도 사용 가능하다.
 
@@ -310,7 +309,7 @@ $ vault token revoke -accessor <ACCESSOR>
 
 
 
-## 6 TTL과 Period
+## 6. TTL과 Period
 
 Root Token을 제외한 모든 Token은 TTL이 부여된다. TTL은 token의 생성 시간 또는 마지막 갱신 시간 중 가장 최근 시간 기준으로 이후의 유효한 기간까지의 시간이다.
 
@@ -399,7 +398,7 @@ token_duration       1m
 
 
 
-## 7 Root Token
+## 7. Root Token
 
 볼트를 Init하면 최초 발급되는 Token이 Root Token이다. 볼트에서 유일하게 만료되지 않는 Token으로 모든 권한(`root` Policy)을 갖고 있다. 일반적으로 Init 후 `root` 권한을 갖는 일반 인증을 생성한 뒤 파기하는 것을 권장한다.
 
