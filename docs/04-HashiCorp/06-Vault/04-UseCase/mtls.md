@@ -1,3 +1,12 @@
+---
+meta:
+  - name: Vault PKI를 사용하여 mTLS 구성의 인증서 자동화
+    content: Vault PKI와 mTLS 데모 앱 설명
+tags: ["vault", "pki", "mTLS"]
+
+---
+
+
 # Vault PKI - mTLS demo
 
 > Demo App Github : <https://github.com/Great-Stone/vault-mtls-demo>
