@@ -966,7 +966,7 @@ nomad job run service_a_job.hcl
 nomad job run service_b_job.hcl
 ```
 
-![Jobs - Nomad 2023-03-19 16-55-02](/var/folders/5r/8y6t82xd1h183tq1l_whv8yw0000gn/T/com.monosnap.monosnap/Jobs - Nomad 2023-03-19 16-55-02.png)
+![Jobs - Nomad 2023-03-19](https://raw.githubusercontent.com/Great-Stone/images/master/uPic/Jobs%20-%20Nomad%202023-03-19.png)
 
 Vault 에서 가져온 인증서가 변경되면 `change_mode`에 정의된 `restart` 에 의해 애플리케이션을 자동 재시작 한다.
 
