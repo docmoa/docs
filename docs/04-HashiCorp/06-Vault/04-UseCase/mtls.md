@@ -54,14 +54,104 @@ mTLS에서는 클라이언트와 서버 모두에 인증서가 있고 양쪽에�
 
 mTLS의 단점은 다음과 같다.
 
-- 연결을 설정하는 과정에서 추가적인 CPU 리소스와 대역폭이 필요할 수 있습니다. 이는 특히 고사양의 서버에서 큰 부담이 될 수 있습니다.
-- 서버와 클라이언트 모두가 인증서를 발급하고 관리해야 한다는 점이 있습니다. 인증서를 발급하는 과정은 복잡할 수 있으며, 이를 관리하는 것도 일정한 노력과 비용이 필요합니다.
-- mTLS를 구현하는 것은 애플리케이션과 서버 모두에게 추가적인 복잡성을 요구할 수 있습니다. 이를 위해 애플리케이션과 서버 모두에 대한 추가적인 설정 및 관리가 필요할 수 있습니다.
+- 연결을 설정하는 과정에서 추가적인 CPU 리소스와 대역폭이 필요할 수 있다. 이는 특히 고사양의 서버에서 큰 부담이 될 수 있다.
+- 서버와 클라이언트 모두가 인증서를 발급하고 관리해야 한다는 점이 있다. 인증서를 발급하는 과정은 복잡할 수 있으며, 이를 관리하는 것도 일정한 노력과 비용이 필요합니다.
+- mTLS를 구현하는 것은 애플리케이션과 서버 모두에게 추가적인 복잡성을 요구할 수 있다. 이를 위해 애플리케이션과 서버 모두에 대한 추가적인 설정 및 관리가 필요할 수 있다.
 
 
+### 1.5 구성의 예
+
+#### Python - Flask
+
+```python{10-12}
+from flask import Flask, render_template, request, make_response
+import ssl
+
+app = Flask(__name__)
+
+### APIs ###
+
+if __name__ == "__main__":
+    app.debug = True
+    ssl_context = ssl.create_default_context(purpose=ssl.Purpose.CLIENT_AUTH, cafile='ca.crt')
+    ssl_context.load_cert_chain(certfile=f'site.crt', keyfile=f'site.key', password='')
+    ssl_context.verify_mode = ssl.CERT_REQUIRED
+    app.run(host="0.0.0.0", port=src_port, ssl_context=ssl_context, use_reloader=True)
+```
+
+#### nginx
+
+```hcl{8-13,}
+# default.conf
+server {
+    listen                  443 ssl;
+
+    access_log /var/log/nginx/access.log;
+    error_log /var/log/nginx/error.log;
+
+    ssl_certificate         /etc/ssl/server.crt;
+    ssl_certificate_key     /etc/ssl/server.key;
+    ssl_protocols           TLSv1.2 TLSv1.3;
+    ssl_client_certificate  /etc/nginx/client_certs/ca.crt;
+    ssl_verify_client       on;
+    ssl_verify_depth        2;
+
+    location / {
+        if ($ssl_client_verify != SUCCESS) { return 403; }
+
+        ### 구성 ###
+    }
+}
+```
+
+#### Apache HTTPD 2.4
+
+```xml{18-20,24}
+<VirtualHost *:80>
+    ServerName {DOMAIN}
+    Redirect permanent / https://{DOMAIN}
+</VirtualHost>
+
+<IfModule mod_ssl.c>
+    <VirtualHost *:443>
+        ServerAdmin info@{DOMAIN}
+        ServerName {DOMAIN}
+
+        Header always set Strict-Transport-Security "max-age=63072000; includeSubdomains;"
+
+        SSLEngine       on
+        SSLCompression      Off
+        SSLProtocol         ALL -SSLv2 -SSLv3
+        SSLHonorCipherOrder     On
+        SSLCipherSuite      EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH
+        SSLCertificateFile  {SSL}/fullchain.pem
+        SSLCertificateKeyFile   {SSL}/privkey.pem
+        SSLCACertificateFile    {PATH}/ca.crt
+        SSLStrictSNIVHostCheck  on
+
+        <Location / >
+            SSLVerifyClient     require 
+            SSLVerifyDepth      1
+
+            Options FollowSymLinks
+            AllowOverride None
+        </Location>     
+
+        <Location /health>
+            SSLVerifyClient none
+        </Location>
+
+        ProxyPreserveHost On
+        ProxyRequests off
+        ProxyPass / http://localhost/
+        ProxyPassReverse / http://localhost/
+    </VirtualHost>
+</IfModule>
+```
+
+---
 
 볼트가 제공하는 PKI 기능과 Agent의 자동 교체 기능을 활용하여 인증서 관리와 발급을 자동화하여 애플리케이션과 서버에 대한 부담을 줄이고 mTLS의 장점을 취할 수 있다.
-
 
 
 ## 2. use OpenSSL
