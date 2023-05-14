@@ -516,7 +516,7 @@ ingressGateways:
 EXTERNAL_IP=$(kubectl get services --selector component=ingress-gateway --output jsonpath="{range .items[*]}{@.status.loadBalancer.ingress[*].hostname}{end}")
 echo "Connecting to \"$EXTERNAL_IP\""
 curl --header "Host: static-server.ingress.consul" "http://$EXTERNAL_IP:8080"
-``
+```
 하지만 PPv2 설정 후 static-server 앱을 테스트해본 결과 정상적으로 동작하지 않는 것으로 보인다.
 
 ![img](https://raw.githubusercontent.com/hyungwook0221/img/main/uPic/pCs0WD.jpg)
