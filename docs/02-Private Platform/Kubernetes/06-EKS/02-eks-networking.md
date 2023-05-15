@@ -1,3 +1,10 @@
+---
+meta:
+  - name: description
+    content: AWS에서 공식적으로 제공되는 다양한 HOL 기반의 Workshop과 가시다님의 팀에서 2차 가공한 컨텐츠를 기반으로 진행한다..
+tags: ["Kubernetes", "EKS", "PKOS"]
+---
+
 # AEWS 2주차 - Amzaon EKS Networking
 
 이번에 연재할 스터디는 AWS EKS Workshop Study (=AEWS)이다. AWS에서 공식적으로 제공되는 다양한 HOL 기반의 Workshop과 가시다님의 팀에서 2차 가공한 컨텐츠를 기반으로 진행한다.
