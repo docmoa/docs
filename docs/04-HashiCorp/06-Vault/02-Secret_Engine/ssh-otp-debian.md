@@ -34,9 +34,9 @@ Success! Data written to: ssh/roles/otp_key_role
 
 
 
- ## 대상 서버 설정
+## 대상 서버 설정
 
-접속할 사용자 생성
+### 접속할 사용자 생성
 
 ```bash
 $ sudo adduser test
@@ -44,7 +44,7 @@ $ sudo adduser test
 
 
 
-vault-ssh-helper 구성 <config.hcl>
+### vault-ssh-helper 구성 <config.hcl>
 > <https://github.com/hashicorp/vault-ssh-helper>  
 
 ```ruby
@@ -58,24 +58,20 @@ allowed_cidr_list = "0.0.0.0/0"
 
 
 
-vault-ssh-helper 다운로드
+### vault-ssh-helper 다운로드
 
-> https://releases.hashicorp.com/vault-ssh-helper/
-
-
-
-vault-ssh-helper verify
-
+> https://releases.hashicorp.com/vault-ssh-helper/  
 > tls를 사용하지 않는 경우. `-dev` 
 
+아래와 같이 검증
 ```bash
 vault-ssh-helper -verify-only -config=config.hcl -dev
 ```
 
+### pam.d 설정
 
-
-Pam 설정
-
+:::: tabs
+::: tab 기존 PW 방식을 대체
 `/etc/pam.d/sshd` 파일의 `@include common-auth` 부분을 다음과 같이 변경 추가
 
 ```properties
@@ -83,10 +79,29 @@ Pam 설정
 auth requisite pam_exec.so quiet expose_authtok log=/tmp/vaultssh.log /usr/local/bin/vault-ssh-helper -config=/etc/vault-ssh-helper.d/config.hcl -dev
 auth optional pam_unix.so not_set_pass use_first_pass nodelay
 ```
+:::
+::: tab 기존 PW와 함께 사용
+`/etc/pam.d/common-auth` 파일의 `auth [success=1 dufault=ignore]` 아래 2줄 추가
 
+```properties
+# here are the per-package modules (the "Primary" block)
+auth    [success=1 default=ignore]      pam_unix.so nullok_secure
+auth    [success=3 default=ignore] pam_exec.so quiet expose_authtok log=/tmp/vaultssh.log /usr/local/bin/vault-ssh-helper -config=/etc/vault-ssh-helper.d/config.hcl -dev
+auth    [success=2 default=ignore] pam_unix.so not_set_pass use_first_pass nodelay
+# here's the fallback if no module succeeds
+auth    requisite                       pam_deny.so
+# prime the stack with a positive return value if there isn't one already;
+# this avoids us returning an error just because nothing sets a success code
+# since the modules above will each just jump around
+auth    required                        pam_permit.so
+# and here are more per-package modules (the "Additional" block)
+auth    optional                        pam_cap.so 
+# end of pam-auth-update config
+```
+:::
+::::
 
-
-ssh 설정
+### ssh 설정
 
 `/etc/ssh/sshd_config` 파일의 `ChallengeResponseAuthentication` 부분을 수정
 
@@ -100,7 +115,7 @@ PasswordAuthentication no
 
 
 
-ssh 서비스 재시작
+### ssh 서비스 재시작
 
 ```bash
 $ systemctl restart ssh
@@ -128,7 +143,7 @@ username           test
 
 
 
-접속 방법 1. ssh
+### 접속 방법 1. ssh
 
 >  Password: 에 앞서 요청한 롤의 credential 값의 `key` 를 넣어준다.
 
@@ -139,7 +154,7 @@ Password:
 
 
 
-접속 방법 2. vault ssh
+### 접속 방법 2. vault ssh
 
 > Vault로 해당 ssh otp에 권한이 있는 사용자인 경우 `sshpass` 가 설치되어있으면 자동 입력
 
