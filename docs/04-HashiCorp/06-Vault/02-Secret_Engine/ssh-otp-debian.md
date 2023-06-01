@@ -86,8 +86,8 @@ auth optional pam_unix.so not_set_pass use_first_pass nodelay
 ```properties
 # here are the per-package modules (the "Primary" block)
 auth    [success=1 default=ignore]      pam_unix.so nullok_secure
-auth    [success=3 default=ignore] pam_exec.so quiet expose_authtok log=/tmp/vaultssh.log /usr/local/bin/vault-ssh-helper -config=/etc/vault-ssh-helper.d/config.hcl -dev
-auth    [success=2 default=ignore] pam_unix.so not_set_pass use_first_pass nodelay
+auth    [success=3 default=ignore]      pam_exec.so quiet expose_authtok log=/tmp/vaultssh.log /usr/local/bin/vault-ssh-helper -config=/etc/vault-ssh-helper.d/config.hcl -dev
+auth    [success=2 default=ignore]      pam_unix.so not_set_pass use_first_pass nodelay
 # here's the fallback if no module succeeds
 auth    requisite                       pam_deny.so
 # prime the stack with a positive return value if there isn't one already;
