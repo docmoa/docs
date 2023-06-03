@@ -83,7 +83,7 @@ auth optional pam_unix.so not_set_pass use_first_pass nodelay
 ::: tab 기존 PW와 함께 사용
 `/etc/pam.d/common-auth` 파일의 `auth [success=1 dufault=ignore]` 아래 2줄 추가
 
-```properties
+```properties{3,4}
 # here are the per-package modules (the "Primary" block)
 auth    [success=1 default=ignore]      pam_unix.so nullok_secure
 auth    [success=3 default=ignore]      pam_exec.so quiet expose_authtok log=/tmp/vaultssh.log /usr/local/bin/vault-ssh-helper -config=/etc/vault-ssh-helper.d/config.hcl -dev
