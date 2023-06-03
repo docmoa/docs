@@ -105,6 +105,18 @@ module.exports = {
     //   ['meta', {name: "google-site-verification", content: "sHfBWIoCUOYFXJ3b0ulN8jp9jpD8SEW5Wpxvlk-UABA"}],
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
     ['meta', { name: 'msapplication-TileImage', content: '/image/docmoa-144.png' }],
+    [
+      "script",
+      {
+        async: true,
+        src: "https://www.googletagmanager.com/gtag/js?id=G-HBCZDDBW2D",
+      }
+    ],
+    [
+      "script",
+      {},
+      ["window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-HBCZDDBW2D');"]
+    ],
   ],
   markdown: {
     // lineNumbers: true,
