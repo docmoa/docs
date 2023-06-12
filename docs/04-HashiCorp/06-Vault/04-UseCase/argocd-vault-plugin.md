@@ -6,6 +6,8 @@ tags: ["vault", "argocd", "gitops", "devsescops", "pipeline", "github", "gitlab"
 ---
 # ArgoCD Vault Plugin
 
+> 참고 : 본 글은 AEWS 스터디 7주차 내용중 일부로 작성된 내용입니다.
+
 ## 1. ArgoCD
 
 <img src="https://raw.githubusercontent.com/hyungwook0221/img/main/uPic/oH5ELj.jpg" alt="img" style="zoom:50%;" />
@@ -16,7 +18,7 @@ Argo **CD** is a declarative, **GitOps** continuous delivery tool for **Kubernet
 
 - 지속적인 배포란(Continuous Delivery, CD) 개발자가 소스코드를 변경해서 깃 저장소에 푸시하면 해당 변경 사항이 고객이 사용하는 실제 운영환경의 시스템까지 자동으로 반영함
   - 개발자의 코드가 원격 저장소에 업로드됐을 때 **아르고시디**가 자동으로 해당 코드를 클러스터 운영환경에 **배포**합니다.
-  - **아르고시티**로 배포한 헬름 애플리케이션의 리소스 목록, 각 리소스 간 관계 및 에러 유무를 **UI**로 보여줍니다.
+  - **아르고시디**로 배포한 헬름 애플리케이션의 리소스 목록, 각 리소스 간 관계 및 에러 유무를 **UI**로 보여줍니다.
 - 단일 진실 원천(SSOT, Single Source Of Truth)이란 어떠한 진실(결과)의 원인이 하나의 이유(원천)에서 비롯되는 것을 의미합니다.
   - 쿠버네티스 환경에서 깃옵스의 의미는 실제 운영 중인 클러스터의 상태를 개발자의 로컬 PC혹은 아무런 기록을 남기지 않고 클러스터에서 임의로 수정하게 하지 않고 공용으로 관리하는 깃 저장소에서만 유일하게 변경을 허용함으로써 단일 진실 원천(SSOT)를 구현합니다.
   - **아르고시디**를 사용하면 쿠버네티스 매니페스트 **소스** 파일을 여러 개발자의 개인 PC에 보관하지 않고 중앙의 통합된 **깃 저장소**에 반드시 업로드하고 동기화하도록 정책 관리 가능함
