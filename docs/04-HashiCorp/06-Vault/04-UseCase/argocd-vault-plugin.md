@@ -1,8 +1,16 @@
-# 1. ArgoCD
+---
+meta:
+  - name: description
+    content: ArgoCD Vault Plugin 연동방안
+tags: ["vault", "argocd", "gitops", "devsescops", "pipeline", "github", "gitlab", "secret", "kubernetes", "k8s", "eks" ]
+---
+# ArgoCD Vault Plugin
+
+## 1. ArgoCD
 
 <img src="https://raw.githubusercontent.com/hyungwook0221/img/main/uPic/oH5ELj.jpg" alt="img" style="zoom:50%;" />
 
-## 1) 개요 및 소개
+### 1) 개요 및 소개
 
 Argo **CD** is a declarative, **GitOps** continuous delivery tool for **Kubernetes**.
 
@@ -20,7 +28,7 @@ Argo **CD** is a declarative, **GitOps** continuous delivery tool for **Kubernet
 
 <img src="https://logonme.net/wp-content/uploads/2023/03/Untitled-10.png" alt="img" style="zoom:50%;" />
 
-## 2) 설치
+### 2) 설치
 
 ```bash
 # 설치
@@ -39,11 +47,11 @@ echo $ARGOPW
 mf8bOtNEq7iHMqq1
 ```
 
-###  (1) UI 접속 확인
+####  (1) UI 접속 확인
 
 <img src="https://raw.githubusercontent.com/hyungwook0221/img/main/uPic/89u0XP.jpg" alt="img" style="zoom: 33%;" />
 
-### (2) CLI 도구설치 및 연동
+#### (2) CLI 도구설치 및 연동
 
 ```bash
 # 최신버전 설치
@@ -74,7 +82,7 @@ SERVER                          NAME        VERSION  STATUS   MESSAGE           
 https://kubernetes.default.svc  in-cluster           Unknown  Cluster has no applications and is not being monitored.
 ```
 
-## 3) 샘플 앱 배포
+### 3) 샘플 앱 배포
 
 #### (1) Git 저장소 생성 및 다운
 
@@ -183,7 +191,7 @@ apps   StatefulSet  postgresql  postgresql-helm     Synced     Healthy        st
 
 <img src="https://raw.githubusercontent.com/hyungwook0221/img/main/uPic/pxmpC9.jpg" alt="img" style="zoom: 33%;" />
 
-# 2. Argo CD Vault Plugin
+## 2. Argo CD Vault Plugin
 
 Argo CD에는 다양한 시크릿 관리 도구(**HashiCorp Vault**, IBM Cloud Secrets Manager, AWS Secrets Manager 등)플러그인을 통해 Kubernetes 리소스에 주입할 수 있도록 지원합니다.
 
@@ -193,9 +201,9 @@ Argo CD에는 다양한 시크릿 관리 도구(**HashiCorp Vault**, IBM Cloud S
 
 <img src="https://github.com/argoproj-labs/argocd-vault-plugin/raw/main/assets/argo_vault_logo.png" alt="img" style="zoom:50%;" />
 
-## 1) Vault 환경 준비
+### 1) Vault 환경 준비
 
-### (1) Vault 설치
+#### (1) Vault 설치
 
 ```bash
 # 저장소 추가
@@ -222,7 +230,7 @@ injector:
 helm install vault hashicorp/vault -n vault --create-namespace --values vault-server-values.yaml
 ```
 
-### (2) Vault 구성
+#### (2) Vault 구성
 
 - 시크릿 엔진 설정
 
@@ -279,7 +287,7 @@ kubectl exec -n vault vault-0 -- vault write auth/kubernetes/role/argocd \
   ttl=48h
 ```
 
-### (3) ArgoCD Vault Plugin Credentials 생성
+#### (3) ArgoCD Vault Plugin Credentials 생성
 
 > 💡 참고 
 >
@@ -299,11 +307,11 @@ stringData:
   VAULT_ADDR: "http://vault.vault:8200"
 ```
 
-## 2) Vault Plugin 설치
+### 2) Vault Plugin 설치
 
 공식문서를 통해 Argo CD에 Vault Plugin을 설치하는 방법은 크게 4가지 방법 있으며, 크게는 **<u>2가지 방법</u>**으로 구분해서 소개하고 있습니다. [참고](https://argocd-vault-plugin.readthedocs.io/en/stable/installation/#initcontainer-and-configuration-via-sidecar)
 
-### (0) 설치방안 2 가지
+#### (0) 설치방안 2 가지
 
 - 방안1. Installation via a sidecar container [(new, starting with Argo CD v2.4.0)](https://argo-cd.readthedocs.io/en/stable/user-guide/config-management-plugins/#installing-a-cmp)**
 
@@ -321,11 +329,11 @@ stringData:
 
 ---
 
-### 방안1-1) Installaion via a sidecar(with Manual)
+#### 방안1-1) Installaion via a sidecar(with Manual)
 
 필자는 v2.4.0부터 제공되는 사이드카 방식을 통해 구성하는 방법을 채택했습니다. 
 
-#### a. InitContainer and configuration via sidecar
+##### a. InitContainer and configuration via sidecar
 
 사이드카 컨테이너에 마운트할 컨피그맵에서 플러그인을 정의
 
@@ -535,13 +543,13 @@ spec:
 
 ![img](https://raw.githubusercontent.com/hyungwook0221/img/main/uPic/8p131S.jpg)
 
-### 방안1-2) Installaion via a sidecar(with Helm)
+#### 방안1-2) Installaion via a sidecar(with Helm)
 
 > 💡 참고
 >
 > - https://luafanti.medium.com/injecting-secrets-from-vault-into-helm-charts-with-argocd-43fc1df57e74
 
-#### a. `ConfigManagementPlugin` 설정을 위한 configMap 생성 - [링크](https://argocd-vault-plugin.readthedocs.io/en/stable/installation/#initcontainer-and-configuration-via-sidecar)
+##### a. `ConfigManagementPlugin` 설정을 위한 configMap 생성 - [링크](https://argocd-vault-plugin.readthedocs.io/en/stable/installation/#initcontainer-and-configuration-via-sidecar)
 
 ```yaml
 apiVersion: v1
@@ -578,7 +586,7 @@ data:
 > - [argocd-vault-plugin generate](https://argocd-vault-plugin.readthedocs.io/en/stable/cmd/generate/)
 > - https://colinwilson.uk/2022/03/27/secret-management-with-gitops-and-argo-cd-vault-plugin/
 
-#### b. ArgoCD with Vault Plugin Helm Chart 작성
+##### b. ArgoCD wi5th Vault Plugin Helm Chart 작성
 
 - `argocd-helm-values.yaml` 
 
@@ -644,7 +652,7 @@ repoServer:
 
 ---
 
-### 방안2) Installation via arocd-cm ConfigMap
+#### 방안2) Installation via arocd-cm ConfigMap
 
 해당 방안의 경우에는 `argocd-cm` configMap을 수정하여 적용하는 방안입니다.
 
@@ -689,9 +697,9 @@ repoServer:
 
 
 
-## 3) 샘플 애플리케이션 배포
+### 3) 샘플 애플리케이션 배포
 
-### (1) Helm Chart에 포함된 시크릿 데이터 배포
+#### (1) Helm Chart에 포함된 시크릿 데이터 배포
 
 - Applicaton YAML 샘플
 
