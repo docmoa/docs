@@ -472,7 +472,7 @@ spec:
         securityContext:
           runAsNonRoot: true
           runAsUser: 999
-        s:
+        volumeMounts:
           - mountPath: /var/run/argocd
             name: var-files
           - mountPath: /home/argocd/cmp-server/plugins
