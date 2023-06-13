@@ -18,7 +18,7 @@ Argo **CD** is a declarative, **GitOps** continuous delivery tool for **Kubernet
 
 - 지속적인 배포란(Continuous Delivery, CD) 개발자가 소스코드를 변경해서 깃 저장소에 푸시하면 해당 변경 사항이 고객이 사용하는 실제 운영환경의 시스템까지 자동으로 반영함
   - 개발자의 코드가 원격 저장소에 업로드됐을 때 **아르고시디**가 자동으로 해당 코드를 클러스터 운영환경에 **배포**합니다.
-  - **아르고시디**로 배포한 헬름 애플리케이션의 리소스 목록, 각 리소스 간 관계 및 에러 유무를 **UI**로 보여줍니다.
+  - **아르고시티**로 배포한 헬름 애플리케이션의 리소스 목록, 각 리소스 간 관계 및 에러 유무를 **UI**로 보여줍니다.
 - 단일 진실 원천(SSOT, Single Source Of Truth)이란 어떠한 진실(결과)의 원인이 하나의 이유(원천)에서 비롯되는 것을 의미합니다.
   - 쿠버네티스 환경에서 깃옵스의 의미는 실제 운영 중인 클러스터의 상태를 개발자의 로컬 PC혹은 아무런 기록을 남기지 않고 클러스터에서 임의로 수정하게 하지 않고 공용으로 관리하는 깃 저장소에서만 유일하게 변경을 허용함으로써 단일 진실 원천(SSOT)를 구현합니다.
   - **아르고시디**를 사용하면 쿠버네티스 매니페스트 **소스** 파일을 여러 개발자의 개인 PC에 보관하지 않고 중앙의 통합된 **깃 저장소**에 반드시 업로드하고 동기화하도록 정책 관리 가능함
@@ -238,7 +238,7 @@ helm install vault hashicorp/vault -n vault --create-namespace --values vault-se
 
 ```bash
 # shell 접속
-kubectl exec -n vault vault-0 -- sh
+kubectl exec -n vault vault-0 -it -- sh
 
 # enable kv-v2 engine in Vault
 vault secrets enable kv-v2
@@ -260,7 +260,7 @@ exit
 
 ```bash
 # enable Kubernetes Auth Method
-kubectl exec -n vault vault-0 -- vault auth enable kubernetes
+kubectl exec -n vault vault-0 --- vault auth enable kubernetes
 
 # get Kubernetes host address
 # K8S_HOST="https://kubernetes.default.svc"
@@ -269,7 +269,7 @@ K8S_HOST="https://$( kubectl exec -n vault vault-0 -- env | grep KUBERNETES_PORT
 
 # get Service Account token from Vault Pod
 #SA_TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
-SA_CERT=$(kubectl exec -n vault vault-0 -- cat /var/run/secrets/kubernetes.io/serviceaccount/ca.crt)
+SA_TOKEN=$(kubectl exec -n vault vault-0 -- cat /var/run/secrets/kubernetes.io/serviceaccount/token)
 
 # get Service Account CA certificate from Vault Pod
 #SA_CERT=$(cat /var/run/secrets/kubernetes.io/serviceaccount/ca.crt)
@@ -315,7 +315,7 @@ stringData:
 
 #### (0) 설치방안 2 가지
 
-- 방안1. Installation via a sidecar container [(new, starting with Argo CD v2.4.0)](https://argo-cd.readthedocs.io/en/stable/user-guide/config-management-plugins/#installing-a-cmp)**
+- 방안1. Installation via a sidecar container [(new, starting with Argo CD v2.4.0)](https://argo-cd.readthedocs.io/en/stable/user-guide/config-management-plugins/#installing-a-cmp)
 
   - Download AVP and supporting tools into a volume and control everything as Kubernetes manifests, using an off-the-shelf sidecar image
     - Available as a pre-built Kustomize app: https://github.com/argoproj-labs/argocd-vault-plugin/blob/main/manifests/cmp-sidecar
@@ -339,7 +339,7 @@ stringData:
 
 사이드카 컨테이너에 마운트할 컨피그맵에서 플러그인을 정의
 
-> 참고 : 
+> 💡 참고 : 
 >
 > - https://github.com/argoproj-labs/argocd-vault-plugin/blob/main/manifests/cmp-sidecar/cmp-plugin.yaml
 
@@ -426,7 +426,7 @@ data:
 
 argocd-repo-server를 패치하여 argocd-vault-plugin을 다운로드하고 사이드카를 정의하기 위한 initContainer를 추가합니다. 
 
-> 참고 : 
+> 💡 참고 : 
 >
 > - https://github.com/argoproj-labs/argocd-vault-plugin/blob/main/manifests/cmp-sidecar/argocd-repo-server.yaml
 
@@ -697,11 +697,25 @@ repoServer:
             name: custom-tools
 ```
 
-
-
 ### 3) 샘플 애플리케이션 배포
 
-#### (1) Helm Chart에 포함된 시크릿 데이터 배포
+#### (1) 저장소 추가
+
+> 💡 참고 : Git 저장소에 대한 Fork 후 진행
+
+```bash
+# 샘플 애플리케이션 배포를 위한 저장소 추가
+# argocd repo add <저장소 주소> --username <계정명> --password <암호>
+argocd repo add https://github.com/hyungwook0221/spring-boot-debug-app --username <계정명> --password <암호>
+ 
+# 등록 확인 : 기본적으로 아르고시디가 설치된 쿠버네티스 클러스터는 타깃 클러스터로 등록됨
+argocd repo list
+TYPE  NAME  REPO                                                    INSECURE  OCI    LFS    CREDS  STATUS      MESSAGE  PROJECT
+git         https://github.com/hyungwook0221/argo-demo.git          false     false  false  true   Successful
+git         https://github.com/hyungwook0221/spring-boot-debug-app  false     false  false  true   Successful
+```
+
+#### (2) Helm Chart에 포함된 시크릿 데이터 배포
 
 - Applicaton YAML 샘플
 
