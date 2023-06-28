@@ -36,7 +36,7 @@ Argo **CD** is a declarative, **GitOps** continuous delivery tool for **Kubernet
 # 설치
 helm repo add argo https://argoproj.github.io/argo-helm
 helm repo update
-helm install argocd argo/argo-cd --set server.service.type=LoadBalancer --namespace argocd --create-namespace argocd --version 5.19.14
+helm install argocd argo/argo-cd --set server.service.type=LoadBalancer --namespace argocd --create-namespace argocd
 
 # External IP 확인
 EXTERNAL_IP=$(k get svc -n argocd argocd-server -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
