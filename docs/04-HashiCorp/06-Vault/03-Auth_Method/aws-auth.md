@@ -528,6 +528,11 @@ output "info" {
 }
 ```
 
+- 서버 ssh 접속을 위한 private key는 `ssh_private` 파일로 자동 생성
+  ```bash
+  $ ssh -i ./ssh_private $(terraform output -raw vault_ip)
+  ```
+
 
 
 ### Vault Server 실행
