@@ -524,6 +524,7 @@ output "info" {
     client_role_arn = aws_iam_role.example_client_instance_role_client.arn
     ami_id          = aws_instance.client.ami
     ec2_id          = aws_instance.client.id
+    private_key     = nonsensitive(tls_private_key.ssh.private_key_pem)
   }
 }
 ```
