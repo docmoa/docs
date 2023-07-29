@@ -26,7 +26,7 @@ rightAnchor:
 
 ### Start contributing to `docmoa`
 
-> Tested NodeJS : v12, v14
+> Tested NodeJS : v12, v14, v16
 
 <code-group>
 <code-block title="NPM">
