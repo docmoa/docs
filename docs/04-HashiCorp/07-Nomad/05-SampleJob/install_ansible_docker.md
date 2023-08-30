@@ -1,0 +1,129 @@
+---
+meta:
+  - name: description
+    content: Nomad에서 Aisnble 실행 및 템플릿 주의사항
+tags: ["Nomad", "Ansible", "Job", "Docker"]
+---
+
+# Nomad에서 Ansible로 Docker 설치와 Template 주의사항
+
+> 참고 : https://discuss.hashicorp.com/t/escape-characters-recognized-as-a-variable-in-template-stanza/40525
+
+Nomad를 통해 Ops작업을 수행할 때 `sysbatch` 타입의 Job에 Ansible을 `raw_exec`로 실행하면 전체 노드에서 일괄로 작업을 수행할 수 있다.
+
+Ansible에서 사용하는 문법 중 `{{ }}`의 팩트를 사용하는 경우 Nomad에서 사용하는 Template의 `{{ }}`과 겹쳐 오류가 발생한다.
+
+```log
+Template failed: (dynamic): parse: template: :23: function "ansible_distribution_release" not defined
+```
+
+이경우 Nomad에서 `{{ "{{" }}` `{{ "}}" }}` 로 표기하여 템플릿 문자에 대한 치환이 가능하다.
+
+다음은 Ansible에서 `apt_repository` 수행 시 `ansible_architecture`와 `ansible_distribution_release` 같은 팩트 값을 Template으로 Playbook을 작성한 예제 이다. 
+
+```hcl
+job "install-ansible-docker" {
+  datacenters = ["hashitalks-kr"]  # 사용할 데이터 센터 이름으로 수정
+
+  type = "sysbatch"  # 배치 작업 유형
+
+  constraint {
+    attribute = "${attr.os.name}"
+    value     = "ubuntu"
+  }
+
+  parameterized {
+    payload       = "forbidden"
+  }
+
+  group "install- group" {
+
+    task "install-ansible-task" {
+      lifecycle {
+        hook = "prestart"
+        sidecar = false
+      }
+      
+      driver = "raw_exec"  # 외부 스크립트를 실행
+
+      config {
+        command = "local/install_ansible.sh"
+      }
+
+      template {
+        destination = "local/install_ansible.sh"
+        data = <<EOF
+#!/bin/bash
+sudo apt-get update
+sudo apt-get install -y ansible
+EOF
+      }
+    }
+
+    task "install-docker-task" {
+      driver = "raw_exec"  # 외부 스크립트를 실행
+
+      config {
+        command = "ansible-playbook"
+        args = [
+          "local/playbook.yml"
+        ]
+      }
+
+      env {
+        JAVA_VERSION = "${NOMAD_META_DesiredJavaVersion}"
+      }
+
+      template {
+        destination = "local/playbook.yml"
+        data = <<EOF
+---
+- hosts: localhost
+  connection: local
+  become: yes
+  tasks:
+    - name: Install required packages
+      apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+          - gnupg
+        state: present
+
+    - name: Add Docker's official GPG key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker repository
+      apt_repository:
+        repo: "deb [arch={{"{{"}} ansible_architecture {{"}}"}}] https://download.docker.com/linux/ubuntu {{"{{"}} ansible_distribution_release {{"}}"}} stable"
+        state: present
+
+    - name: Update the apt package index
+      apt:
+        update_cache: yes
+
+    - name: Install Docker CE
+      apt:
+        name: docker-ce
+        state: present
+
+    - name: Ensure Docker starts on boot
+      service:
+        name: docker
+        enabled: yes
+EOF
+      }
+
+      resources {
+        cpu    = 500
+        memory = 256
+      }
+    }
+  }
+}
+
+```
