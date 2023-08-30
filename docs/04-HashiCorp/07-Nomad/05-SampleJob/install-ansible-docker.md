@@ -17,7 +17,11 @@ Ansible에서 사용하는 문법 중 `{{ }}`의 팩트를 사용하는 경우 N
 Template failed: (dynamic): parse: template: :23: function "ansible_distribution_release" not defined
 ```
 
-이경우 Nomad에서 `{{ "{{" }}` `{{ "}}" }}` 로 표기하여 템플릿 문자에 대한 치환이 가능하다.
+이경우 Nomad에서 다음과 같이 표기하여 템플릿 문자에 대한 치환이 가능하다.
+```hcl
+ {{ --> {{ "{{" }}
+ }} --> {{ "}}" }}
+```
 
 다음은 Ansible에서 `apt_repository` 수행 시 `ansible_architecture`와 `ansible_distribution_release` 같은 팩트 값을 Template으로 Playbook을 작성한 예제 이다. 
 
