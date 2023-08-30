@@ -78,43 +78,63 @@ EOF
         destination = "local/playbook.yml"
         data = <<EOF
 ---
-- hosts: localhost
-  connection: local
+- hosts:
+    - localhost
   become: yes
   tasks:
+    - name: Install aptitude
+      apt:
+        name: aptitude
+        state: latest
+        update_cache: true
+
     - name: Install required packages
       apt:
-        name:
+        pkg:
           - apt-transport-https
           - ca-certificates
           - curl
           - software-properties-common
-          - gnupg
-        state: present
+          - python3-pip
+          - virtualenv
+          - python3-setuptools
+        state: latest
+        update_cache: true
 
-    - name: Add Docker's official GPG key
+    - name: Add Docker GPG apt Key
       apt_key:
         url: https://download.docker.com/linux/ubuntu/gpg
         state: present
 
     - name: Add Docker repository
       apt_repository:
-        repo: "deb [arch={{"{{"}} ansible_architecture {{"}}"}}] https://download.docker.com/linux/ubuntu {{"{{"}} ansible_distribution_release {{"}}"}} stable"
+        repo: "deb [arch={{ env "attr.cpu.arch" }}] https://download.docker.com/linux/ubuntu {{"{{"}} ansible_lsb.codename {{"}}"}} stable"
         state: present
+        update_cache: true
 
     - name: Update the apt package index
       apt:
-        update_cache: yes
+        update_cache: true
 
     - name: Install Docker CE
       apt:
         name: docker-ce
+        state: latest
+
+    - name: Install Docker CE etc.
+      apt:
+        name:
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
         state: present
 
     - name: Ensure Docker starts on boot
       service:
         name: docker
-        enabled: yes
+        enabled: true
+        state: started
 EOF
       }
 
@@ -125,5 +145,4 @@ EOF
     }
   }
 }
-
 ```
