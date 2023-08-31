@@ -11,7 +11,7 @@ tags: ["Nomad", "Ansible", "Job", "Docker"]
 
 Nomad를 통해 Ops작업을 수행할 때 `sysbatch` 타입의 Job에 Ansible을 `raw_exec`로 실행하면 전체 노드에서 일괄로 작업을 수행할 수 있다.
 
-Ansible에서 사용하는 문법 중 `{{ }}`의 팩트를 사용하는 경우 Nomad에서 사용하는 Template의 `{{ }}`과 겹쳐 오류가 발생한다.
+Ansible에서 사용하는 문법 중 `{{}}`의 부호로 팩트를 사용하는 경우 Nomad에서 사용하는 Template의 `{{}}`과 겹쳐 오류가 발생한다.
 
 ```log
 Template failed: (dynamic): parse: template: :23: function "ansible_distribution_release" not defined
