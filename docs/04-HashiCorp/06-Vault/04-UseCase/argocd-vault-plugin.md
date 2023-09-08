@@ -36,7 +36,7 @@ Argo **CD** is a declarative, **GitOps** continuous delivery tool for **Kubernet
 # 설치
 helm repo add argo https://argoproj.github.io/argo-helm
 helm repo update
-helm install argocd argo/argo-cd --set server.service.type=LoadBalancer --namespace argocd --create-namespace argocd
+helm install argocd argo/argo-cd --set server.service.type=LoadBalancer --namespace argocd --create-namespace --version 5.42.3
 
 # External IP 확인
 EXTERNAL_IP=$(k get svc -n argocd argocd-server -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
@@ -87,6 +87,8 @@ https://kubernetes.default.svc  in-cluster           Unknown  Cluster has no app
 
 #### (1) Git 저장소 생성 및 다운
 
+> 해당 저장소는 개인이 생성한 Git 저장소로 대체하셔도 됩니다.  
+> 필자가 만든 저장소를 그대로 사용한다면, "ArgoCD Application CRD" 챕터로 넘어가시면 됩ㄴ디ㅏ.
 ```bash
 # Git 저장소 설정
 git clone https://github.com/hyungwook0221/argo-demo.git
@@ -251,41 +253,47 @@ path "kv-v2/data/demo" {
   capabilities = ["read"]
 }
 EOF
-
-exit
 ```
 
 - 인증방식 활성화
 
 ```bash
 # enable Kubernetes Auth Method
-kubectl exec -n vault vault-0 --- vault auth enable kubernetes
+vault auth enable kubernetes
 
 # get Kubernetes host address
 # K8S_HOST="https://kubernetes.default.svc"
 # K8S_HOST="https://$(env | grep KUBERNETES_PORT_443_TCP_ADDR| cut -f2 -d'='):443"
-K8S_HOST="https://$( kubectl exec -n vault vault-0 -- env | grep KUBERNETES_PORT_443_TCP_ADDR| cut -f2 -d'='):443"
+# K8S_HOST="https://$( kubectl exec -n vault vault-0 -- env | grep KUBERNETES_PORT_443_TCP_ADDR| cut -f2 -d'='):443"
 
 # get Service Account token from Vault Pod
 #SA_TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
-SA_TOKEN=$(kubectl exec -n vault vault-0 -- cat /var/run/secrets/kubernetes.io/serviceaccount/token)
+# SA_TOKEN=$(kubectl exec -n vault vault-0 -- cat /var/run/secrets/kubernetes.io/serviceaccount/token)
 
 # get Service Account CA certificate from Vault Pod
 #SA_CERT=$(cat /var/run/secrets/kubernetes.io/serviceaccount/ca.crt)
-SA_CERT=$(kubectl exec -n vault vault-0 -- cat /var/run/secrets/kubernetes.io/serviceaccount/ca.crt)
+#SA_CERT=$(kubectl exec -n vault vault-0 -- cat /var/run/secrets/kubernetes.io/serviceaccount/ca.crt)
 
 # configure Kubernetes Auth Method
-kubectl exec -n vault vault-0 -- vault write auth/kubernetes/config \
-    token_reviewer_jwt=$SA_TOKEN \
-    kubernetes_host=$K8S_HOST \
-    kubernetes_ca_cert=$SA_CERT
+# kubectl exec -n vault vault-0 -- vault write auth/kubernetes/config \
+#     token_reviewer_jwt=$SA_TOKEN \
+#     kubernetes_host=$K8S_HOST \
+#     kubernetes_ca_cert=$SA_CERT
+
+# 인증방식 업데이트
+vault write auth/kubernetes/config \
+  token_reviewer_jwt="$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)" \
+  kubernetes_host="https://$KUBERNETES_PORT_443_TCP_ADDR:443" \
+  kubernetes_ca_cert=@/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
 
 # create authenticate Role for ArgoCD
-kubectl exec -n vault vault-0 -- vault write auth/kubernetes/role/argocd \
+vault write auth/kubernetes/role/argocd \
   bound_service_account_names=argocd-repo-server \
   bound_service_account_namespaces=argocd \
   policies=demo \
   ttl=48h
+
+exit
 ```
 
 #### (3) ArgoCD Vault Plugin Credentials 생성
@@ -293,6 +301,7 @@ kubectl exec -n vault vault-0 -- vault write auth/kubernetes/role/argocd \
 > 💡 참고 
 >
 > - https://argocd-vault-plugin.readthedocs.io/en/stable/backends/#kubernetes-authentication
+> - 네임스페이스 생성 후 추가
 
 ```yaml
 kind: Secret
@@ -394,7 +403,7 @@ data:
           - "-c"
           - |
             helm template $ARGOCD_APP_NAME -n $ARGOCD_APP_NAMESPACE ${ARGOCD_ENV_HELM_ARGS} . |
-            argocd-vault-plugin generate -
+            argocd-vault-plugin generate -s argocd:argocd-vault-plugin-credentials -
       lockRepo: false
   avp-kustomize.yaml: |
     ---
@@ -452,7 +461,7 @@ spec:
         image: alpine/curl
         env:
           - name: AVP_VERSION
-            value: 1.14.0
+            value: 1.15.0
         command: [sh, -c]
         args:
           - >-
@@ -667,10 +676,6 @@ repoServer:
         - name: custom-tools
           mountPath: /usr/local/bin/argocd-vault-plugin
           subPath: argocd-vault-plugin
-				# envFrom 절 추가
-        envFrom:
-          - secretRef:
-              name: argocd-vault-plugin-credentials
   	  # volume절에 custom-tools 추가
       volumes:
       - name: custom-tools
