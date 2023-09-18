@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: libunistring.2.dylib not loaded
-tags: ["mac", "homebrew", "brew", "wget"]
+description: libunistring.2.dylib not loaded
+tag: ["mac", "homebrew", "brew", "wget"]
 ---
 
 # Library not loaded: libunistring.2.dylib

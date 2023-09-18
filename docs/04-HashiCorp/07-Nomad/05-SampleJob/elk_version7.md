@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Nomad Sample
-tags: ["Nomad", "Sample", "Job"]
+description: Nomad Sample
+tag: ["Nomad", "Sample", "Job"]
 ---
 
 # elk_version7

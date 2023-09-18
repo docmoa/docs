@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Nomad 기본 구성 및 샘플 Job
-tags: ["Nomad", "Sample"]
+description: Nomad 기본 구성 및 샘플 Job
+tag: ["Nomad", "Sample"]
 ---
 
 # Nomad Guide - Basic

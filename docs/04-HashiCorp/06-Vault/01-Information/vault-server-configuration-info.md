@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Vault 서버 실행시 구성 정보 내용 설명
-tags: ["vault", "configuration"]
+description: Vault 서버 실행시 구성 정보 내용 설명
+tag: ["vault", "configuration"]
 ---
 
 # Vault Server Configuration - Info

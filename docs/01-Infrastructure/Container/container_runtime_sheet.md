@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: "Container Runtimes 비교 표"
-tags: ["container", "docker", "podman"]
+description: "Container Runtimes 비교 표"
+tag: ["container", "docker", "podman"]
 ---
 
 # Container Runtimes 비교 표

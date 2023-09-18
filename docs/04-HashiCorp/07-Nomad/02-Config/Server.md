@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Nomad Server Configuration
-tags: ["Nomad", "Enterprise", "Configuration", "Server"]
+description: Nomad Server Configuration
+tag: ["Nomad", "Enterprise", "Configuration", "Server"]
 ---
 
 # Nomad 서버 설정

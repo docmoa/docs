@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Tomcat
-tags: ["Tomcat", "Java"]
+description: Tomcat
+tag: ["Tomcat", "Java"]
 ---
 
 # 5. Tomcat 애플리케이션 배포

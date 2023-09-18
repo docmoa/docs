@@ -1,9 +1,5 @@
 ---
 
-meta:
-  - name: description
-    content: 문서를 작성하는 방법을 안내
-tags: ["how", "docmoa"]
 
 ---
 

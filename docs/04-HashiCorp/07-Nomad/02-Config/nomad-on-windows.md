@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Windows에서의 Nomad 구성 예제
-tags: ["Nomad", "Windows"]
+description: Windows에서의 Nomad 구성 예제
+tag: ["Nomad", "Windows"]
 ---
 
 # Nomad on Windows

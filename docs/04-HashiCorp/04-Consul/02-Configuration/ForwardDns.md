@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Consul ForwardDNS
-tags: ["Consul", "Enterprise", "Configuration", "ForwardDns"]
+description: Consul ForwardDNS
+tag: ["Consul", "Enterprise", "Configuration", "ForwardDns"]
 ---
 
 # ForwardDns

@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Consul Acl Policy Sample
-tags: ["Consul", "Acl", "Policy"]
+description: Consul Acl Policy Sample
+tag: ["Consul", "Acl", "Policy"]
 ---
 
 ## Consul ACL Policy sample

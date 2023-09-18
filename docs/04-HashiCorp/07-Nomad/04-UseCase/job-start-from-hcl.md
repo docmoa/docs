@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Passing Jobs defined in HCL to API (Execute Job written in HCL in Nomad Job Run API)
-tags: ["Nomad", "API", "HCL"]
+description: Passing Jobs defined in HCL to API (Execute Job written in HCL in Nomad Job Run API)
+tag: ["Nomad", "API", "HCL"]
 ---
 
 # Pass HCL to API

@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Vault의 PKI 인증서
-tags: ["vault", "PKI"]
+description: Vault의 PKI 인증서
+tag: ["vault", "PKI"]
 ---
 
 # PKI - nginx 샘플

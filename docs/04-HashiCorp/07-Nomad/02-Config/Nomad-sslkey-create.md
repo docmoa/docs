@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Nomad Namespace
-tags: ["Nomad", "SSL"]
+description: Nomad Namespace
+tag: ["Nomad", "SSL"]
 ---
 
 # Nomad 인증서 생성

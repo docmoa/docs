@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Consul Service Mesh on Kubernetes (Ent)
-tags: ["Consul", "ServiceMesh", "K8s", "Kubernetes"]
+description: Consul Service Mesh on Kubernetes (Ent)
+tag: ["Consul", "ServiceMesh", "K8s", "Kubernetes"]
 ---
 
 # 01. Install

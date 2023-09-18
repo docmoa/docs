@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: 테라폼 소개
-tags: ["terraform", "IaC"]
+description: 테라폼 소개
+tag: ["terraform", "IaC"]
 ---
 
 # Terraform 개념 소개

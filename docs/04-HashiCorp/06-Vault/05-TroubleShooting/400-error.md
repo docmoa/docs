@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Vault 400 Error 발생원인 및 확인
-tags: ["vault", "error", "400"]
+description: Vault 400 Error 발생원인 및 확인
+tag: ["vault", "error", "400"]
 ---
 
 # Vault 400 Error

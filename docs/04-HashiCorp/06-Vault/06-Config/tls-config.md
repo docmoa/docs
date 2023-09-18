@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Nomad Common Configuration
-tags: ["Vault", "https", "Configuration", "Server"]
+description: Nomad Common Configuration
+tag: ["Vault", "https", "Configuration", "Server"]
 ---
 
 # Vault Server tls 설정

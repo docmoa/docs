@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Consul Enterprise Feature
-tags: ["Consul", "Enterprise"]
+description: Consul Enterprise Feature
+tag: ["Consul", "Enterprise"]
 ---
 
 # Consul Enterprise Feature

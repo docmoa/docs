@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Nomad Namespace
-tags: ["Nomad", "Namespace"]
+description: Nomad Namespace
+tag: ["Nomad", "Namespace"]
 ---
 
 # integrate Vault

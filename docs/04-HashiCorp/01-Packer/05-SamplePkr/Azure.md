@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Packer Sample
-tags: ["Packer", "Sample", "Azure"]
+description: Packer Sample
+tag: ["Packer", "Sample", "Azure"]
 ---
 
 # Azure Packer Sample

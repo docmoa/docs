@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Vault SSH Ubuntu에 구성하는 예제
-tags: ["vault", "SSH", "OTP", "Debian", "Ubuntu"]
+description: Vault SSH Ubuntu에 구성하는 예제
+tag: ["vault", "SSH", "OTP", "Debian", "Ubuntu"]
 ---
 
 # SSH OTP - Debian 계열

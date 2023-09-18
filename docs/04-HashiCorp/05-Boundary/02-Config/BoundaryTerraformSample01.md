@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Boundary Terraform Setup
-tags: ["Boundary", "Terraform", "Config"]
+description: Boundary Terraform Setup
+tag: ["Boundary", "Terraform", "Config"]
 ---
 
 # Configure Boudary using Terraform

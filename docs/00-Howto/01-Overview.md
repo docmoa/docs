@@ -1,10 +1,6 @@
 ---
 
-title: docmoa 활용 가이드
-meta:
-  - name: description
-    content: 문서를 활용하는 방법을 안내
-tags: ["how", "docmoa"]
+description: 문서를 활용하는 방법을 안내
 
 ---
 
@@ -19,8 +15,8 @@ tags: ["how", "docmoa"]
 ## VuePress (Local 실행)
 공개된 페이지는 내 로컬환경에서도 실행할 수 있습니다. Nodejs가 필요합니다.
 
-<code-group>
-<code-block title="NPM">
+::: code-tabs#shell
+@tab npm
 ```bash {2,5-6,9}
 # git clone
 git clone https://github.com/docmoa/docs.git
@@ -32,9 +28,8 @@ npm install
 # start VuePress writing
 npm run dev
 ```
-</code-block>
 
-<code-block title="YARN">
+@tab yarn
 ```bash {2,5-6,9}
 # git clone
 git clone https://github.com/docmoa/docs.git
@@ -46,8 +41,7 @@ yarn install
 # start VuePress writing
 yarn vuepress dev
 ```
-</code-block>
-</code-group>
+:::
 
 실행이 완료되면 로그에 다음과 같은 메시지와 접속할 수 있는 링크가 나타납니다.
 ```text

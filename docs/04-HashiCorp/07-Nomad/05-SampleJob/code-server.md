@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Nomad Sample
-tags: ["Nomad", "Sample", "Job","vs-code"]
+description: Nomad Sample
+tag: ["Nomad", "Sample", "Job","vs-code"]
 ---
 
 # code-server

@@ -1,9 +1,7 @@
 ---
-meta:
-  - name: description
-    content: K8S 환경에서 Jaeger를 통한 Consul Service Mesh Tracing
+description: K8S 환경에서 Jaeger를 통한 Consul Service Mesh Tracing
 author: "유형욱"
-tags: ["Consul", "Jaeger", "Tracing", "OpenTelemetry", "Istio", "IngressGateway", "Kubetenetes", "K8s"]
+tag: ["Consul", "Jaeger", "Tracing", "OpenTelemetry", "Istio", "IngressGateway", "Kubetenetes", "K8s"]
 
 ---
 

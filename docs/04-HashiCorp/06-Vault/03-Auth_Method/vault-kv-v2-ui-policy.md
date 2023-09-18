@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: 사용자별 UI 접근에 대한 설정을 Kv-v2를 예로 확인
-tags: ["vault", "kv", "policy"]
+description: 사용자별 UI 접근에 대한 설정을 Kv-v2를 예로 확인
+tag: ["vault", "kv", "policy"]
 ---
 
 # kv-v2 UI Policy
@@ -74,19 +72,18 @@ EOF
 ## 인증 생성
 생성한 Policy 기반으로 인증 생성
 
-<code-group>
-<code-block title="userpass">
+::: code-tabs#shell
+
+@tab userpass
 ```bash
 $ vault write auth/userpass/users/userid password=password policies=ui-kv-policy
 ```
-</code-block>
-
-<code-block title="token">
+@tab token
 ```bash {2}
 vault token create -policy=ui-kv-policy
 ```
-</code-block>
-</code-group>
+
+:::
 
 ## 조회 확인
 생성한 인증의 `Token`을 사용하여 데이터가 조회됨을 확인

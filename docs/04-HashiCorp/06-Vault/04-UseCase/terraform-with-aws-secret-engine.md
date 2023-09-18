@@ -1,9 +1,10 @@
 ---
-meta:
-  - name: Terraform 코드에서 Vault 연동하기
-    content: Terraform 코드 상에서 Vault 연동하기
+head:
+  - - meta
+    - name: Terraform 코드에서 Vault 연동하기
+      content: Terraform 코드 상에서 Vault 연동하기
 author : "powhapki"
-tags: ["terraform", "vault", "aws"]
+tag: ["terraform", "vault", "aws"]
 
 ---
 

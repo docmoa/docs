@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Vault Login에 Vault TOTP 기반 MFA 추가
-tags: ["vault auth", "MFA"]
+description: Vault Login에 Vault TOTP 기반 MFA 추가
+tag: ["vault auth", "MFA"]
 ---
 
 # MFA Login with Vault TOTP

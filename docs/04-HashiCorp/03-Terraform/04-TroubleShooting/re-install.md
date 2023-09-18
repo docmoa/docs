@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Terraform Enterprise 재설치 주의사항
-tags: ["Terraform", "Enterprise", "TFE"]
+description: Terraform Enterprise 재설치 주의사항
+tag: ["Terraform", "Enterprise", "TFE"]
 author: jsp
 ---
 

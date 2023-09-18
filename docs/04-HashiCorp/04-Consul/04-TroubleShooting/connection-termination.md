@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Envoy proxy 50x Error
-tags: ["Consul", "ServiceMesh", "SideCar", "Kubernetes", "K8S"]
+description: Envoy proxy 50x Error
+tag: ["Consul", "ServiceMesh", "SideCar", "Kubernetes", "K8S"]
 ---
 
 # Connection termination

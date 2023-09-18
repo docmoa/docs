@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Vault 설치 구성을 위한 사이징 가이드
-tags: ["vault", "sizing"]
+description: Vault 설치 구성을 위한 사이징 가이드
+tag: ["vault", "sizing"]
 ---
 
 # Vault Sizing

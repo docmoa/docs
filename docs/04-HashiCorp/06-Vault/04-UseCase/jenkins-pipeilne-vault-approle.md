@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: AppRole 방식의 인증을 빌드 파이프라인에 적용
-tags: ["vault", "jenkins", "approle"]
+description: AppRole 방식의 인증을 빌드 파이프라인에 적용
+tag: ["vault", "jenkins", "approle"]
 ---
 # Jenkins Pipeline Vault Approle (with Nomad)
 

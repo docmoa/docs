@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: "no space left on device"
-tags: ["rancher", "docker", "mac"]
+description: "no space left on device"
+tag: ["rancher", "docker", "mac"]
 ---
 
 # Rancher Desktop Disk Resize on MAC

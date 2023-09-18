@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Nomad Sample
-tags: ["Nomad", "Sample", "Job", "param", "batch"]
+description: Nomad Sample
+tag: ["Nomad", "Sample", "Job", "param", "batch"]
 ---
 
 # param-batch-job

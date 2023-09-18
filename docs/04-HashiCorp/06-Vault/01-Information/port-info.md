@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Vault 구성 포트 정보
-tags: ["vault", "port", "requirement"]
+description: Vault 구성 포트 정보
+tag: ["vault", "port", "requirement"]
 ---
 
 # Vault Listen Address & Port

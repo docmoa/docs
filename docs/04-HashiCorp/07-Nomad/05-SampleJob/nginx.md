@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Nomad Sample
-tags: ["Nomad", "Sample", "Job","reverse proxy","consul service discovery"]
+description: Nomad Sample
+tag: ["Nomad", "Sample", "Job","reverse proxy","consul service discovery"]
 ---
 
 # nginx

@@ -1,0 +1,14 @@
+export const data = JSON.parse("{\"key\":\"v-18914cc4\",\"path\":\"/00-Howto/03-Tips/CodeBlock.html\",\"title\":\"Code Block\",\"lang\":\"ko-KR\",\"frontmatter\":{\"description\":\"Code Block 마크다운 기본 사용 법과 거의 동일합니다. 기본 사용법 코드블록은 ``` 과 ``` 사이에 코드를 넣어 로 표기합니다. 아래와 같이 md 파일 내에 작성하면 ``` # Code block e.g. This is my code ```\",\"head\":[[\"meta\",{\"property\":\"og:url\",\"content\":\"https://vuepress-theme-hope-docs-demo.netlify.app/00-Howto/03-Tips/CodeBlock.html\"}],[\"meta\",{\"property\":\"og:site_name\",\"content\":\"docmoa\"}],[\"meta\",{\"property\":\"og:title\",\"content\":\"Code Block\"}],[\"meta\",{\"property\":\"og:description\",\"content\":\"Code Block 마크다운 기본 사용 법과 거의 동일합니다. 기본 사용법 코드블록은 ``` 과 ``` 사이에 코드를 넣어 로 표기합니다. 아래와 같이 md 파일 내에 작성하면 ``` # Code block e.g. This is my code ```\"}],[\"meta\",{\"property\":\"og:type\",\"content\":\"article\"}],[\"meta\",{\"property\":\"og:locale\",\"content\":\"ko-KR\"}],[\"script\",{\"type\":\"application/ld+json\"},\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"Article\\\",\\\"headline\\\":\\\"Code Block\\\",\\\"image\\\":[\\\"\\\"],\\\"dateModified\\\":null,\\\"author\\\":[]}\"]]},\"headers\":[{\"level\":2,\"title\":\"기본 사용법\",\"slug\":\"기본-사용법\",\"link\":\"#기본-사용법\",\"children\":[]},{\"level\":2,\"title\":\"코드 구문 강조\",\"slug\":\"코드-구문-강조\",\"link\":\"#코드-구문-강조\",\"children\":[]},{\"level\":2,\"title\":\"코드 강조\",\"slug\":\"코드-강조\",\"link\":\"#코드-강조\",\"children\":[]},{\"level\":2,\"title\":\"다중 코드블록\",\"slug\":\"다중-코드블록\",\"link\":\"#다중-코드블록\",\"children\":[]},{\"level\":2,\"title\":\"Code Demo\",\"slug\":\"code-demo\",\"link\":\"#code-demo\",\"children\":[]}],\"git\":{},\"readingTime\":{\"minutes\":0.66,\"words\":197},\"filePathRelative\":\"00-Howto/03-Tips/CodeBlock.md\",\"excerpt\":\"<h1> Code Block</h1>\\n<p>마크다운 기본 사용 법과 거의 동일합니다.</p>\\n<h2> 기본 사용법</h2>\\n<p>코드블록은 ``` 과 ``` 사이에 코드를 넣어 로 표기합니다. 아래와 같이 md 파일 내에 작성하면</p>\\n<div class=\\\"language-markdown line-numbers-mode\\\" data-ext=\\\"md\\\"><pre class=\\\"language-markdown\\\"><code><span class=\\\"token code\\\"><span class=\\\"token punctuation\\\">```</span>\\n<span class=\\\"token code-block\\\"># Code block e.g.\\nThis is my code</span>\\n<span class=\\\"token punctuation\\\">```</span></span>\\n</code></pre><div class=\\\"line-numbers\\\" aria-hidden=\\\"true\\\"><div class=\\\"line-number\\\"></div><div class=\\\"line-number\\\"></div><div class=\\\"line-number\\\"></div><div class=\\\"line-number\\\"></div></div></div>\",\"copyright\":{\"license\":\"CC BY-NC-ND 4.0 Licensed | ⓒ 2021-present docmoa™ contributers all rights reserved.\"},\"autoDesc\":true}")
+
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept()
+  if (__VUE_HMR_RUNTIME__.updatePageData) {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  }
+}
+
+if (import.meta.hot) {
+  import.meta.hot.accept(({ data }) => {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  })
+}

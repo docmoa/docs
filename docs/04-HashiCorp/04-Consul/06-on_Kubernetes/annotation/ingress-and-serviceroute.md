@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Consul Service Mesh on Kubernetes
-tags: ["Consul", "ServiceMesh", "K8s", "Kubernetes", "ingress"]
+description: Consul Service Mesh on Kubernetes
+tag: ["Consul", "ServiceMesh", "K8s", "Kubernetes", "ingress"]
 ---
 
 # Ingress & ServiceRoute

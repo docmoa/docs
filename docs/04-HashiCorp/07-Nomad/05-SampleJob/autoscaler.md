@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Nomad autoscaler for aws
-tags: ["Nomad", "sample", "job", "autoscaler", "aws"]
+description: Nomad autoscaler for aws
+tag: ["Nomad", "sample", "job", "autoscaler", "aws"]
 ---
 
 # Autoscaler 

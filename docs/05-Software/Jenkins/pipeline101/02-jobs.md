@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: jenkins 101
-tags: ["cicd", "jenkins"]
+description: jenkins 101
+tag: ["cicd", "jenkins"]
 ---
 
 # 2. Jobs

@@ -1,0 +1,14 @@
+export const data = JSON.parse("{\"key\":\"v-09c6ff98\",\"path\":\"/04-HashiCorp/07-Nomad/02-Config/nomad-on-windows.html\",\"title\":\"Nomad on Windows\",\"lang\":\"ko-KR\",\"frontmatter\":{\"description\":\"Windows에서의 Nomad 구성 예제\",\"tag\":[\"Nomad\",\"Windows\"],\"head\":[[\"meta\",{\"property\":\"og:url\",\"content\":\"https://vuepress-theme-hope-docs-demo.netlify.app/04-HashiCorp/07-Nomad/02-Config/nomad-on-windows.html\"}],[\"meta\",{\"property\":\"og:site_name\",\"content\":\"docmoa\"}],[\"meta\",{\"property\":\"og:title\",\"content\":\"Nomad on Windows\"}],[\"meta\",{\"property\":\"og:description\",\"content\":\"Windows에서의 Nomad 구성 예제\"}],[\"meta\",{\"property\":\"og:type\",\"content\":\"article\"}],[\"meta\",{\"property\":\"og:locale\",\"content\":\"ko-KR\"}],[\"meta\",{\"property\":\"article:tag\",\"content\":\"Nomad\"}],[\"meta\",{\"property\":\"article:tag\",\"content\":\"Windows\"}],[\"script\",{\"type\":\"application/ld+json\"},\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"Article\\\",\\\"headline\\\":\\\"Nomad on Windows\\\",\\\"image\\\":[\\\"\\\"],\\\"dateModified\\\":null,\\\"author\\\":[]}\"]]},\"headers\":[{\"level\":2,\"title\":\"Port 구성\",\"slug\":\"port-구성\",\"link\":\"#port-구성\",\"children\":[]},{\"level\":2,\"title\":\"디렉토리 구성\",\"slug\":\"디렉토리-구성\",\"link\":\"#디렉토리-구성\",\"children\":[]},{\"level\":2,\"title\":\"설치\",\"slug\":\"설치\",\"link\":\"#설치\",\"children\":[]},{\"level\":2,\"title\":\"설정\",\"slug\":\"설정\",\"link\":\"#설정\",\"children\":[]},{\"level\":2,\"title\":\"실행과 서비스 등록\",\"slug\":\"실행과-서비스-등록\",\"link\":\"#실행과-서비스-등록\",\"children\":[]},{\"level\":2,\"title\":\"테스트\",\"slug\":\"테스트\",\"link\":\"#테스트\",\"children\":[]},{\"level\":2,\"title\":\"마치며\",\"slug\":\"마치며\",\"link\":\"#마치며\",\"children\":[]}],\"git\":{},\"readingTime\":{\"minutes\":2.35,\"words\":704},\"filePathRelative\":\"04-HashiCorp/07-Nomad/02-Config/nomad-on-windows.md\",\"excerpt\":\"<h1> Nomad on Windows</h1>\\n<p>Nomad를 Windows환경에 구성하고 실행을위해 서비스로 등록하는 방법을 알아봅니다. 솔루션 실행 환경 또는 운영/개발자의 익숙함 정도에 따라 다양한 OS를 선택하여 애플리케이션을 배포하게 됩니다. Nomad를 통해 배포를 위한 오케스트레이터를 Windows 환경에 적용하고 서비스에 등록하여 상시적으로 실행될 수 있도록하는 구성을 안내합니다.</p>\\n<h2> Port 구성</h2>\\n<blockquote>\\n<p>참고 url : <a href=\\\"https://www.nomadproject.io/docs/install/production/requirements#ports-used\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">Port used</a></p>\\n</blockquote>\",\"copyright\":{\"license\":\"CC BY-NC-ND 4.0 Licensed | ⓒ 2021-present docmoa™ contributers all rights reserved.\"}}")
+
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept()
+  if (__VUE_HMR_RUNTIME__.updatePageData) {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  }
+}
+
+if (import.meta.hot) {
+  import.meta.hot.accept(({ data }) => {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  })
+}

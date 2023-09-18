@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Nomad + Consul Sample
-tags: ["Nomad", "Consul", "Sample", "Job"]
+description: Nomad + Consul Sample
+tag: ["Nomad", "Consul", "Sample", "Job"]
 ---
 
 # Tomcat

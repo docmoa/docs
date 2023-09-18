@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: 공식 registry 접근이 불가능하거나 별도로 Provider를 관리해야 하는 경우 사용
-tags: ["terraform", "provider"]
+description: 공식 registry 접근이 불가능하거나 별도로 Provider를 관리해야 하는 경우 사용
+tag: ["terraform", "provider"]
 ---
 
 # Terraform Provider - 로컬 미러링

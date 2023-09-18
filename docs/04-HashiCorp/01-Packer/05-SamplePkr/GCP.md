@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Packer Sample
-tags: ["Packer", "Sample", "GCP"]
+description: Packer Sample
+tag: ["Packer", "Sample", "GCP"]
 ---
 
 # Google Cloud Platform Packer Sample

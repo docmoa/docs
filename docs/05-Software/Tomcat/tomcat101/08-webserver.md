@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Tomcat
-tags: ["Tomcat", "Java"]
+description: Tomcat
+tag: ["Tomcat", "Java"]
 ---
 
 # 8. Tomcat 웹서버 연동

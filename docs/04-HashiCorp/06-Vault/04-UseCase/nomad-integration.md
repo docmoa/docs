@@ -1,8 +1,9 @@
 ---
-meta:
-  - name: Vault - Nomad Integration
-    content: 애플리케이션 변경을 최소화 하여 Vault와 연동하기
-tags: ["nomad", "vault", "aws", "db"]
+head:
+  - - meta
+    - name: Vault - Nomad Integration
+      content: 애플리케이션 변경을 최소화 하여 Vault와 연동하기
+tag: ["nomad", "vault", "aws", "db"]
 
 ---
 

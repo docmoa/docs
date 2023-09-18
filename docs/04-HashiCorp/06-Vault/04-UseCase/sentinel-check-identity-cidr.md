@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Sentinel을 사용하여 identity 조건에 cidr 검사
-tags: ["vault", "sentinel", "cidr", "enterprise"]
+description: Sentinel을 사용하여 identity 조건에 cidr 검사
+tag: ["vault", "sentinel", "cidr", "enterprise"]
 ---
 # Sentinel - (Identity & CIDR)
 

@@ -1,7 +1,5 @@
 ---
 
-title: Tip Box
-tags: ["how", "docmoa"]
 
 ---
 

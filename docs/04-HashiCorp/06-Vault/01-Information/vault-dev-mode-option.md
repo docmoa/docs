@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Vault 개발 모드 실행시 옵션 값 설명
-tags: ["vault", "optinos"]
+description: Vault 개발 모드 실행시 옵션 값 설명
+tag: ["vault", "optinos"]
 ---
 
 # Vault Development Mode Options

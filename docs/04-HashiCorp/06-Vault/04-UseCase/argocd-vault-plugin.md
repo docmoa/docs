@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: ArgoCD Vault Plugin 연동방안
-tags: ["vault", "argocd", "gitops", "devsescops", "pipeline", "github", "gitlab", "secret", "kubernetes", "k8s", "eks" ]
+description: ArgoCD Vault Plugin 연동방안
+tag: ["vault", "argocd", "gitops", "devsescops", "pipeline", "github", "gitlab", "secret", "kubernetes", "k8s", "eks" ]
 ---
 # ArgoCD Vault Plugin
 

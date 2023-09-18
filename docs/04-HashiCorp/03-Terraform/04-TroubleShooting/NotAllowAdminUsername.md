@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Terraform Azure AdminUsername Error
-tags: ["Terraform", "Azure"]
+description: Terraform Azure AdminUsername Error
+tag: ["Terraform", "Azure"]
 ---
 
 # The Admin Username specified is not allowed.

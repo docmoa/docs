@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Vault Audit Log 활성화하는 방법
-tags: ["vault", "audit"]
+description: Vault Audit Log 활성화하는 방법
+tag: ["vault", "audit"]
 ---
 
 # Vault Audit

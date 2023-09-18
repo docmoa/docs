@@ -1,9 +1,7 @@
 ---
-meta:
-  - name: description
-    content: Vault Super user 만들기
+description: Vault Super user 만들기
 author : "이규석"
-tags: ["vault auth"]
+tag: ["vault auth"]
 ---
 
 # Vault SuperUser 생성

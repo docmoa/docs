@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Terraform Features
-tags: ["terraform", "usecase", "IaC", "HCL"]
+description: Terraform Features
+tag: ["terraform", "usecase", "IaC", "HCL"]
 ---
 
 # HCL - HashiCorp Configuration Language

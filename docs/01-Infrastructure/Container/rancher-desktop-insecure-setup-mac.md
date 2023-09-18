@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: "http: server gave HTTP response to HTTPS client"
-tags: ["rancher", "docker", "mac"]
+description: "http: server gave HTTP response to HTTPS client"
+tag: ["rancher", "docker", "mac"]
 ---
 
 # Rancher Desktop Insecure Setup on MAC

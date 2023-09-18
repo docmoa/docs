@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Nomad Dynamic application sizing
-tags: ["Nomad", "sample", "job", "autoscaler", "das"]
+description: Nomad Dynamic application sizing
+tag: ["Nomad", "sample", "job", "autoscaler", "das"]
 ---
 
 # Dynamic application sizing

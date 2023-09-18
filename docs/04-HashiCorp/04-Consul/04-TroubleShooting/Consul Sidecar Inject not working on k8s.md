@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: SSH Too many authentication failures
-tags: ["Consul", "ServiceMesh", "SideCar", "Kubernetes", "K8S"]
+description: SSH Too many authentication failures
+tag: ["Consul", "ServiceMesh", "SideCar", "Kubernetes", "K8S"]
 ---
 
 # Consul Sidecar Inject not working on K8S

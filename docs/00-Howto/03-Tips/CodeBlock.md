@@ -1,6 +1,6 @@
 ---
 
-tags: ["how", "docmoa"]
+
 
 ---
 
@@ -65,44 +65,40 @@ print("highlight!")
 상황에 따라 동일한 구성 및 동작을 위한 코드블록을 옵션을 주어 선택적으로 표기하고 싶은 경우 `<code-group>`과 `<code-block>` 을 활용 합니다.
 
 ~~~md
-<code-group>
-<code-block title="Option1">
+::: code-tabs#shell
+@tab Option1
 ```bash {2}
 # This is Option 1
 chmod 755 ./file.txt
 ```
-</code-block>
 
-<code-block title="Option2">
+@tab Option2
 ```bash {2}
 # This is Option 2
 chmod +x ./file.txt
 ```
-</code-block>
-</code-group>
+:::
 ~~~
 
-<code-group>
-<code-block title="Option1">
+::: code-tabs#shell
+@tab Option1
 ```bash {2}
 # This is Option 1
 chmod 755 ./file.txt
 ```
-</code-block>
 
-<code-block title="Option2">
+@tab Option2
 ```bash {2}
 # This is Option 2
 chmod +x ./file.txt
 ```
-</code-block>
-</code-group>
+:::
 
 ## Code Demo
 
 <https://vuepress-theme-hope.github.io/md-enhance/guide/demo/#>
 ~~~md
-::: demo Demo
+::: normal-demo Demo
 
 ```html
 <h1>Mr.Hope</h1>
@@ -124,7 +120,7 @@ span {
 :::
 ~~~
 
-::: demo Demo
+::: normal-demo Demo
 
 ```html
 <h1>Mr.Hope</h1>

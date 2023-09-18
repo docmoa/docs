@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: homebrew install certificate has expired
-tags: ["mac", "homebrew", "brew"]
+description: homebrew install certificate has expired
+tag: ["mac", "homebrew", "brew"]
 ---
 
 # homebrew install - certificate has expired

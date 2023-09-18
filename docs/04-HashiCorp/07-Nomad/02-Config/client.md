@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Nomad Client Configuration
-tags: ["Nomad", "Enterprise", "Configuration", "Client"]
+description: Nomad Client Configuration
+tag: ["Nomad", "Enterprise", "Configuration", "Client"]
 ---
 
 # Nomad 클라이언트 설정

@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Vault Transit
-tags: ["vault", "transit"]
+description: Vault Transit
+tag: ["vault", "transit"]
 ---
 
 # Transit

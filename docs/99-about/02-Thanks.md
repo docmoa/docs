@@ -4,4 +4,4 @@
 
 # Thank you
 
-<contributors />
+<!-- <contributors /> -->

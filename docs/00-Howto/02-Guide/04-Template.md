@@ -1,9 +1,5 @@
 ---
 
-meta:
-  - name: description
-    content: 문서 기본 템플릿
-tags: ["how", "docmoa"]
 
 ---
 
@@ -19,13 +15,7 @@ docmoa에 문서 템플릿을 설명합니다.
 
 ```md {1,2,6,7}
 ---
-meta:
-  - name: description
-    content: description은 여러개를 넣을 수 있습니다. yaml 형식입니다.
-  - name: description2
-    content: description은 여러개를 넣을 수 있습니다. yaml 형식입니다.
-author : ""
-tags: ["linux", "ssh"]
+
 ---
 
 # h1 제목 = Title 입니다.

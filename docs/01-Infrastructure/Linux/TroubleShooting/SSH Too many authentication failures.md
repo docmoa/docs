@@ -1,9 +1,7 @@
 ---
 
-meta:
-  - name: description
-    content: SSH Too many authentication failures
-tags: ["linux", "ssh"]
+description: SSH Too many authentication failures
+tag: ["linux", "ssh"]
 
 ---
 

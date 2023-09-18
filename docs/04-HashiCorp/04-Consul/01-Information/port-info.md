@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Consul 구성 포트 정보
-tags: ["consul", "port", "requirement"]
+description: Consul 구성 포트 정보
+tag: ["consul", "port", "requirement"]
 ---
 
 # Consul Port

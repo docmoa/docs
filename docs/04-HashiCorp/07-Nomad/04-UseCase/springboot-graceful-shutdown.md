@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Graceful Shutdown of Spring Boot Application in HashiCorp Nomad
-tags: ["Nomad", "SpringBoot", "Java"]
+description: Graceful Shutdown of Spring Boot Application in HashiCorp Nomad
+tag: ["Nomad", "SpringBoot", "Java"]
 ---
 
 # Graceful Shutdown 적용 (kill_signal)

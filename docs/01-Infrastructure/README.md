@@ -1,15 +1,35 @@
 ---
 
-sidebar: true
-next: false
-tags: ["Infrastructure"]
+tag: ["Infrastructure"]
+headerDepth: 0
 
 ---
 
-# Overview
+# Infrastructure
 
-## Recent Articles 10
+## Recent pages
 
-<RecentArticlesContents/>
+<script>
+import { defineComponent } from 'vue'
+import { usePages } from '@temp/infrastructure'  // pages.js is default filename
 
+export default defineComponent({
+  setup() {
+    const pages = usePages()
+    console.log(pages)
+    return { pages }
+  },
+})
+</script>
 
+<ul>
+  <li
+    v-for="page in pages"
+    :key="page.key"
+  >
+    <RouterLink :to="page.path">{{ page.title }}</RouterLink>
+    <span v-if="page.frontmatter.date">
+      [ {{ (new Date(page.frontmatter.date)).toLocaleString() }} ]
+    </span>
+  </li>
+</ul>

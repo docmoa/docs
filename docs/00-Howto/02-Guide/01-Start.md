@@ -1,9 +1,5 @@
 ---
 
-meta:
-  - name: description
-    content: 문서를 작성하는 방법을 안내
-tags: ["how", "docmoa"]
 
 ---
 
@@ -35,8 +31,8 @@ clone 받은 구조는 VuePress의 구조를 갖고 있습니다. 문서의 기�
 │   ├── .vuepress
 │   ├── 00-Howto
 │   ├── 01-Infra
-│   ├── 02-Private\ Platform
-│   ├── 03-Public\ Cloud
+│   ├── 02-PrivatePlatform
+│   ├── 03-PublicCloud
 │   ├── 04-HashiCorp
 │   ├── 05-etc
 │   ├── 98-tag
@@ -49,8 +45,9 @@ clone 받은 구조는 VuePress의 구조를 갖고 있습니다. 문서의 기�
 ### 기존 환경을 로컬에서 실행하고 확인하기
 브라우저에서 보여지는 화면을 실시간으로 확인하기 위해 로컬환경에서 Vewpress를 실행합니다. Nodejs가 필요합니다.
 
-<code-group>
-<code-block title="NPM">
+::: code-tabs#shell
+
+@tab npm
 ```bash {2,5-6,9}
 # 클론 받은 디렉토리 이동 후 npm install
 cd docs
@@ -59,9 +56,8 @@ npm install
 # start VuePress writing
 npm run dev
 ```
-</code-block>
 
-<code-block title="YARN">
+@tab yarn
 ```bash {2,5-6,9}
 # 클론 받은 디렉토리 이동 후 npm install
 cd docs
@@ -70,8 +66,8 @@ yarn install
 # start VuePress writing
 yarn vuepress dev
 ```
-</code-block>
-</code-group>
+
+:::
 
 실행이 완료되면 로그에 다음과 같은 메시지와 접속할 수 있는 링크가 나타납니다.
 ::: vue
@@ -124,12 +120,6 @@ success [10:48:28] Build 6f9dd7 finished in 1179 ms! ( `http://localhost:8000/` 
 3. 문서 내용에는 문서 기본 서문(Frontmatter)을 작성하기 위한 `---`로 구성된 블록이 최상단에 명시됩니다. 내용은 기존 마크다운 문서를 작성하는 것과 동일하게 구성합니다.
     ```md
     ---
-
-    meta:
-      - name: description
-        content: SSH Too many authentication failures
-    author : "내이름"
-    tags: ["linux", "ssh"]
 
     ---
 

@@ -1,13 +1,9 @@
 ---
-meta:
-  - name: description
-    content: Jenkins Pipeline for Nomad
-tags: ["Nomad", "Jenkins", "Java", "Docker", "Vault"]
+description: Jenkins Pipeline for Nomad
+tag: ["Nomad", "Jenkins", "Java", "Docker", "Vault"]
 ---
 
 # Jenkins Pipeline Nomad (Integrated Vault)
-
-
 
 ### Test ENV
 
@@ -661,17 +657,15 @@ G --> E
 
 ### 4.2 Jenkins Job - Docker / ECR
 
-> ECR - AWS 구성 필요
->
-> 1. AWS 로그인 후 ECR 서비스로 이동한 후 우측의 리포지토리 생성
->
->    - Private 으로 생성하는 경우 AWS Credential 설정을 Jenkins에 추가
->
-> 2. 리포지토리 이름을 입력 후 태그 변경 불가능 옵션과 푸시할 때 스캔 설정
->
-> 3. 리포지토리 생성 후 URI 복사
->
->    e.g. <id>.dkr.ecr.ap-northeast-2.amazonaws.com/demo
+ECR - AWS 구성 필요
+
+1. AWS 로그인 후 ECR 서비스로 이동한 후 우측의 리포지토리 생성
+  - Private 으로 생성하는 경우 AWS Credential 설정을 Jenkins에 추가
+
+2. 리포지토리 이름을 입력 후 태그 변경 불가능 옵션과 푸시할 때 스캔 설정
+
+3. 리포지토리 생성 후 URI 복사
+  e.g. \<id\>.dkr.ecr.ap-northeast-2.amazonaws.com/demo
 
 
 

@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Sentinel - AWS Secrets Role Type Allow/Deny
-tags: ["Vault", "Sentinel", "Policy"]
+description: Sentinel - AWS Secrets Role Type Allow/Deny
+tag: ["Vault", "Sentinel", "Policy"]
 ---
 
 # AWS Secrets Role Type Check

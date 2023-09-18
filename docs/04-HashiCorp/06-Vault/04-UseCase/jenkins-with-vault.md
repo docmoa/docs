@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Vault를 활용하여 jenkins에 kv secret 활용
-tags: ["vault", "jenkins", "screct", "kv"]
+description: Vault를 활용하여 jenkins에 kv secret 활용
+tag: ["vault", "jenkins", "screct", "kv"]
 ---
 # jenkins with vault
 jenkins와 vault를 연동하여 pipe line에서 kv 사용하기

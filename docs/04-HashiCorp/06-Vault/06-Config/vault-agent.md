@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Vault Agent Configuration
-tags: ["Vault", "AWS", "Configuration", "Agent"]
+description: Vault Agent Configuration
+tag: ["Vault", "AWS", "Configuration", "Agent"]
 ---
 
 # Vault Agent (with aws secret)

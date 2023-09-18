@@ -1,10 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Mesh Gateway k8s and VM
-  - name: description
-    content: Hybrid Cloud
-tags: ["Consul", "Hybrid", "Kubetenetes", "k8s", "VM"]
+description: Mesh Gateway k8s and VM
+tag: ["Consul", "Hybrid", "Kubetenetes", "k8s", "VM"]
 ---
 
 # Consul Mesh Gateway - K8S x BMs/VMs

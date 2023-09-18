@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Consul 설치 구성을 위한 사이징 가이드
-tags: ["consul", "sizing"]
+description: Consul 설치 구성을 위한 사이징 가이드
+tag: ["consul", "sizing"]
 ---
 
 # Consul Sizing

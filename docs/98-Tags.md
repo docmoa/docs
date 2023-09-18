@@ -1,6 +1,0 @@
----
----
-# Tags
-
-<TagList />
-<TagLinks />

@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Vault Secret Operator 저장소에서 제공하는 코드를 활용하여 환경구성 및 샘플 애플리케이션 배포/연동에 대한 상세 분석을 제공한다.
-tags: ["vault", "operator"]
+description: Vault Secret Operator 저장소에서 제공하는 코드를 활용하여 환경구성 및 샘플 애플리케이션 배포/연동에 대한 상세 분석을 제공한다.
+tag: ["vault", "operator"]
 ---
 
 # Vault Secrets Operator 예제실습

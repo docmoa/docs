@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Vault Token의 구성과 종류 설명
-tags: ["vault", "token"]
+description: Vault Token의 구성과 종류 설명
+tag: ["vault", "token"]
 ---
 
 # Token의 이해

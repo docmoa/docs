@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Packer Sample
-tags: ["Packer", "Sample", "Alibaba"]
+description: Packer Sample
+tag: ["Packer", "Sample", "Alibaba"]
 ---
 
 # Alibaba Cloud Packer Sample

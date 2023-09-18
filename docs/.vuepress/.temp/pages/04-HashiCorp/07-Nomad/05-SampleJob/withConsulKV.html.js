@@ -1,0 +1,14 @@
+export const data = JSON.parse("{\"key\":\"v-12b6a5c8\",\"path\":\"/04-HashiCorp/07-Nomad/05-SampleJob/withConsulKV.html\",\"title\":\"Consul KV Sample\",\"lang\":\"ko-KR\",\"frontmatter\":{\"description\":\"Nomad Sample\",\"tag\":[\"Nomad\",\"Sample\",\"Job\"],\"head\":[[\"meta\",{\"property\":\"og:url\",\"content\":\"https://vuepress-theme-hope-docs-demo.netlify.app/04-HashiCorp/07-Nomad/05-SampleJob/withConsulKV.html\"}],[\"meta\",{\"property\":\"og:site_name\",\"content\":\"docmoa\"}],[\"meta\",{\"property\":\"og:title\",\"content\":\"Consul KV Sample\"}],[\"meta\",{\"property\":\"og:description\",\"content\":\"Nomad Sample\"}],[\"meta\",{\"property\":\"og:type\",\"content\":\"article\"}],[\"meta\",{\"property\":\"og:locale\",\"content\":\"ko-KR\"}],[\"meta\",{\"property\":\"article:tag\",\"content\":\"Nomad\"}],[\"meta\",{\"property\":\"article:tag\",\"content\":\"Sample\"}],[\"meta\",{\"property\":\"article:tag\",\"content\":\"Job\"}],[\"script\",{\"type\":\"application/ld+json\"},\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"Article\\\",\\\"headline\\\":\\\"Consul KV Sample\\\",\\\"image\\\":[\\\"\\\"],\\\"dateModified\\\":null,\\\"author\\\":[]}\"]]},\"headers\":[],\"git\":{},\"readingTime\":{\"minutes\":0.54,\"words\":162},\"filePathRelative\":\"04-HashiCorp/07-Nomad/05-SampleJob/withConsulKV.md\",\"excerpt\":\"<h1> Consul KV Sample</h1>\\n<p>Consul의 KV에 값을 저장하고 비교하여 task batch를 수행하는 예제</p>\\n<ul>\\n<li>curl 을 사용하는 경우<div class=\\\"language-bash line-numbers-mode\\\" data-ext=\\\"sh\\\"><pre class=\\\"language-bash\\\"><code><span class=\\\"token function\\\">curl</span> <span class=\\\"token parameter variable\\\">-X</span> GET http://127.0.0.1:8500/v1/kv/docmoa/commit_date <span class=\\\"token operator\\\">|</span> jq <span class=\\\"token parameter variable\\\">-r</span> <span class=\\\"token string\\\">'.[0].Value | @base64d'</span>\\n</code></pre><div class=\\\"line-numbers\\\" aria-hidden=\\\"true\\\"><div class=\\\"line-number\\\"></div></div></div></li>\\n<li>template의 <code>key</code>를 사용하는 경우<div class=\\\"language-hcl line-numbers-mode\\\" data-ext=\\\"hcl\\\"><pre class=\\\"language-hcl\\\"><code><span class=\\\"token punctuation\\\">{</span><span class=\\\"token punctuation\\\">{</span> key <span class=\\\"token string\\\">\\\"docmoa/commit_date\\\"</span> <span class=\\\"token punctuation\\\">}</span><span class=\\\"token punctuation\\\">}</span>\\n</code></pre><div class=\\\"line-numbers\\\" aria-hidden=\\\"true\\\"><div class=\\\"line-number\\\"></div></div></div></li>\\n</ul>\",\"copyright\":{\"license\":\"CC BY-NC-ND 4.0 Licensed | ⓒ 2021-present docmoa™ contributers all rights reserved.\"}}")
+
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept()
+  if (__VUE_HMR_RUNTIME__.updatePageData) {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  }
+}
+
+if (import.meta.hot) {
+  import.meta.hot.accept(({ data }) => {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  })
+}

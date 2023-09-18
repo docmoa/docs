@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Nomad Sample
-tags: ["Nomad", "Sample", "Job","sidecar","tomcat"]
+description: Nomad Sample
+tag: ["Nomad", "Sample", "Job","sidecar","tomcat"]
 ---
 
 # tomcat-sidecar

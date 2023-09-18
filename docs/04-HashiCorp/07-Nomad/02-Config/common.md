@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Nomad Common Configuration
-tags: ["Nomad", "Enterprise", "Configuration", "Common"]
+description: Nomad Common Configuration
+tag: ["Nomad", "Enterprise", "Configuration", "Common"]
 ---
 
 # Nomad 공통 설정

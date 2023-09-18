@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Nomad Sample
-tags: ["Nomad", "config","csi","nfs"]
+description: Nomad Sample
+tag: ["Nomad", "config","csi","nfs"]
 ---
 
 # nomad csi (nfs)

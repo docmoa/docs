@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Consul and Vault link add to Nomad UI
-tags: ["Nomad", "UI"]
+description: Consul and Vault link add to Nomad UI
+tag: ["Nomad", "UI"]
 ---
 
 # Nomad UI에 Consul과 Vault 링크 추가

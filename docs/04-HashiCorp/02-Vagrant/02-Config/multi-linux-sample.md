@@ -1,10 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Vagrant로 VM 여러개 생성
-  - name: description
-    content: Vagrant로 다양한 Linux 구성
-tags: ["vagrant", "virtualbox", "linux"]
+description: Vagrant로 다양한 Linux 구성
+tag: ["vagrant", "virtualbox", "linux"]
 ---
 
 # 다양한 Linux 생성 샘플

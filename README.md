@@ -6,6 +6,12 @@ docmoa (https://docmoa.github.io) 소스페이지 입니다.
 
 ## Change Log
 
+### 2023-09-18
+- vuepress upgrade
+  - 2.0.0-beta.67
+- vuepress-theme-hope
+  - 2.0.0-beta.237
+
 ### 2022-11-03
 - `package.json` package update
   - "vue": "^2.7.13"

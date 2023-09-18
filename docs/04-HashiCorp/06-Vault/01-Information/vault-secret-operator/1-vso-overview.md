@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Vault Secrets Operator(이하, VSO)를 사용하면 파드가 쿠버네티스 시크릿에서 기본적으로 볼트 시크릿을 사용할 수 있다.
-tags: ["vault", "operator"]
+description: Vault Secrets Operator(이하, VSO)를 사용하면 파드가 쿠버네티스 시크릿에서 기본적으로 볼트 시크릿을 사용할 수 있다.
+tag: ["vault", "operator"]
 ---
 
 # Vault Secrets Operator 개요

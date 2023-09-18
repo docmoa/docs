@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Packer Sample
-tags: ["Packer", "Sample", "NCP"]
+description: Packer Sample
+tag: ["Packer", "Sample", "NCP"]
 ---
 
 # Naver Cloud Platform Packer Sample

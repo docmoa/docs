@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Vault를 활용하여 jenkins에 ssh(otp) 활용
-tags: ["vault", "jenkins", "otp", "token"]
+description: Vault를 활용하여 jenkins에 ssh(otp) 활용
+tag: ["vault", "jenkins", "otp", "token"]
 ---
 # jenkins with vault otp
 jenkins와 vault otp를 연동하여 pipe line에서 ssh/scp test

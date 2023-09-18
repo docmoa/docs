@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Nomad ingress gateway with consul
-tags: ["Nomad", "Sample", "Job",""]
+description: Nomad ingress gateway with consul
+tag: ["Nomad", "Sample", "Job",""]
 ---
 
 # Nomad ingress gateway

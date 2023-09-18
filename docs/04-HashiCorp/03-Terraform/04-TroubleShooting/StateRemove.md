@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Terraform State Maintenance
-tags: ["Terraform", "State"]
+description: Terraform State Maintenance
+tag: ["Terraform", "State"]
 ---
 
 # State rm

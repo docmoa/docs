@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: With Consul Namespace
-tags: ["Nomad", "Enterprise", "Consul"]
+description: With Consul Namespace
+tag: ["Nomad", "Enterprise", "Consul"]
 ---
 
 # Consul namespace 사용시 Nomad의 서비스 등록

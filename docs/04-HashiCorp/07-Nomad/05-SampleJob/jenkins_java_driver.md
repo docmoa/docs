@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Jenkins WAR 파일로 실행하기
-tags: ["Nomad", "Sample", "Job", "Jenkins"]
+description: Jenkins WAR 파일로 실행하기
+tag: ["Nomad", "Sample", "Job", "Jenkins"]
 ---
 
 # Jenkins(Java Driver) on Nomad

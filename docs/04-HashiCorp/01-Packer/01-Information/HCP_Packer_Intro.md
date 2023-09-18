@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: HCP Packer GA 및 소개
-tags: ["Packer", "HCP", "Terraform"]
+description: HCP Packer GA 및 소개
+tag: ["Packer", "HCP", "Terraform"]
 ---
 
 # HCP Packer 소개

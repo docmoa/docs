@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: 인터넷 사용 불가 시 로컬환경에서의 프로바이더 구성
-tags: ["terraform", "provider"]
+description: 인터넷 사용 불가 시 로컬환경에서의 프로바이더 구성
+tag: ["terraform", "provider"]
 ---
 
 # Terraform Provider - 로컬 디렉토리

@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Boundary Install
-tags: ["Boundary", "Install"]
+description: Boundary Install
+tag: ["Boundary", "Install"]
 ---
 
 # Boundary Install on Consul-Nomad

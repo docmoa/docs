@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Nomad Sample
-tags: ["Nomad", "Sample", "Job","Vault","SWLB"]
+description: Nomad Sample
+tag: ["Nomad", "Sample", "Job","Vault","SWLB"]
 ---
 
 # Vault SWLB용도의 nginx

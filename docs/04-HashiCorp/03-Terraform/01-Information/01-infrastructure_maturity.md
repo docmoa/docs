@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: 인프라의 변화와 적응
-tags: ["terraform", "IaC"]
+description: 인프라의 변화와 적응
+tag: ["terraform", "IaC"]
 ---
 
 # 인프라의 변화와 적응

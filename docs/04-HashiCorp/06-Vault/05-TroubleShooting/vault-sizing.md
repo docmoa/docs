@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: MariaDB5.5버전에서 Dynamic Secret  구성을 위한 credential생성시 에러
-tags: ["vault", "MiriaDB"]
+description: MariaDB5.5버전에서 Dynamic Secret  구성을 위한 credential생성시 에러
+tag: ["vault", "MiriaDB"]
 ---
 
 # Vault MariaDB5.5 Dynamic Secret

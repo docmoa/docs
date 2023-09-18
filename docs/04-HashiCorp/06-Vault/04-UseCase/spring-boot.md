@@ -1,8 +1,9 @@
 ---
-meta:
-  - name: Spring Boot Vault
-    content: Spring Boot에 구성관리로 Vault 사용
-tags: ["vault", "java", "spring"]
+head:
+  - - meta
+    - name: Spring Boot Vault
+      content: Spring Boot에 구성관리로 Vault 사용
+tag: ["vault", "java", "spring"]
 
 ---
 

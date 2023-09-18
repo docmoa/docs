@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: oom_killer
-tags: ["linux", "oom", "oom_killer"]
+description: oom_killer
+tag: ["linux", "oom", "oom_killer"]
 
 ---
 

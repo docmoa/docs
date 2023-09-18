@@ -1,10 +1,6 @@
 ---
-meta:
-  - name: description
-    content: K8S 환경에서 Consul / Istio Performance 비교
-  - name: description
-    content: Performance Test
-tags: ["Consul", "Istio", "Kubetenetes", "k8s", "Performance"]
+description: K8S 환경에서 Consul / Istio Performance 비교
+tag: ["Consul", "Istio", "Kubetenetes", "k8s", "Performance"]
 
 ---
 
@@ -27,7 +23,9 @@ tags: ["Consul", "Istio", "Kubetenetes", "k8s", "Performance"]
 - concurrent user: 100
 - total request: 15000
 
-```chart
+::: chart A Line Chart
+
+```json
 {
   "type": "line",
   "label" : "Latency distribution (Sec)",
@@ -65,6 +63,7 @@ tags: ["Consul", "Istio", "Kubetenetes", "k8s", "Performance"]
 }
 ```
 
+:::
 
 * 상세 내용 확인 - "4.성능 테스트 수행"
 

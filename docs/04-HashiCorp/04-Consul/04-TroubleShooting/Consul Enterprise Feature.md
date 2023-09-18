@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Identifying consul split-brain
-tags: ["Consul"]
+description: Identifying consul split-brain
+tag: ["Consul"]
 ---
 
 # Identifying consul split-brain

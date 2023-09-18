@@ -1,12 +1,39 @@
 ---
 
-sidebar: true
-next: false
-tags: ["HashiCorp"]
+tag: ["HashiCorp"]
+headerDepth: 0
+order: 0
 
 ---
 
-# Overview
+# HashiCorp
+
+## Recent pages
+
+<script>
+import { defineComponent } from 'vue'
+import { usePages } from '@temp/hashicorp'  // pages.js is default filename
+
+export default defineComponent({
+  setup() {
+    const pages = usePages()
+    console.log(pages)
+    return { pages }
+  },
+})
+</script>
+
+<ul>
+  <li
+    v-for="page in pages"
+    :key="page.key"
+  >
+    <RouterLink :to="page.path">{{ page.title }}</RouterLink>
+    <span v-if="page.frontmatter.date">
+      [ {{ (new Date(page.frontmatter.date)).toLocaleString() }} ]
+    </span>
+  </li>
+</ul>
 
 ## Packer
 > 다양한 플랫폼에 대한 VM, 컨테이너 이미지 생성 자동화 도구
@@ -148,6 +175,3 @@ done
 ```
 :::
 
-## Recent Articles 10
-
-<RecentArticlesContents/>

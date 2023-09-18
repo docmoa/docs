@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Consul Template
-tags: ["Consul", "Consul Template"]
+description: Consul Template
+tag: ["Consul", "Consul Template"]
 ---
 
 # KV Sample

@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Packer Sample
-tags: ["Packer", "Sample", "aws"]
+description: Packer Sample
+tag: ["Packer", "Sample", "aws"]
 ---
 
 # AWS Packer Sample - Windows

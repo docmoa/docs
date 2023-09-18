@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Token Role 생성 및 Tune 적용하여 장기 유지되는 Token 생성하기
-tags: ["vault auth"]
+description: Token Role 생성 및 Tune 적용하여 장기 유지되는 Token 생성하기
+tag: ["vault auth"]
 ---
 
 # Token Role

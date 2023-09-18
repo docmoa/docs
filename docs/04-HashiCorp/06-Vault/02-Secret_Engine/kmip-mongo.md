@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Vault의 KMIP 기능과 MongoDB 연동
-tags: ["vault", "Vault Enterprise", "KMIP", "MongoDB"]
+description: Vault의 KMIP 기능과 MongoDB 연동
+tag: ["vault", "Vault Enterprise", "KMIP", "MongoDB"]
 ---
 
 # KMIP - MongoDB

@@ -1,0 +1,14 @@
+export const data = JSON.parse("{\"key\":\"v-47c9e900\",\"path\":\"/04-HashiCorp/07-Nomad/02-Config/csi-nfs.html\",\"title\":\"nomad csi (nfs)\",\"lang\":\"ko-KR\",\"frontmatter\":{\"description\":\"Nomad Sample\",\"tag\":[\"Nomad\",\"config\",\"csi\",\"nfs\"],\"head\":[[\"meta\",{\"property\":\"og:url\",\"content\":\"https://vuepress-theme-hope-docs-demo.netlify.app/04-HashiCorp/07-Nomad/02-Config/csi-nfs.html\"}],[\"meta\",{\"property\":\"og:site_name\",\"content\":\"docmoa\"}],[\"meta\",{\"property\":\"og:title\",\"content\":\"nomad csi (nfs)\"}],[\"meta\",{\"property\":\"og:description\",\"content\":\"Nomad Sample\"}],[\"meta\",{\"property\":\"og:type\",\"content\":\"article\"}],[\"meta\",{\"property\":\"og:locale\",\"content\":\"ko-KR\"}],[\"meta\",{\"property\":\"article:tag\",\"content\":\"Nomad\"}],[\"meta\",{\"property\":\"article:tag\",\"content\":\"config\"}],[\"meta\",{\"property\":\"article:tag\",\"content\":\"csi\"}],[\"meta\",{\"property\":\"article:tag\",\"content\":\"nfs\"}],[\"script\",{\"type\":\"application/ld+json\"},\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"Article\\\",\\\"headline\\\":\\\"nomad csi (nfs)\\\",\\\"image\\\":[\\\"\\\"],\\\"dateModified\\\":null,\\\"author\\\":[]}\"]]},\"headers\":[{\"level\":2,\"title\":\"controller\",\"slug\":\"controller\",\"link\":\"#controller\",\"children\":[]},{\"level\":2,\"title\":\"node plugin\",\"slug\":\"node-plugin\",\"link\":\"#node-plugin\",\"children\":[]},{\"level\":2,\"title\":\"nomad volume\",\"slug\":\"nomad-volume\",\"link\":\"#nomad-volume\",\"children\":[]},{\"level\":2,\"title\":\"job에는 아래와 같이 추가하여 사용했다.\",\"slug\":\"job에는-아래와-같이-추가하여-사용했다\",\"link\":\"#job에는-아래와-같이-추가하여-사용했다\",\"children\":[]},{\"level\":2,\"title\":\"nomad volume페이지에서 확인\",\"slug\":\"nomad-volume페이지에서-확인\",\"link\":\"#nomad-volume페이지에서-확인\",\"children\":[]}],\"git\":{},\"readingTime\":{\"minutes\":0.69,\"words\":207},\"filePathRelative\":\"04-HashiCorp/07-Nomad/02-Config/csi-nfs.md\",\"excerpt\":\"<h1> nomad csi (nfs)</h1>\\n<ul>\\n<li>nomad에서 외부 storage를 사용하기 위한 plugin\\n<ul>\\n<li>그 중에서도 접근성이 좋은 nfs를 사용, public cloud에서 제공하는 storage와는 사용법이 다를 수 있음</li>\\n</ul>\\n</li>\\n<li>구성환경은 아래와 같다.(사실 nfs server정보만 보면 될 거 같음)\\n<ul>\\n<li>nfs-server 10.0.0.151:/mnt/data</li>\\n</ul>\\n</li>\\n</ul>\\n<h2> controller</h2>\\n<ul>\\n<li>하나이상의 node에 storage를 배포할 수 있게 해주는 중앙관리 기능</li>\\n<li>어느 node(client)에 띄어져도 상관없다.</li>\\n</ul>\",\"copyright\":{\"license\":\"CC BY-NC-ND 4.0 Licensed | ⓒ 2021-present docmoa™ contributers all rights reserved.\"}}")
+
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept()
+  if (__VUE_HMR_RUNTIME__.updatePageData) {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  }
+}
+
+if (import.meta.hot) {
+  import.meta.hot.accept(({ data }) => {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  })
+}

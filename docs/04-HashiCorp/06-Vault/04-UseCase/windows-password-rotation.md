@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Vault를 활용하여 Windows Password 저장
-tags: ["vault", "windows", "nomad", "password"]
+description: Vault를 활용하여 Windows Password 저장
+tag: ["vault", "windows", "nomad", "password"]
 ---
 
 # Windows Password rotation

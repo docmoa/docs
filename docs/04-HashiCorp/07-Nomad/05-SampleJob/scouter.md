@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Nomad + Consul Sample
-tags: ["Nomad", "Consul", "Scouter", "Job"]
+description: Nomad + Consul Sample
+tag: ["Nomad", "Consul", "Scouter", "Job"]
 ---
 
 # Scouter

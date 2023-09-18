@@ -1,9 +1,7 @@
 ---
-meta:
-  - name: description
-    content: Consul Health Check
+description: Consul Health Check
 author: "euimokna"     
-tags: ["Consul"]
+tag: ["Consul"]
 ---
 
 # Consul Health Check on VMs

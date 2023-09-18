@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Identifying consul split-brain
-tags: ["Consul", "install"]
+description: Identifying consul split-brain
+tag: ["Consul", "install"]
 ---
 
 # Consul yum install issue 

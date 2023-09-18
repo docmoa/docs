@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Nomad docker job logging into Cloudwatch
-tags: ["Nomad", "AWS", "Cloudwatch", "log"]
+description: Nomad docker job logging into Cloudwatch
+tag: ["Nomad", "AWS", "Cloudwatch", "log"]
 ---
 
 # Docker log driver and Cloudwatch on Nomad

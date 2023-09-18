@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Vagrant에서 Private network 구성시 에러 발생
-tags: ["vagrant", "virtualbox"]
+description: Vagrant에서 Private network 구성시 에러 발생
+tag: ["vagrant", "virtualbox"]
 ---
 
 # Network : Code E_ACCESSDENIED (0x80070005)

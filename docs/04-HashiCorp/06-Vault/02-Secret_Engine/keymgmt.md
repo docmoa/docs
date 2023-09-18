@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Key Management - AWS, Azure, GCP
-tags: ["vault", "Vault Enterprise", "keymgmt"]
+description: Key Management - AWS, Azure, GCP
+tag: ["vault", "Vault Enterprise", "keymgmt"]
 ---
 
 # Key Management

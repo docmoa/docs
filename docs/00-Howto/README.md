@@ -1,7 +1,6 @@
 ---
 
 prev: false
-tags: ["how", "docmoa"]
 
 ---
 

@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Vault Transit Stress Test
-tags: ["vault", "performance", "transit"]
+description: Vault Transit Stress Test
+tag: ["vault", "performance", "transit"]
 ---
 # Vault Stress Test
 

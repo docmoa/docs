@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Vault SSH 기능 - Signed Certificate 구성
-tags: ["vault", "SSH"]
+description: Vault SSH 기능 - Signed Certificate 구성
+tag: ["vault", "SSH"]
 ---
 
 # SSH - Signed Certificates

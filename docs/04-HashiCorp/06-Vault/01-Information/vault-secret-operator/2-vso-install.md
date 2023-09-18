@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Vault Secrets Operator(이하, VSO)를 설치하고 구성하는 권고 방안이다.
-tags: ["vault", "operator"]
+description: Vault Secrets Operator(이하, VSO)를 설치하고 구성하는 권고 방안이다.
+tag: ["vault", "operator"]
 ---
 
 # Vault Secrets Operator 설치

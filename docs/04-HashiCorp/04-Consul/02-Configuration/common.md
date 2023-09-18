@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Consul Common Configuration
-tags: ["Consul", "Enterprise", "Configuration", "Common"]
+description: Consul Common Configuration
+tag: ["Consul", "Enterprise", "Configuration", "Common"]
 ---
 
 # Consul 공통 설정

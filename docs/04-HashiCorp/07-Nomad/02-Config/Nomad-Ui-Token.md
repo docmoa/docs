@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Nomad ACL
-tags: ["Nomad", "ACL"]
+description: Nomad ACL
+tag: ["Nomad", "ACL"]
 ---
 
 # Nomad UI Token 

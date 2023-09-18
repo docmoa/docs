@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Nomad CSI Sample
-tags: ["Nomad", "terrafom", "CSI"]
+description: Nomad CSI Sample
+tag: ["Nomad", "terrafom", "CSI"]
 ---
 
 # Nomad CSI Sample

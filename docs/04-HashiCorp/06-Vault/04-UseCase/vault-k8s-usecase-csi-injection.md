@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Kubernetes에서 Vault의 시크릿을 사용하는 CSI방식과 Injection방식에 대한 설명
-tags: ["vault", "kubernetes"]
+description: Kubernetes에서 Vault의 시크릿을 사용하는 CSI방식과 Injection방식에 대한 설명
+tag: ["vault", "kubernetes"]
 ---
 # Vault with K8s (CSI & Injection)
 

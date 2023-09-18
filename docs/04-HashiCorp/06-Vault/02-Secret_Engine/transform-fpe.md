@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: 엔터프라이즈 기능 - 형태보존 암호화(FPE)
-tags: ["vault", "transform", "fpe"]
+description: 엔터프라이즈 기능 - 형태보존 암호화(FPE)
+tag: ["vault", "transform", "fpe"]
 ---
 
 # Transform FPE (Ent)

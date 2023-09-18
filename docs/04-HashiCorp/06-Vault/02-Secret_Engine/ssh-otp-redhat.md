@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Vault SSH Rocky에 구성하는 예제
-tags: ["vault", "SSH", "OTP", "Rocky", "RHEL", "CentOS"]
+description: Vault SSH Rocky에 구성하는 예제
+tag: ["vault", "SSH", "OTP", "Rocky", "RHEL", "CentOS"]
 ---
 
 # SSH OTP - RedHat 계열

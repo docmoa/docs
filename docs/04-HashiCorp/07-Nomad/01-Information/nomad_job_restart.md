@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Nomad로 복원력 있는 인프라 구축
-tags: ["nomad", "sizing"]
+description: Nomad로 복원력 있는 인프라 구축
+tag: ["nomad", "sizing"]
 ---
 
 # task 복구 방식

@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Consul Server Configuration
-tags: ["Consul", "Enterprise", "Configuration", "Server"]
+description: Consul Server Configuration
+tag: ["Consul", "Enterprise", "Configuration", "Server"]
 ---
 
 # Consul 서버 설정

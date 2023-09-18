@@ -1,0 +1,14 @@
+export const data = JSON.parse("{\"key\":\"v-a9625922\",\"path\":\"/04-HashiCorp/04-Consul/05-Template_Sample/nginx.html\",\"title\":\"NGINX Sample\",\"lang\":\"ko-KR\",\"frontmatter\":{\"description\":\"Consul Template\",\"tag\":[\"Consul\",\"Consul Template\",\"NGINX\"],\"head\":[[\"meta\",{\"property\":\"og:url\",\"content\":\"https://vuepress-theme-hope-docs-demo.netlify.app/04-HashiCorp/04-Consul/05-Template_Sample/nginx.html\"}],[\"meta\",{\"property\":\"og:site_name\",\"content\":\"docmoa\"}],[\"meta\",{\"property\":\"og:title\",\"content\":\"NGINX Sample\"}],[\"meta\",{\"property\":\"og:description\",\"content\":\"Consul Template\"}],[\"meta\",{\"property\":\"og:type\",\"content\":\"article\"}],[\"meta\",{\"property\":\"og:locale\",\"content\":\"ko-KR\"}],[\"meta\",{\"property\":\"article:tag\",\"content\":\"Consul\"}],[\"meta\",{\"property\":\"article:tag\",\"content\":\"Consul Template\"}],[\"meta\",{\"property\":\"article:tag\",\"content\":\"NGINX\"}],[\"script\",{\"type\":\"application/ld+json\"},\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"Article\\\",\\\"headline\\\":\\\"NGINX Sample\\\",\\\"image\\\":[\\\"\\\"],\\\"dateModified\\\":null,\\\"author\\\":[]}\"]]},\"headers\":[{\"level\":2,\"title\":\"템플릿 파일 변환 하기\",\"slug\":\"템플릿-파일-변환-하기\",\"link\":\"#템플릿-파일-변환-하기\",\"children\":[{\"level\":3,\"title\":\"템플릿 파일 작성\",\"slug\":\"템플릿-파일-작성\",\"link\":\"#템플릿-파일-작성\",\"children\":[]},{\"level\":3,\"title\":\"실행\",\"slug\":\"실행\",\"link\":\"#실행\",\"children\":[]}]},{\"level\":2,\"title\":\"Config 활용\",\"slug\":\"config-활용\",\"link\":\"#config-활용\",\"children\":[{\"level\":3,\"title\":\"CLI Inline의 옵션을 정의하는 config 작성\",\"slug\":\"cli-inline의-옵션을-정의하는-config-작성\",\"link\":\"#cli-inline의-옵션을-정의하는-config-작성\",\"children\":[]},{\"level\":3,\"title\":\"실행\",\"slug\":\"실행-1\",\"link\":\"#실행-1\",\"children\":[]}]}],\"git\":{},\"readingTime\":{\"minutes\":0.35,\"words\":104},\"filePathRelative\":\"04-HashiCorp/04-Consul/05-Template_Sample/nginx.md\",\"excerpt\":\"<h1> NGINX Sample</h1>\\n<p>참고 : <a href=\\\"https://learn.hashicorp.com/tutorials/consul/load-balancing-nginx\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">https://learn.hashicorp.com/tutorials/consul/load-balancing-nginx</a></p>\\n<h2> 템플릿 파일 변환 하기</h2>\\n<h3> 템플릿 파일 작성</h3>\\n<ul>\\n<li>대상 서비스 : nginx-backend</li>\\n</ul>\",\"copyright\":{\"license\":\"CC BY-NC-ND 4.0 Licensed | ⓒ 2021-present docmoa™ contributers all rights reserved.\"}}")
+
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept()
+  if (__VUE_HMR_RUNTIME__.updatePageData) {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  }
+}
+
+if (import.meta.hot) {
+  import.meta.hot.accept(({ data }) => {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  })
+}

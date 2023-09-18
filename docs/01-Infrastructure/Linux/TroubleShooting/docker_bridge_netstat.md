@@ -1,9 +1,7 @@
 ---
 
-meta:
-  - name: description
-    content: docker bridge mode netstat
-tags: ["linux", "docker", "bridge", "netstat"]
+description: docker bridge mode netstat
+tag: ["linux", "docker", "bridge", "netstat"]
 
 ---
 

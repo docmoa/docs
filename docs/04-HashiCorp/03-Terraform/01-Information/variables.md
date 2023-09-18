@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Terraform Features
-tags: ["terraform", "IaC"]
+description: Terraform Features
+tag: ["terraform", "IaC"]
 ---
 
 # Variables

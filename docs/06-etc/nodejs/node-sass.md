@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: node-sass 오류와 sass로의 전환
-tags: ["arm", "nodejs"]
+description: node-sass 오류와 sass로의 전환
+tag: ["arm", "nodejs"]
 ---
 
 # node-sass와 sass로의 전환

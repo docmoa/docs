@@ -1,7 +1,5 @@
 ---
 
-title: Link
-tags: ["how", "docmoa"]
 
 ---
 

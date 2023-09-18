@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Nomad Sample
-tags: ["Nomad", "Sample", "Job","nomad-pack","vuepress"]
+description: Nomad Sample
+tag: ["Nomad", "Sample", "Job","nomad-pack","vuepress"]
 ---
 
 # nomad-pack custom registry

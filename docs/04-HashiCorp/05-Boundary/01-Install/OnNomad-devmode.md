@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Boundary Dev Mode (Nomad)
-tags: ["Boundary", "Install"]
+description: Boundary Dev Mode (Nomad)
+tag: ["Boundary", "Install"]
 ---
 
 # Boundary Run Dev Mode on Nomad Job

@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: AWS Auth Method 설명 및 구성 방법 안내
-tags: ["vault auth", "AWS"]
+description: AWS Auth Method 설명 및 구성 방법 안내
+tag: ["vault auth", "AWS"]
 ---
 
 # AWS Auth Method

@@ -1,0 +1,14 @@
+export const data = JSON.parse("{\"key\":\"v-36b46ce4\",\"path\":\"/04-HashiCorp/06-Vault/01-Information/port-info.html\",\"title\":\"Vault Listen Address & Port\",\"lang\":\"ko-KR\",\"frontmatter\":{\"description\":\"Vault 구성 포트 정보\",\"tag\":[\"vault\",\"port\",\"requirement\"],\"head\":[[\"meta\",{\"property\":\"og:url\",\"content\":\"https://vuepress-theme-hope-docs-demo.netlify.app/04-HashiCorp/06-Vault/01-Information/port-info.html\"}],[\"meta\",{\"property\":\"og:site_name\",\"content\":\"docmoa\"}],[\"meta\",{\"property\":\"og:title\",\"content\":\"Vault Listen Address & Port\"}],[\"meta\",{\"property\":\"og:description\",\"content\":\"Vault 구성 포트 정보\"}],[\"meta\",{\"property\":\"og:type\",\"content\":\"article\"}],[\"meta\",{\"property\":\"og:locale\",\"content\":\"ko-KR\"}],[\"meta\",{\"property\":\"article:tag\",\"content\":\"vault\"}],[\"meta\",{\"property\":\"article:tag\",\"content\":\"port\"}],[\"meta\",{\"property\":\"article:tag\",\"content\":\"requirement\"}],[\"script\",{\"type\":\"application/ld+json\"},\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"Article\\\",\\\"headline\\\":\\\"Vault Listen Address & Port\\\",\\\"image\\\":[\\\"\\\"],\\\"dateModified\\\":null,\\\"author\\\":[]}\"]]},\"headers\":[{\"level\":2,\"title\":\"Vault 포트\",\"slug\":\"vault-포트\",\"link\":\"#vault-포트\",\"children\":[{\"level\":3,\"title\":\"TCP\",\"slug\":\"tcp\",\"link\":\"#tcp\",\"children\":[]},{\"level\":3,\"title\":\"Listening on Multiple Interfaces\",\"slug\":\"listening-on-multiple-interfaces\",\"link\":\"#listening-on-multiple-interfaces\",\"children\":[]},{\"level\":3,\"title\":\"Listening on all IPv6 & IPv4 Interfaces\",\"slug\":\"listening-on-all-ipv6-ipv4-interfaces\",\"link\":\"#listening-on-all-ipv6-ipv4-interfaces\",\"children\":[]},{\"level\":3,\"title\":\"Listening to specific IPv6 address\",\"slug\":\"listening-to-specific-ipv6-address\",\"link\":\"#listening-to-specific-ipv6-address\",\"children\":[]}]}],\"git\":{},\"readingTime\":{\"minutes\":0.51,\"words\":154},\"filePathRelative\":\"04-HashiCorp/06-Vault/01-Information/port-info.md\",\"excerpt\":\"<h1> Vault Listen Address &amp; Port</h1>\\n<blockquote>\\n<p><a href=\\\"https://learn.hashicorp.com/tutorials/vault/reference-architecture#network-connectivity\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">https://learn.hashicorp.com/tutorials/vault/reference-architecture#network-connectivity</a></p>\\n</blockquote>\",\"copyright\":{\"license\":\"CC BY-NC-ND 4.0 Licensed | ⓒ 2021-present docmoa™ contributers all rights reserved.\"}}")
+
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept()
+  if (__VUE_HMR_RUNTIME__.updatePageData) {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  }
+}
+
+if (import.meta.hot) {
+  import.meta.hot.accept(({ data }) => {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  })
+}

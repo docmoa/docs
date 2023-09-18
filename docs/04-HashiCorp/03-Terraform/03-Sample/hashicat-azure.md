@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Intro to Terraform on Azure 핸즈온 워크샵 설명 및 코드분석
-tags: ["Terraform", "Terraform on Azure", "Azure", "HashiCat", "Terraform OSS", "Terraform Cloud", "Terraform Enterprise", "Terraform 샘플", "IaC"]
+description: Intro to Terraform on Azure 핸즈온 워크샵 설명 및 코드분석
+tag: ["Terraform", "Terraform on Azure", "Azure", "HashiCat", "Terraform OSS", "Terraform Cloud", "Terraform Enterprise", "Terraform 샘플", "IaC"]
 ---
 
 # Intro to Terraform on Azure 

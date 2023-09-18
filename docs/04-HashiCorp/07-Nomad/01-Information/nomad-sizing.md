@@ -1,8 +1,6 @@
 ---
-meta:
-  - name: description
-    content: Nomad 설치 구성을 위한 사이징 가이드
-tags: ["nomad", "sizing"]
+description: Nomad 설치 구성을 위한 사이징 가이드
+tag: ["nomad", "sizing"]
 ---
 
 # Nomad Sizing
