@@ -4,7 +4,7 @@ icon: home
 title: docmoa
 heroImage: /logo.png
 heroText: docmoa
-tagline: 그림같이 써라. 그러면 기억 속에 머물 것이다.
+tagline: "그림같이 써라.<br>그러면 기억 속에 머물 것이다."
 actions:
   - text: Getting Start 🚀
     link: /00-Howto/
