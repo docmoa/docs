@@ -3,7 +3,7 @@ import { koNavbar } from "./navbar/index.js";
 import { koSidebar } from "./sidebar/index.js";
 
 export default hopeTheme({
-  hostname: "https://vuepress-theme-hope-docs-demo.netlify.app",
+  hostname: "https://docmoa.github.io",
 
   iconAssets: "iconfont",
 
