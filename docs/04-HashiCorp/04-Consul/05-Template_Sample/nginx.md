@@ -41,10 +41,12 @@ server {
 $ consul-template -template="./nginx.conf.ctmpl:./nginx.conf"
 ```
 
-::: vue
+::: info 파일 구조
+```bash:no-line-numbers
 .
 ├── nginx.conf.ctmpl
 └── `nginx.conf`
+```
 :::
 
 

@@ -20,7 +20,8 @@ tag: ["Tomcat", "Java"]
 ## 5.1 Web Application
 톰캣에 배치되는 어플리케이션은 Java Web Application입니다. 간단히 웹 어플리케이션이라고도 합니다. 간략한 구조는 다음과 같습니다.
 
-::: vue
+::: info 파일 구조
+```bash:no-line-numbers
 ./APPDIR
 ├── WEB-INF
 │   ├── classes
@@ -30,6 +31,7 @@ tag: ["Tomcat", "Java"]
 │   └── web.xml
 ├── index.html
 └── index.jsp
+```
 :::
 
 APP 디렉토리 하위에는 웹어플리케이션의 정의를 넣을 WEB-INF 디렉토리가 필요합니다. 아주 간단한 어플리케이션은 `web.xml`에 다음의 태그만 넣어도 웹 어플리케이션으로 인지할 수 있습니다.

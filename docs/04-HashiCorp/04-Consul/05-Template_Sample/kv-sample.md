@@ -30,10 +30,12 @@ consul kv put apache/version 2.2.14-5ubuntu8.7
 $ consul-template -template="./apache_install.sh.ctmpl:./apache_install.sh" -once
 ```
 
-::: vue
+::: info 파일 구조
+```bash:no-line-numbers
 .
 ├── apache_install.sh.ctmpl
 └── `apache_install.sh`
+```
 :::
 
 
