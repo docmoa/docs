@@ -87,24 +87,26 @@ tag: ["terraform", "provider"]
 
 4. 로컬 Provider 구성 확인
 
-   ::: vue
-   $ tree -a ~/.terraform.d/
-   /root/.terraform.d/
-   ├── `plugins`
-   │   └── localhost.localdomain
-   │       ├── hashicorp
-   │       │   └── random
-   │       │       └── 3.1.0
-   │       │           └── linux_amd64
-   │       │               └── terraform-provider-random_v3.1.0_x5
-   │       └── vmware
-   │           └── nsxt
-   │               └── 3.2.1
-   │                   └── linux_amd64
-   │                       └── terraform-provider-nsxt_v3.2.1
-   ├── checkpoint_cache
-   └── checkpoint_signature
-   :::
+  ::: info 파일 구조
+  ```bash:no-line-numbers
+  $ tree -a ~/.terraform.d/
+  /root/.terraform.d/
+  ├── `plugins`
+  │   └── localhost.localdomain
+  │       ├── hashicorp
+  │       │   └── random
+  │       │       └── 3.1.0
+  │       │           └── linux_amd64
+  │       │               └── terraform-provider-random_v3.1.0_x5
+  │       └── vmware
+  │           └── nsxt
+  │               └── 3.2.1
+  │                   └── linux_amd64
+  │                       └── terraform-provider-nsxt_v3.2.1
+  ├── checkpoint_cache
+  └── checkpoint_signature
+  ```
+  :::
 
 5. 워크스페이스 생성 (디렉토리) - airgapped 는 임의의 이름 입니다.
 

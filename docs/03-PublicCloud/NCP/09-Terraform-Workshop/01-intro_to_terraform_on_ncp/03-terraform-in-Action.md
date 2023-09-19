@@ -159,12 +159,14 @@ Terraform은 자동으로 종속성을 추적 할 수 있습니다. 앞서 설�
 
 Terraform은 Workspace에서 `.tf` 확장자로 끝나는 모든 파일을 읽지만 대표적으로는 `main.tf`, `variables.tf`, `outputs.tf`를 갖는 것입니다. 원하는 경우 더 많은 tf 파일을 추가 할 수 있습니다.
 
-::: vue
+::: info 파일 구조
+```bash:no-line-numbers
 Workspace
 ├── `main.tf`
 ├── `outputs.tf`
 ├── terraform.tfvars
 └── `variables.tf`
+```
 :::
 
 이러한 각 파일을 자세히 살펴 보겠습니다.

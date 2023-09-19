@@ -29,7 +29,8 @@ tag: ["kubernetes", "vagrant","docker", "install"]
 ### 디렉토리/파일 구조
 
 #### 실행 전
-::: vue
+::: info 디렉토리/파일 구조
+```bash:no-line-numbers
 .
 ├── `1.18`
 │   ├── files
@@ -40,7 +41,9 @@ tag: ["kubernetes", "vagrant","docker", "install"]
 │   └── `vagrantfile`
 ├── 1.19
 <반복>
+```
 :::
+
 - 버전별로 디렉토리가 분류되어있음
   - 1.18~1.20 은 ubuntu 18.04 LTS 기반
   - 1.21~1.23 은 utuntu 20.04 LTS 기반
@@ -55,7 +58,8 @@ tag: ["kubernetes", "vagrant","docker", "install"]
   - pv.sh는 K8s master 노드 구성 후 디렉토리 생성 후 pv.yaml을 통해 pv 구성
 
 #### 실행 후
-::: vue
+::: info 실행 후
+```bash:no-line-numbers
 ├── 1.18
 │   ├── `.kube`
 │   ├── `.vagrant`
@@ -72,7 +76,9 @@ tag: ["kubernetes", "vagrant","docker", "install"]
 │   └── vagrantfile
 ├── 1.19
 <반복>
+```
 :::
+
 - .kube 디렉토리 : kubernetes credential 및 접속 정보 생성
 - .vagrant 디렉토리 : vagrant 실행 후 vm 정보 업데이트
 - join.sh : 워커노드의 클러스터 조인을 위한 스크립트

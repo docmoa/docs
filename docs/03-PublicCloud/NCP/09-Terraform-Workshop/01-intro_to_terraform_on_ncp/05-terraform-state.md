@@ -14,7 +14,8 @@ Terraform은 ~stateful~ 애플리케이션입니다. 즉, state file 내부에�
 
 상태 파일은 Terraform이 알고있는 모든 것에 대한 기록 소스입니다.
 
-::: vue
+::: info 파일 구조
+```bash:no-line-numbers
 WORKSPACE
 ├── files
 │   └── deploy_app.sh
@@ -24,6 +25,7 @@ WORKSPACE
 ├── `terraform.tfstate.backup`
 ├── terraform.tfvars
 └── variables.tf
+```
 :::
 
 State 파일 내부는 JSON 형식으로 구성되어있습니다.
