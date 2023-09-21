@@ -90,7 +90,7 @@ zQIDAQAB
 
 ### 2.2 RSA 키로 암호화
 
-공개 키(`public_key.pem`)를 사용하여 "This is my data"라는 문자열을 암호화합니다.
+공개 키(`public_key.pem`)를 사용하여 "This is my data"라는 문자열을 암호화한다.
 
 ```bash:no-line-numbers
 echo "This is my data" | openssl rsautl -encrypt -pubin -inkey public_key.pem -out encrypted_data.bin
@@ -111,7 +111,7 @@ echo "This is my data" | openssl rsautl -encrypt -pubin -inkey public_key.pem -o
 
 ### 2.3 RSA 키로 복호화
 
-암호화된 데이터를 복호화하려면 개인 키(`private_key.pem`)를 사용해야 합니다.
+암호화된 데이터를 복호화하려면 개인 키(`private_key.pem`)를 사용해야 한다.
 
 ```bash:no-line-numbers
 openssl rsautl -decrypt -inkey private_key.pem -in encrypted_data.bin
