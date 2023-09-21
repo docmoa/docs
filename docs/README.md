@@ -6,9 +6,12 @@ heroImage: /logo.png
 heroText: docmoa
 tagline: "그림같이 써라.<br>그러면 기억 속에 머물 것이다."
 actions:
-  - text: Getting Start 🚀
+  - text: 🚀 Getting Start
     link: /00-Howto/
     type: primary
+  - text: " RSS"
+    link: /rss.xml
+    icon: rss
 
 features:
   - title: Infrastructure
