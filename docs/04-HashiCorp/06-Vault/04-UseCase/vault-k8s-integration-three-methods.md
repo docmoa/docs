@@ -31,6 +31,9 @@ Vault 사이드카 에이전트 인젝터([Vault Sidecar Agent Injector](https:/
 ## 3. Vault Secrets Operator
 
 [Vault Secrets Operator](https://github.com/hashicorp/vault-secrets-operator/)는 기본적으로 Vault secrets을 Kubernetes Secrets에 동기화할 책임이 있는(responsible) CRD 집합으로 쿠버네티스 시크릿 오퍼레이터(Kubernetes Secrets Operator)를 구현하는 새로운 통합 방법이다. 
+
+![](./image/1691011664-k8s-vault-sidecar-workflow-copy-2x.webp)
+
 오퍼레이터는 하나 이상의 볼트 서버 인스턴스에서 정적(static), 동적(dynamic) 및 PKI 기반(PKI-based) 시크릿을 포함한 시크릿 관리의 전체 라이프사이클 동기화를 지원한다. 또한 오퍼레이터는 시크릿 로테이션(secret rotation)을 관리하고 [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)의 [rolling update](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#rollout)를 통해 애플리케이션에 직접 알리거나(notifying) 롤링 업데이트를 트리거(triggering)하는 등 로테이션 후 작업을 수행할 수 있다.
 
 > 참고 : 
@@ -38,20 +41,21 @@ Vault 사이드카 에이전트 인젝터([Vault Sidecar Agent Injector](https:/
 > - [커스텀 리소스(Custom Resource) 란?](https://kubernetes.io/ko/docs/concepts/extend-kubernetes/api-extension/custom-resources/)
 > - [오퍼레이터(operator) 패턴이란?](https://kubernetes.io/ko/docs/concepts/extend-kubernetes/operator/)
 
-## 4. Common design considerations
+## 4. 설계 고려사항
 
 두 솔루션 간에는 몇 가지 유사점과 차이점이 있으며, Kubernetes 환경에서 시크릿 관리 전략을 설계하고 구현할 때 고려해야 할 사항이다.
 
-1. **Secret projections**: 모든 애플리케이션은 특정 방식으로 시크릿을 제공해야 한다. 일반적으로, 애플리케이션은 환경 변수로 내보내거나(exported) 애플리케이션 시작(startup) 시 애플리케이션이 읽을 수 있는 파일에 시크릿을 기록한다. 사용할 올바른 방법을 결정할 때 이 점을 염두에 두자.
-2. **Secret scope**: 일부 애플리케이션은 데이터센터, 엣지 또는 퍼블릭 클라우드의 여러 Kubernetes 환경(예: dev, qa, producton)에 배포된다. 일부 서비스는 가상 머신, 서버리스 또는 기타 클라우드 관리형(cloud-managed) 서비스에 배포된 외부 Kubernetes 환경에서 실행되기도 한다. 
-   이러한 애플리케이션이 다양한 이기종 환경 전반에서 일련의 시크릿을 공유해야 하는 시나리오에 직면할 수 있다. 키의 범위(Scoping)를 올바르게 설정하여 Kubernetes 환경에 로컬 또는 여러 환경에 걸쳐 전역(global)으로 설정하면 각 애플리케이션이 배포된 환경 내에서 자체 키 집합에 쉽고 안전하게 액세스할 수 있다.
-3. **Secret types**: 시크릿은 텍스트 파일, 바이너리 파일, 토큰 또는 인증서 등이 대표적이다. 정적으로 생성하거나 동적으로 생성할 수도 있다. 영구적으로 유효하거나 시간 제한적(time-scoped)으로 유효할 수 있다. 또한 크기도 다양하다. 애플리케이션에 필요한 시크릿 유형과 애플리케이션에 투영(projected)되는 방식을 고려해야 한다.
-4. **Secret definition**: 또한 각 비밀이 정의, 생성, 업데이트 및 제거되는 방법과 해당 프로세스와 관련된 도구도 고려해야 한다.
-5. **Encryption**: 미사용(at rest) 시크릿과 전송(transit) 중인 시크릿을 모두 암호화하는 것은 많은 기업 조직에서 중요한 요구 사항이다.
-6. **Governance**: 애플리케이션과 비밀은 다대다(many-to-many) 관계를 가질 수 있으므로 애플리케이션이 각각의 비밀을 검색할 수 있도록 액세스 권한을 부여할 때 신중한 고려가 필요하다. 애플리케이션과 암호의 수(scale)가 증가함에 따라 액세스 정책 관리의 어려움도 커진다.
-7. **Secrets updates and rotation**: 시크릿은 임대(leased), 시간 범위(time-scoped) 지정 또는 자동으로 순환(rotated)될 수 있으며, 각 시나리오는 새 시크릿이 애플리케이션 파드에 올바르게 전파되도록 프로그래밍(programmatic) 프로세스를 거쳐야 한다.
-8. **Secret caching**: 특정 쿠버네티스 환경(예: edge 또는 retail)에서는 환경과 시크릿 스토리지 간의 통신 또는 네트워크 장애가 발생할 경우 시크릿 캐싱이 필요할 수 있다.
-9. **Auditability**: 모든 시크릿 액세스 정보를 자세히 설명하는 시크릿 액세스 감사 로그를 보관하는 것은 시크릿 액세스(secret-access) 이벤트의 추적성(traceability)을 보장(Keeping)하는 데 중요하다
+| 고려사항                     | 설명                                                         |
+| ---------------------------- | ------------------------------------------------------------ |
+| Secret projections           | 모든 애플리케이션은 특정 방식으로 시크릿을 제공해야 한다. 일반적으로, 애플리케이션은 환경 변수로 내보내거나(exported) 애플리케이션 시작(startup) 시 애플리케이션이 읽을 수 있는 파일에 시크릿을 기록한다. 사용할 올바른 방법을 결정할 때 이 점을 염두에 두자. |
+| Secret scope                 | 일부 애플리케이션은 데이터센터, 엣지 또는 퍼블릭 클라우드의 여러 Kubernetes 환경(예: dev, qa, producton)에 배포된다. 일부 서비스는 가상 머신, 서버리스 또는 기타 클라우드 관리형(cloud-managed) 서비스에 배포된 외부 Kubernetes 환경에서 실행되기도 한다. <br/>이러한 애플리케이션이 다양한 이기종 환경 전반에서 일련의 시크릿을 공유해야 하는 시나리오에 직면할 수 있다. 키의 범위(Scoping)를 올바르게 설정하여 Kubernetes 환경에 로컬 또는 여러 환경에 걸쳐 전역(global)으로 설정하면 각 애플리케이션이 배포된 환경 내에서 자체 키 집합에 쉽고 안전하게 액세스할 수 있다. |
+| Secret types                 | 시크릿은 텍스트 파일, 바이너리 파일, 토큰 또는 인증서 등이 대표적이다. 정적으로 생성하거나 동적으로 생성할 수도 있다. 영구적으로 유효하거나 시간 제한적(time-scoped)으로 유효할 수 있다. 또한 크기도 다양하다. 애플리케이션에 필요한 시크릿 유형과 애플리케이션에 투영(projected)되는 방식을 고려해야 한다. |
+| Secret definition            | 또한 각 비밀이 정의, 생성, 업데이트 및 제거되는 방법과 해당 프로세스와 관련된 도구도 고려해야 한다. |
+| Encryption                   | 미사용(at rest) 시크릿과 전송(transit) 중인 시크릿을 모두 암호화하는 것은 많은 기업 조직에서 중요한 요구 사항이다. |
+| Governance                   | 애플리케이션과 비밀은 다대다(many-to-many) 관계를 가질 수 있으므로 애플리케이션이 각각의 비밀을 검색할 수 있도록 액세스 권한을 부여할 때 신중한 고려가 필요하다. 애플리케이션과 암호의 수(scale)가 증가함에 따라 액세스 정책 관리의 어려움도 커진다. |
+| Secrets updates and rotation | 시크릿은 임대(leased), 시간 범위(time-scoped) 지정 또는 자동으로 순환(rotated)될 수 있으며, 각 시나리오는 새 시크릿이 애플리케이션 파드에 올바르게 전파되도록 프로그래밍(programmatic) 프로세스를 거쳐야 한다. |
+| Secret caching               | 특정 쿠버네티스 환경(예: edge 또는 retail)에서는 환경과 시크릿 스토리지 간의 통신 또는 네트워크 장애가 발생할 경우 시크릿 캐싱이 필요할 수 있다. |
+| Auditability                 | 모든 시크릿 액세스 정보를 자세히 설명하는 시크릿 액세스 감사 로그를 보관하는 것은 시크릿 액세스(secret-access) 이벤트의 추적성(traceability)을 보장(Keeping)하는 데 중요하다. |
 
 이러한 설계 고려 사항을 염두에 두고, 두 통합 솔루션의 유사점(similarities)과 차이점(differences)을 살펴본다.
 
