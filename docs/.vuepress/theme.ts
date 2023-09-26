@@ -59,6 +59,8 @@ export default hopeTheme({
 
     feed: {
       rss: true,
+      icon: "rss",
+      rssOutputFilename: "rss.xml"
     },
     
     copyCode: {},
