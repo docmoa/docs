@@ -8,7 +8,7 @@ tag: ["vault", "kubernetes", "secret", "VSO"]
 - CSI provider
 - Vault Secrets Operator
 
-##  0. 개요
+::: info 개요
 본 글에서는 HashiCorp Vault 및 Kubernetes 통합을 위해 HashiCorp가 지원하는 세 가지 방법을 자세히 비교한다:
 
 1. 볼트 사이드카 에이전트 인젝터(Sidecar Agent Injector)
@@ -16,10 +16,11 @@ tag: ["vault", "kubernetes", "secret", "VSO"]
 3. 볼트 시크릿 오퍼레이터(Secrets Operator)
 
 각 방법에 대한 실용적인 지침(guidance)을 제공하여 사용 사례에 가장 적합한 방법을 이해하고 선택할 수 있도록 안내한다.
+:::
 
-> 참고 : 
-> 본 포스트는 제품 설명서나 단계별(step-by-step) 구현 가이드가 아니며, HashiCorp Vault 및 Kubernetes에 익숙하고 시크릿 관리 개념에 대한 기본적인 이해가 있는 데브옵스 실무자를 위한 문서이다.
-
+::: warning 참고
+본 포스트는 제품 설명서나 단계별(step-by-step) 구현 가이드가 아니며, HashiCorp Vault 및 Kubernetes에 익숙하고 시크릿 관리 개념에 대한 기본적인 이해가 있는 데브옵스 실무자를 위한 문서이다.
+:::
 
 
 ## 1. Vault Sidecar Agent Injector
@@ -47,6 +48,7 @@ Vault 사이드카 에이전트 인젝터([Vault Sidecar Agent Injector](https:/
 > 참고 : 
 >
 > - [커스텀 리소스(Custom Resource) 란?](https://kubernetes.io/ko/docs/concepts/extend-kubernetes/api-extension/custom-resources/)
+> 
 > - [오퍼레이터(operator) 패턴이란?](https://kubernetes.io/ko/docs/concepts/extend-kubernetes/operator/)
 
 ## 4. 설계 고려사항
@@ -69,7 +71,7 @@ Vault 사이드카 에이전트 인젝터([Vault Sidecar Agent Injector](https:/
 
 ## 5. Similarities
 
-Vault **Operator**, **CSI** 및 **Sidecar** 솔루션:
+Vault `Operator`, `CSI` 및 `Sidecar` 솔루션:
 
 - Vault에 저장된 다양한 유형의 시크릿 검색을 간소화(Simplify)하고 사소하지 않은(not-so-trivial) Vault 프로세스를 인식하지 않고도 Kubernetes에서 실행 중인 대상 파드에 시크릿을 노출한다. 중요한 점은 이러한 솔루션을 사용하기 위해 애플리케이션 로직이나 코드를 변경할 필요가 없기 때문에 브라운필드(brownfield) 애플리케이션을 Kubernetes로 더 쉽게 마이그레이션할 수 있다는 것이다. 그린필드(greenfield) 애플리케이션을 작업하는 개발자는 [Vault SDKs](https://www.vaultproject.io/api/libraries?_gl=1*1kt7rwn*_ga*MjA5MTM1MTczLjE2ODA2MDU3MjM.*_ga_P7S46ZYEKW*MTY4MTQ2MTI4NS4xMS4xLjE2ODE0NjE2OTUuMC4wLjA.)를 활용하여 Vault와 직접 통합할 수 있다.
 
@@ -80,7 +82,7 @@ Vault **Operator**, **CSI** 및 **Sidecar** 솔루션:
 
 ![img](https://www.hashicorp.com/_next/image?url=https%3A%2F%2Fwww.datocms-assets.com%2F2885%2F1643214683-vault-k8s-auth-blog.png&w=3840&q=75)
 
-***Vault’s Kubernetes auth workflow*:**
+## 6. Vault’s Kubernetes auth workflow
 
 - 애플리케이션을 배포하기 전에 원하는 시크릿이 Vault 내에 존재해야 한다.
 - 원하는 시크릿에 액세스할 수 있는 정책으로 파드의 서비스 어카운트가 Vault 역할에 바인딩(bound)되어야 한다.
@@ -90,7 +92,7 @@ Vault **Operator**, **CSI** 및 **Sidecar** 솔루션:
 - 사용자 정의(user-defined) 파드 어노테이션을 사용하여 Vault에서 필요한 시크릿을 검색(retrieve)한다.
 - [Sidecar Injector Service](https://www.vaultproject.io/docs/agent/template?_gl=1*x61qo5*_ga*MjA5MTM1MTczLjE2ODA2MDU3MjM.*_ga_P7S46ZYEKW*MTY4MTQ2MTI4NS4xMS4xLjE2ODE0NjIyOTcuMC4wLjA.#renewals-and-updating-secrets)와 [CSI Driver](https://secrets-store-csi-driver.sigs.k8s.io/topics/secret-auto-rotation.html)는 모두 자동으로 시크릿/토큰을 갱신(renew), 회전(rotate) 및 가져올(fetch) 수 있다.
 
-## 6. Differences
+## 7. Differences
 
 세 가지 솔루션의 차이점은 다음과 같다:
 
@@ -109,7 +111,7 @@ Vault **Operator**, **CSI** 및 **Sidecar** 솔루션:
 - CSI Driver는 `hostPath`를 사용하여 임시 볼륨을 파드에 마운트하는데, 일부 컨테이너 플랫폼(예: OpenShift)은 기본적으로 이 기능을 비활성화한다. 반면, Sidecar Agent Service는 인메모리(in-memory) *tmpfs* 볼륨을 사용한다.
 - Sidecar Injector Service는 자동으로([automatically](https://www.vaultproject.io/docs/agent/template?_gl=1*73vpv8*_ga*MjA5MTM1MTczLjE2ODA2MDU3MjM.*_ga_P7S46ZYEKW*MTY4MTQ2MTI4NS4xMS4xLjE2ODE0NjMzMzQuMC4wLjA.#renewals-and-updating-secrets)) 시크릿/토큰을 갱신, 회전 및 패치(fetches)를 지원하지만, CSI Driver는 이를 지원하지 않는다.
 
-## 7. Comparison Chart
+## 8. Comparison Chart
 
 아래 표는 두 솔루션을 개략적(high-level)으로 비교한 것이다:
 
@@ -118,7 +120,7 @@ Vault **Operator**, **CSI** 및 **Sidecar** 솔루션:
 | Secret projection                                            |               공유 메모리 볼륨<br />환경 변수*               |       임시 디스크<br />환경변수<br />쿠버네티스 시크릿       | 쿠버네티스 시크릿<br />쿠버네티스 시크릿 볼륨<br />환경변수  |
 | Secret scope                                                 |                         전역(Global)                         |                         전역(Global)                         |                         전역(Global)                         |
 | Secret types                                                 |           모든 볼트 시크릿 엔진<br />(정적 & 동적)           |           모든 볼트 시크릿 엔진<br />(정적 & 동적)           |           모든 볼트 시크릿 엔진<br />(정적 & 동적)           |
-| Secret templating                                            |                              ✅                               |                              ❌                               |         베타버전 미지원<br />(GA 버전에서 지원예상)          |
+| Secret templating                                            |                              ✅                               |                              ❌                               |         ✅(+1.15)          |
 | Secret size limit                                            | Vault w/Consul<br />Backend: 512 KB(기본)<br />제한없음<br /><br />Vault w/Integrated Storage<br />Backend: 1MiB(기본)<br />제한없음 | Vault w/Consul<br />Backend: 512 KB(기본)<br />제한없음<br /><br />Vault w/Integrated Storage<br />Backend: 1MiB(기본)<br />제한없음 | Vault w/Consul<br />Backend: 512 KB(기본)<br />제한없음<br /><br />Vault w/Integrated Storage<br />Backend: 1MiB(기본)<br />제한없음 |
 | Secret definitions                                           |                     Vault CLI / API / UI                     |                     Vault CLI / API / UI                     |                     Vault CLI / API / UI                     |
 | Encryption                                                   |                  지원(at rest & in-transit)                  |                  지원(at rest & in-transit)                  | at-rest : `etcd` 저장소 암호화 시<br />in-transit : TLS 사용 시 |
@@ -133,15 +135,17 @@ Vault **Operator**, **CSI** 및 **Sidecar** 솔루션:
 
 > ***** achieved through [Agent templating](https://www.vaultproject.io/docs/platform/k8s/injector/examples#environment-variable-example)
 
-## 8. Going Beyond the Native Kubernetes Secrets
+## 9. Going Beyond the Native Kubernetes Secrets
 
 겉으로 보기에 Kubernetes native secrets은 위에 제시된 두 가지 접근 방식과 비슷해 보일 수 있지만, 두 접근 방식에는 큰 차이점이 있다:
 
 - Kubernetes 시크릿 관리 솔루션이 *아닙니다*. 기본적으로 시크릿을 지원하지만, 이는 엔터프라이즈 시크릿 관리 솔루션과는 상당히 다르다. Kubernetes 시크릿은 클러스터로만 범위가 제한되며, 많은 애플리케이션은 일부 서비스를 Kubernetes 외부 또는 다른 Kubernetes 클러스터에서 실행한다. 따라서 설계 프로세스의 일부로 시크릿 범위를 고려하는 것이 중요하다. 이러한 애플리케이션이 Kubernetes 환경 외부에서 Kubernetes 시크릿을 사용하도록 하면 번거롭고 인증 및 권한 부여 문제가 발생할 수 있다.
+
 - Kubernetes 시크릿은 본질적으로(in nature) 정적(static)이다. 시크릿은 `kubectl` 또는 `Kubernetes API`를 사용하여 정의할 수 있지만, 일단 정의되면 `etcd`에 저장되고 파드를 생성하는 동안에만 파드에 제공된다. 이로 인해 시크릿이 오래되거나, 구식이거나(outdated), 만료되는 시나리오가 발생할 수 있으며, 시크릿을 업데이트하고 회전하기 위해 추가 워크플로우가 필요하고 새 버전의 시크릿을 사용하기 위해 애플리케이션을 다시 배포(re-deploying)해야 한다. 이로 인해 복잡성(complexity)이 가중되고 시간이 낭비될 수 있다. 따라서 디자인 프로세스의 일부로 시크릿의 최신성(freshness), 업데이트 및 순환에 대한 요구 사항을 고려해야 한다.
+
 - 시크릿 액세스 관리의 보안 모델은 Kubernetes RBAC 모델과 연결되어 있다. 이 모델은 Kubernetes에 익숙하지 않은 사용자에게는 채택하기 어려울 수 있다. 플랫폼에 구애받지 않는(platform-agnostic) 보안 거버넌스 모델을 채택하면 애플리케이션이 실행되는 방식과 위치에 관계없이 애플리케이션에 대한 워크플로우를 채택할 수 있다.
 
-## 9. Summary
+## 10. Summary
 
 Kubernetes에서 시크릿 관리를 위한 설계는 쉬운 일이 아니다. 각각 장단점이 있는 여러 가지 접근 방식이 있다. 이 게시물에 제시된 옵션을 살펴보고 내부를 이해하여 사용 사례에 가장 적합한 옵션을 결정하시길 적극 권장한다.
 
