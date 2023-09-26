@@ -1,4 +1,12 @@
-# Kubernetes Vault 통합방안 3가지 비교 : Sidecar Agent Injector vs. Vault Secrets Operator vs. CSI provider
+---
+tag: ["vault", "kubernetes", "secret", "VSO"]
+---
+
+# Kubernetes Vault 통합방안 3가지 비교
+
+- Sidecar Agent Injector
+- CSI provider
+- Vault Secrets Operator
 
 ##  0. 개요
 본 글에서는 HashiCorp Vault 및 Kubernetes 통합을 위해 HashiCorp가 지원하는 세 가지 방법을 자세히 비교한다:
