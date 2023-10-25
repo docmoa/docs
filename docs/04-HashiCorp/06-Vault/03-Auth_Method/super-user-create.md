@@ -1,6 +1,5 @@
 ---
 description: Vault Super user 만들기
-author : "이규석"
 tag: ["vault auth"]
 ---
 
@@ -11,28 +10,43 @@ tag: ["vault auth"]
 :::
 
 1. userpass 활성화
-```bash
+```bash:no-line-numbers
 vault auth enable userpass
 ```
 
 2. 권한 추가 (e.g. super-user)
-```bash
+::: code-tabs#shell
+@tab Linux/MacOS
+```bash:no-line-numbers
 vault policy write super-user - << EOF
 path "*" {
 capabilities = ["create", "read", "update", "delete", "list", "sudo"]
 }
 EOF
 ```
+@tab Windows Powershell
+```powershell:no-line-numbers
+$policy = @"
+path "*" {
+  capabilities = ["create", "read", "update", "delete", "list", "sudo"]
+}
+"@
+
+vault policy write super-user - << $policy
+```
+:::
 
 3. 계정 생성
-```bash
+
+```bash:no-line-numbers
 vault write auth/userpass/users/admin password=password policies=super-user
 ```
 
+
 4. 로그인 또는 토큰 생성
-:::: tabs
-::: tab Login
-```bash
+::: code-tabs#shell
+@tab Login
+```bash:no-line-numbers
 vault login -method userpass username=admin password=password
 Success! You are now authenticated. The token information displayed below
 is already stored in the token helper. You do NOT need to run "vault login"
@@ -49,9 +63,9 @@ identity_policies      []
 policies               ["default" "super-user"]
 token_meta_username    admin
 ```
-:::
-::: tab token
-```bash
+
+@tab token
+```bash:no-line-numbers
 vault token create -policy=super-user
 Key                  Value
 ---                  -----
@@ -64,4 +78,3 @@ identity_policies    []
 policies             ["default" "super-user"]
 ```
 :::
-::::
