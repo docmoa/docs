@@ -68,18 +68,19 @@ source ~/.zshrc
 
 VSCode 편집기를 사용할 준비가 되었다면, 코드의 시인성을 위해 extension을 설치 합니다.
 
-:::: tabs
-::: tab 1. Extention 설치
+::: tabs
+
+@tab 1. Extention 설치
 - 좌측 사이드 메뉴에서 Extentions 를 클릭하여 `Terraform`을 검색합니다.
 - `HashiCorp Terraform`을 설치합니다.
 ![](./image/lab1-03.png)
-:::
-::: tab 2. 적용된 Extention 확인
+
+@tab 2. 적용된 Extention 확인
 - 설치가 완료되면 코드의 시인성이 향상됨을 확이할 수 있습니다.
 - 이 외에도 수많은 확장 모듈로 생산성을 향상시킬 수 있습니다.
 ![](./image/lab1-04.png)
+
 :::
-::::
 
 ### 실습을 위한 코드 받기
 
@@ -163,23 +164,24 @@ terraform help
 NCP에 인증하고 리소스를 빌드하기 위해 Terraform은 적절한 자격 증명 세트를 제공하도록 요구합니다.
 
 #### :computer: Terraform에서 사용할 NCP의 자격증명을 얻기위해 다음 단계를 수행합니다.
-:::: tabs
-::: tab 1. 인증키 관리
+::: tabs
+
+@tab 1. 인증키 관리
 - <https://www.ncloud.com/>에 로그인하여 마이페이지 메뉴에서 `인증키 관리`를 선택합니다.
 - 경우에 따라 사용자 패스워드를 요구할 수 있습니다.
 ![](./image/lab1-07.png)
-:::
-::: tab 2. 신규 API 인증키 생성
+
+@tab 2. 신규 API 인증키 생성
 - Terraform은 NCP에 API 인증키를 통해 자격증명을 취득합니다. `신규 API 인증키 생성` 버튼을 클릭합니다.
 - `API 인증키가 생성 되었습니다.` 라는 메시지를 확인합니다.
 ![](./image/lab1-08.png)
-:::
-::: tab 3. API 인증키 쌍 확인
+
+@tab 3. API 인증키 쌍 확인
 - 생성된 API인증키의 `Secret Key`항목의 `보기`버튼을 클릭하여 `Secret Key`를 확인합니다.
 - Terraform을 위한 환경변수 설정을 위해 `Access Key ID`, `Secret Key`를 사용하게 됩니다.
 ![](./image/lab1-09.png)
+
 :::
-::::
 
 ### NCP 자격증명 환경변수로 저장하기
 

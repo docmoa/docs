@@ -17,26 +17,27 @@ tag: ["ncloud", "ncp", "terraform", "workshop"]
 - 보안 그룹
 
 ## 서버 만들기 Method 1:  nCloud Console (GUI)
-:::: tabs
-::: tab Start
+::: tabs
+
+@tab Start
 ![](./image/GUI01.png)
-:::
-::: tab 서버 이미지 선택
+
+@tab 서버 이미지 선택
 ![](./image/GUI02.png)
-:::
-::: tab 서버 설정
+
+@tab 서버 설정
 ![](./image/GUI03.png)
-:::
-::: tab 인증키 설정
+
+@tab 인증키 설정
 ![](./image/GUI04.png)
-:::
-::: tab 네트워크 접근 설정
+
+@tab 네트워크 접근 설정
 ![](./image/GUI05.png)
-:::
-::: tab 최종 확인
+
+@tab 최종 확인
 ![](./image/GUI06.png)
+
 :::
-::::
 
 ---
 

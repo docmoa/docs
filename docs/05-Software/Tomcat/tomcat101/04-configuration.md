@@ -123,8 +123,9 @@ Windows 환경의 서비스 실행방법을 제외하고는 대부분 스크립�
 
 즉, `catalina.sh`는 건드리지 말고 `setenv.sh(bat)`에 추가적은 설정을 하라는 안내 문구 입니다. `catalina.sh`를 수정하는 경우 해당 톰캣을 이전하거나, 동일한 톰캣을 구성하거나, 또는 복구해야 하는 상황에서 추가로 설정되거나 수정된 내용의 확인이 힘들 수 있고, 또한 설정과 수정으로 인한 비정상 동작을 할 수 있기 때문입니다. 그렇다면 `setenv.sh(bat)`은 어떻게 작용할까요? `catalina.sh(bat)`에서 `setenv`를 찾아보면 다음과 같이 `setenv`스크립트에 적용된내용을 읽어오는 것을 확인 할 수 있습니다.
 
-:::: tabs
-::: tab catalina.sh (Unix/Linux/OSX)
+::: code-tabs
+
+@tab catalina.sh (Unix/Linux/OSX)
 ```bash
 if [ -r "$CATALINA_BASE/bin/setenv.sh" ]; then
   . "$CATALINA_BASE/bin/setenv.sh"
@@ -132,8 +133,8 @@ elif [ -r "$CATALINA_HOME/bin/setenv.sh" ]; then
   . "$CATALINA_HOME/bin/setenv.sh"
 fi
 ```
-:::
-::: tab catalina.bat (Windows)
+
+@tab catalina.bat (Windows)
 ```powershell
 rem Get standard environment variables
 if not exist "%CATALINA_BASE%\bin\setenv.bat" goto checkSetenvHome
@@ -143,24 +144,26 @@ goto setenvDone
 if exist "%CATALINA_HOME%\bin\setenv.bat" call "%CATALINA_HOME%\bin\setenv.bat"
 :setenvDone
 ```
-::::
+:::
 
 
 이같이 톰캣에서는 추가/수정해야하는 환경변수나 설정값을 하나의 스크립트에서 관리할 수 있는 환경을 제공합니다. 다만 `setenv.sh(bat)`스크립트는 별도로 만들어야 합니다. 앞서 `catalina.sh(bat)`의 설명된 변수들을 보면 Java Options은 `JAVA_OPTS`로하지 말고 `CATALINA_OPTS`로 하라는 점도 주의해서 보시기 바랍니다. `JAVA_OPTS`의 경우 톰캣을 정지시키는 `shutdown.sh(bat)`에서도 호출되기 때문에 차후 소개되는 JMX 모니터링을 위한 옵션과 같이 별도의 포트를 활성화하는 옵션과 같은 성격의 설정 적용시 문제가 될 수 있습니다. `setenv.sh(bat)`스크립트에 다음과 같이 추가하면 해당 옵션을 별도로 export하지 않아도 톰캣 기동시 적용됩니다.
 
-:::: tabs
-::: tab setenv.sh (Unix/Linux/OSX)
+::: code-tabs
+
+@tab setenv.sh (Unix/Linux/OSX)
 ```bash
 CATALINA_OPTS="-Xms1024m -Xmx2048m -XX:MaxPermSize=512m -verbosegc"
 CLASSPATH="${CLASSPATH}:/app/libs/myapi.jar"
 ```
-:::
-::: tab setenv.bat (Windows)
+
+@tab setenv.bat (Windows)
 ```powershell
 set CATALINA_OPTS=-Xms1024m -Xmx2048m -XX:MaxPermSize=512m -verbosegc
 set CLASSPATH=%CLASSPATH%;/app/libs/myapi.jar
 ```
-::::
+
+:::
 
 ### 4.5 web.xml
 웹 어플리케이션에서 `web.xml`은 서블릿을 정의하고 이어주는 역할을 수행합니다. 이와 마찬가지로 톰캣에 있는 `$CATALINA_HOME/conf/web.xml` 또한 톰캣에 있는 서블릿을 정의하고 이어주는 역할을 수행합니다. 다만 JSP/Servlet 엔진으로서의 최소한의 정의를 합니다.

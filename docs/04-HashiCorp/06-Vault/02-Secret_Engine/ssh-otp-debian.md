@@ -68,8 +68,9 @@ vault-ssh-helper -verify-only -config=config.hcl -dev
 
 ### pam.d 설정
 
-:::: tabs
-::: tab 기존 PW 방식을 대체
+::: tabs
+
+@tab 기존 PW 방식을 대체
 `/etc/pam.d/sshd` 파일의 `@include common-auth` 부분을 다음과 같이 변경 추가
 
 ```properties
@@ -77,8 +78,8 @@ vault-ssh-helper -verify-only -config=config.hcl -dev
 auth requisite pam_exec.so quiet expose_authtok log=/tmp/vaultssh.log /usr/local/bin/vault-ssh-helper -config=/etc/vault-ssh-helper.d/config.hcl -dev
 auth optional pam_unix.so not_set_pass use_first_pass nodelay
 ```
-:::
-::: tab 기존 PW와 함께 사용
+
+@tab 기존 PW와 함께 사용
 `/etc/pam.d/common-auth` 파일의 `auth [success=1 dufault=ignore]` 아래 2줄 추가
 
 ```properties{3,4}
@@ -96,8 +97,8 @@ auth    required                        pam_permit.so
 auth    optional                        pam_cap.so 
 # end of pam-auth-update config
 ```
+
 :::
-::::
 
 ### ssh 설정
 

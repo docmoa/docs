@@ -95,14 +95,15 @@ Terraform에서 "Do you want to perform these actions?"라는 메시지가 표�
 
 [NCP Consul](https://console.ncloud.com/vpc-network/vpc) 화면에 접속해 보세요. 구성한 자원이 생성된 것이 확인되나요?
 
-:::: tabs
-::: tab 1. Products & Services
+::: tabs
+
+@tab 1. Products & Services
 ![](./image/lab2-01.png)
-:::
-::: tab 2. VPC
+
+@tab 2. VPC
 ![](./image/lab2-02.png)
+
 :::
-::::
 
 ---
 

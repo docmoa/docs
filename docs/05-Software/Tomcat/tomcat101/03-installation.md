@@ -51,40 +51,43 @@ OS 환경에 Java Home을 설정하는 방법은 다음과 같습니다. (Java H
 
 #### 3.4.1.1 환경변수로 지정
 
-:::: tabs
-::: tab Unix/Linux/OSX
+::: tabs
+
+@tab Unix/Linux/OSX
 계정 루트의 `.profile` (bash 쉘의 경우 `.bash_profile`)에 다음을 설정
 
 ```bash
 # .bash_profile
 export JAVA_HOME=/usr/java/jre1.8.0_241
 ```
-:::
-::: tab Windows
+
+@tab Windows
 내컴퓨터 우클릭 > 고급 > 환경변수 > JAVA_HOME 추가
 
 ![JavaHomeOnWindows](https://github.com/Great-Stone/great-stone.github.io/blob/master/assets/img/Tomcat_youtube/JavaHomeOnWindows.png?raw=true)
+
 :::
-::::
 
 
 #### 3.4.1.2 스크립트에 추가
 
 스크립트에 Java_Home을 설정하는 경우 `catalina.sh(bat)`에 `JAVA_HOME` 으로 지정하는 경우가 있습니다. 추가로 `setenv.sh(bat)`을 생성하여 해당 스크립트에 설정하는 방법을 권장합니다.
 
-:::: tabs
-::: tab Unix/Linux/OSX
+::: code-tabs
+
+@tab Unix/Linux/OSX
 ```bash
 # setenv.sh
 JAVA_HOME="/usr/java/jre1.8.0_241"
 ```
-:::
-::: tab Windows
+
+@tab Windows
 ```powershell
 # setenv.bat
 JAVA_HOME=C:\Progra~1\java\jre1.8.0_241
 ```
-::::
+
+:::
 
 Windows환경에서 Java를 `C:\Program Files`에 설치하는 경우 중간에 공백이 있기 때문에 `C:\Progra~1`로 표현함에 주의합니다.
 

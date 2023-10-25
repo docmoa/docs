@@ -73,22 +73,23 @@ Nomoad 에서는 Jenkins 실행을 위해 다음 조건이 필요하다.
 
 `Oversubscription` 기능은 고급 기능으로 구성설정에서 지정할 수는 없고 CLI/API/Terraform을 사용하여 설정을 변경해야 한다. ([설명 링크](https://developer.hashicorp.com/nomad/tutorials/advanced-scheduling/memory-oversubscription?in=nomad%2Fadvanced-scheduling))
 
-:::: tabs
-::: tab CLI
+::: tabs
+
+@tab CLI
 링크 : <https://developer.hashicorp.com/nomad/docs/commands/operator/scheduler/set-config>
 ```bash
 $ nomad operator scheduler set-config -memory-oversubscription=true
 ```
-:::
-::: tab curl
+
+@tab curl
 링크 : <https://developer.hashicorp.com/nomad/tutorials/advanced-scheduling/memory-oversubscription?in=nomad%2Fadvanced-scheduling>
 ```bash
 $ curl -s $NOMAD_ADDR/v1/operator/scheduler/configuration | \
 jq '.SchedulerConfig | .MemoryOversubscriptionEnabled=true' | \
 curl -X PUT $NOMAD_ADDR/v1/operator/scheduler/configuration -d @-
 ```
-:::
-::: tab Terraform
+
+@tab Terraform
 링크 : <https://registry.terraform.io/providers/hashicorp/nomad/latest/docs/resources/scheduler_config>
 ```hcl {3}
 resource "nomad_scheduler_config" "config" {
@@ -102,8 +103,8 @@ resource "nomad_scheduler_config" "config" {
   }
 }
 ```
+
 :::
-::::
 
 
 ## 4. Job Sample

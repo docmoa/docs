@@ -46,14 +46,15 @@ Terraform Cloud는 다른 SaaS 서비스와 같이 개인을 위한 무료 플�
 
 5. Terraform Cloud 상에 생성한 `hashicat-ncp` 의 `Settings > General` 로 이동하여 `Terraform Version`을 동일한 버전으로 구성합니다. 그리고 Execution Mode를 `Local`로 설정합니다.
 
-:::: tabs
-::: tab Setting 위치
+::: tabs
+
+@tab Setting 위치
 ![](./image/lab6-02.png)
-:::
-::: tab Version과 Execution Mode
+
+@tab Version과 Execution Mode
 ![](./image/lab6-03.png)
+
 :::
-::::
 
 6. `Settings` 페이지 하단에 <button style='border-color: #3322de; background-color: #5c4ee5; color: #fff; font-size: 1rem;'>Save settings</button> 버튼을 클릭하여 저장합니다.
 
@@ -109,14 +110,15 @@ Do you want to proceed?
 
 `Create API token` 화면이 나오면 Description에 적절한 값(예: ncp workshop)을 입력한 후 <button style='border-color: #3322de; background-color: #5c4ee5; color: #fff; font-size: 1rem;'>Create API token</button> 버튼을 클릭하여 새로운 Token을 생성합니다.
 
-:::: tabs
-::: tab Token 생성하기
+::: tabs
+
+@tab Token 생성하기
 ![](./image/lab6-04.png)
-:::
-::: tab Token 생성 후 복사
+
+@tab Token 생성 후 복사
 ![](./image/lab6-05.png)
+
 :::
-::::
 
 생성된 Token을 복사하여 앞서 터미널에 새로운 입력란인 `Enter a value: ` 에 붙여넣고 <kbd>⏎</kbd>(엔터)를 입력합니다. (입력된 값은 보이지 않습니다.)
 
