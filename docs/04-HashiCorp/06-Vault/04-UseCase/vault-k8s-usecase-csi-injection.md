@@ -28,6 +28,13 @@ Kubernetes에 배포되는 컨테이너 애플리케이션이 Vault의 시크릿
 Vault와 Kuberentes간의 통합의 세가지 방식은 중복으로 적용 가능합니다.
 :::
 
+::: warning 준비사항
+구성을 위한 사전 필요 사항은 다음과 같습니다.
+- Vault CLI를 위한 바이너리
+- Kubectl CLI 도구 및 대상 Kubernetes에 대한 구성 완료
+- Helm CLI 도구
+:::
+
 ## 1. CSI
 
 > 참고 : <https://developer.hashicorp.com/vault/tutorials/kubernetes/kubernetes-secret-store-driver>
@@ -35,11 +42,6 @@ Vault와 Kuberentes간의 통합의 세가지 방식은 중복으로 적용 가�
 CSI 방식에서는 `SecretProviderClass` 가 Vault의 정보를 구성하는 역할을 수행하고, 이후 `deployment`에서 볼륨 형태로 호출하는 방식으로 구성됩니다.
 
 ![](./image/vault-csi-flow.png)
-
-구성을 위한 사전 필요 사항은 다음과 같습니다.
-- Vault CLI를 위한 바이너리
-- Kubectl CLI 도구 및 대상 Kubernetes에 대한 구성 완료
-- Helm CLI 도구
 
 ### 1.1 Kubernetes에 CSI 드라이버 설치
 
@@ -391,11 +393,6 @@ BM/VM 환경에서는 Vault의 시크릿을 획득하고 갱신하는 과정을 
 사이드카 방식이 적용되도록 Kubernetes에 설치되면 `Sidecar Injector` 서비스가 실행되고, 이 서비스는 `annotation`이 정의된 배포를 후킹하여 Vault Agent 컨테이너를 주입(Injection) 합니다.
 
 ![](./image/vault-injection-flow.png)
-
-구성을 위한 사전 필요 사항은 다음과 같습니다.
-- Vault CLI를 위한 바이너리
-- Kubectl CLI 도구 및 대상 Kubernetes에 대한 구성 완료
-- Helm CLI 도구
 
 ### 2.1 Injection을 위한 Vault 구성 (Helm)
 
@@ -952,4 +949,22 @@ uDtXjqrZYtEI47dZjsVLxnBDLBoTRmzyxtywRezmvL2aMA5r9Z6WhhmFY2o=
 ...생략...
 ```
 
-## 3. Vault Secret Operator ^VSO^ (작성중)
+## 3. VSO ^Vault^ ^Secret^ ^Operator^ (작성중)
+
+> 참고 1 : <https://developer.hashicorp.com/vault/tutorials/kubernetes/vault-secrets-operator>
+>
+> 참고 2 : <https://developer.hashicorp.com/vault/docs/platform/k8s/vso>
+
+VSO를 사용하면 Pod가 기존 Kubernetes Secrets을 활용하여 시크릿을 사용하던 방식으로 Vault의 시크릿을 사용하게 됩니다. VSO는 CRD(Custom Resource Definitions)를 구성하여 Vault의 시크릿을 Kubernetes Secrets으로 동기화하는 동작을 수행합니다.
+
+애플리케이션 수준, 또는 CSI와 사이드카 인젝션 방식의 구성 또한 Vault 시크릿을 사용하기 위한 다양한 방안을 제공했지만 애플리케이션 또는 기존 배포의 정의에 새로운 구성이 필요합니다. VSO는 Kubernetes의 Secret을 활용하여 기존 사용 경험을 유지하지만 Vault의 시크릿을 사용할 수 있는 방안을 제공합니다.
+
+![](./image/vault-secrets-operator-flow.png)
+
+현재 지원되는 버전은 다음과 같습니다. 변경 사항은 링크를 참고하세요. ([지원되는 Kubernetes 버전](https://developer.hashicorp.com/vault/docs/platform/k8s/vso#supported-kubernetes-versions))
+<Badge type="tip" text="1.28" vertical="top" />
+<Badge type="tip" text="1.27" vertical="top" />
+<Badge type="tip" text="1.26" vertical="top" />
+<Badge type="tip" text="1.25" vertical="top" />
+<Badge type="tip" text="1.24" vertical="top" />
+

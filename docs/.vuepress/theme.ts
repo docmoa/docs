@@ -50,6 +50,7 @@ export default hopeTheme({
         "Share",
         "SiteInfo",
         "YouTube",
+        "Badge"
       ],
     },
 
