@@ -11,7 +11,8 @@ export default defineUserConfig({
   base: "/",
 
   head: [
-    ['link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap' }]
+    ['link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap' }],
+    ['link', { rel: 'icon', href: '/logo.png' }]
   ],
 
   locales: {
