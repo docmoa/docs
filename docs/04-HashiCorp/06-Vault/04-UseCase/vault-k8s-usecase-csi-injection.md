@@ -949,7 +949,7 @@ uDtXjqrZYtEI47dZjsVLxnBDLBoTRmzyxtywRezmvL2aMA5r9Z6WhhmFY2o=
 ...생략...
 ```
 
-## 3. VSO ^Vault^ ^Secret^ ^Operator^ (작성중)
+## 3. VSO ^Vault^ ^Secret^ ^Operator^
 
 > 참고 1 : <https://developer.hashicorp.com/vault/tutorials/kubernetes/vault-secrets-operator>
 >
@@ -968,3 +968,751 @@ VSO를 사용하면 Pod가 기존 Kubernetes Secrets을 활용하여 시크릿�
 <Badge type="tip" text="1.25" vertical="top" />
 <Badge type="tip" text="1.24" vertical="top" />
 
+### 3.1 VSO를 위한 Vault 구성 (Helm)
+
+Kubernetes에 `Sidecar Injector` 서비스를 구성을 설치해야 합니다. 이 구성이 설치되면 `annotation`에 정의된 내용이 `vault-k8s` webhook을 호출하여 Pod를 재정의하여 Vault Agent를 사이드카로 주입(Injection)합니다.
+
+먼저 Vault Helm 차트를 등록합니다.
+
+```bash
+helm repo add hashicorp https://helm.releases.hashicorp.com
+```
+
+Vault Helm 차트를 사용하여 1) Kubernetes에 Vault를 설치하는 구성 또는 2) 외부 Vault와 연계하는 구성으로 설치 할 수 있습니다.
+
+::: details Vault를 Kubernetes에 설치 (Option)
+Vault가 별도 구성되어있지 않은 경우 해당 Kubernetes에 Vault 서버를 구성합니다.
+
+```bash
+helm install vault hashicorp/vault \
+    --set "server.dev.enabled=true" \
+    --set "injector.enabled=false" \
+    --set "csi.enabled=false"
+```
+:::
+
+아래와 같이 helm 설치 시 값을 정의한 `vault-operator-values.yaml` 파일을 생성합니다.
+::: code-tabs
+@tab internal Vault
+```bash
+defaultVaultConnection:
+  enabled: true
+  address: http://vault.default.svc.cluster.local:8200
+  skipTLSVerify: false
+  spec:
+  template:
+    spec:
+      containers:
+      - name: manager
+        args:
+        - "--client-cache-persistence-model=direct-encrypted"
+```
+
+@tab external Vault
+```bash
+defaultVaultConnection:
+  enabled: true
+  # 연결 가능한 외부 Vault URL을 정의합니다.
+  address: "외부 Vault Url"
+  skipTLSVerify: false
+  spec:
+  template:
+    spec:
+      containers:
+      - name: manager
+        args:
+        - "--client-cache-persistence-model=direct-encrypted"
+```
+:::
+
+다음을 실행하여 정의한 helm의 값으로 설치를 진행합니다.
+
+```bash
+helm install vault-secrets-operator \ hashicorp/vault-secrets-operator \
+    -n vault-secrets-operator-system \
+    --create-namespace \
+    --values vault-operator-values.yaml
+```
+
+설치가 완료되면 다음의 Pod를 확인할 수 있습니다.
+
+```bash
+$ kubectl get pods -n vault-secrets-operator-system
+
+NAME                                                         READY   STATUS    RESTARTS   AGE
+vault-secrets-operator-controller-manager-67879cb4d4-wzs6c   2/2     Running   0          4h22m
+```
+
+### 3.2 VSO에서 사용할 Vault 정적 시크릿 정의
+
+VSO에서 사용할 KV 시크릿 엔진을 활성화합니다.
+
+::: warning Kubernetes내의 Vault에서 CLI 사용
+Kubernetes내에 배포된 Vault인 경우 다음과 같이 쉘을 실행할 수 있도록 Pod에 접근합니다. (Optional)
+
+```bash
+kubectl exec -it vault-0 -- /bin/sh
+```
+:::
+
+```bash
+vault secrets enable -path for-vso -version=2 kv
+```
+
+`for-vso/my-pass` 경로에 `password` 값을 저장 합니다.
+
+```bash
+$ vault kv put for-vso/my-pass password="my-secret-password-v1"
+
+==== Secret Path ====
+for-vso/data/my-pass
+
+======= Metadata =======
+Key                Value
+---                -----
+created_time       2023-10-27T04:24:18.430362Z
+custom_metadata    <nil>
+deletion_time      n/a
+destroyed          false
+version            1
+```
+
+::: details 저장된 시크릿 값을 확인
+::: tabs
+@tab CLI
+```bash
+$ vault kv get for-vso/my-pass
+
+==== Secret Path ====
+for-vso/data/my-pass
+
+======= Metadata =======
+Key                Value
+---                -----
+created_time       2023-10-27T04:24:18.430362Z
+custom_metadata    <nil>
+deletion_time      n/a
+destroyed          false
+version            1
+
+====== Data ======
+Key         Value
+---         -----
+password    my-secret-password-v1
+```
+
+@tab UI
+![](./image/vault-vso-kv-check.png)
+
+:::
+
+### 3.3 VSO에서 사용할 Vault PKI 시크릿 정의
+
+PKI 시크릿의 경우 동적 시크릿으로, 발급 후 만료되기 전 Kubernetes Secret의 내용을 갱신 합니다.
+
+::: warning Kubernetes내의 Vault에서 CLI 사용
+Kubernetes내에 배포된 Vault인 경우 다음과 같이 쉘을 실행할 수 있도록 Pod에 접근합니다. (Optional)
+
+```bash
+kubectl exec -it vault-0 -- /bin/sh
+```
+:::
+
+```bash
+vault secrets enable -path=pki pki
+vault secrets tune -max-lease-ttl=86400s -default-lease-ttl=3600s pki
+```
+
+루트 인증서를 생성합니다.
+
+```bash
+vault write -field=certificate pki/root/generate/internal \
+  common_name="test" \
+  ttl="86400h"
+```
+
+생성된 루트 인증서에 기반한 PKI 롤을 생성합니다. 예제에서는 동적 시크릿의 교체를 확인하기 위해 주기(`ttl`, `max_ttl`)를 짧게 구성합니다.
+
+```bash
+vault write pki/roles/my-role \
+  key_bits=4096 \
+  ttl="60s" \
+  max_ttl="60s" \
+  allow_ip_sans=true \
+  allowed_domains="example.com,my.domain" \
+  allow_subdomains=true
+```
+
+::: details PKI 인증서 발급 확인
+::: tabs
+@tab CLI
+```bash
+$ vault write pki/issue/my-role common_name=my-test.example.com
+
+Key                 Value
+---                 -----
+ca_chain            [-----BEGIN CERTIFICATE-----
+MIIDIDCCAgigAwIBAgIUR6Auk4MVpeis2oLq0StUwce/v/kwDQYJKoZIhvcNAQEL
+BQAwDzENMAsGA1UEAxMEdGVzdDAeFw0yMzEwMjYyMzUyNDlaFw0yMzEwMjcyMzUz
+MTlaMA8xDTALBgNVBAMTBHRlc3QwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
+AoIBAQDXmlaX2Qu/rF+AFgWqJBCaNPziJrwsBB8nEUQh2S2XRMD9osoliWpaS33i
+iFAxc++Mec/FzKIsB7TskYWyFlv/GPmFG5gKdYfMuEMAgHrxM3OYWibQq0hDajJn
+oOcT1DwCx0mZqYdGoFVcw2TdW1vqgKRMx1vWBskaJHoGGpRvEPe7cYLz8itwqQfR
+7zkcVw3vdK6U50I7NnV/1wC+WOuwZ6IL5DKC1v3DtE5CrYKf/sBwDZfcdwFEjLpQ
+3hSXlVtv6t9E7QABcYqFkP5iebisNVP71L1Qk7oCuk4zqKpkbFytD6Nlf1LMRSFj
+SDt+aPuoqlmKrNtGsNcTqlW8k39HAgMBAAGjdDByMA4GA1UdDwEB/wQEAwIBBjAP
+BgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBTwEbHemyl86vBdxfMICjaKOJIoJzAf
+BgNVHSMEGDAWgBTwEbHemyl86vBdxfMICjaKOJIoJzAPBgNVHREECDAGggR0ZXN0
+MA0GCSqGSIb3DQEBCwUAA4IBAQB2y9QDCSNlr+j4v5H/7s4aZR8EWqbSdGc6F9w2
+FrR/bwo9eIxWiABFn/SH+bqHSK7fw4TMPJ0rEnJxBEvIPpA2kvGIxsBzPAdPzQ+A
+4F6tSJtiXB5A/7IZn9SQLUrcmcA5SuBGN9GjmPLpYSQg2ykJsTlExkYdg4co2sYV
+0F1gE5SXFGEmNTwFlpPSmKY6Zs8fKJZrzf+feCXFRlD/u+I4vftJqu7pwxZvPifR
+gPWi3kuzj71b4rEkZW3zNCP9XOtkCO/pNW2hJnc0QiTgQGvWXl/A8rIohsc+by2N
+MVr8w8iw1OdwbxI0LyC5siVgn+aER5qryYlpdeKR0/F2LuWX
+-----END CERTIFICATE-----]
+certificate         -----BEGIN CERTIFICATE-----
+MIIETjCCAzagAwIBAgIUbrsk5aFaFZ5MB9aeS9DjXlcEvFswDQYJKoZIhvcNAQEL
+BQAwDzENMAsGA1UEAxMEdGVzdDAeFw0yMzEwMjcwMDU1MDlaFw0yMzEwMjcwMDU2
+MDJaMB4xHDAaBgNVBAMTE215LXRlc3QuZXhhbXBsZS5jb20wggIiMA0GCSqGSIb3
+DQEBAQUAA4ICDwAwggIKAoICAQDBSDy7gpekQv6Ro8p+4Szm8iavHv3KRyOoMYOv
+UdRlT+2KT6UcZGc9c0RLYS1yvT2QuYm6CeFLs+msYU/mVdLG/ih8YlCiOG9uDyZi
+CNqA+MOkxkwgChTfNgeOWQr8uo2J9CaV3bjProtE7weGaK/J5UYDTHxsZxMTom+t
+dMCAHol8d888cqVUvHXOth07/OKO5orKBcsxFhq0IAwERNT3kGxIcfOFvhWJfNUn
+ihdZMjq8u/CBaD3MhKU2Sn5e40FGLKuIoF0pMxhvPnJARiz53sAMMujoQxVgiIsQ
+9DT8phhNKXqufjOYEUUJ0hy/quy+/i4B00SPNsOOcD8vOsz96mhZC9ik4Avz0xdB
+KY0UaeULPmztdJW08dEaY1DSJB/k8rPMu4VZAFgxeFgj4byA9UwQ14aMJCZWHZYH
+cGbkJjcdFEC1ZhICKIHOO0KSoXpxD9xIQ1UWYvoegqSBSqvecaYf6y52kg7hb4rg
+jVFdBKWhBCGJ1RaqnbnBBp+Qk5AAkCyYfUpXXNmpYB7akIXLe3iTL50MkaiTd+GE
+xBXhfCYvwbpIZu35bAurwp3+nSTTeJw4d2O7s1L4iqdQ24fERYwEL8euLzzmxsjv
+qsmN1cHzbMulrCjVT3ZNBPFiMltoDJXyJDssKTM4nOpxr+FxBiCpbufcy2tDJ4eb
+svMxiQIDAQABo4GSMIGPMA4GA1UdDwEB/wQEAwIDqDAdBgNVHSUEFjAUBggrBgEF
+BQcDAQYIKwYBBQUHAwIwHQYDVR0OBBYEFGO3lOOstANAUseQaJmGMnCVQkw8MB8G
+A1UdIwQYMBaAFPARsd6bKXzq8F3F8wgKNoo4kignMB4GA1UdEQQXMBWCE215LXRl
+c3QuZXhhbXBsZS5jb20wDQYJKoZIhvcNAQELBQADggEBADT1aqab6RhLGuAvUgIS
+3lZ+B/ltWFQroFRgnfQArlMrVnCE1/7LAH+i7n8Ev7ixK0xP2CYRLwm8McLBEIjm
+qWB8ZXJJq4gXqZ6i5kIFvuRILkesSGJbs49TdeAMz6lyJd/BQmzM/uAhnqMrhlRt
+H6ZWnC5Z7dRGWT/yIlKL6kMcmxqEZCTt7j76V/8CRRUtxHtEgt4B4R/0lykWM8Ed
+HMok6crNYk94Jg/S8MWZlUHtCjDeXMd3mhDVQKaBNeLGjyugDF8KLVpcIMjEjglk
+UDG/bqxqwS2/jVUnDFvejbrOkJ/e3NefZa52/fZlXwqnwAlumtHOgEk3j00rHQSA
+/04=
+-----END CERTIFICATE-----
+expiration          1698368162
+issuing_ca          -----BEGIN CERTIFICATE-----
+MIIDIDCCAgigAwIBAgIUR6Auk4MVpeis2oLq0StUwce/v/kwDQYJKoZIhvcNAQEL
+BQAwDzENMAsGA1UEAxMEdGVzdDAeFw0yMzEwMjYyMzUyNDlaFw0yMzEwMjcyMzUz
+MTlaMA8xDTALBgNVBAMTBHRlc3QwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
+AoIBAQDXmlaX2Qu/rF+AFgWqJBCaNPziJrwsBB8nEUQh2S2XRMD9osoliWpaS33i
+iFAxc++Mec/FzKIsB7TskYWyFlv/GPmFG5gKdYfMuEMAgHrxM3OYWibQq0hDajJn
+oOcT1DwCx0mZqYdGoFVcw2TdW1vqgKRMx1vWBskaJHoGGpRvEPe7cYLz8itwqQfR
+7zkcVw3vdK6U50I7NnV/1wC+WOuwZ6IL5DKC1v3DtE5CrYKf/sBwDZfcdwFEjLpQ
+3hSXlVtv6t9E7QABcYqFkP5iebisNVP71L1Qk7oCuk4zqKpkbFytD6Nlf1LMRSFj
+SDt+aPuoqlmKrNtGsNcTqlW8k39HAgMBAAGjdDByMA4GA1UdDwEB/wQEAwIBBjAP
+BgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBTwEbHemyl86vBdxfMICjaKOJIoJzAf
+BgNVHSMEGDAWgBTwEbHemyl86vBdxfMICjaKOJIoJzAPBgNVHREECDAGggR0ZXN0
+MA0GCSqGSIb3DQEBCwUAA4IBAQB2y9QDCSNlr+j4v5H/7s4aZR8EWqbSdGc6F9w2
+FrR/bwo9eIxWiABFn/SH+bqHSK7fw4TMPJ0rEnJxBEvIPpA2kvGIxsBzPAdPzQ+A
+4F6tSJtiXB5A/7IZn9SQLUrcmcA5SuBGN9GjmPLpYSQg2ykJsTlExkYdg4co2sYV
+0F1gE5SXFGEmNTwFlpPSmKY6Zs8fKJZrzf+feCXFRlD/u+I4vftJqu7pwxZvPifR
+gPWi3kuzj71b4rEkZW3zNCP9XOtkCO/pNW2hJnc0QiTgQGvWXl/A8rIohsc+by2N
+MVr8w8iw1OdwbxI0LyC5siVgn+aER5qryYlpdeKR0/F2LuWX
+-----END CERTIFICATE-----
+private_key         -----BEGIN RSA PRIVATE KEY-----
+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
+-----END RSA PRIVATE KEY-----
+private_key_type    rsa
+serial_number       6e:bb:24:e5:a1:5a:15:9e:4c:07:d6:9e:4b:d0:e3:5e:57:04:bc:5b
+```
+
+@tab UI
+![](./image/vault-injection-pki-check-1.png)
+![](./image/vault-injection-pki-check-2.png)
+:::
+
+### 3.4 VSO에서 사용할 Vault 동적 시크릿 정의
+
+예제에서는 동적 시크릿으로 PostgreSQL 데이터베이스에 대한 Database 시크릿 엔진을 구성합니다. 구성에 앞서 PostgreSQL을 설치해야 합니다. 먼저 설치될 Kubernetes Namespace를 생성합니다.
+
+```bash
+kubectl create ns postgres
+```
+
+bitnami에서 제공하는 PostgreSQL Helm Chart를 설치 합니다.
+
+```bash
+helm repo add bitnami https://charts.bitnami.com/bitnami
+```
+
+PostgreSQL을 설치 합니다.
+
+```bash
+helm upgrade --install postgres bitnami/postgresql --namespace postgres --set auth.audit.logConnections=true  --set auth.postgresPassword=secret-pass
+```
+
+::: warning Kubernetes내의 Vault에서 CLI 사용
+Kubernetes내에 배포된 Vault인 경우 다음과 같이 쉘을 실행할 수 있도록 Pod에 접근합니다. (Optional)
+
+```bash
+kubectl exec -it vault-0 -- /bin/sh
+```
+:::
+
+Database 시크릿 엔진을 활성화 합니다.
+
+```bash
+vault secrets enable -path=demo-db database
+```
+
+Vault에 PostgreSQL의 동적 시크릿을 위한 구성을 합니다.
+
+::: tabs
+@tag All in Kubernetes
+```bash
+vault write demo-db/config/demo-db \
+   plugin_name=postgresql-database-plugin \
+   allowed_roles="dev-postgres" \
+   connection_url="postgresql://{{username}}:{{password}}@postgres-postgresql.postgres.svc.cluster.local:5432/postgres?sslmode=disable" \
+   username="postgres" \
+   password="secret-pass"
+```
+
+@tag External Vault to PostgreSQL on Kubernetes
+PostgreSQL을 외부 Vault와 연결하려면 Ingress 또는 PortFoward를 활용합니다. 여기서는 PortFoward를 사용하여 외부 Vault에서 접속 합니다.
+
+```bash
+kubectl port-forward pod/postgres-postgresql-0 -n postgres 5432:5432
+```
+
+```bash
+vault write demo-db/config/demo-db \
+  plugin_name=postgresql-database-plugin \
+  allowed_roles="dev-postgres" \
+  connection_url="postgresql://{{username}}:{{password}}@kubernetes-ip:5432/postgres?sslmode=disable" \
+  username="postgres" \
+  password="secret-pass"
+```
+:::
+
+PostgreSQL을 위한 롤을 생성합니다. 갱신 테스트를 위해 시크릿 수명을 1분으로 정의합니다.
+
+```bash
+vault write demo-db/roles/dev-postgres \
+  db_name=demo-db \
+  creation_statements="CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}'; \
+    GRANT ALL PRIVILEGES ON DATABASE postgres TO \"{{name}}\";" \
+  backend=demo-db \
+  name=dev-postgres \
+  default_ttl="1m" \
+  max_ttl="1m"
+```
+
+동적으로 생성되는 Database 계정을 확인합니다.
+
+```bash {8,9}
+$ vault read demo-db/creds/dev-postgres
+
+Key                Value
+---                -----
+lease_id           demo-db/creds/dev-postgres/V3kcRCCQQC3loq3MCO84UnWT
+lease_duration     1m
+lease_renewable    true
+password           1hmvH1a4hu-2DBrTjfzt
+username           v-token-dev-post-xhRYa0CK6DFLVMqkgikF-1698388424
+```
+
+### 3.5 Vault에 인증받기 위한 Kubernetes 인증 방식 구성
+
+::: warning Kubernetes내의 Vault에서 CLI 사용
+Kubernetes내에 배포된 Vault인 경우 다음과 같이 쉘을 실행할 수 있도록 Pod에 접근합니다. (Optional)
+
+```bash
+kubectl exec -it vault-0 -- /bin/sh
+```
+:::
+
+Vault는 Kubernetes의 Service Account 토큰으로 인증할 수 있는 Kubernetes 인증 방식을 제공합니다. CSI 드라이버가 Vault에 저장된 시크릿 정보에 접근하여 시크릿을 획득하는 과정에서 Vault에 대한 인증/인가가 요구되므로 Kubernetes상의 리소스에서는 Kubernetes 인증 방식을 통해 Kubernetes의 방식으로 인증 받는 워크플로를 구성합니다.
+
+Vault에 Kubernetes 인증 방식을 활성화 합니다. (이미 구성된 경우 실패합니다.)
+
+```bash
+vault auth enable kubernetes
+```
+
+Kubernetes API 주소를 Kubernetes 인증 방식 구성에 설정 합니다. 이 경우 자동으로 Vault Pod를 위한 자체 Service Account를 사용합니다.
+
+::: code-tabs
+@tab Internal Vault
+```bash
+vault write auth/kubernetes/config \
+    kubernetes_host="https://$KUBERNETES_PORT_443_TCP_ADDR:443"
+```
+
+@tab External Vault
+```bash
+vault write auth/kubernetes/config \
+    kubernetes_host="$EXTERNAL_VAULT_ADDR"
+```
+
+:::
+
+생성할 Kubernetes 인증 방식의 롤 정의에서 사용되는 정책을 구성합니다. 생서한 Vault KV, PKI의 경로에 저장된 시크릿을 읽고 발행할 수 있는 정책 입니다.
+
+::: code-tabs
+@tab Linux/MacOS
+```bash
+vault policy write vso-app - <<EOF
+path "for-vso/data/my-pass" {
+  capabilities = ["read"]
+}
+
+path "pki/issue/my-role" {
+  capabilities = ["create", "update"]
+}
+
+path "demo-db/creds/dev-postgres" {
+   capabilities = ["read"]
+}
+EOF
+```
+@tab Windows Powershell
+```powershell:no-line-numbers
+$policy = @"
+path "for-vso/data/my-pass" {
+  capabilities = ["read"]
+}
+
+path "pki/issue/my-role" {
+  capabilities = ["create", "update"]
+}
+
+path "demo-db/creds/dev-postgres" {
+   capabilities = ["read"]
+}
+"@
+
+vault policy write vso-app - << $policy
+```
+:::
+
+예제의 롤 정의에서는 허용할 Service Account와 Kubernetes Namespace, 부여하는 정책으로 앞서 생성한 `vso-app` 정책을 할당합니다. 인증된 이후 유효 기간은 20분으로 설정 합니다.
+
+```bash
+vault write auth/kubernetes/role/vso \
+    bound_service_account_names=webapp-vault \
+    bound_service_account_namespaces=default \
+    policies=vso-app \
+    ttl=20m
+```
+
+### 3.6 VSO CRD "VaultAuth" 정의
+
+VSO의 Secret 동기화를 위한 구성에 필요한 인증을 위한 리소스로 `VaultAuth`를 정의해야 합니다. 다음과 같이 `vault-auth-static.yaml` 파일을 작성합니다.
+
+```yaml
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultAuth
+metadata:
+  name: static-auth
+  namespace: default
+spec:
+  kubernetes:
+    audiences:
+    - vault
+    role: vso
+    serviceAccount: webapp-vault
+    tokenExpirationSeconds: 600
+  method: kubernetes
+  mount: kubernetes
+```
+
+`VaultAuth`를 적용합니다.
+
+```bash
+kubectl apply -f vault-auth-static.yaml
+```
+
+### 3.7 VSO CRD - 정적 시크릿
+
+시크릿 정의 중 정적 시크릿인 KV version 1, KV version 2를 정의하기위해서는 `VaultStaticSecret`를 사용합니다.
+
+[VaultStaticSecret](https://developer.hashicorp.com/vault/docs/platform/k8s/vso/api-reference#vaultstaticsecretspec)에서 정의하는 값은 다음과 같습니다.
+
+| 필드 | 설명 |
+| - | - |
+| `vaultAuthRef` string | 지정되지 않은 경우 동일 Kubernetes Namespace의 `default` VaultAuth를 사용합니다. VaultAuth 리소스에 대한 VaultAuthRef에 네임스페이스 접두사를 붙일 수 있습니다(예: `namespaceA/vaultAuthRefB`). |
+| `namespace` string | Vault의 Namespace를 정의합니다. |
+| `mount` string | 마운트 된 KV 시크릿 엔진 Path를 정의합니다. |
+| `path` string | 대상 KV 시크릿 엔진 내의 저장된 시크릿 경로를 정의 합니다. |
+| `version` integer | KV version 2 인 경우 저장된 시크릿 버전을 정의 합니다. |
+| `refreshAfter` string | 갱신 주기를 서정합니다. |
+| `hmacSecretData` boolean | HMACSecretData는 오퍼레이터가 시크릿 데이터의 HMAC를 계산할지 여부를 결정합니다.|
+| `rolloutRestartTargets` | 애플리케이션이 변경된 Secret의 마운트된 값을 인지하지 못하는 경우 강재로 Rollout-Restart를 수행할 대상을 정의합니다. |
+| `destination` | 저장할 Secret을 지정합니다. |
+
+Vault의 KV version 2를 적용하는 `VaultStaticSecret` 정의하는 `static-secret.yaml` 파일 내용은 다음과 같습니다.
+
+```yaml
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultStaticSecret
+metadata:
+  name: vault-kv-app
+  namespace: default
+spec:
+  # Static 시크릿 엔진인 KV의 유형
+  type: kv-v2
+  # KV 엔진의 마운트 Path
+  mount: for-vso
+  # KV의 시크릿 저장 경로
+  path: my-pass
+  # k8s secret 이름 정의
+  destination:
+    name: secretkv
+    create: true
+  # 정적 시크릿의 변경 확인 주기
+  refreshAfter: 30s
+  # 생성한 Vault 인증을 위한 VaultAuth 리소스 이름
+  vaultAuthRef: static-auth
+```
+
+`VaultStaticSecret`을 적용합니다.
+
+```bash
+kubectl apply -f static-secret.yaml
+```
+
+적용이 완료되면 지정한 `secretkv` 이름으로 Secret 리소스가 생성되고, 동기화된 내용을 확인할 수 있습니다.
+
+```bash {4,8}
+$ kubectl get secret
+
+NAME        TYPE        DATA   AGE
+secretkv    Opaque      2      4h55m
+
+$ kubectl get secret secretkv -o jsonpath='{.data.password}' | base64 --decode
+
+my-secret-password-v1
+```
+
+다음과 같이 저장된 시크릿을 업데이트 합니다.
+
+```bash
+$ vault kv put for-vso/my-pass password="my-secret-password-v2"
+
+==== Secret Path ====
+for-vso/data/my-pass
+
+======= Metadata =======
+Key                Value
+---                -----
+created_time       2023-10-27T05:43:54.906895Z
+custom_metadata    <nil>
+deletion_time      n/a
+destroyed          false
+version            2
+```
+
+Secret 리소스에 변경된 값이 동기화 되었는지 확인합니다.
+
+```bash
+$ kubectl get secret secretkv -o jsonpath='{.data.password}' | base64 --decode
+
+my-secret-password-v2
+```
+
+### 3.8 VSO CRD - PKI 시크릿
+
+시크릿 정의 중 동적 시크릿인 PKI를 정의하기위해서는 `VaultPKISecret`를 사용합니다.
+
+[VaultPKISecret](https://developer.hashicorp.com/vault/docs/platform/k8s/vso/api-reference#vaultpkisecretspec)에서 정의하는 값은 다음과 같습니다.
+
+| 필드 | 설명 |
+| - | - |
+| `vaultAuthRef` string | 지정되지 않은 경우 동일 Kubernetes Namespace의 `default` VaultAuth를 사용합니다. VaultAuth 리소스에 대한 VaultAuthRef에 네임스페이스 접두사를 붙일 수 있습니다(예: `namespaceA/vaultAuthRefB`). |
+| `namespace` string | Vault의 Namespace를 정의합니다. |
+| `mount` string | 마운트 된 KV 시크릿 엔진 Path를 정의합니다. |
+| `role` string | PKI 시크릿 엔진 구성에서 사용할 롤 이름을 정의합니다. |
+| `revoke` boolean | 정의한 리소스가 삭제되면 생성한 인증서도 취소(Revoke)할지의 여부를 정의합니다. |
+| `clear` boolean | 정의한 리소스가 삭제되면 동기화 된 Secret 리소스도 삭제할지 여부를 정의합니다. |
+| `version` integer | KV version 2 인 경우 저장된 시크릿 버전을 정의 합니다. |
+| `expiryOffset` string | 인증서를 갱신해야 하는 시기를 계산하는 데 오프셋(만료되기 이전 몇 시간 전)입니다. |
+| `issuerRef` string | PKI 발급자에 대한 참조를 정의합니다. |
+| `rolloutRestartTargets` | 애플리케이션이 변경된 Secret의 마운트된 값을 인지하지 못하는 경우 강재로 Rollout-Restart를 수행할 대상을 정의합니다. |
+| `destination` | 저장할 Secret을 지정합니다. |
+| `commonName` string | PKI 인증서 생싱시 요청할 CN 입니다. |
+| `altNames` string array | 요청에 포함할 대체 이름 DNS 이름과 이메일 주소를 나열합니다. |
+| `ipSans` string array | PKI 인증서 생싱시 요청할 IP SANs 입니다. |
+| `uriSans` string array | PKI 인증서 생싱시 요청할 URI SANs 입니다. |
+| `otherSans` string array | PKI 인증서 생싱시 요청할 oid;type:value SANs 입니다. |
+| `ttl` string | 인증서의 유효기간을 지정합니다. |
+| `format` string | 인증서 형태를 지정합니다. (pem, der, pem_bundle) |
+| `privateKeyFormat` string | 기본 값은 DER이며, 반환된 개인 키에 base64로 인코딩된 pkcs8 또는 PEM으로 인코딩된 pkcs8이 포함되도록 하려면 이 매개변수를 "pkcs8"로 지정합니다. |
+| `notAfter` string | NotAfter 필드에 날짜 값을 지정합니다. 값 형식은 UTC 형식인 YYYY-MM-ddTHH:MM:SSZ로 지정해야 합니다. |
+| `excludeCNFromSans` boolean | DNS 또는 이메일 제목 대체 이름에서 CNFromSans를 제외합니다. |
+
+Vault의 PKI를 적용하는 `VaultPKISecret` 정의하는 `pki-secret.yaml` 파일 내용은 다음과 같습니다.
+
+```yaml
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultPKISecret
+metadata:
+  name: vault-pki-app
+  namespace: default
+spec:
+  # PKI 시크릿 엔진의 마운트 Path
+  mount: pki
+  # 인증서를 발급할 PKI 롤
+  role: my-role
+  # 옵션
+  commonName: test.example.com
+  # 인증서 형태
+  format: pem
+  # 갱신 트리거 시간
+  expiryOffset: 2s
+  # 발급되는 인증서의 TTL
+  ttl: 30s
+  # k8s secret 이름 정의
+  destination:
+    name: secretpki
+    create: true
+  # 교체 발생시 Restart할 대상 지정
+  rolloutRestartTargets:
+    - kind: Deployment
+      name: vso-pki-demo
+  # 생성한 Vault 인증을 위한 VaultAuth 리소스 이름
+  vaultAuthRef: static-auth
+```
+
+`VaultPKISecret`을 적용합니다.
+
+```bash
+kubectl apply -f pki-secret.yaml
+```
+
+적용이 완료되면 지정한 `secretpki` 이름으로 Secret 리소스가 생성되고, 동기화된 내용을 확인할 수 있습니다. 여기서는 UNIXTIMESTAMP로 기록되는 expiration으로 확인해 봅니다.
+
+```bash:no-line-numbers {4,8,14}
+$ kubectl get secret
+
+NAME         TYPE        DATA   AGE
+secretpki    Opaque      2      4h55m
+
+$ kubectl get secret secretpki -o jsonpath='{.data.expiration}' | base64 --decode
+
+1698386116
+
+### 시간이 흐른 뒤 새로 발급된 인증서의 만료 시간을 확인합니다.
+
+$ kubectl get secret secretpki -o jsonpath='{.data.expiration}' | base64 --decode
+
+1698386172
+```
+
+### 3.9 VSO CRD - 동적 시크릿
+
+시크릿 정의 중 동적 시크릿인 PKI를 정의하기위해서는 `VaultDynamicSecret`를 사용합니다.
+
+[VaultDynamicSecret](https://developer.hashicorp.com/vault/docs/platform/k8s/vso/api-reference#vaultdynamicsecretspec)에서 정의하는 값은 다음과 같습니다.
+
+| 필드 | 설명 |
+| - | - |
+| `vaultAuthRef` string | 지정되지 않은 경우 동일 Kubernetes Namespace의 `default` VaultAuth를 사용합니다. VaultAuth 리소스에 대한 VaultAuthRef에 네임스페이스 접두사를 붙일 수 있습니다(예: `namespaceA/vaultAuthRefB`). |
+| `namespace` string | Vault의 Namespace를 정의합니다. |
+| `mount` string | 마운트 된 KV 시크릿 엔진 Path를 정의합니다. |
+| `requestHTTPMethod` string | Vault에서 시크릿을 동기화할 때 사용할 요청 HTTPMethod이며, 기본은 `GET` 이므로 필요시 다른 요청 HTTPMethod를 정의합니다. |
+| `path` string | Vault에서 자격 증명을 가져올 경로이며, 마운트에 상대적입니다. |
+| `clear` boolean | 정의한 리소스가 삭제되면 동기화 된 Secret 리소스도 삭제할지 여부를 정의합니다. |
+| `params` object | 요청할 때 전달하는 매개변수를 정의합니다. |
+| `renewalPercent` integer | 갱신을 위한 지점을 정의하며, 기본 값은 `67`% 입니다. |
+| `revoke` boolean | 정의한 리소스가 삭제되면 생성한 인증서도 취소(Revoke)할지의 여부를 정의합니다. |
+| `allowStaticCreds` boolean | 요청 시 생성하는 것이 아니라 Vault 서버에서 주기적으로 회전하는 자격 증명을 동기화할 때 AllowStaticCreds를 설정해야 합니다. |
+| `rolloutRestartTargets` | 애플리케이션이 변경된 Secret의 마운트된 값을 인지하지 못하는 경우 강재로 Rollout-Restart를 수행할 대상을 정의합니다. |
+| `destination` | 저장할 Secret을 지정합니다. |
+
+Vault의 Database 시크릿 엔진의 동적 시크릿을 적용하는 `VaultDynamicSecret` 정의하는 `dynamic-secret.yaml` 파일 내용은 다음과 같습니다.
+
+```yaml
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultDynamicSecret
+metadata:
+  name: vault-db-app
+  namespace: default
+spec:
+  # 활성화 된 시크릿 엔진 Path
+  mount: demo-db
+  # 시크릿 롤 경로
+  path: creds/dev-postgres
+  # k8s secret 이름 정의
+  destination:
+    create: true
+    name: secretdb
+  # 교체 발생시 Restart할 대상 지정
+  rolloutRestartTargets:
+  - kind: Deployment
+    name: vso-db-demo
+  # 생성한 Vault 인증을 위한 VaultAuth 리소스 이름
+  vaultAuthRef: static-auth
+```
+
+```bash:no-line-numbers {4,8,14}
+$ kubectl get secret
+
+NAME        TYPE        DATA   AGE
+secretdb    Opaque      3      2h55m
+
+$ kubectl get secret secretdb -o jsonpath='{.data.username}' | base64 --decode
+
+v-kubernet-dev-post-Pl4QC4UC6rQ8uThG4pR8-169838984
+
+### 시간이 흐른 뒤 새로 발급된 인증서의 만료 시간을 확인합니다.
+
+$ kubectl get secret secretdb -o jsonpath='{.data.username}' | base64 --decode
+
+v-kubernet-dev-post-Dvta1R6q5bV9zrlFb5Zn-1698389887
+```
