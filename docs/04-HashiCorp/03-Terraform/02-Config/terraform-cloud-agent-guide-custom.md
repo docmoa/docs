@@ -1,6 +1,6 @@
 ---
-description: TFE/C에서 Terrafor Cloud Agent 구성
-tag: ["terraform"]
+description: TFE/TFC에서 Terraform Cloud Agent 구성
+tag: ["Terraform"]
 ---
 
 # Terraform Cloud Agent 가이드
