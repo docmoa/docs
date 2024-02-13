@@ -15,6 +15,10 @@ tag: ["Nomad", "Consul", "Sample", "Job"]
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/UvB_Zi6Plbc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+::: code-tabs#hcl
+
+@tab Linux/MacOS
+
 ```hcl
 variables {
   tomcat_download_url = "https://archive.apache.org/dist/tomcat/tomcat-10/v10.0.10/bin/apache-tomcat-10.0.10.tar.gz"
@@ -95,6 +99,7 @@ EOF
       service {
         name = "legacy-tomcat"
         tags = ["tomcat"]
+        provider = "nomad"
 
         port = "http"
 
@@ -110,6 +115,111 @@ EOF
 }
 
 ```
+
+@tab Windows
+
+```hcl
+variables {
+  tomcat_download_url = "https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.18/bin/apache-tomcat-10.1.18.zip"
+  war_download_url = "https://tomcat.apache.org/tomcat-10.1-doc/appdev/sample/sample.war"
+}
+
+job "tomcat-10" {
+  datacenters = ["dc1"]
+  # namespace = "legacy"
+
+  type = "service"
+
+  group "tomcat" {
+    count = 1
+
+    scaling {
+      enabled = true
+      min = 1
+      max = 3
+    }
+
+    network {
+      port "http" {}
+      port "stop" {}
+    }
+
+    task "tomcat" {
+      driver = "raw_exec"
+      kill_signal = "SIGQUIT"
+      resources {
+        cpu = 500
+        memory = 512
+      }
+      env {
+        APP_VERSION = "0.1"
+        CATALINA_HOME = "${NOMAD_TASK_DIR}/apache-tomcat-10.1.18"
+        CATALINA_OPTS = "-Xrs -Dport.http=${NOMAD_PORT_http} -Dport.stop=${NOMAD_PORT_stop} -Ddefault.context=${NOMAD_TASK_DIR} -Xms256m -Xmx512m"
+        JAVA_HOME = "C:/Java/jdk-11"
+      }
+      template {
+data = <<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<Server port="${port.stop}" shutdown="SHUTDOWN">
+    <Listener className="org.apache.catalina.startup.VersionLoggerListener"/>
+    <Listener className="org.apache.catalina.core.AprLifecycleListener" SSLEngine="on"/>
+    <Listener className="org.apache.catalina.core.JreMemoryLeakPreventionListener"/>
+    <Listener className="org.apache.catalina.mbeans.GlobalResourcesLifecycleListener"/>
+    <Listener className="org.apache.catalina.core.ThreadLocalLeakPreventionListener"/>
+    <GlobalNamingResources>
+        <Resource name="UserDatabase" auth="Container" type="org.apache.catalina.UserDatabase" description="User database that can be updated and saved" factory="org.apache.catalina.users.MemoryUserDatabaseFactory" pathname="conf/tomcat-users.xml"/>
+    </GlobalNamingResources>
+    <Service name="Catalina">
+        <Connector port="${port.http}" protocol="HTTP/1.1" connectionTimeout="20000"/>
+        <Engine name="Catalina" defaultHost="localhost">
+            <Realm className="org.apache.catalina.realm.LockOutRealm">
+                <Realm className="org.apache.catalina.realm.UserDatabaseRealm" resourceName="UserDatabase"/>
+            </Realm>
+            <Host name="localhost" appBase="${default.context}/webapps/" unpackWARs="true" autoDeploy="true">
+                <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" prefix="localhost_access_log" suffix=".txt" pattern="%h %l %u %t &quot;%r&quot; %s %b"/>
+            </Host>
+        </Engine>
+    </Service>
+</Server>
+EOF
+        destination = "local/conf/server.xml"
+      }
+      artifact {
+        source = var.tomcat_download_url
+        destination = "local"
+      }
+      artifact {
+        source = var.war_download_url
+        destination = "local/webapps"
+      }
+      config {
+        command = "${CATALINA_HOME}/bin/catalina.bat"
+        args = ["run", "-config", "%NOMAD_TASK_DIR%/conf/server.xml"]
+      }
+      service {
+        name = "legacy-tomcat"
+        provider = "nomad"
+        tags = ["tomcat"]
+
+        port = "http"
+
+        check {
+          type  = "tcp"
+          interval = "10s"
+          timeout  = "2s"
+          port  = "http"
+        }
+      }
+    }
+  }
+}
+```
+
+:::
+
+::: tip "-Xrs" Java Option on Windows
+Windows에서는 `-Xrs` 옵션을 자바 옵션에 추가하지 않으면, 종료시 Thread Dump만 발생하고 프로세스가 종료되지 않아 Nomad Job이 갱신되거나 새로운 배포를 수행하여도 기존 프로세스 종료가 안되어 신규 task가 실행되지 않는 현상이 있다.
+:::
 
 ## nginx
 
