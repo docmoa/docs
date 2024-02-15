@@ -123,7 +123,7 @@ DevOps가 일하는 방식을 고려했을 때 중간에 언급된 'X-LLM'이란
 
 ![silos | silos | Doc Searls | Flickr](https://raw.githubusercontent.com/Great-Stone/images/master/picgo/5500714140_5ff438aa98_b.jpg)
 
-돌아와서, DevOps는 '문화'라 표현하지만 약간 뜬구름 같은 느낌이 있고, 누군가 알려준 '조직간 간극을 줄이는 활동'이라는 것이 더 잘 와닿는다고 생각한다. 앞서 사례에서도 이제는 다른 사람의 도움 없이도 혼자 해볼 수 있는 환경을 제공하기도 하고, 주니어 개발자의 자리도 대신할 수 있다는 가능성도 있지만 DevOps 측면에서 AI를 활용해서 어떻게 조직간의 간극을 줄일 수 있을지의 방안들도 고민해 볼 시기인 것 같다.
+돌아와서, DevOps는 '문화'라 표현하지만 약간 뜬구름 같은 느낌이 있고, 누군가 알려준 '[조직간 간극을 줄이는 활동](https://securityboulevard.com/2019/04/devops-and-secops-resolving-the-rift-between-development-and-security/)'이라는 것이 더 잘 와닿는다고 생각한다. 앞서 사례에서도 이제는 다른 사람의 도움 없이도 혼자 해볼 수 있는 환경을 제공하기도 하고, 주니어 개발자의 자리도 대신할 수 있다는 가능성도 있지만 DevOps 측면에서 AI를 활용해서 어떻게 조직간의 간극을 줄일 수 있을지의 방안들도 고민해 볼 시기인 것 같다.
 
 
 
