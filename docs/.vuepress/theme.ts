@@ -14,12 +14,12 @@ export default hopeTheme({
   // darkmode: "disable",
   print: true,
   fullscreen: true,
-  backToTop: true,
+  // backToTop: true,
   contributors: true,
   lastUpdated: true,
 
-  colorMode: 'light',
-  colorModeSwitch: true,
+  // colorMode: 'light',
+  // colorModeSwitch: true,
 
   hotReload: true,
 
@@ -49,7 +49,7 @@ export default hopeTheme({
         "PDF",
         "Share",
         "SiteInfo",
-        "YouTube",
+        "VidStack",
         "Badge"
       ],
     },
@@ -99,7 +99,7 @@ export default hopeTheme({
       playground: {
         presets: ["ts", "vue"],
       },
-      presentation: true,
+      // presentation: true,
       stylize: [
         {
           matcher: "Recommended",
