@@ -1,5 +1,5 @@
 import { defineUserConfig } from "vuepress";
-// import { searchPlugin } from "@vuepress/plugin-search";
+import { searchPlugin } from "@vuepress/plugin-search";
 import { viteBundler } from '@vuepress/bundler-vite'
 import { usePagesPlugin } from 'vuepress-plugin-use-pages'
 import { googleAnalyticsPlugin } from '@vuepress/plugin-google-analytics'
@@ -30,7 +30,7 @@ export default defineUserConfig({
   },
 
   theme: theme,
-  
+
   bundler: viteBundler({
     viteOptions: {},
     vuePluginOptions: {},
@@ -54,15 +54,15 @@ export default defineUserConfig({
       id: 'UA-204926029-1',
     }),
 
-    // searchPlugin({
-    //   locales: {
-    //     "/": {
-    //       placeholder: "Search",
-    //     },
-    //   },
-    //   maxSuggestions: 15,
-    //   isSearchable: (page) => page.path !== "/" || page.title !== "Overview",
-    // }),
+    searchPlugin({
+      locales: {
+        "/": {
+          placeholder: "Search",
+        },
+      },
+      maxSuggestions: 15,
+      isSearchable: (page) => page.path !== "/" || page.title !== "Overview",
+    }),
     
     usePagesPlugin({
       startsWith: '/01-Infrastructure/',

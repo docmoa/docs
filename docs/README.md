@@ -89,7 +89,7 @@ export default defineComponent({
 git clone https://github.com/docmoa/docs.git
 # npm install
 cd docs
-npm install
+npm install --force
 # start VuePress writing
 npm run dev
 ```
@@ -101,7 +101,7 @@ npm run dev
 git clone https://github.com/docmoa/docs.git
 # npm install
 cd docs
-yarn install
+yarn install --force
 # start VuePress writing
 yarn vuepress dev
 ```
