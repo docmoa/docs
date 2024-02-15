@@ -1,7 +1,7 @@
 ---
 description: Vault KMIP 주요 질문
 tag: ["vault", "kmip"]
-author: MZC - hashicat
+author: hashicat(MZC), chadness12(MZC)
 ---
 
 # Vault KMIP FAQ
