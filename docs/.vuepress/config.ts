@@ -54,15 +54,9 @@ export default defineUserConfig({
       id: 'UA-204926029-1',
     }),
 
-    searchPlugin({
-      locales: {
-        "/": {
-          placeholder: "Search",
-        },
-      },
-      maxSuggestions: 15,
-      isSearchable: (page) => page.path !== "/" || page.title !== "Overview",
-    }),
+    // searchPlugin({
+      
+    // }),
     
     usePagesPlugin({
       startsWith: '/01-Infrastructure/',

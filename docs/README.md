@@ -16,21 +16,21 @@ actions:
 features:
   - title: Infrastructure
     details: Linux / Container
-    link: /01-Infrastructure
+    link: /01-Infrastructure/
   - title: Private Platform
     details: Kubernetes / OpenShift / VSphere
-    link: /02-PrivatePlatform
+    link: /02-PrivatePlatform/
   - title: Public Cloud
     details: Alibaba / Naver Cloud
-    link: /03-PublicCloud
+    link: /03-PublicCloud/
   - title: HashiCorp
     details: Packer / Vagrant / Terraform / Consul / Boundary / Vault / Nomad / Waypoint
-    link: /04-HashiCorp
+    link: /04-HashiCorp/
   - title: Software
     details: Jenkins / Tomcat
-    link: /05-Software
+    link: /05-Software/
   - title: Etc.
-    link: /06-etc
+    link: /06-etc/
 #   - title: How to
 #     details: 활용 방법 안내
 
@@ -89,7 +89,7 @@ export default defineComponent({
 git clone https://github.com/docmoa/docs.git
 # npm install
 cd docs
-npm install --force
+npm install
 # start VuePress writing
 npm run dev
 ```
@@ -101,7 +101,7 @@ npm run dev
 git clone https://github.com/docmoa/docs.git
 # npm install
 cd docs
-yarn install --force
+yarn install
 # start VuePress writing
 yarn vuepress dev
 ```

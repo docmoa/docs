@@ -57,12 +57,6 @@ export default hopeTheme({
     copyright: {
       license: "CC BY-NC-ND 4.0 Licensed | ⓒ 2021-present docmoa™ contributers all rights reserved.",
     },
-
-    feed: {
-      rss: true,
-      icon: "rss",
-      rssOutputFilename: "rss.xml"
-    },
     
     copyCode: {},
 
@@ -121,6 +115,25 @@ export default hopeTheme({
     },
 
     sitemap: true,
+
+    search: {
+      locales: {
+        "/": {
+          placeholder: "Search",
+        },
+      },
+      maxSuggestions: 15,
+      isSearchable: (page) => page.path !== "/" || page.title !== "Overview",
+    },
+    
+    feed: {
+      rss: true,
+      icon: "rss",
+      rssOutputFilename: "rss.xml",
+      devServer: true,
+      devHostname: "http://localhost:8080"
+    },
+
     // uncomment these if you want a pwa
     pwa: {
       favicon: "/favicon.ico",
