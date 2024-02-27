@@ -20,7 +20,7 @@ docmoa를 활용할 수 있는 몇가지 가이드를 [docmoa 활용 가이드](
 ## 문서 작성 가이드
 docmoa에 문서 기여를 위한 기본적인 몇가지 가이드를 설명합니다.
 - [문서작성 '시작'](/00-Howto/02-Guide/01-Start.html) : docmoa에 문서를 추가하기위한 시작 단계를 설명합니다.
-- [Contribute]](/00-Howto/02-Guide/02-Contribute.html) : 작성된 문서를 개시될 git repo에 요청하는 단계 입니다.
+- [Contribute](/00-Howto/02-Guide/02-Contribute.html) : 작성된 문서를 개시될 git repo에 요청하는 단계 입니다.
 - [Template](/00-Howto/02-Guide/04-Template.html) : 문서의 기본 틀에 대해 설명 합니다.
 
 ## 문서 작성 팁
