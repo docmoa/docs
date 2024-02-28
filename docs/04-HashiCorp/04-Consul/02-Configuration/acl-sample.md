@@ -3,6 +3,8 @@ description: Consul Acl Policy Sample
 tag: ["Consul", "Acl", "Policy"]
 ---
 
+# ACL Sample
+
 ## Consul ACL Policy sample
 Consul ACL을 활성화 할 경우 default를 deny로 할 지 allow를 할 지 정할 수 있다.
 deny로 할 경우에는 하나하나 policy로 tokne을 만들어서 사용해야 한다.
