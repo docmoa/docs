@@ -1,6 +1,7 @@
 ---
 description: Nomad Sample
 tag: ["Nomad", "Sample", "Job", "wildfly", "JBoss"]
+author: GS
 ---
 
 # Wildfly(Jboss)

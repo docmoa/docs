@@ -1,6 +1,7 @@
 ---
 description: Nomad Sample
-tag: ["Nomad", "Sample", "Job"]
+tag: ["Nomad", "Sample", "Job","elk"]
+author: Ung
 ---
 
 # elk_version7
@@ -79,6 +80,7 @@ EOF
             }
 
             service {
+                provider = "nomad"
                 name = "${TASKGROUP}-elasticsearch"
                 port = "elastic"
             }
@@ -126,6 +128,7 @@ EOF
             service {
                 name = "${TASKGROUP}-kibana"
                 port = "kibana"
+                provider = "nomad"
                 check {
                     type = "http"
                     path = "/"
@@ -169,6 +172,7 @@ EOF
             service {
                 name = "${TASKGROUP}-logstash"
                 port = "logstash"
+                provider = "nomad"
             }
 
             resources {

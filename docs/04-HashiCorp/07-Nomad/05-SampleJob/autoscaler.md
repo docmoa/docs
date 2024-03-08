@@ -164,7 +164,8 @@ EOF
       service {
         name = "autoscaler"
         port = "http"
-
+        provider = "nomad"
+        
         check {
           type     = "http"
           path     = "/v1/health"

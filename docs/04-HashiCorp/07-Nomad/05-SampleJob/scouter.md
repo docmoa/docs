@@ -1,6 +1,7 @@
 ---
 description: Nomad + Consul Sample
 tag: ["Nomad", "Consul", "Scouter", "Job"]
+author: GS
 ---
 
 # Scouter

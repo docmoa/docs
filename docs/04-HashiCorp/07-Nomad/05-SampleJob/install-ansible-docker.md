@@ -1,6 +1,7 @@
 ---
 description: Nomad에서 Aisnble 실행 및 템플릿 주의사항
 tag: ["Nomad", "Ansible", "Job", "Docker"]
+author: GS
 ---
 
 # Nomad에서 Ansible로 Docker 설치와 Template 주의사항

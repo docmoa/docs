@@ -1,6 +1,7 @@
 ---
 description: Nomad Sample
 tag: ["Nomad", "Sample", "Job", "param", "batch"]
+author: Ung
 ---
 
 # param-batch-job
@@ -44,6 +45,7 @@ job "{{ env "NOMAD_META_room_num" }}" {
         }
         service {
             port = "http"
+            provider = "nomad"
             name = "{{ env "NOMAD_META_room_num" }}"
             check {
                 type     = "tcp"

@@ -1,12 +1,14 @@
 ---
 description: Nomad ingress gateway with consul
 tag: ["Nomad", "Sample", "Job",""]
+author: Ung
 ---
 
 # Nomad ingress gateway
 ## Nomad job으로 ingress gateway 사용하기 (with consul)
 - consul로 설정하는 ingress gateway가 아닌 Nomad job 기동 시에 ingress gateway 활성화 예제
-   - hashicorp 공식 예제가 아닌 다른 걸 해보려하다, 특이한 부분을 확인함
+   - hashicorp 공식 예제가 아닌 다른 걸 해보려하다, 특이한 부분을 확인하여 공유합니다.
+- 사전에 Consul Server는 구축되어 있어야 합니다.
 
 ### 테스트 job (python fastapi)
 

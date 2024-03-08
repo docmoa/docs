@@ -1,6 +1,7 @@
 ---
 description: Nomad Sample
 tag: ["Nomad", "Sample", "Job"]
+author: Ung
 ---
 
 # Elastic
@@ -21,7 +22,7 @@ job "elastic" {
 
     service {
       port = "db"
-
+      provider = "nomad"
       check {
         type     = "tcp"
         interval = "10s"

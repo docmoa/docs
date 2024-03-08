@@ -1,6 +1,7 @@
 ---
 description: Nomad Sample
 tag: ["Nomad", "Sample", "Job"]
+author: Ung
 ---
 
 # MongoDB
@@ -18,7 +19,7 @@ job "mongodb" {
 
     service {
       port = "db"
-
+      provider = "nomad"
       check {
         type     = "tcp"
         interval = "10s"

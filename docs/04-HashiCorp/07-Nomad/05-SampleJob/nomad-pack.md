@@ -152,6 +152,7 @@ job "[[ .vuepress.job_name ]]" {
     }
 
     service {
+      provider = "nomad"
       name = "[[ .vuepress.consul_service_name ]]"
       port = "http"
     }

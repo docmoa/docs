@@ -1,6 +1,7 @@
 ---
 description: Jenkins WAR 파일로 실행하기
 tag: ["Nomad", "Sample", "Job", "Jenkins"]
+author: GS
 ---
 
 # Jenkins(Java Driver) on Nomad
