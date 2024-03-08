@@ -1,6 +1,7 @@
 ---
 description: Nomad Sample
 tag: ["Nomad", "Sample", "Job","nomad-pack","vuepress"]
+author: Ung
 ---
 
 # nomad-pack custom registry
