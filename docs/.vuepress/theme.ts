@@ -59,6 +59,7 @@ export default hopeTheme({
     },
 
     copyright: {
+      author: "All contributers",
       license: "CC BY-NC-ND 4.0 Licensed | ⓒ 2021-present docmoa™ contributers all rights reserved.",
     },
     
