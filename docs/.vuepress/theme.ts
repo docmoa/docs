@@ -54,6 +54,10 @@ export default hopeTheme({
       ],
     },
 
+    readingTime: {
+      wordPerMinute: 60
+    },
+
     copyright: {
       license: "CC BY-NC-ND 4.0 Licensed | ⓒ 2021-present docmoa™ contributers all rights reserved.",
     },
