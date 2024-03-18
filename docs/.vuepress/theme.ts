@@ -49,10 +49,19 @@ export default hopeTheme({
         "PDF",
         "Share",
         "SiteInfo",
-        "VidStack",
-        "Badge"
+        "Badge",
+        "VidStack"
       ],
     },
+
+    searchPro: {
+      locales: {
+        "/": {
+          placeholder: "Searching",
+        },
+      }
+    },
+
 
     copyright: {
       license: "CC BY-NC-ND 4.0 Licensed | ⓒ 2021-present docmoa™ contributers all rights reserved.",
