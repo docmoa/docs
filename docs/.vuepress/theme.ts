@@ -49,13 +49,21 @@ export default hopeTheme({
         "PDF",
         "Share",
         "SiteInfo",
-        "VidStack",
-        "Badge"
+        "Badge",
+        "VidStack"
       ],
     },
 
     readingTime: {
       wordPerMinute: 60
+    },
+
+    searchPro: {
+      locales: {
+        "/": {
+          placeholder: "Searching",
+        },
+      }
     },
 
     copyright: {
