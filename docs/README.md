@@ -9,6 +9,9 @@ actions:
   - text: 🚀 Getting Start
     link: /00-Howto/index.html
     type: primary
+  - text: ⏰ Timeline
+    link: "https://docmoa.github.io/timeline/"
+    type: primary    
   - text: " RSS"
     link: "https://docmoa.github.io/rss.xml"
     icon: rss
