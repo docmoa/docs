@@ -51,9 +51,9 @@ OWASP에서는 API의 보안위험 상위 10가지를 다음과 같이 정의합
 > - [(Vault) PKI를 사용하여 mTLS 구성의 인증서 자동화](https://docmoa.github.io/04-HashiCorp/06-Vault/04-UseCase/mtls.html)
 > - [(Nomad) 플랫폼 수준의 시크릿 자동화 지원](https://docmoa.github.io/04-HashiCorp/06-Vault/04-UseCase/nomad-integration.html)
 
-## 1. API를 위한 인증과 인가, API 키/토큰
+## 1. API를 위한 인증과 인가, API Key
 
-API로 서비스를 기획하는 경우 요청을 식별하고 적절한 권한을 부여하기 위해 API 키 또는 API 토큰을 사용할 수 있습니다. 우리가 이야기하는 클라우드 또한 API로 구성된 인프라와 서비스 덩어리 입니다. 서비스를 사용하고 외부 서비스와 연계하기 위해 클라우드를 비롯 수많은 API 서비스는 식별가능한 인증과 사용에 대한 권한 용도로 `API 키/토큰`을 제공 합니다.
+API로 서비스를 기획하는 경우 요청을 식별하고 적절한 권한을 부여하기 위해 API 키 또는 API 토큰을 사용할 수 있습니다(API Key로 설명합니다). 우리가 이야기하는 클라우드 또한 API로 구성된 인프라와 서비스 덩어리 입니다. 서비스를 사용하고 외부 서비스와 연계하기 위해 클라우드를 비롯 수많은 API 서비스는 식별가능한 인증과 사용에 대한 권한 용도로 `API Key`을 제공 합니다.
 
 ![AWS API 인증을 위한 Key 관리 화면](./image/aws-key.png)
 
@@ -82,7 +82,11 @@ API 키/토큰이 제공하는 인증 및 인가에 더불어, 위의 모범 사
 
 API 서비스를 위한 API 키/토큰 발급 및 관리 시스템을 제공하고, 모범사례를 구현하기위해 Vault를 활용할 수 있습니다.
 
-## 2. API 키/토큰을 위한 Vault 요소
+## 2. API Key를 위한 Vault 요소
+
+Vault에는 플랫폼 및 소프트웨어와 인터페이싱하기위해 요구되는 인증 정보를 모범사례에 따라 관리하고 자동화할 수 있도록 다양한 [Secret Engine](https://developer.hashicorp.com/vault/docs/secrets)이 준비되어있습니다. 이들 시크릿 요소는 평문으로 저장하지 않고 짧은 수명주기를 갖으며 관리되도록 하는데 중점을 두며, 각각의 플랫폼과 소프트웨어의 특성에 맞춰 정의할 수 있습니다.
+
+여기서는 준비된 `Secret Engine`외에 자체 개발되는 API 기반 서비스를 위해 Vault가 갖는 특성을 통해 모범사례를 달성하여 API 보안을 달성하는데 도움이 될만한 요소를 설명합니다.
 
 ### 2.1 Vault Token
 
