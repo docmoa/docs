@@ -47,7 +47,8 @@ OWASP에서는 API의 보안위험 상위 10가지를 다음과 같이 정의합
 > 기타 참고
 > - [(Consul) 서비스 메시로 트래픽 제어(영상)](https://youtu.be/eFdwlCNLL8s?si=oocJgV8HTXai1gcX)
 > - [(Terraform) 센티널, 코드화된 정책 적용 익히기(영상)](https://youtu.be/_TbhKFp2sd4?si=PFh7_SekV40UL7Ax)
-> - [(Vault) PKI를 사용하여 mTLS 구성의 인증서 자동화](./mtls)
+> - [(Vault) PKI를 사용하여 mTLS 구성의 인증서 자동화](https://docmoa.github.io/04-HashiCorp/06-Vault/04-UseCase/mtls.html)
+> - [(Nomad) 플랫폼 수준의 시크릿 자동화 지원](https://docmoa.github.io/04-HashiCorp/06-Vault/04-UseCase/nomad-integration.html)
 
 ## 1. API를 위한 인증과 인가, API 키/토큰
 
