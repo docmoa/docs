@@ -133,7 +133,7 @@ $ vault token create -format=json \
   "data": null,
   "warnings": null,
   "auth": {
-    "client_token": "hvs.CAESIJz-I42G1S4nWalCu3yrKwV63FW-3wKV4HmjfVVZiXfyGh4KHGh2cy50NjlyV3p6b1kyM3p0WkNzOVdLVjlLcFU",
+    "client_token": "hvs.CAESIJz-I42G1S4nWalCu3yrKwV63FW-3wKV4H****",
     "accessor": "JOmunQGBUBgC4gaYzOt3gL8k",
     "policies": [
       "default"
@@ -166,7 +166,7 @@ API 키/토큰 요소로 활용되는 Vault Token의 요소와 특성은 다음�
 검증을 위한 절차로 Token(auth.client_token 값)을 조회한 경우 정상인 경우 다음의 결과를 확인할 수 있습니다.
 
 ```json:no-line-numbers
-$ vault token lookup -format=json hvs.CAESIFIvewF8ayV-6Qe_YYtrYjnFRUJaMXHOOHNuo239clExGh4KHGh2cy5nRzdOcmMxakRncmpvTnJ2VzdHUkdrRno
+$ vault token lookup -format=json hvs.CAESIFIvewF8ayV-6Qe_YYtrYjnFRUJaMXHOOHNuo23****
 
 {
   "request_id": "8d7af9d6-5af4-8f30-da8d-3bcfd3f10d44",
@@ -181,7 +181,7 @@ $ vault token lookup -format=json hvs.CAESIFIvewF8ayV-6Qe_YYtrYjnFRUJaMXHOOHNuo2
     "entity_id": "",
     "expire_time": "2024-03-19T17:28:04.530353+09:00",
     "explicit_max_ttl": 0,
-    "id": "hvs.CAESIFIvewF8ayV-6Qe_YYtrYjnFRUJaMXHOOHNuo239clExGh4KHGh2cy5nRzdOcmMxakRncmpvTnJ2VzdHUkdrRno",
+    "id": "hvs.CAESIFIvewF8ayV-6Qe_YYtrYjnFRUJaMXHOOHNuo23****",
     "issue_time": "2024-03-19T17:27:34.530355+09:00",
     "meta": {
       "type": "api-admin"
@@ -203,7 +203,7 @@ $ vault token lookup -format=json hvs.CAESIFIvewF8ayV-6Qe_YYtrYjnFRUJaMXHOOHNuo2
 Vault Token의 TTL이 만료된 경우 Vault 내에서 이미 Token이 만료처리(Revoke) 되므로 권한없음의 에러를 반환 합니다.
 
 ```bash
-$ vault token lookup -format=json hvs.CAESIFIvewF8ayV-6Qe_YYtrYjnFRUJaMXHOOHNuo239clExGh4KHGh2cy5nRzdOcmMxakRncmpvTnJ2VzdHUkdrRno
+$ vault token lookup -format=json hvs.CAESIFIvewF8ayV-6Qe_YYtrYjnFRUJaMXHOOHNuo23****
 Error looking up token: Error making API request.
 
 URL: POST http://127.0.0.1:8200/v1/auth/token/lookup
@@ -248,7 +248,7 @@ $ vault token create -format=json -role=api-admin -metadata=foo=bar
   "data": null,
   "warnings": null,
   "auth": {
-    "client_token": "hvs.CAESIKuBuHgqkFZ3IIuY80JzQq5kGci-9Jd2Xix2tuhtB0GfGh4KHGh2cy5KUWtYbFZ4dUNuSjFjMnRPM3NVWHYzdDc",
+    "client_token": "hvs.CAESIKuBuHgqkFZ3IIuY80JzQq5kGci-9Jd2Xix****",
     "accessor": "asIKCp1Wtyb0VdzjPHEvN4EE",
     "policies": [
       "default"
@@ -272,7 +272,7 @@ $ vault token create -format=json -role=api-admin -metadata=foo=bar
 앞서 Vault Token을 직접 생성하는 것과의 차이는 대부분의 옵션(수명주기, 독립된 Token 여부, 불필요한 Vault의 정책 부여 막기)이 미리 선언 되었다는 점과, 역할 고유의 값이 조회시 확인됩니다.
 
 ```json:no-line-numbers {23,28}
-$ vault token lookup -format=json hvs.CAESIKuBuHgqkFZ3IIuY80JzQq5kGci-9Jd2Xix2tuhtB0GfGh4KHGh2cy5KUWtYbFZ4dUNuSjFjMnRPM3NVWHYzdDc
+$ vault token lookup -format=json hvs.CAESIKuBuHgqkFZ3IIuY80JzQq5kGci-9Jd2X****
 
 {
   "request_id": "809a0395-b33c-ebf1-9ff4-f98a984d2ba8",
@@ -287,7 +287,7 @@ $ vault token lookup -format=json hvs.CAESIKuBuHgqkFZ3IIuY80JzQq5kGci-9Jd2Xix2tu
     "entity_id": "",
     "expire_time": "2024-03-19T17:42:59.684424+09:00",
     "explicit_max_ttl": 0,
-    "id": "hvs.CAESIKuBuHgqkFZ3IIuY80JzQq5kGci-9Jd2Xix2tuhtB0GfGh4KHGh2cy5KUWtYbFZ4dUNuSjFjMnRPM3NVWHYzdDc",
+    "id": "hvs.CAESIKuBuHgqkFZ3IIuY80JzQq5kGci-9Jd2Xix2****",
     "issue_time": "2024-03-19T17:42:29.684426+09:00",
     "meta": {
       "foo": "bar"
@@ -468,7 +468,7 @@ display_name         token
 entity_id            n/a
 expire_time          2024-03-19T21:48:09.983135+09:00
 explicit_max_ttl     0s
-id                   hvs.CAESIFPtfDQGPlyDzkA5wmCkU5A5XmhhJXcKXDuQ4reNE4i4Gh4KHGh2cy5jQmo0UU5kQ1Zld3dzSUZ4S3FDREN3SlY
+id                   hvs.CAESIFPtfDQGPlyDzkA5wmCkU5A5XmhhJX4Gh4KHGh****
 issue_time           2024-03-19T21:47:39.982003+09:00
 last_renewal         2024-03-19T21:47:39.983135+09:00
 last_renewal_time    1710852459
@@ -495,7 +495,7 @@ display_name         token
 entity_id            n/a
 expire_time          2024-03-19T21:48:31.902519+09:00
 explicit_max_ttl     0s
-id                   hvs.CAESIHr-v_t37t0twlNhOhTTj3PyYzhtHQrDYvV1SLuh4KMVGh4KHGh2cy5IekJEdDRqbTdRSzN1TFhPVTZVQ0FoSkM
+id                   hvs.CAESIHr-v_t37t0twlNhOhTTj3PyYzhtHQrDYvV1SLuhV****
 issue_time           2024-03-19T21:48:01.902053+09:00
 last_renewal         2024-03-19T21:48:01.902519+09:00
 last_renewal_time    1710852481
@@ -645,7 +645,7 @@ EOF
 ```bash
 $ kubectl exec -it webapp-injection -c webapp -- cat /vault/secrets/my-api-key.txt
 
-hvs.CAESICi60HIi3mA8nG3rgx2WTGfI6HQVsHMWJkqcJg68znyDGh4KHGh2cy5zcFpGVjZkZWJhTFNqSXg2bmRqN2NCZUE
+hvs.CAESICi60HIi3mA8nG3rgx2WTGfI6HQVsHMWJkqcJg68znyDGh****
 ```
 
 약 20초 후 자동으로 갱신됨을 확인합니다.
@@ -653,7 +653,7 @@ hvs.CAESICi60HIi3mA8nG3rgx2WTGfI6HQVsHMWJkqcJg68znyDGh4KHGh2cy5zcFpGVjZkZWJhTFNq
 ```bash
 kubectl exec -it webapp-injection -c webapp -- cat /vault/secrets/my-api-key.txt
 
-hvs.CAESIIj-RS6NxOFpRWMXlwYCcnG2wfb-WwGJxhlTqSI4hhbBGh4KHGh2cy5nRG9POGYybzRnWTdkb3ZsZXRxMnlkVUY
+hvs.CAESIIj-RS6NxOFpRWMXlwYCcnG2wfb-WwGJxhlTqSI4hhbBGh****
 ```
 
 :::
