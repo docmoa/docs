@@ -146,5 +146,5 @@ DevOps는 진행중이고, XXOps를 뒷받침하는 Engineering 영역과 이를
 
 게임 산업쪽 이야기가 많이 나온김에, 이전에 WEB/WAS, 게임 서버 개발, OpenShift 때문에 Kubernetes(K8s)를 반강제적으로 학습 해보면서 범용적인 오케스트레이션 툴은 없나 찾다 지금의 일을 하게 된 일이 다시금 생각났다. 모든걸 만족할 수는 없겠지만, 다양한 분야의 다양한 사람들의 애플리케이션 실행 요구사항을 만족할만한게 있으면 좋겠다고 생각했다. 여전히 Windows만의 강점이 있고, 누군가는 웹앱이 중요하고, Java 앱이, Python이, 또 누군가는 빌드된 바이너리를 실행해야 하는 등, 그래서 난 `Nomad`의 장점을 느꼈다고 생각된다. `Terraform`도 모르고 `Vault`도 몰랐지만 어디에나 잘 실행되고, 쉽고, 아무거나 올려도 되는 유들유들한 오케스트레이터. (K8s가 워낙 유명해서 잘 안알려졌다는게 단점이랄까.) Nomad를 사용하는 사례들을 보면 현실적인 이야기들이라 더 그정도까지의 플랫폼은 필요 없거나 아직 컨테이너까지 안해도 되는, 그리고 Windows, ARM Cpu를 사용하는 사례들을 만난다. 특히나 게임 이야기는 더 재미있고 즐겁다.
 
-<PDF url="//docmoa.github.io/pdf/NomadCaseStudy-Game.pdf" />
+<PDF url="//docmoa.github.io/pdf/NomadCaseStudy-Game.pdf" zoom="75%"/>
 :::
