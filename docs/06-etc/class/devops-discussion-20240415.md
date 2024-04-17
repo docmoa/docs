@@ -90,14 +90,11 @@ DevOps를 기준으로, 우리 조직이 얼마나 잘 DevOps를 하고 있는�
 
 DevOps를 정의하는 방식과 행위는 다양하다. 이전 [좌담회](https://docmoa.github.io/06-etc/class/devops-discussion-20240213.html#%F0%9F%91%B7%E2%80%8D%E2%99%80%EF%B8%8F-%E1%84%80%E1%85%A9%E1%84%86%E1%85%B5%E1%86%AB-1-%E1%84%82%E1%85%A1%E1%84%8B%E1%85%B4-%E1%84%8C%E1%85%A1%E1%84%85%E1%85%B5%E1%84%85%E1%85%B3%E1%86%AF-%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A7%E1%86%B8%E1%84%92%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB%E1%84%80%E1%85%A1)에서 언급했듯, DevOps란 대상간의 간극을 줄이는 행위라고도 할 수 있고, CI/CT/CD의 수준, 혹은 문화라고도 정의할 수 있다.
 
-Google Cloud에서 발행한 [The ROI of DevOps Transformation](https://services.google.com/fh/files/misc/whitepaper_roi_of_devops_transformation_2020_google_cloud.pdf)에서도 언급된것 처럼 전통적으로 IT는 비용을 '쓰는' 조직으로 여겨져 왔다. DevOps에 투자 대비 수익을 계산하는데 그 조직이 수익에 대한 영역을 어디까지 확장할 수 있는가가 DevOps의 가치에 큰 영향을 끼칠 것으로 예상된다.
+Google Cloud에서 발행한 [The ROI of DevOps Transformation](https://services.google.com/fh/files/misc/whitepaper_roi_of_devops_transformation_2020_google_cloud.pdf)에서도 언급된것 처럼 전통적으로 IT는 비용을 '쓰는' 조직으로 여겨져 왔다. DevOps에 투자 대비 수익을 계산하는데 그 조직이 수익에 대한 영역을 어디까지 확장할 수 있는가가 DevOps의 가치에 큰 영향을 끼칠 것으로 예상된다. (관련 리포트를 정리한 글(한글)도 좋은 참고가 된다. : [DevOps 로 전환 시의 ROI (The ROI of DevOps Transformation)](https://medium.com/proofer-blog/%EB%B2%88%EC%97%AD-devops-%EB%A1%9C-%EC%A0%84%ED%99%98-%EC%8B%9C%EC%9D%98-roi-the-roi-of-devops-transformation-9105b240247b))
 
 - ROI는 `투자`와 `수익`에 기반한다.
 - 투자에는 교육, 학습, 통합, 그리고 과정상 발생하는 생산성 저하, 유지보수, 교체에 따른 소요 시간 등이 포함된다.
 - 수익은 가치 중심 접근(서비스 전달 속도)과 비용 중심 접근(비용 절감과 업무 효율성)으로 나뉜다.
-
-관련 리포트를 정리한 글(한글)도 좋은 참고가 된다. : [DevOps 로 전환 시의 ROI (The ROI of DevOps Transformation)](https://medium.com/proofer-blog/%EB%B2%88%EC%97%AD-devops-%EB%A1%9C-%EC%A0%84%ED%99%98-%EC%8B%9C%EC%9D%98-roi-the-roi-of-devops-transformation-9105b240247b)
-
 
 
 좌담회 자리에서 측정 방식과 관련하여 DevOps 수준을 평가하는데 있어 `Flow framework`에 대해서도 언급해주셨다.
@@ -145,9 +142,9 @@ DevOps가 시작되고 언급된지 국내에서도 꽤 오랜 시간이 흘렀�
 DevOps는 진행중이고, XXOps를 뒷받침하는 Engineering 영역과 이를 뒷받침하는 역량도 끊임 없이 배움과 확장의 연속 '그만 배우고 싶다...놀고 싶다...그럼 더 배워야 하나?'
 
 
-::: details 📋 별첨
+::: details 📋 별첨 - Nomad Case Study (Game)
 
-이전에 WEB/WAS, 게임 서버 개발, OpenShift 때문에 Kubernetes(K8s)를 반강제적으로 학습 해보면서 범용적인 오케스트레이션은 없나 찾다 지금의 일을 하게 된 일이 다시금 생각났다. 모든걸 만족할 수는 없겠지만, 다양한 분야의 다양한 사람들의 애플리케이션 실행 요구사항을 만족할만한게 있으면 좋겠다고 생각했다. 여전히 Windows만의 강점이 있고, 누군가는 웹앱이 중요하지만 누군가는 빌드된 바이너리를 실행해야 하는 등, 그래서 난 Nomad의 장점을 느꼈다고 생각된다. Terraform도 모르고 Vault도 몰랐지만 어디에나 잘 실행되고, 쉽고, 아무거나 올려도 되는 유들유들한 오케스트레이터. (K8s가 워낙 유명해서 잘 안알려졌다는게 단점이랄까.) Nomad를 사용하는 사례들을 보면 현실적인 이야기들이라 더 그정도까지의 플랫폼은 필요 없거나 아직 컨테이너까지 안해도 되는, 그리고 Windows, ARM Cpu를 사용하는 사례들을 만난다. 특히나 게임 이야기는 더 재미있고 즐겁다.
+게임 산업쪽 이야기가 많이 나온김에, 이전에 WEB/WAS, 게임 서버 개발, OpenShift 때문에 Kubernetes(K8s)를 반강제적으로 학습 해보면서 범용적인 오케스트레이션 툴은 없나 찾다 지금의 일을 하게 된 일이 다시금 생각났다. 모든걸 만족할 수는 없겠지만, 다양한 분야의 다양한 사람들의 애플리케이션 실행 요구사항을 만족할만한게 있으면 좋겠다고 생각했다. 여전히 Windows만의 강점이 있고, 누군가는 웹앱이 중요하고, Java 앱이, Python이, 또 누군가는 빌드된 바이너리를 실행해야 하는 등, 그래서 난 `Nomad`의 장점을 느꼈다고 생각된다. `Terraform`도 모르고 `Vault`도 몰랐지만 어디에나 잘 실행되고, 쉽고, 아무거나 올려도 되는 유들유들한 오케스트레이터. (K8s가 워낙 유명해서 잘 안알려졌다는게 단점이랄까.) Nomad를 사용하는 사례들을 보면 현실적인 이야기들이라 더 그정도까지의 플랫폼은 필요 없거나 아직 컨테이너까지 안해도 되는, 그리고 Windows, ARM Cpu를 사용하는 사례들을 만난다. 특히나 게임 이야기는 더 재미있고 즐겁다.
 
-<PDF url="//docmoa.github.io/files/NomadCaseStudy-Game.pdf" no-toolbar />
+<PDF url="//docmoa.github.io/pdf/NomadCaseStudy-Game.pdf" no-toolbar />
 :::
