@@ -7,6 +7,7 @@ export const koSidebar = hope_sidebar({
   "/03-PublicCloud/": "structure",
   "/04-HashiCorp/": "structure",
   "/05-Software/": "structure",
+  "/07-Kubernetes/": "structure",
   "/06-etc/": "structure",
   "/99-about/": "structure",
   "/": [

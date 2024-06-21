@@ -94,6 +94,13 @@ export default defineUserConfig({
       limit: 15,
     }),
     usePagesPlugin({
+      startsWith: '/07-Kubernetes/',
+      file: 'kubernetes.js',
+      sort: (a, b) => b.data.git.updatedTime - a.data.git.updatedTime,
+      filter: (page) => page.data.title != 'Kubernetes' || page.title !== "",
+      limit: 15,
+    }),
+    usePagesPlugin({
       startsWith: '/05-Software/',
       file: 'software.js',
       sort: (a, b) => b.data.git.updatedTime - a.data.git.updatedTime,

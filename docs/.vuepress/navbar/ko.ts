@@ -18,6 +18,11 @@ export const koNavbar = navbar([
     icon: "workingDirectory",
     link: "/04-HashiCorp/"
   },
+  {
+    text: "Kubernetes",
+    icon: "workingDirectory",
+    link: "/07-Kubernetes/"
+  },
   { text: "Etc.", icon: "flex", link: "/06-etc/" },
   {
     text: "MORE",

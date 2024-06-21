@@ -29,6 +29,11 @@ features:
   - title: HashiCorp
     details: Packer / Vagrant / Terraform / Consul / Boundary / Vault / Nomad / Waypoint
     link: /04-HashiCorp/
+  - title: Kubernetes
+    details: Kubernetes Infra
+    link: /07-Kubernetes/
+  - title: Etc.
+    link: /06-etc/
   - title: Software
     details: Jenkins / Tomcat
     link: /05-Software/
@@ -48,6 +53,7 @@ import { usePages as infrastructure } from '@temp/infrastructure'  // pages.js i
 import { usePages as privateplatform } from '@temp/privateplatform'  // pages.js is default filename
 import { usePages as publiccloud } from '@temp/publiccloud'  // pages.js is default filename
 import { usePages as hashicorp } from '@temp/hashicorp'  // pages.js is default filename
+import { usePages as kubernetes } from '@temp/kubernetes'  // pages.js is default filename
 import { usePages as software } from '@temp/software'  // pages.js is default filename
 import { usePages as etc } from '@temp/etcpage'  // pages.js is default filename
 
