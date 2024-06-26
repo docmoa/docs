@@ -32,5 +32,5 @@ export const koNavbar = navbar([
       { text: "Thank you", icon: "heart", link: "/99-about/02-Thanks.html" },
     ],
   },
-  { text: "Tags", icon: "tag", link: "/tag" },
+  { text: "Tags", icon: "tag", link: "/tag/" },
 ]);
