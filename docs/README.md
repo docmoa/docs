@@ -32,8 +32,6 @@ features:
   - title: Kubernetes
     details: Kubernetes Infra
     link: /07-Kubernetes/
-  - title: Etc.
-    link: /06-etc/
   - title: Software
     details: Jenkins / Tomcat
     link: /05-Software/
