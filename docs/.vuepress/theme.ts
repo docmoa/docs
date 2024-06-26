@@ -5,7 +5,8 @@ import { koSidebar } from "./sidebar/index.js";
 export default hopeTheme({
   hostname: "https://docmoa.github.io",
 
-  iconAssets: "iconfont",
+  // https://fontawesome.com/search
+  iconAssets: "fontawesome-with-brands",
 
   logo: "/logo.png",
   repo: "docmoa/docs",

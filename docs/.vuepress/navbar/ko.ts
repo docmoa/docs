@@ -2,10 +2,10 @@ import { navbar } from "vuepress-theme-hope";
 
 export const koNavbar = navbar([
   "/",
-  { text: "How To", icon: "launch", link: "/00-Howto/" },
+  { text: "How To", icon: "rocket", link: "/00-Howto/" },
   {
     text: "Infra",
-    icon: "computer",
+    icon: "server",
     children: [
       { text: "Infrastructure", link: "/01-Infrastructure/" },
       { text: "Private-Platform", link: "/02-PrivatePlatform/" },
@@ -15,21 +15,21 @@ export const koNavbar = navbar([
   { text: "Software", icon: "code", link: "/05-Software/" },
   {
     text: "HashiCorp",
-    icon: "workingDirectory",
+    icon: "layer-group",
     link: "/04-HashiCorp/"
   },
   {
     text: "Kubernetes",
-    icon: "workingDirectory",
+    icon: "dharmachakra",
     link: "/07-Kubernetes/"
   },
-  { text: "Etc.", icon: "flex", link: "/06-etc/" },
+  { text: "Etc.", icon: "mug-hot", link: "/06-etc/" },
   {
     text: "MORE",
-    icon: "more",
+    icon: "circle-info",
     children: [
-      { text: "About", icon: "info", link: "/99-about/01-About.html" },
-      { text: "Thank you", icon: "like", link: "/99-about/02-Thanks.html" },
+      { text: "About", icon: "house-circle-exclamation", link: "/99-about/01-About.html" },
+      { text: "Thank you", icon: "heart", link: "/99-about/02-Thanks.html" },
     ],
   },
   { text: "Tags", icon: "tag", link: "/tag" },
