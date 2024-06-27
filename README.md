@@ -6,6 +6,11 @@ docmoa (https://docmoa.github.io) 소스페이지 입니다.
 
 ## Change Log
 
+### 2024-06-27
+- Node.js require version > 20.5.x
+- vuepress-theme-hope upgrade
+  - 2.0.0-rc.50
+
 ### 2024-02-15
 - vuepress upgrade
   - 2.0.0-rc.7
