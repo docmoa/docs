@@ -107,6 +107,7 @@ export default hopeTheme({
       playground: {
         presets: ["ts", "vue"],
       },
+      plantuml: true,
       // presentation: true,
       stylize: [
         {
