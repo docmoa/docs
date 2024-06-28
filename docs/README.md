@@ -86,7 +86,9 @@ export default defineComponent({
 
 ### Start contributing to `docmoa`
 
-> Tested NodeJS : v20.5.x
+::: tip Run info
+Minimum NodeJS version : `v20.5.x`
+:::
 
 ::: code-tabs
 @tab npm
