@@ -83,8 +83,10 @@ export default hopeTheme({
     git: true,
 
     prismjs: {
-      light: "material-oceanic",
-      dark: "material-oceanic"
+      themes: {
+        light: "one-light",
+        dark: "material-oceanic"
+      }
     },
 
     // all features are enabled for demo, only preserve features you need here
@@ -137,7 +139,7 @@ export default hopeTheme({
           placeholder: "Search",
         },
       },
-      maxSuggestions: 15,
+      maxSuggestions: 5,
       isSearchable: (page) => page.path !== "/" || page.title !== "Overview",
     },
     
