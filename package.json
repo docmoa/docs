@@ -11,8 +11,8 @@
     "dev": "vuepress dev docs",
     "update-package": "npx vp-update"
   },
-  "engines" : { 
-    "node" : ">=20.5.0"
+  "engines": {
+    "node": ">=20.5.0"
   },
   "devDependencies": {
     "@vue/repl": "^4.2.1",
@@ -23,8 +23,10 @@
     "@vuepress/plugin-search": "^2.0.0-rc.12",
     "@vuepress/theme-default": "^2.0.0-rc.14",
     "chart.js": "^4.4.3",
+    "dashjs": "^4.7.4",
     "echarts": "^5.5.1",
     "flowchart.ts": "^3.0.0",
+    "hls.js": "^1.5.11",
     "katex": "^0.16.10",
     "mermaid": "^10.9.1",
     "vidstack": "^1.10.6",
