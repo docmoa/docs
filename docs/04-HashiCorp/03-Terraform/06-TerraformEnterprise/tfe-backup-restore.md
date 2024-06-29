@@ -4,7 +4,7 @@ tag: ["Terraform", "backup", "restore"]
 author: hognod(ddim), dyana(ddim)
 ---
 
-# Terraform Enterprise Backup & Restroe
+# Terraform Enterprise Backup & Restore
 
 ## 1. Backup & Restore 개요
 
