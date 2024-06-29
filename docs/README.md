@@ -46,7 +46,7 @@ footer: CC BY-NC-ND 4.0 Licensed | ⓒ 2021-present docmoa™ contributers all r
 ---
 ---
 
-### [최신글 🔗](/timeline/)
+### [최근 등록/수정된 글 🔗](/timeline/)
 
 <script>
 import { defineComponent } from 'vue'

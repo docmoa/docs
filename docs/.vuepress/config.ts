@@ -69,7 +69,7 @@ export default defineUserConfig({
       startsWith: '/',
       file: 'root.js',
       sort: (a, b) => b.data.git.updatedTime - a.data.git.updatedTime,
-      filter: (page) => page.data.title != 'docmoa' || page.title !== "",
+      filter: (page) => page.data.title !== 'docmoa' || page.title !== "",
       limit: 15,
     }),
     usePagesPlugin({
