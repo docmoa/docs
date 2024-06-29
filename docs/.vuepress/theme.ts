@@ -84,6 +84,7 @@ export default hopeTheme({
     git: true,
 
     prismjs: {
+      lineNumbers: 10,
       themes: {
         light: "one-light",
         dark: "material-oceanic"

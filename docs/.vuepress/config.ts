@@ -42,12 +42,6 @@ export default defineUserConfig({
     "@TagList": path.resolve(__dirname, "components/TagList.vue"),
   },
 
-  markdown: {
-    code: {
-      lineNumbers: 10
-    }
-  },
-
   plugins: [
     sidebarEnhancer,
     
