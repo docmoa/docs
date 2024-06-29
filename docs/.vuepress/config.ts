@@ -66,6 +66,13 @@ export default defineUserConfig({
     // }),
     
     usePagesPlugin({
+      startsWith: '/',
+      file: 'root.js',
+      sort: (a, b) => b.data.git.updatedTime - a.data.git.updatedTime,
+      filter: (page) => page.data.title != 'docmoa' || page.title !== "",
+      limit: 15,
+    }),
+    usePagesPlugin({
       startsWith: '/01-Infrastructure/',
       file: 'infrastructure.js',
       sort: (a, b) => b.data.git.updatedTime - a.data.git.updatedTime,
