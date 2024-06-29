@@ -51,7 +51,8 @@ export default hopeTheme({
         "Share",
         "SiteInfo",
         "Badge",
-        "VidStack"
+        "VidStack",
+        "VPCard"
       ],
     },
 
@@ -94,7 +95,8 @@ export default hopeTheme({
       align: true,
       attrs: true,
       chart: true,
-      codetabs: true,      
+      codetabs: true,
+      component: true,
       demo: true,
       echarts: true,
       figure: true,
