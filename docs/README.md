@@ -33,7 +33,7 @@ features:
     details: Kubernetes Infra
     link: /07-Kubernetes/
   - title: Software
-    details: Jenkins / Tomcat
+    details: MongoDB / Jenkins / Tomcat
     link: /05-Software/
   - title: Etc.
     link: /06-etc/
