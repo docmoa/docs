@@ -106,16 +106,20 @@ fi
 
 ## 3. Token 생성 및 실행
 
+실행 예시
 ```bash
-VAULT_TOKEN=$(vault token create -field=token -policy=secret-list-getter) ./list_vault_secrets.sh admin
+VAULT_TOKEN=$(vault token create -field=token -policy=secret-list-getter) \
+  ./list_vault_secrets.sh \
+  admin
 ```
 
-
-
-결과 1 (HCP Vault)
+결과 1 (HCP Vault - admin namespace 기준)
 
 ```bash
-$ VAULT_TOKEN=$(vault token create -field=token -policy=secret-list-getter) ./list_vault_secrets.sh admin
+$ VAULT_TOKEN=$(vault token create -field=token -policy=secret-list-getter) \
+  ./list_vault_secrets.sh \
+  admin
+
 Listing all secret engines in all namespaces:
 Namespace: admin
   Secret Engine: alicloud/ (Type: alicloud)
@@ -154,10 +158,12 @@ Namespace: admin
 
 
 
-결과 2 (Vault 설치형)
+결과 2 (Vault 설치형 - root(/) namespace 기준)
 
 ```bash
-$ VAULT_TOKEN=$(vault token create -field=token -policy=secret-list-getter) ./list_vault_secrets.sh
+$ VAULT_TOKEN=$(vault token create -field=token -policy=secret-list-getter) \
+  ./list_vault_secrets.sh
+
 Listing all secret engines in all namespaces:
 Namespace:
   Secret Engine: cubbyhole/ (Type: cubbyhole)
