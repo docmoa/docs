@@ -1,0 +1,55 @@
+server:
+  enterpriseLicense:
+    secretName: vault-ent-license
+  ha:
+    enabled: true
+    replicas: 1
+    raft:
+      enabled: true
+      config: |
+        ui = true
+
+        listener "tcp" {
+          tls_disable = 1
+          address = "[::]:8200"
+          cluster_address = "[::]:8201"
+        }
+        #seal "awskms" {
+        #  region     = "ap-northeast-2"
+        #  kms_key_id = "7b222956-513c-42e1-80fc-8d1c96eb2e71"
+        #}
+        storage "raft" {
+          path = "/vault/data"
+          retry_join {
+            leader_api_addr = "https://vault-0.vault-internal:8200"
+          }
+        }
+        service_registration "kubernetes" {}
+  image:
+    repository: hashicorp/vault-enterprise
+    tag: 1.12.1-ent
+  extraArgs: "-config=/vault/userconfig/vault-seal-config/config.hcl"
+  extraSecretEnvironmentVars:
+    - envName: AWS_ACCESS_KEY_ID
+      secretName: eks-creds
+      secretKey: AWS_ACCESS_KEY_ID
+    - envName: AWS_SECRET_ACCESS_KEY
+      secretName: eks-creds
+      secretKey: AWS_SECRET_ACCESS_KEY
+  volumes:
+    - name: userconfig-vault-seal-config
+      secret:
+        defaultMode: 420
+        secretName: vault-seal-config
+  volumeMounts:
+    - mountPath: /vault/userconfig/vault-seal-config
+      name: userconfig-vault-seal-config
+      readOnly: true
+  service:
+    type: LoadBalancer
+    loadBalancerClass: service.k8s.aws/nlb
+    annotations:
+  dataStorage:
+    enabled: true
+    #storageClass: efs-sc
+    size: 10Gi
