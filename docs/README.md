@@ -49,24 +49,37 @@ footer: CC BY-NC-ND 4.0 Licensed | ⓒ 2021-present docmoa™ contributers all r
 ### [최근 등록/수정된 글 🔗](/timeline/)
 
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent, computed } from 'vue'
 import { usePages } from '@temp/root'  // pages.js is default filename
 
 export default defineComponent({
   setup() {
-    const pages = usePages()
-    console.log(pages)
-    return { pages }
-  },
-})
+    const pages = usePages();
+
+    // 디버그를 위해 pages의 내용을 콘솔에 출력
+    console.log('Pages:', pages);
+
+    const formatPath = (path) => {
+      const parts = path.split('/').filter(part => part); // 빈 문자열 요소 제거
+      parts.pop(); // 마지막 부분 (파일명) 제거
+      return parts.join(' > '); // 배열을 ' > '로 연결하여 문자열 생성
+    };
+
+    const filteredPages = computed(() => {
+      return pages.filter(page => page.title !== 'docmoa');
+    });
+
+    return { filteredPages, formatPath };
+  }
+});
 </script>
 
 <ul>
   <li
-    v-for="page in pages"
+    v-for="page in filteredPages"
     :key="page.key"
   >
-    <RouterLink :to="page.path">{{ page.title }}</RouterLink> 
+    <RouterLink :to="page.path">{{ formatPath(page.path) }} > {{ page.title }}</RouterLink> 
     <!-- <span v-if="page.localizedDate">
       [ 최초 작성일 {{ page.localizedDate }} ]
     </span> -->
