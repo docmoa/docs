@@ -46,6 +46,10 @@ vi payload.json
 
 ## 3. Mounted Disk 배포 시 Backup & Restore
 
+::: warning 주의
+하기 aux 폴더 누락 이슈로 bind 경로를 추가한 내용은 'Terraform Enterprise Releases v202402-2'에서 진행된 내용이며 '최신 Releases v202406-1'에서는 따로 bind 경로를 추가 설정하지 않아도 잘 실행됨을 확인하였습니다. 
+:::
+
 Mounted disk 배포 모델은, Failover 또는 Active/Active 기능 없이 단일 컴퓨팅 환경에 Terraform Enterprise를 배포한다. 본 가이드는 Mounted disk 배포 모델인 **TFE1**서버에서 backup 진행 이후, 동일한 Mounted disk 배포 모델 **TFE2** 서버로 restore 과정을 진행한다.
 
 ### 3.1. docker-compose.yaml bind 경로 추가
