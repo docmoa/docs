@@ -160,6 +160,7 @@ export default hopeTheme({
       cacheHTML: false,
       cacheImage: false,
       appendBase: true,
+      maxSize: 1024 * 20,
       apple: {
         icon: "/assets/icon/apple-icon-152.png",
         statusBarColor: "black",
