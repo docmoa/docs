@@ -4,6 +4,9 @@ tag: ["devops", "container"]
 author : GS
 ---
 
+![](https://eventusstorage.blob.core.windows.net/evs/Image/ubuntukr/81549/ProjectInfo/Cover/f16d8e1dd7af46cfb910dfaf9574dd60.png)
+
+
 # UbuCon Korea 2024
 
 > [행사 홈페이지](https://2024.ubuntu-kr.org/ko/)
@@ -23,10 +26,6 @@ author : GS
 ![](https://eventusstorage.blob.core.windows.net/evs/Image/ubuntukr/65995/ProjectInfo/Cover/7fe204e41d664c8fb9a806ee6faf806e.png)
 
 [UbuCon Korea 2023 - 홈페이지](https://2023.ubuntu-kr.org/ko/)
-
-![](https://eventusstorage.blob.core.windows.net/evs/Image/ubuntukr/81549/ProjectInfo/Cover/f16d8e1dd7af46cfb910dfaf9574dd60.png)
-
-[UbuCon Korea 2024 - 홈페이지](https://2024.ubuntu-kr.org/ko/)
 
 ## 2. 기조연설 Keynote (10:30)
 
