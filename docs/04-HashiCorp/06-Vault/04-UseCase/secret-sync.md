@@ -11,7 +11,6 @@ tag: ["SecretManager", "vault", "aws"]
 # Vault Secret를 AWS Secret manager 연동
 
 > Secret Sync 공식 자료: [Secret Sync](https://developer.hashicorp.com/vault/docs/sync)
-
 > AWS Secret Manager Sync 자료: [Secret Manager Sync](https://developer.hashicorp.com/vault/docs/sync/awssm)
 
 현대의 IT 환경에서는 다양한 클라우드 서비스를 사용하는 것이 일반적입니다. 
@@ -25,7 +24,7 @@ Vault를 사용하면 여러 CSP의 Sync를 통해 하나의 Vault Secret으로 
 ## Vault Secret과 AWS Secret Manager의 비밀정보를 동기화 과정
 
 1. 먼저 Vault Policy는 다음과 같이 필요합니다.
-```bash
+```hcl:no-line-numbers
 path "sys/sync/*" {
   capabilities = ["read", "list", "create", "update", "delete"]
 }
@@ -36,7 +35,7 @@ path "secret_sync/*" {
  ```
 
 2. Secret Engine을 만들고 데이터를 넣도록 하겠습니다.
-```bash
+```hcl:no-line-numbers
 resource "vault_mount" "secret_sync" {
   path        = "secret_sync"
   type        = "kv"
@@ -54,8 +53,9 @@ resource "vault_kv_secret_v2" "secret_sync" {
 ```
 
 - 더미 데이터는 다음과 같습니다.
-```bash
-cat secret.csv
+```bash:no-line-numbers
+$ cat secret.csv
+
 key,secret_path,secret_key,secret_value
 1,path1,oEyzn3Ko,ueWXdREVkbO8
 2,path2,L1wxhMoU,McY5TAQDQFfQ
@@ -76,7 +76,7 @@ key,secret_path,secret_key,secret_value
 4. 정상적으로 배포된 Vault Secret을 AWS Secret Manager에 Sync를 진행합니다.
 - Terraform code는 다음과 같습니다.
 
-```bash
+```hcl:no-line-numbers
 # name template 참고 링크: https://developer.hashicorp.com/vault/docs/sync#name-template
 resource "vault_secrets_sync_aws_destination" "static_aws" {
   name                 = "aws_secret_sync"
@@ -96,8 +96,9 @@ resource "vault_secrets_sync_association" "static_gh_token" {
 
 5. 배포를 진행하고 AWS Console에서 확인하면 다음과 같습니다.
 
-:::참고 Vault Secret의 License가 없어, 공식홈페이지의 결과 화면입니다.
+::: info Vault Secret의 License가 없어, 공식홈페이지의 결과 화면입니다.
 ![](./image/secret-sync-2.png)
+:::
 
 ## Secret Sync 기능은 다음의 서비스의 동기화를 지원하고 있습니다.
 
@@ -107,24 +108,22 @@ resource "vault_secrets_sync_association" "static_gh_token" {
 - github
 - vercel
 
-:::참고
+::: info 참고
 
 github action에서는 다음과 같이 활용도 가능합니다.
 
-```bash
----
-      - name: Login to AWS ECR
-        run: |
-          echo "Set vars"
-          AWS_ACCOUNT_ID=$(echo "$AWS_ACCOUNT_ID" | jq -r '.AWS_ACCOUNT_ID')
-          AWS_ACCESS_KEY_ID=$(echo "$AWS_ACCESS_KEY_ID" | jq -r '.AWS_ACCESS_KEY_ID')
-          AWS_SECRET_ACCESS_KEY=$(echo "$AWS_SECRET_ACCESS_KEY" | jq -r '.AWS_SECRET_ACCESS_KEY')
-          echo "Login to AWS ECR"
-          aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
-        env:
-          AWS_DEFAULT_REGION: ${{ vars.AWS_DEFAULT_REGION }}
-          AWS_ACCOUNT_ID: ${{ secrets.VAULT_KV_5047F8B7_AWS_ACCOUNT_ID }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.VAULT_KV_5047F8B7_AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.VAULT_KV_5047F8B7_AWS_SECRET_ACCESS_KEY }}
----          
+```yaml:no-line-numbers
+- name: Login to AWS ECR
+  run: |
+    echo "Set vars"
+    AWS_ACCOUNT_ID=$(echo "$AWS_ACCOUNT_ID" | jq -r '.AWS_ACCOUNT_ID')
+    AWS_ACCESS_KEY_ID=$(echo "$AWS_ACCESS_KEY_ID" | jq -r '.AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY=$(echo "$AWS_SECRET_ACCESS_KEY" | jq -r '.AWS_SECRET_ACCESS_KEY')
+    echo "Login to AWS ECR"
+    aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+  env:
+    AWS_DEFAULT_REGION: ${{ vars.AWS_DEFAULT_REGION }}
+    AWS_ACCOUNT_ID: ${{ secrets.VAULT_KV_5047F8B7_AWS_ACCOUNT_ID }}
+    AWS_ACCESS_KEY_ID: ${{ secrets.VAULT_KV_5047F8B7_AWS_ACCESS_KEY_ID }}
+    AWS_SECRET_ACCESS_KEY: ${{ secrets.VAULT_KV_5047F8B7_AWS_SECRET_ACCESS_KEY }}      
 ```
