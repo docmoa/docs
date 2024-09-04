@@ -27,7 +27,7 @@ aws-auth에서는 다음의 두 기능을 지원합니다.
 1. Vault Secret 설정
 - Vault Secret은 아래와 같이 설정했습니다.
 - 여기서 생성하는 **Secret Engine**명과 **KV Path**명을 기준으로 자동화를 쉽게 할 수 있습니다.
-```bash
+```hcl:no-line-numbers
 # Vault Secret engine의 이름을 spring* application 이름과 동일하게 맞추면 조금 더 설정이 쉽습니다.
 resource "vault_mount" "kv_spring" {
   path    = "java_and_vault"
@@ -61,7 +61,7 @@ resource "vault_kv_secret_v2" "kv_java_and_vault_dev" {
   - ec2 tag 기준으로 인증하는 aws-auth role입니다.
   - ec2에 tag key로 "role_tag" value로는 output인 "vault_ec2_tag"에 값을 입력합니다.
 
-```bash
+```hcl:no-line-numbers
 resource "vault_policy" "policy_spring_boot" {
   name = "spring-boot-vault"
 
@@ -116,7 +116,8 @@ output "vault_ec2_tag" {
 - application.yaml 파일입니다. 
 - 아래와 같이 datasource와 aws 접근 정보를 생략한다고 해도 제 데이터는 Vault Secret Engine Path의 key명 기준으로 Value값을 치환합니다.
 - ex)s3 접근하는 accesskey는 "cloud.aws.s3.accessKey"의 Value 값인 "aws_access"를 치환합니다.
-```bash
+
+```yaml:no-line-numbers
 spring:
   thymeleaf:
     check-template-location: true
@@ -167,9 +168,10 @@ spring:
 
 ::: warning
 nonce는 application의 인식값입니다. 지정하지 않고 해당 ec2에서 실행된다면 다음의 명령어로 확인하여야 합니다.
-```bash
+```bash:no-line-numbers
 #vault read auth/ung/identity-accesslist/instance-id
-vault read auth/ung/identity-accesslist/i-044a58e2f2c812e70
+$ vault read auth/ung/identity-accesslist/i-044a58e2f2c812e70
+
 Key                          Value
 ---                          -----
 client_nonce                 vault-spring-boot-ec2
@@ -182,7 +184,7 @@ role                         aws-spring-boot
 ```
 :::
 
-```bash
+```yaml:no-line-numbers
 spring:
   thymeleaf:
     check-template-location: true
