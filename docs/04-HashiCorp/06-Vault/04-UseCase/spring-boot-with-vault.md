@@ -199,7 +199,7 @@ spring:
     bootstrap:
       enabled: true
     vault:
-      host: gs-cluster.vault.50dc8a23-a8c8-4982-8053-6ba3cf2f254f.aws.hashicorp.cloud
+      host: vault_URL
       port: 8200
       scheme: https
       namespace: admin
