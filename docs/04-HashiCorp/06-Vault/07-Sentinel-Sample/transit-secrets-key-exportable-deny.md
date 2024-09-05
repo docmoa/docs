@@ -5,6 +5,10 @@ tag: ["Vault", "Sentinel", "Policy"]
 
 # Transit Key Exportable Deny
 
+> Public Terraform Registry - Policy Library
+>
+> Src : https://registry.terraform.io/policies/Great-Stone/vault-transit-exportable-deny
+
 ## 1. EGP용 정책 생성 exportable_deny.sentinel
 
 ```hcl

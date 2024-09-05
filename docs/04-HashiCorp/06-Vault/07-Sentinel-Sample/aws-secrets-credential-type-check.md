@@ -5,6 +5,10 @@ tag: ["Vault", "Sentinel", "Policy"]
 
 # AWS Secrets Role Type Check
 
+> Public Terraform Registry - Policy Library 
+>
+> Src : https://registry.terraform.io/policies/Great-Stone/vault-aws-secret-type
+
 ## 1. EGP용 정책 생성 egp_iam_user_deny.sentinel
 
 ```hcl
