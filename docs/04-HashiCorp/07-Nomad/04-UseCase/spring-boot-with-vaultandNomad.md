@@ -31,13 +31,14 @@ Nomad와 Vault의 통합을 통해 인증과 인가를 자동화하고 관리 �
 1. Vault Secret 설정
 - Vault Secret은 아래와 같이 설정했습니다.
   - vault_token_auth_backend_role.nomad_cluster에서는 Nomad Cluster의 적용 될 token의 role 설정입니다.
-  - vault_policy.admin에서는 secret의 접근하기 위한 policy와 Nomad Cluster에서 token을 인증인가 받는 권한이 설정됩니다.
+  - vault_policy.admin에서는 Nomad Cluster에서 token을 인증인가 받는 권한이 설정됩니다.
+  - vault_policy.vault_and_spring에서는 Nomad job에서 사용 할 Secret의 Path의 권한을 설정합니다.
   - vault_kv_secret_v2.keycloak_env에서는 keycloak에서 사용되는 환경변수를 관리합니다.
 
 ```hcl:no-line-numbers
-#Nomad Cluster의 적용 될 Token의 Role입니다.
+#Nomad Cluster의 적용 될 policy와 job에서 사용 될 policy를 role에 설정합니다.
 resource "vault_token_auth_backend_role" "nomad_cluster" {
-  allowed_policies        = [vault_policy.admin.name]
+  allowed_policies        = [vault_policy.admin.name,vault_policy.vault_and_spring.name]
   orphan                  = true
   token_period            = 94608000
   renewable               = true
@@ -85,14 +86,6 @@ path "nomad-job/*" {
   capabilities = ["create", "read", "update", "delete", "list", "sudo"]
 }
 
-path "mzc-spring/data/java_and_vault" {
-  capabilities = ["read"]
-}
-
-path "mzc-spring/data/java_and_vault/dev" {
-  capabilities = ["read"]
-}
-
 # Manage secrets engines
 path "sys/mounts/*" {
   capabilities = ["create", "read", "update", "delete", "list", "sudo"]
@@ -105,11 +98,29 @@ path "sys/mounts" {
 EOT
 }
 
+#application에서 접근 시 사용 되는 policy입니다.
+resource "vault_policy" "vault_and_spring" {
+  name = "vault_and_spring"
+
+  policy = <<EOT
+path "mzc-spring/data/java_and_vault" {
+  capabilities = ["read","update","create"]
+}
+
+path "mzc-spring/data/java_and_vault/dev" {
+  capabilities = ["read","update","create"]
+}
+
+EOT
+}
+
 # Token 생성
 resource "vault_token" "admin_token" {
   policies  = [vault_policy.admin.name]
   period    = "36500h" # 36500시간 (약 4년)
 }
+
+
 
 # Vault에 KV secret engine 마운트
 resource "vault_mount" "nomad-job" {
@@ -318,7 +329,7 @@ EOH
       }
       #미리 생성한 Vault token을 기입해줍니다.
       vault {
-        policies  = ["nomad-admin"]
+        policies  = ["vault_and_spring"]
         change_mode   = "signal"
         change_signal = "SIGINT"
       }      
