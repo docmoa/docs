@@ -28,6 +28,9 @@ gitlab, grafana, nomad, vault의 사용자 인증 및 권한관리를 하고 있
 - 계정 정보는 Yaml로 관리하며, Group은 아직 두개 뿐이라 Variables로 관리합니다.
 - reader, mgmt의 role 또한 여기서 생성됩니다.
 
+<details>
+  <summary>Keycloak Common 코드 보기</summary>
+
 ```bash
 #main.tf 
 resource "keycloak_realm" "realm" {
@@ -212,6 +215,8 @@ users:
 ...
 ```
 
+</details>
+
 ## Nomad OIDC Terraform Code
 
 ### Terraform으로 Keycloak과 Nomad OIDC 설정
@@ -221,6 +226,9 @@ users:
 - Nomad는 Token Base로 인증인가를 합니다.
   - Token의 각 read, write role을 만듭니다.
   - 그 role기반으로 Keycloak group과 맵핑합니다.
+
+<details>
+  <summary>Nomad, Keycloak 코드 보기</summary>
 
 ```bash
 #keycloak.tf
@@ -423,6 +431,8 @@ variable "client_id" {
 }
 ```
 
+</details>
+
 ### 결과화면 추가
 
 - Nomad UI에서 SSO 연동 버튼이 활성화됩니다.
@@ -445,6 +455,8 @@ variable "client_id" {
   - Vault group 생성 시에는 external로 생성이 필요합니다.
   - opsTeam에는 전체 Write권한을, devTeam에는 전체 Read권한을 적용합니다.
 
+<details>
+  <summary>Vault, Keycloak 코드 보기</summary>
 
 ```bash
 #keycloak.tf
@@ -649,6 +661,8 @@ resource "vault_identity_group_alias" "mgmt_group_alias" {
 }
 
 ```
+
+</details>
 
 ### 결과화면
 
