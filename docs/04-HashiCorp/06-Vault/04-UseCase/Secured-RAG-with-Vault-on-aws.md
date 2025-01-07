@@ -12,7 +12,9 @@ HashiCorp Vault는 이러한 RAG 시스템을 안전하게 보호하는 데 중�
 
 본 포스팅에서는 AWS 환경에서 Amazon Bedrock과 함께 RAG를 구축하는 방안을 소개하며, Vault를 통해 민감정보를 안전하게 보호하는 방법을 설명합니다.
 
-> 💡 본 글은 HashiCorp의 David Wright의 [GitHub 저장소](https://github.com/dawright22/aws-rag-terraform-deployment-demo) 데모 시나리오를 분석 및 참고하여 작성되었습니다.
+::: tip 💡 감사한 분(Special Thanks)
+본 글은 HashiCorp의 [David Wright](https://www.linkedin.com/in/david-wright-57336a4/)의 [GitHub 저장소](https://github.com/dawright22/aws-rag-terraform-deployment-demo) 데모 시나리오를 분석 및 참고하여 작성되었습니다.
+:::
 
 ## 도입부: AI와 LLM, 그리고 GenAI
 
@@ -20,7 +22,7 @@ HashiCorp Vault는 이러한 RAG 시스템을 안전하게 보호하는 데 중�
 최근 AI는 기업의 데이터 활용 방식에 중요한 변화를 가져오고 있습니다. 특히, 대규모 언어 모델(LLM)은 사용자의 입력을 이해하고, 의미 있는 응답을 생성할 수 있어 다양한 응용 사례를 만들어내고 있습니다. 이 중에서도 생성형 AI(GenAI)는 기업이 데이터를 활용해 새로운 가치를 창출할 수 있는 강력한 도구로 자리 잡았습니다.
 
 ### RAG의 필요성
-기존 LLM은 사전에 학습된 데이터만을 기반으로 동작하며, 학습 이후 생성된 최신 데이터에는 접근할 수 없습니다. 이 한계를 극복하기 위해 등장한 기술이 바로 **Retrieval-Augmented Generation (RAG)**입니다.
+기존 LLM은 사전에 학습된 데이터만을 기반으로 동작하며, 학습 이후 생성된 최신 데이터에는 접근할 수 없습니다. 이 한계를 극복하기 위해 등장한 기술이 바로 **Retrieval-Augmented Generation (RAG)** 입니다.
 
 #### RAG의 주요 특징:
 1. **외부 데이터 검색**:
@@ -36,11 +38,11 @@ HashiCorp Vault는 이러한 RAG 시스템을 안전하게 보호하는 데 중�
 
 ## HashiCorp Vault를 활용한 RAG 시스템 보호
 
-RAG 시스템은 외부 데이터를 검색하고 이를 처리하는 과정에서 **민감정보(PII, 시크릿, 기밀 데이터)**를 포함할 가능성이 큽니다. 이러한 데이터를 안전하게 관리하지 않으면 데이터 유출, 규제 위반, 기업 신뢰 손실로 이어질 수 있습니다.
+RAG 시스템은 외부 데이터를 검색하고 이를 처리하는 과정에서 **민감정보(PII, 시크릿, 기밀 데이터)** 를 포함할 가능성이 큽니다. 이러한 데이터를 안전하게 관리하지 않으면 데이터 유출, 규제 위반, 기업 신뢰 손실로 이어질 수 있습니다.
 
 ### 왜 RAG 시스템이 안전하게 관리되어야 하는가?
 #### 1) **컴플라이언스와 규제 준수**
-- **GDPR, CCPA, HIPAA**와 같은 글로벌 데이터 보호 규정은 개인정보와 민감정보를 안전하게 관리할 것을 요구합니다.
+- **GDPR, CCPA, HIPAA** 와 같은 글로벌 데이터 보호 규정은 개인정보와 민감정보를 안전하게 관리할 것을 요구합니다.
 - Vault를 사용하면 이러한 규정을 충족하기 위해 필요한 암호화, 액세스 제어, 로그 기록 등을 효과적으로 구현할 수 있습니다.
 
 #### 2) **거버넌스와 보안 강화**
@@ -86,7 +88,9 @@ Vault를 활용하면 다음과 같은 효과를 얻을 수 있습니다:
 
 ## 구현 방안: GitHub Terraform 코드와 샘플 코드 활용
 
+::: tip Terraform 코드와 샘플 코드
 Vault와 RAG를 통합한 상세한 구현 방법은 GitHub에 업로드된 [Terraform 코드와 샘플 코드](https://github.com/hyungwook0221/aws-rag-terraform-deployment-demo)를 참고하세요.
+:::
 
 구현 기술:
 - **FAISS**: 문서 벡터화 및 검색.
@@ -111,4 +115,6 @@ graph TD
     답변출력 --> 끝["끝"]
 ```
 
-> 💡 핸즈온 실습 및 각종 구성요소와 동작 방식에 대한 설명은 👉 [여기](https://github.com/hyungwook0221/aws-rag-terraform-deployment-demo)에서 확인하실 수 있습니다.
+::: tip 💡 핸즈온 실습 
+각종 구성요소와 동작 방식에 대한 설명은 👉 [여기](https://github.com/hyungwook0221/aws-rag-terraform-deployment-demo)에서 확인하실 수 있습니다.
+:::
