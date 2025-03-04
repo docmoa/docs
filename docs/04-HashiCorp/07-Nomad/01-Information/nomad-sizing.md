@@ -25,4 +25,4 @@ tag: ["nomad", "sizing"]
 
 ## 기본 아키텍처 (with Consul)
 
-![Reference diagram](https://learn.hashicorp.com/img/nomad/production/nomad_reference_diagram.png)
+![Reference diagram](https://content.hashicorp.com/api/assets?product=tutorials&version=main&asset=public%2Fimg%2Fnomad%2Fproduction%2Fnomad_reference_diagram.png)
