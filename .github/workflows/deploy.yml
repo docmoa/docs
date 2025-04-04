@@ -34,6 +34,10 @@ jobs:
         env:
           ACTIONS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          # Git 사용자 정보 설정
+          git config --global user.name "Great-Stone"
+          git config --global user.email "hahohh@gmail.com"
+          
           # 빌드된 파일이 docs/.vuepress/dist에 생성됨
           cd docs/.vuepress/dist
           
