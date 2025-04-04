@@ -23,7 +23,7 @@ jobs:
 
       # 3. 의존성 설치
       - name: Install dependencies
-        run: npm install
+        run: npm install --force
 
       # 4. VuePress 빌드
       - name: Build VuePress site
