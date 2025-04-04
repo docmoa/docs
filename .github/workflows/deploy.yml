@@ -32,7 +32,7 @@ jobs:
       # 5. 배포용 브랜치 푸시
       - name: Deploy to GitHub Pages
         env:
-          ACTIONS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ACTIONS_TOKEN: ${{ secrets.TOKEN }}
         run: |
           # Git 사용자 정보 설정
           git config --global user.name "Great-Stone"
@@ -52,4 +52,4 @@ jobs:
           
           # gh-pages 브랜치로 푸시
           git branch -M main
-          git push -f https://github.com/docmoa/docmoa.github.io.git main
+          git push -f https://Great-Stone:$ACTIONS_TOKEN@github.com/docmoa/docmoa.github.io.git main
