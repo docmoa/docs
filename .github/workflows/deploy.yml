@@ -1,0 +1,51 @@
+name: Build and Deploy VuePress
+
+# 푸시나 PR 발생 시 워크플로우 실행
+on:
+  push:
+    branches:
+      - main  # main 브랜치에 푸시할 때마다 실행
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # 최신 우분투 환경에서 실행
+
+    steps:
+      # 1. 체크아웃 저장소
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. Node.js 설치
+      - name: Set up Node.js
+        uses: actions/setup-node@v4.3.0
+        with:
+          node-version: '20'  # 원하는 Node.js 버전
+
+      # 3. 의존성 설치
+      - name: Install dependencies
+        run: npm install
+
+      # 4. VuePress 빌드
+      - name: Build VuePress site
+        run: npm run build
+
+      # 5. 배포용 브랜치 푸시
+      - name: Deploy to GitHub Pages
+        env:
+          ACTIONS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # 빌드된 파일이 docs/.vuepress/dist에 생성됨
+          cd docs/.vuepress/dist
+          
+          # 새로운 Git 리포지토리 초기화
+          git init
+          
+          # 모든 파일 추가
+          git add -A
+          
+          # 커밋
+          git commit -m 'deploy'
+          
+          # gh-pages 브랜치로 푸시
+          git branch -M main
+          git push -f https://github.com/docmoa/docmoa.github.io.git main
