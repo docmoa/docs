@@ -15,6 +15,9 @@ tag: ["vault", "encryption", "transit"]
 CLI 사용 시 쉘의 사이즈 제한에 걸려 실행되지 않아 API 방식으로 테스트 하였습니다.
 :::
 
+아래 링크의 글에서 대용량 사이즈의 파일을 Transit으로 암/복호화 시 대략의 소요 시간을 확인할 수 있습니다.
+<https://medium.com/hashicorp-engineering/scaling-data-encryption-with-hashicorp-vaults-transit-engine-2d0cb3d31c2f>
+
 ## Enable Transit
 
 1. Transit 시크릿 활성화
