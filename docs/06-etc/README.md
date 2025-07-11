@@ -1,7 +1,8 @@
 ---
 
 tag: ["Etc"]
-headerDepth: 0
+toc:
+  levels: 0
 
 ---
 

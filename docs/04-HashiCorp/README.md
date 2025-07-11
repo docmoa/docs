@@ -1,7 +1,8 @@
 ---
 
 tag: ["HashiCorp"]
-headerDepth: 0
+toc:
+  levels: 0
 order: 0
 
 ---

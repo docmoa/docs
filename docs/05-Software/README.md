@@ -1,6 +1,7 @@
 ---
 tag: ["Software"]
-headerDepth: 0
+toc:
+  levels: 0
 ---
 
 # Software

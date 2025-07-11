@@ -6,6 +6,20 @@ docmoa (https://docmoa.github.io) 소스페이지 입니다.
 
 ## Change Log
 
+### 2025-07-11
+- vuepress upgrade
+  - 2.0.0-rc.24
+- vuepress-theme-hope upgrade
+  - 2.0.0-rc.94
+- vuepress-plugin-use-pages upgrade
+  - 1.0.5
+- vuepress-plugin-slimsearch 추가
+- vuepress-plugin-md-enhance 추가
+- vuepress-plugin-search-pro 제거
+- vuepress-plugin-search 제거
+- vuepress-plugin-search-pro 제거
+- vuepress-plugin-search-pro 제거
+
 ### 2024-06-27
 - Node.js require version > 20.5.x
 - vuepress upgrade

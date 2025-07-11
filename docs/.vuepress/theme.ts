@@ -6,7 +6,7 @@ export default hopeTheme({
   hostname: "https://docmoa.github.io",
 
   // https://fontawesome.com/search?o=r&m=free
-  iconAssets: "fontawesome-with-brands",
+  // iconAssets: "fontawesome-with-brands",
 
   logo: "/logo.png",
   repo: "docmoa/docs",
@@ -41,7 +41,39 @@ export default hopeTheme({
     },
   },
 
+  markdown: {figure: true,
+    imgLazyload: true,
+    imgSize: true,
+    math: true, // katex 대체
+    codeTabs: true,
+    tabs: true,
+    gfm: true,
+    component: true,
+    vPre: true,
+    include: true,
+    align: true,
+    attrs: true,
+    mark: true,
+    sup: true,
+    sub: true,
+    chartjs: true,
+    echarts: true,
+    flowchart: true,
+    mermaid: true,
+    plantuml: true,
+    demo: true,
+    vuePlayground: true,
+    playground: { presets: ["ts", "vue"] },
+    highlighter: {
+      type: "prismjs",
+      lineNumbers: true
+    },
+  },
+
   plugins: {
+    icon: {
+      assets: "fontawesome-with-brands",
+    },
 
     components: {
       // components you want
@@ -60,12 +92,12 @@ export default hopeTheme({
       wordPerMinute: 60
     },
 
-    searchPro: {
+    slimsearch: {
       locales: {
         "/": {
-          placeholder: "Searching",
+          placeholder: "Search",
         },
-      }
+      },
     },
 
     copyright: {
@@ -83,68 +115,17 @@ export default hopeTheme({
 
     git: true,
 
-    prismjs: {
-      lineNumbers: 10,
-      themes: {
-        light: "one-light",
-        dark: "material-oceanic"
-      }
-    },
-
-    // all features are enabled for demo, only preserve features you need here
-    mdEnhance: {
-      align: true,
-      attrs: true,
-      chart: true,
-      codetabs: true,
-      component: true,
-      demo: true,
-      echarts: true,
-      figure: true,
-      flowchart: true,
-      gfm: true,
-      imgLazyload: true,
-      imgSize: true,
-      include: true,
-      katex: true,
-      mark: true,
-      mermaid: true,
-      playground: {
-        presets: ["ts", "vue"],
-      },
-      plantuml: true,
-      // presentation: true,
-      stylize: [
-        {
-          matcher: "Recommended",
-          replacer: ({ tag }) => {
-            if (tag === "em")
-              return {
-                tag: "Badge",
-                attrs: { type: "tip" },
-                  content: "Recommended",
-              };
-          },
-        },
-      ],
-      sub: true,
-      sup: true,
-      tabs: true,
-      vPre: true,
-      vuePlayground: true,
-    },
-
     sitemap: true,
 
-    search: {
-      locales: {
-        "/": {
-          placeholder: "Search",
-        },
-      },
-      maxSuggestions: 5,
-      isSearchable: (page) => page.path !== "/" || page.title !== "Overview",
-    },
+    // search: {
+    //   locales: {
+    //     "/": {
+    //       placeholder: "Search",
+    //     },
+    //   },
+    //   maxSuggestions: 5,
+    //   isSearchable: (page) => page.path !== "/" || page.title !== "Overview",
+    // },
     
     feed: {
       rss: true,
@@ -164,10 +145,6 @@ export default hopeTheme({
       apple: {
         icon: "/assets/icon/apple-icon-152.png",
         statusBarColor: "black",
-      },
-      msTile: {
-        image: "/assets/icon/ms-icon-144.png",
-        color: "#ffffff",
       },
       manifest: {
         icons: [

@@ -1,6 +1,5 @@
 import { defineUserConfig } from "vuepress";
 // import { searchPlugin } from "@vuepress/plugin-search";
-import { searchProPlugin } from "vuepress-plugin-search-pro";
 import { viteBundler } from '@vuepress/bundler-vite'
 import { usePagesPlugin } from 'vuepress-plugin-use-pages'
 import { googleAnalyticsPlugin } from '@vuepress/plugin-google-analytics'
@@ -58,63 +57,6 @@ export default defineUserConfig({
     //   maxSuggestions: 15,
     //   isSearchable: (page) => page.path !== "/" || page.title !== "Overview",
     // }),
-    
-    usePagesPlugin({
-      startsWith: '/',
-      file: 'root.js',
-      sort: (a, b) => b.data.git.updatedTime - a.data.git.updatedTime,
-      filter: (page) => page.data.title !== 'docmoa' || page.title !== "",
-      limit: 15,
-    }),
-    usePagesPlugin({
-      startsWith: '/01-Infrastructure/',
-      file: 'infrastructure.js',
-      sort: (a, b) => b.data.git.updatedTime - a.data.git.updatedTime,
-      filter: (page) => page.data.title != 'Infrastructure' || page.title !== "",
-      limit: 15,
-    }),
-    usePagesPlugin({
-      startsWith: '/02-PrivatePlatform/',
-      file: 'privateplatform.js',
-      sort: (a, b) => b.data.git.updatedTime - a.data.git.updatedTime,
-      filter: (page) => page.data.title != 'Private Platform' || page.title !== "",
-      limit: 15,
-    }),
-    usePagesPlugin({
-      startsWith: '/03-PublicCloud/',
-      file: 'publiccloud.js',
-      sort: (a, b) => b.data.git.updatedTime - a.data.git.updatedTime,
-      filter: (page) => page.data.title != 'Public Cloud' || page.title !== "",
-      limit: 15,
-    }),
-    usePagesPlugin({
-      startsWith: '/04-HashiCorp/',
-      file: 'hashicorp.js',
-      sort: (a, b) => b.data.git.updatedTime - a.data.git.updatedTime,
-      filter: (page) => page.data.title != 'HashiCorp' || page.title !== "",
-      limit: 15,
-    }),
-    usePagesPlugin({
-      startsWith: '/07-Kubernetes/',
-      file: 'kubernetes.js',
-      sort: (a, b) => b.data.git.updatedTime - a.data.git.updatedTime,
-      filter: (page) => page.data.title != 'Kubernetes' || page.title !== "",
-      limit: 15,
-    }),
-    usePagesPlugin({
-      startsWith: '/05-Software/',
-      file: 'software.js',
-      sort: (a, b) => b.data.git.updatedTime - a.data.git.updatedTime,
-      filter: (page) => page.data.title != 'Software' || page.title !== "",
-      limit: 15,
-    }),
-    usePagesPlugin({
-      startsWith: '/06-etc/',
-      file: 'etcpage.js',
-      sort: (a, b) => b.data.git.updatedTime - a.data.git.updatedTime,
-      filter: (page) => page.data.title != 'Etc.' || page.title !== "",
-      limit: 15,
-    }),
   ],
 
   // Enable it with pwa

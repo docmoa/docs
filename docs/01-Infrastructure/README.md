@@ -1,7 +1,8 @@
 ---
 
 tag: ["Infrastructure"]
-headerDepth: 0
+toc:
+  levels: 0
 
 ---
 
