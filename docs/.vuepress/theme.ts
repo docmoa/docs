@@ -64,6 +64,7 @@ export default hopeTheme({
     plantuml: true,
     demo: true,
     vuePlayground: true,
+    preview: true,
     playground: { presets: ["ts", "vue"] },
     highlighter: {
       type: "prismjs",
