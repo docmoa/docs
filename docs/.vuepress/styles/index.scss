@@ -1,3 +1,11 @@
 // place your custom styles here
 $content-width: 1160px;
 $home-page-width: 1160px;
+
+div[class*="language-"] pre,
+div[class*="language-"] code,
+pre code {
+  white-space: pre-wrap !important;
+  word-break: break-all !important;
+  overflow-x: auto;
+}

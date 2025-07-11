@@ -41,10 +41,11 @@ export default hopeTheme({
     },
   },
 
-  markdown: {figure: true,
+  markdown: {
+    figure: true,
     imgLazyload: true,
     imgSize: true,
-    math: true, // katex 대체
+    math: true,
     codeTabs: true,
     tabs: true,
     gfm: true,
@@ -66,7 +67,16 @@ export default hopeTheme({
     playground: { presets: ["ts", "vue"] },
     highlighter: {
       type: "prismjs",
-      lineNumbers: true
+      themes: {
+        light: "one-light",
+        dark: "material-oceanic"
+      },
+      lineNumbers: 10,
+      collapsedLines: 20,
+      notationDiff: true,
+      notationFocus: true,
+      notationHighlight: true,
+      notationWordHighlight: true,
     },
   },
 

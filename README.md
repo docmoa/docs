@@ -19,6 +19,7 @@ docmoa (https://docmoa.github.io) 소스페이지 입니다.
 - vuepress-plugin-search 제거
 - vuepress-plugin-search-pro 제거
 - vuepress-plugin-search-pro 제거
+- vuepress-plugin-chartjs 추가
 
 ### 2024-06-27
 - Node.js require version > 20.5.x

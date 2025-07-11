@@ -9,11 +9,11 @@
 
 차트 구성 방식은 [ChartJS](https://www.chartjs.org/docs/latest/)를 따릅니다.
 
-`::: chart` 와 `:::`로 처리합니다.
+`::: chartjs` 와 `:::`로 처리합니다.
 
 ## 기본 사용법 - Bar
 
-::: chart A bar chart
+::: chartjs A bar chart
 
 ```json
 {
@@ -60,7 +60,7 @@
 ::: details CODE
 
 ~~~md
-::: chart A bar chart
+::: chartjs A bar chart
 
 ```json
 {
@@ -108,7 +108,7 @@
 
 ## 기본 사용법 - Bubble
 
-::: chart A Bubble Chart
+::: chartjs A Bubble Chart
 
 ```json
 {
@@ -132,7 +132,7 @@
 
 ::: details CODE
 ~~~md
-::: chart A Bubble Chart
+::: chartjs A Bubble Chart
 
 ```json
 {

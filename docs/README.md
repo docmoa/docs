@@ -90,7 +90,7 @@ export default defineComponent({
 
 ### Start contributing to `docmoa`
 
-::: tip Run info
+::: important Run info
 Minimum NodeJS version : `v20.19.x`
 :::
 

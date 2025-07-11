@@ -23,7 +23,7 @@ tag: ["Consul", "Istio", "Kubetenetes", "k8s", "Performance"]
 - concurrent user: 100
 - total request: 15000
 
-::: chart A Line Chart
+::: chartjs Consul vs Istio 성능(지연시간, 낮을수록 좋음)
 
 ```json
 {

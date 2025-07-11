@@ -5,6 +5,7 @@ import { usePagesPlugin } from 'vuepress-plugin-use-pages'
 import { googleAnalyticsPlugin } from '@vuepress/plugin-google-analytics'
 import { getDirname, path } from "@vuepress/utils";
 import sidebarEnhancer from './plugins/sidebarEnhancer.cjs';
+import { markdownChartPlugin } from '@vuepress/plugin-markdown-chart';
 
 import theme from "./theme.js";
 
@@ -46,6 +47,10 @@ export default defineUserConfig({
     
     googleAnalyticsPlugin({
       id: 'UA-204926029-1',
+    }),
+
+    markdownChartPlugin({
+      chartjs: true, // Chart.js 지원 활성화
     }),
 
     // searchPlugin({
