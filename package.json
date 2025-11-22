@@ -5,8 +5,8 @@
   "license": "CC-BY-SA 4.0",
   "type": "module",
   "scripts": {
-    "build": "vuepress build docs",
-    "build-debug": "vuepress build --debug docs",
+    "build": "set NODE_OPTIONS=--max-old-space-size=4096 && vuepress build docs",
+    "build-debug": "set NODE_OPTIONS=--max-old-space-size=4096 && vuepress build --debug docs",
     "clean-dev": "vuepress dev docs --clean-cache",
     "dev": "vuepress dev docs",
     "update-package": "npx vp-update"
