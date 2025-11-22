@@ -25,7 +25,7 @@
     "@vuepress/theme-default": "^2.0.0-rc.14",
     "chart.js": "^4.5.0",
     "dashjs": "^5.0.3",
-    "echarts": "^5.6.0",
+    "echarts": "^6.0.0",
     "flowchart.ts": "^3.0.1",
     "hls.js": "^1.6.7",
     "katex": "^0.16.22",
