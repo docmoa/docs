@@ -28,7 +28,7 @@
     "echarts": "^6.0.0",
     "flowchart.ts": "^3.0.1",
     "hls.js": "^1.6.7",
-    "katex": "^0.16.22",
+    "katex": "^0.16.27",
     "mermaid": "^11.8.1",
     "sass-embedded": "^1.89.2",
     "vidstack": "^1.10.6",

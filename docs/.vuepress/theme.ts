@@ -45,7 +45,9 @@ export default hopeTheme({
     figure: true,
     imgLazyload: true,
     imgSize: true,
-    math: true,
+    math: {
+      type: 'katex'
+    },
     codeTabs: true,
     tabs: true,
     gfm: true,
@@ -78,7 +80,7 @@ export default hopeTheme({
       notationFocus: true,
       notationHighlight: true,
       notationWordHighlight: true,
-    },
+      }
   },
 
   plugins: {
