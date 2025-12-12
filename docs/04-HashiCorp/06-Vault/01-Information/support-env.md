@@ -300,20 +300,47 @@ sequenceDiagram
 
 Database Secret Engine은 데이터베이스의 동적 자격 증명을 생성하고 관리합니다. 애플리케이션은 필요할 때마다 일회용 자격 증명을 받아 데이터베이스에 접속할 수 있으며, 보안성과 관리 효율성을 높입니다. 자격 증명의 수명을 관리하고 자동으로 회전시킵니다.
 
-| 지원 환경 | 비고 |
-|-----------|------|
-| Vault Server: Vault가 지원하는 모든 OS | - |
-| MySQL | 각 데이터베이스별로 플러그인이 제공되며, Vault Server가 데이터베이스 서버와 네트워크 통신이 가능해야 합니다. |
-| PostgreSQL | - |
-| Oracle | - |
-| MongoDB | - |
-| Microsoft SQL Server | - |
-| Cassandra | - |
-| InfluxDB | - |
-| Redis | - |
-| Elasticsearch | - |
-| CouchDB | - |
-| 기타 데이터베이스 플러그인 | - |
+**참고**: 각 데이터베이스별로 플러그인이 제공되며, Vault Server가 데이터베이스 서버와 네트워크 통신이 가능해야 합니다. 자세한 내용은 [HashiCorp Vault Database Secrets Engine 문서](https://developer.hashicorp.com/vault/docs/secrets/databases#database-capabilities)를 참고하시기 바랍니다.
+
+### Database Secret Engine 지원 데이터베이스
+
+| 데이터베이스 | 동적 역할 | 정적 역할 | Root 자격 증명 회전 | 사용자명 커스터마이징 | 자격 증명 타입 | 비고 |
+|-------------|---------|---------|-------------------|------------------|--------------|------|
+| **관계형 데이터베이스** | | | | | | |
+| MySQL/MariaDB | ✅ | ✅ | ✅ | ✅ | password | - |
+| PostgreSQL | ✅ | ✅ | ✅ | ✅ | password | - |
+| Oracle | ✅ | ✅ | ✅ | ✅ | password | - |
+| Microsoft SQL Server (MSSQL) | ✅ | ✅ | ✅ | ✅ | password | - |
+| IBM Db2 | ✅ | ✅ | ✅ | ✅ | password | - |
+| SAP HANA (HanaDB) | ✅ | ✅ | ✅ | ✅ | password | - |
+| Amazon Redshift | ✅ | ✅ | ✅ | ✅ | password | Vault 1.8+ |
+| Snowflake | ✅ | ✅ | ✅ | ✅ | password (deprecated), rsa_private_key | Vault 1.8+ |
+| **NoSQL 데이터베이스** | | | | | | |
+| MongoDB | ✅ | ✅ | ✅ | ✅ | password | - |
+| MongoDB Atlas | ✅ | ❌ | ❌ | ✅ | password | - |
+| Cassandra | ✅ | ✅ | ✅ | ✅ | password | - |
+| Couchbase | ✅ | ✅ | ✅ | ✅ | password | - |
+| **시계열 데이터베이스** | | | | | | |
+| InfluxDB | ✅ | ❌ | ❌ | ✅ | password | - |
+| **검색 엔진** | | | | | | |
+| Elasticsearch | ✅ | ❌ | ❌ | ✅ | password | - |
+| **캐시/인메모리 데이터베이스** | | | | | | |
+| Redis | ✅ | ❌ | ❌ | ✅ | password | - |
+| Redis ElastiCache | ❌ | ❌ | ❌ | ✅ | password | - |
+| **기타** | | | | | | |
+| Custom Database Plugin | - | - | - | - | - | 사용자 정의 데이터베이스 플러그인을 통해 확장 가능 |
+
+**기능 설명:**
+- **동적 역할 (Dynamic Roles)**: 요청 시마다 새로운 데이터베이스 사용자를 생성하고 자격 증명을 발급합니다. 임대 기간이 만료되면 자동으로 사용자와 자격 증명이 삭제됩니다.
+- **정적 역할 (Static Roles)**: 기존 데이터베이스 사용자와 1:1 매핑되며, Vault가 주기적으로 비밀번호를 자동 회전시킵니다.
+- **Root 자격 증명 회전**: Vault가 데이터베이스에 접속하는 데 사용하는 root 자격 증명을 자동으로 회전시킵니다.
+- **사용자명 커스터마이징**: 동적 역할에서 생성되는 사용자명을 커스터마이징할 수 있습니다.
+- **자격 증명 타입**: 대부분의 데이터베이스는 password를 사용하며, Snowflake는 rsa_private_key도 지원합니다.
+
+**지원 환경:**
+- Vault Server: Vault가 지원하는 모든 OS
+- 데이터베이스 서버: 각 데이터베이스별로 지원하는 운영 체제 및 버전
+- 네트워크: Vault Server가 데이터베이스 서버와 네트워크 통신이 가능해야 합니다.
 
 ## Public Cloud Secret Engines
 
