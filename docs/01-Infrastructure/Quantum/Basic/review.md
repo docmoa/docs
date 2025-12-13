@@ -3,7 +3,7 @@ description: 양자 정보와 계산 복습 문제 풀이
 tag: ["quantum", "review", "practice"]
 ---
 
-# 양자 정보와 계산 복습
+# Review(복습): 양자 정보와 계산
 
 ::: danger NOTE
 이 문서는 양자 정보와 계산 복습 문제 풀이를 위한 문서입니다.
