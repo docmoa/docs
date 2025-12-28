@@ -43,6 +43,7 @@ export default hopeTheme({
 
   markdown: {
     figure: true,
+    footnote: true,
     imgLazyload: true,
     imgSize: true,
     math: {
