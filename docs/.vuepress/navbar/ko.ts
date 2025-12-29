@@ -23,7 +23,17 @@ export const koNavbar = navbar([
     icon: "dharmachakra",
     link: "/07-Kubernetes/"
   },
-  { text: "Etc.", icon: "mug-hot", link: "/06-etc/" },
+  { text: "Etc.",
+    icon: "mug-hot",
+    link: "/06-etc/",
+    children: [
+      { text: "Book Memo", icon: "book", link: "/06-etc/book-memo/" },
+      { text: "Class", icon: "chalkboard-user", link: "/06-etc/class/" },
+      { text: "Information", icon: "circle-info", link: "/06-etc/information/" },
+      { text: "MacOS", icon: "brands:apple", link: "/06-etc/mac/" },
+      { text: "nodejs", icon: "brands:node-js", link: "/06-etc/nodejs/" },
+    ],
+  },
   {
     text: "MORE",
     icon: "circle-info",
