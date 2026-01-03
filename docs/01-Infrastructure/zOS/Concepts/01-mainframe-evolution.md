@@ -913,19 +913,19 @@ sequenceDiagram
 
 #### Virtual Storage (가상 저장소)
 
-프로그램에 연속적으로 보이는 페이지들이 **Virtual Storage**를 형성합니다. 프로그램은 Virtual Storage를 하나의 연속된 메모리 공간으로 인식합니다.
+프로그램에 연속적으로 보이는 페이지들이 `Virtual Storage`를 형성합니다. 프로그램은 Virtual Storage를 하나의 연속된 메모리 공간으로 인식합니다.
 
 #### Real Storage (실제 저장소)
 
-메모리 프레임을 **Real Storage**라고 합니다. 이는 실제 물리적 메모리(RAM)입니다.
+메모리 프레임을 `Real Storage`라고 합니다. 이는 실제 물리적 메모리(RAM)입니다.
 
 #### Auxiliary Storage (보조 저장소)
 
-디스크 슬롯을 **Auxiliary Storage**라고 합니다. 이는 DASD(Direct Access Storage Device)에 저장된 페이지들입니다.
+디스크 슬롯을 `Auxiliary Storage`라고 합니다. 이는 DASD(Direct Access Storage Device)에 저장된 페이지들입니다.
 
 ### Address Space (주소 공간)
 
-Virtual Storage의 전체 양과 이를 지원하는 메커니즘을 **Address Space**라고 합니다.
+Virtual Storage의 전체 양과 이를 지원하는 메커니즘을 `Address Space`라고 합니다.
 
 System/370 운영 체제인 MVS(Multiple Virtual Storage)는 Virtual Storage를 사용하여 많은 프로그램을 동시에 실행할 수 있게 했습니다. 각 프로그램은 최대 16MB의 Address Space 내에서 실행되며, 상대적으로 적은 양의 실제 물리적 메모리를 사용합니다.
 
@@ -1198,7 +1198,7 @@ sequenceDiagram
 
 ### 메인프레임 운영 체제와 하드웨어 아키텍처의 진화
 
-IBM 메인프레임 운영 체제와 하드웨어 아키텍처는 1960년대 S/360 머신에서 OS/360 MVT(Multitasking with Variable number of Tasks)를 실행하는 것부터 현재 IBM Z 메인프레임의 z/OS 최신 버전까지 진화해왔습니다.
+IBM 메인프레임 운영 체제와 하드웨어 아키텍처는 1960년대 S/360 머신에서 OS/360 MVT(Multitasking with Variable number of Tasks)를 실행하는 것부터 현재 IBM Z 메인프레임(z17 포함)의 z/OS 최신 버전(z/OS 3.2)까지 진화해왔습니다.
 
 ### MVS 운영 체제의 변천사
 
@@ -1209,6 +1209,8 @@ Multiple Virtual Storage (MVS) 운영 체제는 OS/360 MVT의 후속으로 개�
 3. **MVS/ESA (Enterprise Systems Architecture)**: 엔터프라이즈 시스템 아키텍처 (1988년)
 4. **OS/390**: "Open Systems" 환경 (1995년)
 5. **z/OS**: 현재의 운영 체제 (2000년)
+   - z/OS 3.1: AI 기반 WLM 기능 도입
+   - z/OS 3.2: z17 Telum II 프로세서 지원, AI 기능 강화 (2024년)
 
 ### OS/390와 z/OS
 
