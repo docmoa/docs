@@ -7,17 +7,17 @@ tag: ["vault", "token"]
 
 ## 1. 개요
 
-HashiCorp Vault는 시작 시 **sealed(봉인된)** 상태로 시작합니다. 이 상태에서는 물리적 스토리지에 접근할 수 있지만, 저장된 데이터를 복호화할 수 없습니다. **Unsealing(봉인 해제)**은 Vault가 데이터를 복호화하기 위해 필요한 root key에 접근하는 과정입니다.
+HashiCorp Vault는 시작 시 `Sealed(봉인된)` 상태로 시작합니다. 이 상태에서는 물리적 스토리지에 접근할 수 있지만, 저장된 데이터를 복호화할 수 없습니다. `Unsealing(봉인해제)`은 Vault가 데이터를 복호화하기 위해 필요한 root key에 접근하는 과정입니다.
 
 ## 2. 암호화 계층 구조
 
-Vault는 **3단계 암호화 계층 구조**를 사용하여 데이터를 보호합니다:
+Vault는 ==3단계 암호화 계층 구조==를 사용하여 데이터를 보호합니다:
 
 ```mermaid
-flowchart TD
-    A[Vault 데이터] -->|암호화| B[Encryption Key<br/>Keyring에 저장]
-    B -->|암호화| C[Root Key]
-    C -->|암호화| D[Unseal Key]
+flowchart LR
+    D[Unseal Key] -->|보호| C[Root Key]
+    C -->|보호| B[Encryption Key<br/>Keyring에 저장]
+    B -->|보호| A[Vault 데이터]
     
     style A fill:#e1f5ff
     style B fill:#fff4e1
@@ -76,21 +76,8 @@ Vault의 암호화 계층 구조는 다음과 같이 구현되어 있습니다:
 
 3. **Encryption Key로 데이터 복호화**: 복호화된 Encryption Key를 사용하여 실제 Vault 데이터를 암호화/복호화합니다.
 
-**저장 경로 (코드 상수):**
-```go:vault/seal.go
-const (
-	barrierSealConfigPath = "core/seal-config"
-	recoverySealConfigPath = "core/recovery-seal-config"
-	recoverySealConfigPlaintextPath = "core/recovery-config"
-	recoveryKeyPath = "core/recovery-key"
-	StoredBarrierKeysPath = "core/hsm/barrier-unseal-keys"
-	hsmStoredIVPath = "core/hsm/iv"
-	SealGenInfoPath = "core/seal-gen-info"
-	SealInitializationFlagPath = "core/seal-initialization-flag"
-)
-```
+#### 코드 내 주요 저장 경로
 
-**주요 저장 경로 설명:**
 - **Root Key (Barrier Keys)**: `StoredBarrierKeysPath = "core/hsm/barrier-unseal-keys"` - HSM 사용 시 암호화된 Root Key 저장
 - **Recovery Key**: `recoveryKeyPath = "core/recovery-key"` - Recovery Key 저장 (암호화됨)
 - **Seal Config**: `barrierSealConfigPath = "core/seal-config"` - **평문 저장** (Vault가 sealed 상태에서도 읽을 수 있어야 하므로)
@@ -100,11 +87,146 @@ const (
 
 ### 3.1 Vault 시작 시 (Sealed 상태)
 
-Vault 서버가 시작되면:
-- 물리적 스토리지에 접근 가능
-- 하지만 **Root Key가 메모리에 없음**
-- 따라서 Encryption Key를 복호화할 수 없어 데이터 접근 불가
-- 이 상태를 **Sealed(봉인된)** 상태라고 함
+#### 3.1.1 Vault 프로세스 시작만 한 상태
+
+Vault 서버 프로세스를 시작만 한 상태에서는:
+
+- **초기화되지 않은 상태**: Storage backend가 아직 준비되지 않음
+- **초기화 전**: `vault operator init` 명령을 실행하기 전 상태
+- **가능한 작업**: 초기화 상태 확인 (`vault operator init -status`)만 가능
+- **불가능한 작업**: 모든 Vault 작업 불가 (초기화 필요)
+
+::: tip 초기화 상태 확인
+```bash
+# 초기화 상태 확인
+vault operator init -status
+
+# Exit code 0: 이미 초기화됨
+# Exit code 1: 오류 발생
+# Exit code 2: 초기화되지 않음
+```
+:::
+
+#### 3.1.2 Vault 초기화
+
+`vault operator init` 명령을 실행하면 Vault의 storage backend가 초기화되고 다음이 발생합니다:
+
+1. **Root Key 생성**
+   - Vault가 Root Key를 생성
+   - Root Key는 Encryption Key를 보호하는 데 사용됨
+   - Root Key는 암호화되어 storage backend에 저장됨
+
+2. **Root Key 보호**
+
+   - **Unseal Key 생성 및 분할**
+      - 기본적으로 Shamir's Secret Sharing 알고리즘 사용
+      - Unseal Key가 여러 share로 분할됨 (기본값: 5개 share)
+      - Threshold 설정 (기본값: 3개 share 필요)
+      - 각 share는 운영자에게 분산 보관
+
+   - **외부 KMS 연동**
+      - KMS(Key Management Service)를 사용하여 Root Key를 보호할 수 있음
+      - HSM, AWS KMS, Azure Key Vault, GCP Cloud KMS, Vault Transit 등 다양한 KMS 서비스 지원
+
+3. **Storage Backend 준비**
+   - Storage backend가 데이터를 받을 수 있도록 준비됨
+   - Root Key가 암호화되어 저장됨
+   - Seal 설정 정보가 평문으로 저장됨 (sealed 상태에서도 읽을 수 있어야 함)
+
+4. **Root Token 생성**
+   - 초기 관리자 토큰 생성
+   - PGP 키로 암호화 가능 (선택사항)
+
+**초기화 후 상태:**
+- Storage backend는 초기화되었지만, Vault는 여전히 **Sealed 상태**
+- Root Key가 storage에 암호화되어 저장되어 있음
+- Unseal Key share / HSM / KMS 를 사용하여 Unseal Key를 재구성하여 Root Key를 복호화하여 Encryption Key를 얻어야 데이터 접근 가능
+
+::: tip HA 모드에서의 초기화
+HA(High Availability) 모드에서는 여러 Vault 서버가 같은 storage backend를 공유합니다. 이 경우 **하나의 Vault 서버만 초기화**하면 됩니다. 다른 노드들은 같은 storage backend를 사용하므로 자동으로 초기화된 상태를 인식합니다.
+:::
+
+#### 3.1.3 초기화 예제
+
+**Shamir Seal 사용 시 (기본):**
+```bash
+# 기본 초기화 (5개 share, 3개 threshold)
+vault operator init
+
+# 커스텀 설정으로 초기화
+vault operator init \
+    -key-shares=3 \
+    -key-threshold=2
+
+# PGP 키로 Unseal Key 암호화
+vault operator init \
+    -key-shares=3 \
+    -key-threshold=2 \
+    -pgp-keys="keybase:hashicorp,keybase:jefferai,keybase:sethvargo"
+```
+
+**HSM/KMS 사용 시 (Auto Unseal):**
+```bash
+# HSM 사용 시 Recovery Key 생성
+vault operator init \
+    -recovery-shares=5 \
+    -recovery-threshold=3
+
+# HSM 사용 시 (간단한 예제)
+vault operator init \
+    -recovery-shares=1 \
+    -recovery-threshold=1
+
+# Recovery Key를 PGP 키로 암호화
+vault operator init \
+    -recovery-shares=3 \
+    -recovery-threshold=2 \
+    -recovery-pgp-keys="keybase:hashicorp,keybase:jefferai,keybase:sethvargo"
+```
+
+::: tip HSM/KMS 사용 시 주의사항
+HSM 또는 KMS를 사용하는 경우 (Auto Unseal):
+- **Unseal Key가 생성되지 않음** - HSM/KMS가 자동으로 unseal 처리
+- **Recovery Key가 생성됨** - `-recovery-shares`와 `-recovery-threshold` 옵션 사용
+- Recovery Key는 복구 작업(Root Token 생성, Rekeying 등)에만 사용됨
+- Vault는 시작 시 HSM/KMS를 통해 자동으로 unseal됨
+:::
+
+::: tip 초기화 후 출력 예시
+
+**Shamir Seal 사용 시:**
+```
+Unseal Key 1: abc123...
+Unseal Key 2: def456...
+Unseal Key 3: ghi789...
+Unseal Key 4: jkl012...
+Unseal Key 5: mno345...
+
+Initial Root Token: s.xyz789...
+
+Vault is initialized with 5 key shares and a key threshold of 3.
+```
+
+**HSM/KMS 사용 시:**
+```
+Recovery Key 1: xyz789...
+
+Initial Root Token: s.abc123...
+
+Vault is initialized with 1 recovery key shares and a recovery key threshold of 1.
+Please securely distribute the key shares printed above.
+```
+
+:::
+
+::: warning 중요
+- **Unseal Key와 Root Token을 안전하게 보관**해야 합니다
+- Unseal Key share를 잃어버리면 threshold 미달로 Vault를 unseal할 수 없습니다
+- Root Token을 잃어버리면 초기 관리자 권한을 잃게 됩니다
+- 초기화는 **한 번만** 수행할 수 있습니다 (이미 초기화된 Vault에서는 실행 불가)
+:::
+
+
 
 ### 3.2 Unsealing 과정
 
@@ -128,6 +250,10 @@ Unsealing은 다음 단계로 진행됩니다:
 #### 3.2.1 Shamir's Secret Sharing 동작 원리
 
 Shamir Seal을 사용할 때, Unseal Key는 여러 share로 분할되어 여러 운영자에게 분산 보관됩니다. Threshold 이상의 share가 모여야 Unseal Key를 재구성할 수 있습니다.
+
+::: warning HA에서의 Unseal
+HA(High Availability) 모드에서 Vault는 다수개의 서버 프로세스로 구성됩니다. `init`은 한번만 수행되나, `unseal`은 각 서버 프로세스에서 수행되어야 합니다.
+:::
 
 ```mermaid
 flowchart TD
@@ -179,7 +305,7 @@ flowchart TD
 - **순서 무관**: Share는 어떤 순서로 제공해도 상관없음
 - **상태 유지**: Unseal 과정은 상태를 유지하므로 여러 클라이언트에서 순차적으로 share 제공 가능
 
-#### 코드 구현 예제
+::: details 코드 구성 설명
 
 Vault 소스코드에서 Root Key(Barrier Key)의 암호화/복호화는 다음과 같이 구현되어 있습니다:
 
@@ -275,6 +401,8 @@ func UnsealWrapValue(ctx context.Context, access seal.Access, entryKey string, w
 3. `decodeBarrierKeys`: `access.Decrypt()`를 호출하여 Unseal Key로 Root Key를 복호화합니다. 이 과정에서 Unseal Key가 필요하며, Shamir Seal의 경우 충분한 share가 모여야 합니다.
 4. `UnsealWrapValue`: 일반적인 seal wrapping된 값을 복호화하는 함수로, Encryption Key 복호화 등에도 사용됩니다.
 
+:::
+
 ### 3.3 Sealing 과정
 
 Vault는 다음 상황에서 Sealed 상태가 됩니다:
@@ -324,16 +452,27 @@ Seal은 Root Key를 **메모리에서만** 삭제합니다.
 
 ### 4.1 Recovery Key란?
 
-**Recovery Key**는 Auto Unseal(자동 봉인 해제) 또는 HSM을 사용할 때 생성되는 별도의 키 세트입니다.
+**Recovery Key**는 Auto Unseal(자동 봉인 해제) 또는 HSM을 사용할 때 **초기화 과정에서 명시적으로 생성**되는 별도의 키 세트입니다.
+
+::: warning Recovery Key는 자동 생성되지 않음
+Recovery Key는 HSM/KMS를 사용할 때 자동으로 생성되는 것이 아닙니다. `vault operator init` 명령을 실행할 때 `-recovery-shares`와 `-recovery-threshold` 옵션을 사용하여 **명시적으로 생성**해야 합니다.
+
+HSM/KMS를 사용하는 경우:
+- Unseal은 HSM/KMS가 자동으로 처리하므로 Unseal Key가 필요 없음
+- 대신 Recovery Key를 생성하여 복구 작업에 사용
+- 초기화 시 `-recovery-shares`와 `-recovery-threshold` 옵션을 지정해야 함
+:::
 
 ### 4.2 Recovery Key vs Unseal Key
 
 | 구분 | Unseal Key (Shamir Seal) | Recovery Key (Auto Unseal/HSM) |
 |------|-------------------------|-------------------------------|
 | 용도 | Vault 봉인 해제 | 복구 작업 인증 |
-| 생성 시점 | 초기화 시 | Auto Unseal/HSM 초기화 시 |
+| 생성 시점 | `vault operator init` (기본) | `vault operator init -recovery-shares=N -recovery-threshold=M` |
+| 초기화 옵션 | `-key-shares`, `-key-threshold` | `-recovery-shares`, `-recovery-threshold` |
 | 사용 시나리오 | 수동 unsealing | Root token 생성, rekeying 등 |
 | 분할 방식 | Shamir's Secret Sharing | Shamir's Secret Sharing |
+| Unseal 역할 | 직접 사용하여 Vault unseal | 사용하지 않음 (HSM/KMS가 자동 처리) |
 
 ### 4.3 Recovery Key의 역할
 
@@ -344,7 +483,7 @@ Recovery Key는 다음 작업을 인증하는 데 사용됩니다:
 3. **Recovery Key Rekeying**
 4. 기타 고위험 복구 작업
 
-#### 코드 구현 예제
+::: details 코드 구성 설명
 
 Recovery Key도 Root Key와 유사하게 Seal Wrapping을 통해 저장됩니다:
 
@@ -380,10 +519,17 @@ func UnsealWrapRecoveryKey(ctx context.Context, access seal.Access, pe *physical
 }
 ```
 
+:::
+
 **중요한 차이점:**
 - Recovery Key는 `recoveryKeyPath` (`"core/recovery-key"`)에 저장됩니다.
 - Recovery Key는 Root Key를 복호화할 수 없으며, 복구 작업 인증에만 사용됩니다.
-- Auto Unseal 환경에서 Recovery Key는 HSM/KMS를 통해 자동으로 관리되지만, 복구 작업 시에는 수동으로 제공해야 합니다.
+- HSM/KMS 사용 시 Vault는 자동으로 unseal되므로 Recovery Key는 unseal에 사용되지 않습니다.
+- 복구 작업(Root Token 생성, Rekeying 등) 시에는 Recovery Key share를 수동으로 제공해야 합니다.
+
+::: tip HSM 초기화 참고
+Thales ProtectServer 3 HSM과 같은 HSM을 사용할 때는 `vault operator init -recovery-shares=1 -recovery-threshold=1`과 같이 Recovery Key를 생성합니다. 자세한 내용은 [Thales HSM 통합 문서](https://thalesdocs.com/gphsm/ptk/protectserver3/docs/integration_docs/hashicorp_vault/configuring_hashicorp/index.html)를 참고하세요.
+:::
 
 ### 4.4 중요한 제약사항
 
@@ -419,10 +565,8 @@ HSM(Hardware Security Module)을 사용할 때:
 ### 5.2 HSM에서 Recovery Key를 권장하는 이유
 
 #### 1. **운영 분리 (Operational Separation)**
-```text
-일반적인 작업 (Unseal): HSM이 자동 처리
-복구 작업 (Recovery): Recovery Key로 수동 인증 필요
-```
+- 일반적인 작업 (Unseal): HSM이 자동 처리
+- 복구 작업 (Recovery): Recovery Key로 수동 인증 필요
 
 #### 2. **보안 강화**
 - Unseal은 자동화되지만, 복구 작업은 여러 운영자의 승인 필요
@@ -436,9 +580,7 @@ HSM(Hardware Security Module)을 사용할 때:
 - HSM 장애 시 Recovery Key를 사용한 복구 절차 준비
 - Recovery Key를 안전하게 백업하여 재해 복구 계획 수립
 
-### 5.3 HSM 사용 시 주의사항
-
-::: warning HSM 사용 시 필수 사항
+::: warning HSM 사용 시 주의 사항
 1. **Seal 메커니즘 의존성**
    - Vault가 HSM에 완전히 의존
    - HSM 키가 삭제되면 복구 불가능
@@ -495,17 +637,9 @@ HSM(Hardware Security Module)을 사용할 때:
 3. **Unsealing**: Unseal Key로 Root Key를 복호화하여 데이터 접근 가능
 4. **Recovery Key**: Auto Unseal/HSM 환경에서 복구 작업 인증용
 
-### 보안 모범 사례
-
-::: tip 보안 모범 사례
-- Unseal Key share를 여러 운영자에게 분산 보관
-- Recovery Key를 안전하게 백업 (HSM 사용 시 필수)
-- Seal 메커니즘(특히 Cloud KMS) 보호 정책 수립
-- Recovery Key와 Unseal Key의 역할 분리 이해
-:::
-
 ### 참고 자료
 
 - [HashiCorp Vault Seal/Unseal 공식 문서](https://developer.hashicorp.com/vault/docs/concepts/seal)
 - [Vault HSM 동작 방식](https://developer.hashicorp.com/vault/docs/enterprise/hsm/behavior)
 - [Seal 모범 사례](https://developer.hashicorp.com/vault/docs/configuration/seal/seal-best-practices)
+- [Thales HSM 통합 문서](https://thalesdocs.com/gphsm/ptk/protectserver3/docs/integration_docs/hashicorp_vault/configuring_hashicorp/index.html)
