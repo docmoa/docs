@@ -12,16 +12,29 @@ export const koNavbar = navbar([
       { text: "Public-Cloud", link: "/03-PublicCloud/" },
     ],
   },
-  { text: "Software", icon: "code", link: "/05-Software/" },
   {
     text: "HashiCorp",
     icon: "layer-group",
-    link: "/04-HashiCorp/"
+    link: "/04-HashiCorp/",
+    children: [
+      { text: "Packer", icon: "/assets/menu-icon/packer.svg", link: "/04-HashiCorp/packer/" },
+      { text: "Vagrant", icon: "/assets/menu-icon/vagrant.png", link: "/04-HashiCorp/vagrant/" },
+      { text: "Terraform", icon: "/assets/menu-icon/terraform.svg", link: "/04-HashiCorp/terraform/" },
+      { text: "Consul", icon: "/assets/menu-icon/consul.svg", link: "/04-HashiCorp/consul/" },
+      { text: "Boundary", icon: "/assets/menu-icon/boundary.svg", link: "/04-HashiCorp/boundary/" },
+      { text: "Vault", icon: "/assets/menu-icon/vault.svg", link: "/04-HashiCorp/vault/" },
+      { text: "Nomad", icon: "/assets/menu-icon/nomad.svg", link: "/04-HashiCorp/nomad/" },
+    ],
   },
   {
     text: "Kubernetes",
     icon: "dharmachakra",
     link: "/07-Kubernetes/"
+  },
+  {
+    text: "Software",
+    icon: "compact-disc",
+    link: "/05-Software/"
   },
   { text: "Etc.",
     icon: "mug-hot",
