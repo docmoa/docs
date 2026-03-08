@@ -6,6 +6,26 @@ docmoa (https://docmoa.github.io) 소스페이지 입니다.
 
 ## Change Log
 
+### 2026-03-08
+- vuepress 2.0.0-rc.26, vuepress-theme-hope 2.0.0-rc.103, @vuepress 플러그인 rc.124, Node >=20.6.0
+- 홈 최근글 링크: 경로 표시 시 URL 디코딩(%20 등) 적용
+- 홈 features: Kubernetes 아이콘(brands:kubernetes), details 문구 보강, Etc. details 추가
+
+### 2025-12-29
+- 네비/아이콘 개선 (메뉴 구조·아이콘)
+
+### 2025-12-28
+- footnote 활성화 (테마/마크다운 설정)
+
+### 2025-12-10
+- markdown/math 옵션 (테마 설정)
+
+### 2025-12-06
+- package upgrade
+
+### 2025-11-22
+- build 메모리 설정 (NODE_OPTIONS)
+
 ### 2025-07-11
 - vuepress upgrade
   - 2.0.0-rc.24
