@@ -168,6 +168,16 @@ vault agent -config=vault-agent.hcl
 
 ![env-exec-1st](./image/agent-env-exec-1st.png)
 
+::: warning 주의사항
+`exec` 블록은 1개만 사용 할 수 있습니다. 여러 개의 프로세스를 실행하려면, 여러 개의 Vault Agent를 실행해야 합니다.
+
+만약 둘 이상의 `exec` 블록이 선언되어있다면, 아래와 같은 에러가 발생합니다.
+
+```log title="vault agent output"
+error loading configuration from vault-agent.hcl: error parsing 'exec': at most one "exec" block is allowed
+```
+:::
+
 ### 5. Secret Update
 
 시크릿을 업데이트합니다.
