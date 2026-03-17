@@ -189,7 +189,9 @@ vault kv put secret/test-cred1 user=my-user-updated password=my-password-updated
 vault kv put secret/test-cred2 foo=bar-updated baz=qux-updated
 ```
 
-Vault Agent를 실행하면, 환경변수가 업데이트됩니다.
+Vault Agent에서 변경된 시크릿이 감지되면, 해당 환경변수가 업데이트됩니다.
+
+`restart_on_secret_changes` 설정 여부에 따라 프로세스가 재시작됩니다.
 
 ![env-exec-2nd](./image/agent-env-exec-2nd.png)
 
