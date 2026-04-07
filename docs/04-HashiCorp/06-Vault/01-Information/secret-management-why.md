@@ -239,7 +239,7 @@ CI/CD 연동 예시는 아래 문서를 참고할 수 있습니다.
 | **AppRole + Secret ID** | 배치마다 짧게 Secret ID를 받거나, 래핑 토큰으로 전달. 장기 정적 Secret ID 저장은 지양 |
 | **JWT/OIDC** | CI·클라우드 IdP가 발급하는 JWT로 로그인 ([JWT auth](https://developer.hashicorp.com/vault/docs/auth/jwt) 등) |
 | **Kubernetes** | Kubernetes 클러스터 내 Job이면 Service Account JWT 사용 [Kubernetes auth](https://developer.hashicorp.com/vault/docs/auth/kubernetes) |
-| **TLS 인증서(워크로드 신원)** | Vault 자체 CERT Auth를 사용하거나 SPIFFE 등으로 발급한 **X.509 SVID**를 [Cert auth](https://developer.hashicorp.com/vault/docs/auth/cert) 등과 맞추는 패턴으로, 플랫폼이 신원을 보장하고 Vault는 그 증명을 검증 |
+| **TLS 인증서(워크로드 신원)** | Vault 자체 CERT Auth를 사용하거나 SPIFFE 등으로 발급한 **X.509 SVID**를 [Cert auth](https://developer.hashicorp.com/vault/docs/auth/cert), [SPIFFE auth](https://developer.hashicorp.com/vault/docs/auth/spiffe) 등과 맞추는 패턴으로, 플랫폼이 신원을 보장하고 Vault는 그 증명을 검증 |
 | **Vault Proxy** | 스크립트가 장기 토큰을 들기 어려울 때 로컬 프록시로 단순화(대신 호스트 보안 필요) |
 
 ::: tip SPIFFE
