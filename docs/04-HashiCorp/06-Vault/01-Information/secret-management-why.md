@@ -26,47 +26,18 @@ tag: ["vault", "security", "secrets-management"]
 
 ### 1.2 흩어진 시크릿과 중앙 관리
 
-```mermaid
-flowchart TB
-  subgraph asis ["As-Is: 각자 관리(흩어짐)"]
-    Dev["개발자_PC(로컬 env)"]
-    Repo["Git 저장소"]
-    Image["컨테이너 이미지"]
-    Ci["CI/CD 변수 저장소"]
-    Ops["운영 문서/메모"]
-  end
+시크릿이 “스프롤(sprawl)”처럼 여기저기 흩어지는 이유는 대부분 **편의(당장 되게 만들기)** 와 **책임 경계의 부재(누가 관리자인가)** 에서 시작합니다. 예를 들어 배포를 빠르게 하기 위해 환경 변수에 넣고, 장애 대응을 위해 운영자가 문서에 남기고, 파이프라인이 빌드를 통과시키기 위해 CI 변수 저장소에 넣는 식입니다. 문제는 이렇게 흩어진 시크릿이 시간이 지나며 **회전 불가·추적 불가·폐기 불가** 상태가 되고, 결과적으로 “유출되면 오래 살아남는 정적 비밀”이 됩니다.
 
-  subgraph central ["To-Be: Secret Management(중앙)"]
-    Vault["Secret Management (Vault 등)"]
-    Policy["Policy (최소 권한)"]
-    Lease["Lease/TTL (짧은 수명)"]
-    Audit["Audit (추적)"]
-  end
+아래 표는 전형적인 **As-Is(흩어짐)** 과 **To-Be(중앙 관리)** 를 비교한 것입니다.
 
-  subgraph runtime ["런타임 소비자"]
-    App["애플리케이션"]
-    Job["배치/CronJob"]
-    Admin["운영 자동화"]
-  end
-
-  Dev -->|각자 보관| Spread["노출면 확대"]
-  Repo -->|각자 보관| Spread
-  Image -->|각자 보관| Spread
-  Ci -->|각자 보관| Spread
-  Ops -->|각자 보관| Spread
-
-  Vault --> Policy
-  Vault --> Lease
-  Vault --> Audit
-
-  App -->|"인증 후 필요 시 조회"| Vault
-  Job -->|"인증 후 필요 시 조회"| Vault
-  Admin -->|"인증 후 필요 시 조회"| Vault
-
-  Vault -->|"짧은 수명 발급(회전 가능)"| App
-  Vault -->|"짧은 수명 발급(회전 가능)"| Job
-  Vault -->|"짧은 수명 발급(회전 가능)"| Admin
-```
+| 항목 | As-Is: Scret Sprawl(흩어진 시크릿) | To-Be: Secret Management(중앙) |
+|---|---|---|
+| **저장 위치** | 개발자 PC, Git, 이미지, CI 변수, 위키/메모 등 **여러 곳** | Vault 등 **단일 소스(SoT)** |
+| **접근 방식** | “있는 곳에서 꺼내 쓰기” (배포/운영 경로마다 제각각) | 애플리케이션/배치가 **인증 후 필요 시 조회** |
+| **권한 모델** | 공유 계정/광범위 권한/권한의 전파 | **Policy 기반 최소 권한** |
+| **수명/회전** | 장기 정적 값, 회전 시 파급·조율 비용 큼 | **Lease/TTL** 기반 단기 발급·자동 회전 설계 |
+| **감사/추적** | 누가 언제 무엇을 읽었는지 파편화 | **Audit**로 일관된 추적성 |
+| **사고 대응** | 폐기·교체 범위가 넓고 누락 위험 | 중앙에서 **폐기·회전·차단**을 빠르게 적용 |
 
 ### 1.3 Root of Trust
 
