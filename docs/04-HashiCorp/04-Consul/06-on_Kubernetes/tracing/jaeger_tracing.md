@@ -321,7 +321,7 @@ spec:
 
 - Jaeger UI 예제
   
-![image-20221110190509279](images/jager_example.png)
+![image-20221110190509279](./images/jager_example.png)
 
 ### (참고) Jaeger와 다른 네임스페이스에 애플리케이션 사용할 경우
 

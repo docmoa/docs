@@ -8,7 +8,7 @@ tag: ["consul", "port", "requirement"]
 
 ## Consul 포트
 
-![arc](image/consul-arch-420ce04a.png)
+![arc](./image/consul-arch-420ce04a.png)
 
 ### Port Table
 
