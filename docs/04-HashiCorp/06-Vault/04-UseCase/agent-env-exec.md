@@ -36,11 +36,13 @@ graph LR
 
 데모를 위한 파일 구조는 다음과 같습니다.
 
-```bash
-├── .vault-dev-token
-├── main.py
-└── vault-agent.hcl
-```
+::: file-tree
+
+- .vault-dev-token
+- main.py
+- vault-agent.hcl
+
+:::
 
 ### 1. Vault Dev Server Run
 

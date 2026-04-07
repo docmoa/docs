@@ -3,6 +3,7 @@ import { defineUserConfig } from "vuepress";
 import { viteBundler } from '@vuepress/bundler-vite'
 import { usePagesPlugin } from 'vuepress-plugin-use-pages'
 import { googleAnalyticsPlugin } from '@vuepress/plugin-google-analytics'
+import { markdownFileTreePlugin } from '@vuepress/plugin-markdown-file-tree'
 import { getDirname, path } from "@vuepress/utils";
 import sidebarEnhancer from './plugins/sidebarEnhancer.cjs';
 
@@ -95,6 +96,8 @@ export default defineUserConfig({
     googleAnalyticsPlugin({
       id: 'UA-204926029-1',
     }),
+
+    markdownFileTreePlugin(),
 
     ...usePagesConfigs.map(cfg =>
       usePagesPlugin({

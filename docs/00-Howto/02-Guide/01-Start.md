@@ -22,25 +22,24 @@ git clone https://github.com/docmoa/docs.git
 ## 디렉토리 구조 이해하기
 clone 받은 구조는 VuePress의 구조를 갖고 있습니다. 문서의 기준이 되는 디렉토리는 `docs` 입니다.
 
-::: info 디렉토리 구조
-```bash:no-line-numbers
-.
-├── .gitignore
-├── LICENSE.md
-├── README.md
-├── `docs`
-│   ├── .vuepress
-│   ├── 00-Howto
-│   ├── 01-Infra
-│   ├── 02-PrivatePlatform
-│   ├── 03-PublicCloud
-│   ├── 04-HashiCorp
-│   ├── 05-etc
-│   ├── 98-tag
-│   ├── 99-about
-│   └── README.md
-└── package.json
-```
+::: file-tree
+
+- .gitignore
+- LICENSE.md
+- README.md
+- docs
+  - .vuepress/
+  - 00-Howto/
+  - 01-Infra/
+  - 02-PrivatePlatform/
+  - 03-PublicCloud/
+  - 04-HashiCorp/
+  - 05-etc/
+  - 98-tag/
+  - 99-about/
+  - README.md
+- package.json
+
 :::
 
 
@@ -91,20 +90,19 @@ yarn vuepress dev
 `docs` 디렉토리 내에 기존에 구성된 항목 내에 작성도 가능하고 새로운 카테고리를 생성할 수도 있습니다. 디렉토리와 파일은 생성된 순서와 관계없이 정렬되기 때문에 좌측 `Sidebar` 표기시 원하는 순서대로 표기되기를 원하는 경우 `{숫자}-` 을 파일명 앞에 붙여 의도한대로 표시되도록 구성가능합니다.
 
 예를 들어 `Howto`에 작성된 내용을 바탕으로 설명합니다.
-::: info 문서 트리
-```bash:no-line-numbers
-00-Howto
-├── `01-Overview.md`
-├── `02-Guide`
-│   ├── 01-Start.md
-│   ├── 02-PullRequest.md
-│   └── 03-Fork.md
-├── `03-Tips`
-│   ├── CodeBlock.md
-│   ├── Link.md
-│   └── TipBox.md
-└── `README.md`
-```
+
+::: file-tree
+- 00-Howto
+  - 01-Overview.md
+  - 02-Guide
+    - 01-Start.md
+    - 02-PullRequest.md
+    - 03-Fork.md
+  - 03-Tips
+    - CodeBlock.md
+    - Link.md
+    - TipBox.md
+  - README.md
 :::
 
 - 파일과 디렉토리 구분없이 같은 Depth에 위치하는 경우 함께 표기 됩니다.

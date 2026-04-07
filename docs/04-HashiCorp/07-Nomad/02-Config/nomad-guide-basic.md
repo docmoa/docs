@@ -20,12 +20,14 @@ tag: ["Nomad", "Sample"]
 
 ### 구성 샘플
 
-```bash
-└── hashicorp
-    └── nomad
-         ├── config
-         └── data
-```
+::: file-tree
+
+- hashicorp
+  - nomad
+    - config/
+    - data/
+
+:::
 
 - Donwload 받은 압축을 해제하고 기존 `$PATH` 위치에 복사 하거나 등록
 	- e.g. utuntu : /usr/local/bin
