@@ -452,11 +452,6 @@ BUNDLE=$(sudo spire-server bundle show -format spiffe)
 ```
 
 ```
-echo $BUNDLE
-{ "keys": [ { "use": "x509-svid", "kty": "EC", "crv": "P-256", "x": "18fJ6zCmp5YMtgXHAsF-_7dZ8757vZoI9EwzZ90-fUk", "y": "zqO3rPmUJ3r8b9NJZ1-4lcGskCbp0EaM5MCUev3jkSM", "x5c": [ ....
-```
-
-```
 # Endpoint_URL : Spire 서버 Federation 엔드포인트 
 vault write auth/spiffe/config \
   trust_domain="example.org" \
@@ -478,20 +473,11 @@ bundle                           {
             "x": "6601LWdzz-zq-3hq5GmtqsOZNbQc6BBGaTGu29gOZXA",
             "y": "s6s3WCE_7Y6eSn1Iq3z5JrfKDK_3T8mFAjDghauPPyE",
             "x5c": [
-                "MIICAjCCAaegAwIBAgIQZX+DMDisLeBW49dmZ5RRTzAKBggqhkjOPQQDAjBQMQswCQYDVQQGEwJVUzEPMA0GA1UEChMGU1BJRkZFMTAwLgYDVQQFEycxMzQ5MTQxMTAwOTE0NTk2MTc3NjE0MTQxNTQxNTU1NjQ3NDkxMzUwHhcNMjYwNDA3MDY1NjEzWhcNMjYwNDE0MDY1NjIzWjBQMQswCQYDVQQGEwJVUzEPMA0GA1UEChMGU1BJRkZFMTAwLgYDVQQFEycxMzQ5MTQxMTAwOTE0NTk2MTc3NjE0MTQxNTQxNTU1NjQ3NDkxMzUwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAATrrTUtZ3PP7Or7eGrkaa2qw5k1tBzoEEZpMa7b2A5lcLOrN1ghP+2Onkp9SKt8+Sa3ygyv90/JhQIw4IWrjz8ho2MwYTAOBgNVHQ8BAf8EBAMCAQYwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUc/ihqV0iAGZbwgPOYZY9nstlbYIwHwYDVR0RBBgwFoYUc3BpZmZlOi8vZXhhbXBsZS5vcmcwCgYIKoZIzj0EAwIDSQAwRgIhAMLePMGHLP86/m28HX7Fwt1a6qBAVM0wBntIXH/TNrjwAiEAxrkMQ8s+ZoHAEA6KwZ8Cv6jh2Q4ugR1qtcMAClmVaNM="
+                "MIICAjCCAaegAwIBAgIQZX+DMDisLeBW49dmZ5RRTzAKBggqhkjOPQQDAjBQMQswCQYDVQQGEwJVUzEPMA0GA1UEChMGU1BJRkZFMTAwLgYDVQQFEy
+                ...
             ]
-        },
-        {
-            "use": "jwt-svid",
-            "kty": "EC",
-            "kid": "vMIoVrly12WdPdV5YUwLad3TNDXhbckb",
-            "crv": "P-256",
-            "x": "nuAuoC7Sm_NodYBuxDcZhKa1nYYcPC7qLvSf3uFamKg",
-            "y": "vP3meBfN973whG_dII0vKRz2-F3IRh_aAiLYvUMqJGI"
         }
-    ],
-    "spiffe_sequence": 1,
-    "spiffe_refresh_hint": 300
+    ]
 }
 cached_bundle_config_version     1
 cached_bundle_fetched_at         2026-04-09T05:34:10.872649738Z
