@@ -446,8 +446,7 @@ vault auth enable -passthrough-request-headers="Authorization" spiffe
 ### 3-2.  Config 작성 
 
 ```
-# Spire Server Federation Bundle Endpoint 주소로 Bundle 조회
-# Spire Federation API가 mTLS로 되어있어서 인증서 제출 필요 
+# Spire Server CA Bundle 조회
 BUNDLE=$(sudo spire-server bundle show -format spiffe)
 ```
 
