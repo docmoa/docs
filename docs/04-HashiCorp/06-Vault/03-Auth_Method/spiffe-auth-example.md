@@ -1,174 +1,115 @@
 ---
-description: Spiffe Auth MEthod 설명 및 구성 방법 안내
-tag: ["vault auth", "Spiffe", "Spire", "Enterprise" ]
+description: SPIFFE auth method 실습 — SPIRE 설치부터 Vault 로그인까지
+tag: ["vault auth", "SPIFFE", "SPIRE", "Enterprise"]
 ---
 
-# SPIFFE - Vault auth example
+# SPIFFE — Vault auth 구성 예시
+
+개념·API 요약은 [SPIFFE 인증 방법 (Enterprise)](spiffe-auth.md)을 참고하세요. 이 글은 **SPIRE + Vault Enterprise**로 `https_spiffe_bundle` 프로필을 구성하는 실습 예시입니다.
 
 ## 1. 개요
 
-Spiffe는 워크로드(서비스)간 신뢰 기반 인증을 표준화하는 오픈소스로 Spire는 Spiffe의 표준을 구현한 시스템입니다.
+**SPIFFE**는 워크로드 신원(identity)을 표준화하는 스펙이고, **SPIRE**는 그 스펙을 구현한 시스템입니다.
 
-Spiffe는 SVID 기반으로 신원을 인증합니다. SVID에는 각 서비스의 고유 ID인 Spiffe ID가 포함됩니다.
+SPIFFE는 **SVID**(SPIFFE Verifiable Identity Document)로 신원을 증명합니다. SVID에는 워크로드 고유 ID인 SPIFFE ID가 들어 있습니다.
 
-* SVID(Spiffee Verfiable Identity Document) : Spiffe ID가 포함된 Spiffe 인증정보 
+워크로드 신원을 **발급**하는 주체는 Vault가 아니라 SPIRE입니다. Vault Enterprise의 `spiffe` auth method는 SPIRE가 발급한 SVID를 **검증**한 뒤 Vault 토큰을 발급합니다.
 
+### 기존 방식과 SPIFFE 비교
 
+| 기존 | SPIFFE |
+|------|--------|
+| IP 기반 인증 | 워크로드마다 고유 SPIFFE ID |
+| 수동 인증서 관리 | SPIRE Agent로 인증서 자동 갱신 |
+| 워크로드 간 신뢰 관계 관리가 어려움 | mTLS 기반 신뢰 통신 |
 
-워크로드의 신원을 만드는 주체는 Vault가 아니라 Spire로, Vault Enterprise에서는 Spire가 발급한 SVID를 통해 Vault에 인증할 수 있습니다.
+### SVID 종류
 
+| 종류 | SPIFFE ID 위치 |
+|------|----------------|
+| X.509 인증서 | SAN (예: `spiffe://trust-domain/service-a`) |
+| JWT 토큰 | `sub` (및 `audience`) |
 
+## 2. SPIFFE auth method 프로필
 
-##### 기존방식 - Spiffe 비교
+공식 API: [SPIFFE auth method API](https://developer.hashicorp.com/vault/api-docs/auth/spiffe#spiffe-auth-method-api)
 
-| 기존                                     | Spiffe                                 |
-| ---------------------------------------- | -------------------------------------- |
-| IP 기반 인증 서비스                      | 워크로드(서비스)간 고유 Spiffe ID 부여 |
-| 수동 인증서 관리 필요                    | Spire Agent로 인증서 자동 갱신         |
-| 워크로드(서비스)간 신뢰 관계 관리 어려움 | 워크로드(서비스)간 mTLS 기반 신뢰 통신 |
+Vault가 SPIRE trust bundle을 가져오는 **profile**은 다음 네 가지입니다.
 
+| profile | 설명 |
+|---------|------|
+| `https_spiffe_bundle` | `spiffe://` 엔드포인트, JWKS. Federation API로 CA bundle을 주기적으로 갱신 |
+| `static` | config에 고정 bundle 저장 (CA 만료 시 수동 갱신) |
+| `https_web_bundle` | `https://` 엔드포인트, JWKS |
+| `https_web_pem` | `https://` 엔드포인트, X.509 PEM |
 
+### `https_spiffe_bundle` 구성·인증 흐름
 
-##### SVID 종류
+**구성**
 
-* X.509 인증서
-* JWT 토큰
+1. SPIRE Server: Federation API, Agent용 Join Token, Workload Entry
+2. SPIRE Agent: Join Token으로 Agent 실행
+3. Vault: 초기 CA bundle + Federation API 주소 등록
 
-##### SVID 종류별 구조
+**인증**
 
-* X.509 인증서
-
-  * SAN에 Spiffe ID 존재
-
-  ```
-  spiffe://trust-domain/service-a
-  ```
-
-* JWT 토큰 
-
-  * sub에 Spiffe ID 존재
-  * audience
-
-
-
-## 2. Spiffe Auth Method 
-
-> https://developer.hashicorp.com/vault/api-docs/auth/spiffe#spiffe-auth-method-api
-
-Vault Spiffe Auth method에서 지원하는 Spiffe Profile 종류는 4가지를 지원합니다.
-
-> Profile 이란? Spire Server의 CA Trust Bundle 인증서를 가져올 때의 인증서 유형과 메커니즘 설정 
-
-
-
-* https_spiffe_bundle 
-
-  * spiffe 엔드포인트 `spiffe://`
-  * JWKS 포맷 인증서
-  * Vault는 Spire Server Federation API로 접근하여 Spire Server CA Bundle을 갱신함
-  * Vault는 갱신되는 CA Bundle을 갖고 SVID 검증  
-
-* static
-
-  * Vault Spiffe Auth Method Config에 저장된 고정된 Bundle 인증서로 검증 (CA만료시 수동 업데이트 필요)
-
-* https_web_bundle
-
-  * HTTPS 엔드포인트 `https://`
-  * JWKS 포맷 인증서
-
-* https_web_pem
-
-  * HTTPS 엔드포인트 `https://`
-
-  * X.509 인증서
-
-    
-
-#### https_spiffe_bundle 구성 및 인증 흐름 
-
-* 구성
-
-```
-#Spire Server 
-Federation API 서버 설정 
-Spire Agent 용 Join Token 생성 
-Worload Entry 등록 
-
-#Spire Agent 
-Join Token을 사용해 Agent 실행 
-
-#Vault 
-Spire Server CA Bundle + Spire Server Federation API 주소 등록
-```
-
-* 인증
-
-```
-인증 흐름
-워크로드측 SVID 발급 -> X.509 / JWT Vault에 제시 -> Vault 가 항상 최신 Spire CA Bundle로 검증
-```
-
-
+워크로드가 SVID를 받아 Vault에 제시하면, Vault는 최신 SPIRE CA bundle로 검증합니다.
 
 ```mermaid
 sequenceDiagram
-    participant Workload
-    participant Spire-Agent
-    participant Spire-Server
-    participant Vault
-    Workload->>Spire-Agent: SVID 요청
-    Spire-Agent-->Spire-Server: join token을 통한 신원증명
-    Spire-Agent->>Spire-Server: SVID 서명 요청 
-    Spire-Server->>Spire-Agent: SVID 서명 후 반환
-    Spire-Agent->>Workload: SVID 획득
-    Workload->>Vault: SVID로 인증 요청
-    Vault->>Spire-Server: Trust CA Bundle 조회   
-    Vault->>Vault: SVID 검증
-    Vault->>Workload: Vault Token 발급 
+  participant Workload
+  participant SpireAgent as SPIRE Agent
+  participant SpireServer as SPIRE Server
+  participant Vault
+  Workload->>SpireAgent: SVID 요청
+  SpireAgent->>SpireServer: Join Token으로 신원 증명
+  SpireAgent->>SpireServer: SVID 서명 요청
+  SpireServer->>SpireAgent: SVID 반환
+  SpireAgent->>Workload: SVID 전달
+  Workload->>Vault: SVID로 인증 요청
+  Vault->>SpireServer: Trust CA Bundle 조회
+  Vault->>Vault: SVID 검증
+  Vault->>Workload: Vault Token 발급
 ```
 
+아래 예시는 trust domain `example.org`, SPIRE/Vault 호스트는 플레이스홀더입니다. 환경에 맞게 바꿉니다.
 
+- `SPIRE_SERVER_HOST` — SPIRE Server 주소 (예: `spire.example.org`)
+- `VAULT_ADDR` — Vault 주소 (예: `https://vault.example.org:8200`)
 
+## 3. SPIRE Server 설치
 
+참고: [SPIRE — Install the server](https://spiffe.io/docs/latest/deploying/install-server/)
 
-## 0. Spire 서버 설치
-
-* https://spiffe.io/docs/latest/deploying/install-server/
-
-```
-curl -O https://github.com/spiffe/spire/releases/download/v1.14.4/spire-1.14.4-linux-amd64-musl.tar.gz
+```bash
+curl -LO https://github.com/spiffe/spire/releases/download/v1.14.4/spire-1.14.4-linux-amd64-musl.tar.gz
 tar zvxf spire-1.14.4-linux-amd64-musl.tar.gz
 sudo cp -r spire-1.14.4/. /opt/spire/
 sudo ln -s /opt/spire/bin/spire-server /usr/bin/spire-server
 sudo ln -s /opt/spire/bin/spire-agent /usr/bin/spire-agent
 ```
 
+## 4. SPIRE Server 실행
 
+### `/opt/spire/conf/server/server.conf` (`https_spiffe_bundle`용)
 
-## 1-1. SPIRE Server 실행
-
-##### /opt/spire/conf/server/server.conf
-
-Profile: https_spiffe_bundle
-
-```
+```hcl
 server {
-    bind_address = "0.0.0.0"      # Spire Server API Address
-    bind_port = "8081"              # Spire Server API 포트 
-    trust_domain = "example.org"    # Trust Domain (Spiffe ID의 기반)
-    data_dir = "./data/server"      # DB, 키 저장경로 
+    bind_address = "0.0.0.0"
+    bind_port = "8081"
+    trust_domain = "example.org"
+    data_dir = "./data/server"
     log_level = "DEBUG"
-    ca_ttl = "168h"                 # CA 유효기간 
-    default_x509_svid_ttl = "24h"   # SVID X.509 인증서 유효기간 
-    socket_path = "/tmp/spire-server/private/api.sock" # Socket Path
+    ca_ttl = "168h"
+    default_x509_svid_ttl = "24h"
+    socket_path = "/tmp/spire-server/private/api.sock"
 
-    federation {                    # vault config profile:https_spiffe_bundle  
-        bundle_endpoint {           
-            address = "0.0.0.0"     
-            port = 8443               # Vault가 CA Bundle Fetch 하는 포트 
-            refresh_hint = "5m"       # Vault가 CA Bundle을 갱신하는 주기 
-            profile "https_spiffe" {} # https_spiffe profile
+    federation {
+        bundle_endpoint {
+            address = "0.0.0.0"
+            port = 8443
+            refresh_hint = "5m"
+            profile "https_spiffe" {}
         }
     }
 }
@@ -191,145 +132,68 @@ plugins {
 }
 ```
 
-
-
-> Profile : static 
->
-> * Static 방식은 CA bundle을 수동으로 Vault Spiffe Auth method Config에 업데이트 해야함 
->
-> ```
-> #/opt/spire/conf/server/server.conf
-> server {
->     bind_address = "127.0.0.1"
->     bind_port = "8081"
->     trust_domain = "example.org"
->     data_dir = "./data/server"
->     log_level = "DEBUG"
->     ca_ttl = "168h"
->     default_x509_svid_ttl = "48h"
-> }
-> 
-> plugins {
->     DataStore "sql" {
->         plugin_data {
->             database_type = "sqlite3"
->             connection_string = "./data/server/datastore.sqlite3"
->         }
->     }
-> 
->     KeyManager "disk" {
->         plugin_data {
->             keys_path = "./data/server/keys.json"
->         }
->     }
-> 
->     NodeAttestor "join_token" {
->         plugin_data {}
->     }
-> }
-> ```
->
-> 
-
-
-
-
+`static` 프로필만 쓸 때는 `federation` 블록 없이 Server를 띄우고, Vault config의 `bundle`을 수동으로 갱신합니다.
 
 ```bash
 cd /opt/spire
 sudo spire-server run -config /opt/spire/conf/server/server.conf &
 ```
 
- **→ Spire Server  실행**
+헬스체크:
 
-- 워크로드들에게 SVID(신분증)를 발급해주는 중앙 서버
-- trust_domain `example.org` 기준으로 모든 신원 관리
+```bash
+sudo spire-server healthcheck -socketPath /tmp/spire-server/private/api.sock
+# Server is healthy.
+```
 
-
-
-> 서버 헬스체크 
->
-> ```
-> sudo spire-server healthcheck -socketPath /tmp/spire-server/private/api.sock
-> 
-> Server is healthy.
-> ```
-
-
-
-## 1-2. Spire Agent의 신원 인증을 위한 Join Token 발급
+## 5. Agent용 Join Token 발급
 
 ```bash
 sudo spire-server token generate \
   -spiffeID spiffe://example.org/myagent \
   -socketPath /tmp/spire-server/private/api.sock
 
-Token: 2c6f9672-6e1d-4f73-9fc2-6dccb8241b14
+# Token: <join-token>
 ```
 
-**→ Join token: Spire Agent가 Server에 처음 등록할 때 쓰는 일회용 비밀번호**
+Join Token은 SPIRE Agent가 Server에 처음 등록할 때 쓰는 일회용 토큰입니다. 출력된 값은 이후 단계에서 `<join-token>`으로 치환합니다.
 
+Entry 확인:
 
+```bash
+sudo spire-server entry show \
+  -socketPath /tmp/spire-server/private/api.sock
+```
 
-> entry 등록확인
->
-> ```
-> sudo spire-server entry show \
->   -socketPath /tmp/spire-server/private/api.sock
->   
-> Found 1 entry
-> Entry ID         : ef251ced-3651-409b-8d58-9ea00918d974
-> SPIFFE ID        : spiffe://example.org/myagent
-> Parent ID        : spiffe://example.org/spire/agent/join_token/2c6f9672-6e1d-4f73-9fc2-6dccb8241b14
-> Revision         : 0
-> X509-SVID TTL    : default
-> JWT-SVID TTL     : default
-> Selector         : spiffe_id:spiffe://example.org/spire/agent/join_token/2c6f9672-6e1d-4f73-9fc2-6dccb8241b14
-> ```
-
-
-
-## 1-3. 워크로드 Entry 등록
+## 6. 워크로드 Entry 등록
 
 ```bash
 sudo spire-server entry create \
   -spiffeID spiffe://example.org/workload/x509 \
-  -parentID spiffe://example.org/spire/agent/join_token/<join token> \
+  -parentID spiffe://example.org/spire/agent/join_token/<join-token> \
   -selector unix:uid:1000 \
   -socketPath /tmp/spire-server/private/api.sock
-    
-Entry ID         : a6337d22-5ac7-44a5-83e9-d4ba635712e2
-SPIFFE ID        : spiffe://example.org/workload/x509
-Parent ID        : spiffe://example.org/spire/agent/join_token/2c6f9672-6e1d-4f73-9fc2-6dccb8241b14
-Revision         : 0
-X509-SVID TTL    : default
-JWT-SVID TTL     : default
-Selector         : unix:uid:1000
 ```
 
-**→ uid:1000인 프로세스는 `workload/x509` SVID를 받을 자격이 있다" 고 등록**
+`uid:1000` 프로세스가 이 Agent를 통해 `spiffe://example.org/workload/x509` SVID를 받을 수 있게 등록합니다.
 
-**→ 해당 Spire Agent 통해서는 `uid:1000` 사용자만  `spiffe://example.org/workload/x509` 의 Spiffe ID를 가진 SVID만 발급 가능**
+| 옵션 | 의미 |
+|------|------|
+| `-spiffeID` | 발급할 SPIFFE ID (Vault role의 `workload_id_patterns`와 매핑) |
+| `-parentID` | 어느 Agent 경로로만 발급할지 |
+| `-selector unix:uid:1000` | uid 1000 프로세스만 해당 SVID 요청 가능 |
 
-| 옵션                      | 의미                                                |
-| ------------------------- | --------------------------------------------------- |
-| `-spiffeID`               | 이 워크로드에게 발급할 신분증 ID -> Vault Role 매핑 |
-| `-parentID`               | 어느 Agent를 통해서만 발급 가능한지                 |
-| `-selector unix:uid:1000` | uid가 1000인 프로세스만 해당 SVID 요청 발급 가능    |
+## 7. SPIRE Agent 실행
 
+### `/opt/spire/conf/agent/agent.conf`
 
-
-## 2-1. SPIRE Agent 실행
-
-**/opt/spire/conf/agent/agent.conf**
-
-```
+```hcl
 agent {
     data_dir = "/opt/spire/data/agent"
     log_level = "DEBUG"
-    trust_domain = "example.org"                  # Trust Domain 
-    server_address = "77.88.130.1"                # Spire Server 주소 
-    server_port = 8081                            # Spire Server Port
+    trust_domain = "example.org"
+    server_address = "<SPIRE_SERVER_HOST>"
+    server_port = 8081
     insecure_bootstrap = true
     socket_path = "/tmp/spire-agent/public/api.sock"
 }
@@ -349,196 +213,94 @@ plugins {
 }
 ```
 
-
-
 ```bash
-sudo spire-agent run -config /opt/spire/conf/agent/agent.conf -joinToken <token> &
+sudo spire-agent run -config /opt/spire/conf/agent/agent.conf -joinToken <join-token> &
 ```
 
-- Spire Agent가 중간에서 SVID를 워크로드(서비스) 전달
+Agent 목록 확인:
 
-  
+```bash
+sudo spire-server agent list
+```
 
-> Spire Server에서 agent list 확인
->
-> ```
-> sudo spire-server agent list 
-> 
->   
-> SPIFFE ID         : spiffe://example.org/spire/agent/join_token/2c6f9672-6e1d-4f73-9fc2-6dccb8241b14
-> Attestation type  : join_token
-> Expiration time   : 2026-04-14 05:10:15 +0000 UTC
-> Serial number     : 319807142421144943662157130721222690678
-> Can re-attest     : false
-> Agent version     : 1.14.4
-> ```
+## 8. SVID 발급
 
-
-
-
-
-## 2-2.  SVID 발급
-
-* uid: 1000 사용자로 실행
+`uid:1000` 사용자로 실행합니다.
 
 ```bash
 spire-agent api fetch x509 \
   -socketPath /tmp/spire-agent/public/api.sock \
   -write /opt/spiffe-certs/
-  
-...
-SPIFFE ID:		spiffe://example.org/workload/x509
-SVID Valid After:	2026-04-07 05:25:56 +0000 UTC
-SVID Valid Until:	2026-04-08 05:26:06 +0000 UTC
-CA #1 Valid After:	2026-04-07 02:13:09 +0000 UTC
-CA #1 Valid Until:	2026-04-14 02:13:19 +0000 UTC
-
-Writing SVID #0 to file /opt/spiffe-certs/svid.0.pem.
-Writing key #0 to file /opt/spiffe-certs/svid.0.key.
-Writing bundle #0 to file /opt/spiffe-certs/bundle.0.pem.
 ```
 
-* workload id 확인 
+SPIFFE ID 확인:
 
-```
-openssl x509 -text -in /opt/spiffe-certs/svid.0.pem  | grep -A 2 "Subject Alternative"
-
-            X509v3 Subject Alternative Name:
-                URI:spiffe://example.org/workload/x509
+```bash
+openssl x509 -text -in /opt/spiffe-certs/svid.0.pem | grep -A 2 "Subject Alternative"
+# URI:spiffe://example.org/workload/x509
 ```
 
-* Expiration 확인
+유효기간 확인:
 
-```
+```bash
 openssl x509 -text -in /opt/spiffe-certs/svid.0.pem | grep -A 2 "Validity"
-        Validity
-            Not Before: Apr 13 05:10:13 2026 GMT
-            Not After : Apr 14 05:10:23 2026 GMT
 ```
 
+다른 UID로 요청하면 `no identity issued`로 실패합니다.
 
-
-> ```
-> # 다른 UID의 사용자가 요청하면 실패
-> sudo -u test-user spire-agent api fetch x509 \
->   -socketPath /tmp/spire-agent/public/api.sock
-> 
-> DEBU[0118] PID attested to have selectors                pid=2234578 selectors="[type:\"unix\" value:\"uid:1001\" type:\"unix\" value:\"user:test-user\" type:\"unix\" value:\"gid:1001\" type:\"unix\" value:\"group:test-user\" type:\"unix\" value:\"supplementary_gid:27\" type:\"unix\" value:\"supplementary_group:sudo\" type:\"unix\" value:\"supplementary_gid:1001\" type:\"unix\" value:\"supplementary_group:test-user\"]" subsystem_name=workload_attestor
-> 
-> ERRO[0118] No identity issued                            method=FetchX509SVID pid=2234578 registered=false service=WorkloadAPI subsystem_name=endpoints
-> rpc error: code = PermissionDenied desc = no identity issued
-> ```
-
-
-
-
-
-## 3-1.Spiffe Auth method 활성화
-
-
+```bash
+sudo -u other-user spire-agent api fetch x509 \
+  -socketPath /tmp/spire-agent/public/api.sock
 ```
-export VAULT_NAMESPACE=dev-1
+
+## 9. Vault SPIFFE auth 설정
+
+### 9.1 활성화
+
+```bash
+export VAULT_NAMESPACE=<namespace>
 vault auth enable -passthrough-request-headers="Authorization" spiffe
 ```
 
+### 9.2 Config
 
-
-### 3-2.  Config 작성 
-
-```
-# Spire Server CA Bundle 조회
+```bash
 BUNDLE=$(sudo spire-server bundle show -format spiffe)
-```
 
-```
-# Endpoint_URL : Spire 서버 Federation 엔드포인트 
 vault write auth/spiffe/config \
   trust_domain="example.org" \
   profile="https_spiffe_bundle" \
   audience="vault" \
-  endpoint_url="https://77.88.130.1:8443" \
+  endpoint_url="https://<SPIRE_SERVER_HOST>:8443" \
   endpoint_spiffe_id="spiffe://example.org/spire/server" \
   bundle="$BUNDLE"
-
-Key                              Value
----                              -----
-audience                         [vault]
-bundle                           {
-    "keys": [
-        {
-            "use": "x509-svid",
-            "kty": "EC",
-            "crv": "P-256",
-            "x": "6601LWdzz-zq-3hq5GmtqsOZNbQc6BBGaTGu29gOZXA",
-            "y": "s6s3WCE_7Y6eSn1Iq3z5JrfKDK_3T8mFAjDghauPPyE",
-            "x5c": [
-                "MIICAjCCAaegAwIBAgIQZX+DMDisLeBW49dmZ5RRTzAKBggqhkjOPQQDAjBQMQswCQYDVQQGEwJVUzEPMA0GA1UEChMGU1BJRkZFMTAwLgYDVQQFEy
-                ...
-            ]
-        }
-    ]
-}
-cached_bundle_config_version     1
-cached_bundle_fetched_at         2026-04-09T05:34:10.872649738Z
-cached_bundle_refresh_hint       5m0s                        # 5분마다 Spire CA Bundle Refresh
-cached_bundle_sequence_number    1
-endpoint_spiffe_id               spiffe://example.org/spire/server
-endpoint_url                     https://77.88.130.1:8443
-profile                          https_spiffe_bundle
-trust_domain                     example.org
-version                          1
 ```
 
-* trust_domain : Vault가 신뢰할 Spiffe Trust Domian. 해당 도메인에서 발급된 SVID만 인증허용 (spiffe://example.org/...)
-* profile: Vault가 spire trust bundled을 어떻게 가져올지 설정.  Spife Federation API에서 Spifee mTLS를 자동으로 Fetch 
-* audience : JWT SVID 방식에서 검증 
-* endpoint_url: Spire Federation API Endpoint
-* endpoint_spiffe_id: Spire Federation API 서버의 Spiffe ID. SPIRE Server는`spiffe://<trust_domain>/spire/server` 형태가 기본 값 
-* bundle: Vault가 처음 Spire Federation API에 접속할떄 서버 인증서 검증용. 이후는 자동 교체 
+| 필드 | 설명 |
+|------|------|
+| `trust_domain` | 허용할 SPIFFE trust domain (`spiffe://example.org/...`) |
+| `profile` | trust bundle 가져오기 방식 |
+| `audience` | JWT SVID audience 검증 |
+| `endpoint_url` | SPIRE Federation API |
+| `endpoint_spiffe_id` | Federation 서버 SPIFFE ID (기본 `spiffe://<trust_domain>/spire/server`) |
+| `bundle` | 최초 Federation 접속 시 서버 검증용. 이후 자동 갱신 |
+| `cached_bundle_refresh_hint` | CA bundle 갱신 주기 (응답에 표시) |
 
-* cached_bundle_refresh_hint: CA Bundle Refresh 주기 
+### 9.3 Role
 
-
-
-
-
-### 3-3. Role 생성
-
-```
+```bash
 vault write auth/spiffe/role/x509-role \
   workload_id_patterns="workload/x509" \
   token_policies="test"
-  
-Key                        Value
----                        -----
-alias_metadata             map[]
-display_name               x509-role
-name                       x509-role
-token_bound_cidrs          []
-token_explicit_max_ttl     0s
-token_max_ttl              0s
-token_no_default_policy    false
-token_num_uses             0
-token_period               0s
-token_policies             [test]
-token_ttl                  0s
-token_type                 default
-workload_id_patterns       [workload/x509]
 ```
 
+## 10. 로그인
 
+### X.509
 
+**CLI**
 
-
----
-
-### X.509 방식
-
-#### 로그인
-
-* CLI
-
-```
+```bash
 export VAULT_CLIENT_CERT=/opt/spiffe-certs/svid.0.pem
 export VAULT_CLIENT_KEY=/opt/spiffe-certs/svid.0.key
 
@@ -548,66 +310,48 @@ vault write \
   type=cert
 ```
 
-* API
+**API**
 
-```
- curl   --cert /opt/spiffe-certs/svid.0.pem  --key /opt/spiffe-certs/svid.0.key   --request POST  --header "X-Vault-Namespace: dev-1"   --header "Content-Type: application/json"   --data '{"role": "x509-role", "type": "cert"}'   https://vault.gweowe.com:8200/v1/auth/spiffe/login
-```
-
-
-
-
-
----
-
-### JWT 방식
-
-#### JWT SVID 발급
-
-```
-spire-agent api fetch jwt -audience vault 
-
-...
-
-	eyJhbGciOiJFUzI1NiIsImtpZCI6Ik94ckVZdDIyclFxU0tNdDIwMEZjNGloS2I3VHlPdUdXIiwidHlwI.....
-bundle(spiffe://example.org):
-	{
-    "keys": [
-        {
-            "kty": "EC",
-            "kid": "OxrEYt22rQqSKMt200Fc4ihKb7TyOuGW",
-            "crv": "P-256",
-            "x": "lWLTzQyXAB9Y5AM0ECmUD8OxbxB6VsqUo79I048M42k",
-            "y": "ckGmHoR4rlU8_sbFfdQ9CAEVfKq9SVxc-N7koAUFAIE"
-        }
-    ]
-}
+```bash
+curl --cert /opt/spiffe-certs/svid.0.pem \
+  --key /opt/spiffe-certs/svid.0.key \
+  --request POST \
+  --header "X-Vault-Namespace: <namespace>" \
+  --header "Content-Type: application/json" \
+  --data '{"role": "x509-role", "type": "cert"}' \
+  "$VAULT_ADDR/v1/auth/spiffe/login"
 ```
 
-```
-JWT=eyJhbGciOiJFUzI1NiIsImtpZCI6InZNSW9Wcmx5MTJXZFBkVjVZVXdMYWQzVE5EWGhiY2tiIiwidHl....
-```
+### JWT
 
+**JWT SVID 발급**
 
-
-#### 로그인 
-
-* CLI
-
-```
-vault write -header="Authorization=Bearer $JWT" auth/spiffe/login role=x509-role type=jwt
-
+```bash
+spire-agent api fetch jwt -audience vault
+# JWT=<svid-jwt>
 ```
 
-* API 
+**CLI**
 
+```bash
+vault write -header="Authorization=Bearer $JWT" \
+  auth/spiffe/login role=x509-role type=jwt
 ```
+
+**API**
+
+```bash
 curl -k \
   --request POST \
   --header "Content-Type: application/json" \
-  --header "X-Vault-Namespace: dev-1" \
+  --header "X-Vault-Namespace: <namespace>" \
   --header "Authorization: Bearer $JWT" \
   --data '{"role": "x509-role", "type": "jwt"}' \
-  https://vault.gweowe.com:8200/v1/auth/spiffe/login
+  "$VAULT_ADDR/v1/auth/spiffe/login"
 ```
 
+## 참고
+
+- [SPIFFE 인증 방법 (Enterprise)](spiffe-auth.md)
+- [HashiCorp Vault — SPIFFE auth method](https://developer.hashicorp.com/vault/docs/auth/spiffe)
+- [SPIFFE auth HTTP API](https://developer.hashicorp.com/vault/api-docs/auth/spiffe)

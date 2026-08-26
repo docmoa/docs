@@ -25,7 +25,7 @@ Vault Enterprise와 해당 플러그인 사용 권한이 필요합니다.
 
 ::: tip SPIFFE·SPIRE 개념
 
-SPIFFE·SPIRE 개념이 필요하면 [SPIFFE/SPIRE 개요](../../../01-Infrastructure/Security/spiffe-spire-overview.md)를 먼저 읽으면 됩니다.
+SPIFFE·SPIRE 개념이 필요하면 [SPIFFE/SPIRE 개요](../../../01-Infrastructure/Security/spiffe-spire-overview.md)를 먼저 읽으면 됩니다. SPIRE 설치부터 Vault 로그인까지 실습은 [SPIFFE — Vault auth 구성 예시](spiffe-auth-example.md)를 참고하세요.
 
 :::
 
