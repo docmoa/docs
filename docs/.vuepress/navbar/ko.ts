@@ -12,6 +12,11 @@ export const koNavbar = navbar([
     ],
   },
   {
+    text: "Kong",
+    icon: "archway",
+    link: "/03-Kong/",
+  },
+  {
     text: "HashiCorp",
     icon: "layer-group",
     link: "/04-HashiCorp/",

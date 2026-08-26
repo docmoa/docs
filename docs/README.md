@@ -26,6 +26,10 @@ features:
     details: Alibaba Cloud, Naver Cloud
     link: /02-PublicCloud/
     icon: cloud
+  - title: Kong
+    details: API Gateway, AI Gateway, Event Gateway, Service Mesh
+    link: /03-Kong/
+    icon: archway
   - title: HashiCorp
     details: Packer, Vagrant, Terraform, Consul, Boundary, Vault, Nomad, Waypoint
     link: /04-HashiCorp/
