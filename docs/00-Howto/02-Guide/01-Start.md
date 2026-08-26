@@ -31,8 +31,7 @@ clone 받은 구조는 VuePress의 구조를 갖고 있습니다. 문서의 기�
   - .vuepress/
   - 00-Howto/
   - 01-Infra/
-  - 02-PrivatePlatform/
-  - 03-PublicCloud/
+  - 02-PublicCloud/
   - 04-HashiCorp/
   - 05-etc/
   - 98-tag/

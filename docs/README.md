@@ -22,13 +22,9 @@ features:
     details: Linux, Container, z/OS, Quantum
     link: /01-Infrastructure/
     icon: server
-  - title: Private Platform
-    details: vSphere, Private Cloud
-    link: /02-PrivatePlatform/
-    icon: building
   - title: Public Cloud
     details: Alibaba Cloud, Naver Cloud
-    link: /03-PublicCloud/
+    link: /02-PublicCloud/
     icon: cloud
   - title: HashiCorp
     details: Packer, Vagrant, Terraform, Consul, Boundary, Vault, Nomad, Waypoint

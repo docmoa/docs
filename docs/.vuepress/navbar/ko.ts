@@ -8,8 +8,7 @@ export const koNavbar = navbar([
     icon: "server",
     children: [
       { text: "Infrastructure", link: "/01-Infrastructure/" },
-      { text: "Private-Platform", link: "/02-PrivatePlatform/" },
-      { text: "Public-Cloud", link: "/03-PublicCloud/" },
+      { text: "Public-Cloud", link: "/02-PublicCloud/" },
     ],
   },
   {

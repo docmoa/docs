@@ -49,8 +49,7 @@ const commonSort = (a, b) =>
 const usePagesConfigs = [
   { startsWith: '/', file: 'root.js' },
   { startsWith: '/01-Infrastructure/', file: 'infrastructure.js' },
-  { startsWith: '/02-PrivatePlatform/', file: 'privateplatform.js' },
-  { startsWith: '/03-PublicCloud/', file: 'publiccloud.js' },
+  { startsWith: '/02-PublicCloud/', file: 'publiccloud.js' },
   { startsWith: '/04-HashiCorp/', file: 'hashicorp.js' },
   { startsWith: '/07-Kubernetes/', file: 'kubernetes.js' },
   { startsWith: '/05-Software/', file: 'software.js' },
