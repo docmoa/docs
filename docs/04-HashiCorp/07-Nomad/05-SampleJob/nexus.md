@@ -33,7 +33,7 @@ job "nexus" {
       
       resources {
         cpu    = 1000
-        memory = 2703
+        memory = 8000
       }
     }
   }
