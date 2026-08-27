@@ -18,6 +18,10 @@ Kong Gateway는 기본적으로 HTTP(S)·gRPC·TCP 프록시에 최적화되어 
 
 :::
 
+## Demo
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/zdbHmYHRCz8?si=TUohg9ZEBlQnHpg0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ## 커스텀 플러그인으로 구성한 계기
 
 SFTP는 별도 어댑터 서비스를 두고 Kong은 그 어댑터로만 라우팅하는 방식으로도 가능합니다. 다음 조건에서는 Gateway 플러그인을 고려할 수 있습니다.
