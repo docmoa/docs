@@ -6,6 +6,7 @@ import { googleAnalyticsPlugin } from '@vuepress/plugin-google-analytics'
 import { markdownFileTreePlugin } from '@vuepress/plugin-markdown-file-tree'
 import { getDirname, path } from "@vuepress/utils";
 import sidebarEnhancer from './plugins/sidebarEnhancer.cjs';
+import { llmsPlugin } from '@vuepress/plugin-llms'
 
 import theme from "./theme.js";
 
@@ -107,6 +108,8 @@ export default defineUserConfig({
         limit: 15,
       })
     ),
+
+    llmsPlugin({}),
 
     // searchPlugin({
     //   locales: {

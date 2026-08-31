@@ -6,6 +6,13 @@ docmoa (https://docmoa.github.io) 소스페이지 입니다.
 
 ## Change Log
 
+### 2026-08-31
+- vuepress / @vuepress/bundler-vite 2.0.0-rc.30
+- vuepress-theme-hope 2.0.0-rc.107
+- @vuepress 플러그인 2.0.0-rc.130 (`plugin-llms` 포함)
+- vue 3.5.42, sass-embedded 1.99, mermaid 11.17 등 차트·미디어 의존성 마이너 업데이트
+- VuePress rc.31은 theme-hope가 아직 rc.30만 지원하여 보류
+
 ### 2026-03-08
 - vuepress 2.0.0-rc.26, vuepress-theme-hope 2.0.0-rc.103, @vuepress 플러그인 rc.124, Node >=20.6.0
 - 홈 최근글 링크: 경로 표시 시 URL 디코딩(%20 등) 적용
